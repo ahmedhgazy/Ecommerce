@@ -1,0 +1,135 @@
+.card {
+    // flex: 1 1 auto;
+    background-color: transparent;
+    @media only screen and (max-width: 768px) {
+        margin: auto !important;
+        margin-bottom: 3rem;
+        flex: 0 0 100%;
+        justify-content: center;
+        display: flex;
+        text-align: center;
+    }
+    .stars {
+        @media only screen and (max-width: 768px) {
+            justify-content: center;
+            text-align: center;
+        }
+    }
+    &__discount {
+        position: absolute;
+        top: 12px;
+        // left: 12px;
+        inset-inline-start: 12px;
+
+        background-color: var(--btn-color-red);
+        font-family: var(--secondary-font);
+        font-size: 12px;
+        line-height: 18px;
+        display: inline-block;
+        color: #fafafa;
+        padding: 4px 12px !important;
+        border-radius: 4px;
+    }
+
+    &__icons {
+        position: absolute;
+        top: 12px;
+        // right: 12px;
+        inset-inline-end: 12px;
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: #fff;
+            &:hover {
+                background-color: var(--btn-color-red);
+            }
+
+            &:hover i {
+                color: #fff;
+            }
+        }
+
+        .icon-1 {
+            margin-bottom: 0.5rem;
+        }
+
+        i {
+            color: #333;
+        }
+    }
+
+    border: 0;
+    outline: 0;
+    .card-top {
+        padding: 35px 40px;
+
+        @media only screen and (max-width: 900px) {
+            padding: 25px 30px;
+        }
+        background-color: #fafafa;
+        min-height: 250px;
+        max-height: 250px;
+    }
+
+    .card-body {
+        padding: 1rem 0 0.5rem 0;
+
+        a.card-title {
+            font-family: var(--secondary-font);
+            font-weight: 500;
+            text-decoration: none;
+            line-height: 24px;
+        }
+    }
+
+    &-text {
+        span:not(:last-child) {
+            font-family: var(--secondary-font);
+            font-weight: 500;
+            color: var(--btn-color-red);
+            margin-right: 12px;
+        }
+
+        span:last-of-type {
+            width: 37px;
+            height: 24px;
+
+            font-family: var(--secondary-font);
+
+            font-weight: 500;
+            text-decoration-line: line-through;
+
+            color: #000000;
+
+            opacity: 0.5;
+        }
+    }
+
+    p:last-child {
+        margin-inline-start: 8px;
+        font-family: var(--secondary-font);
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 21px;
+        color: #000000;
+        opacity: 0.5;
+    }
+
+    &:hover a.card-title {
+        text-underline-offset: 0.35em !important;
+        text-decoration: underline !important;
+        text-decoration-color: var(--btn-color-red) !important;
+    }
+}
+
+img {
+    max-width: 100%;
+
+    @media only screen and (max-width: 768px) {
+        width: 50%;
+    }
+}

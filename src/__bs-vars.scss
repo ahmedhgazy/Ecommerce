@@ -1,0 +1,65 @@
+// Colors
+$primary: #f5f5f5;
+$secondary: #db4444;
+
+$dark: #000000;
+$body-bg: #fff;
+
+$info: gray;
+// $body-color: #000;
+// Spacing
+
+$spacer: 1rem !default;
+$spacers: (
+    0: 0,
+    1: $spacer * 0.25,
+    // 4px => 0.25rem
+    2: $spacer * 0.5,
+    // 8px => 0.5rem
+    3: $spacer * 0.75,
+    // 12px => 0.75rem
+    4: $spacer * 1.5,
+    // 24px => 1.5rem
+    5: $spacer * 3,
+    // 48px => 3 rem
+    6: $spacer * 5,
+    // 80px => 5rem
+    7: $spacer * 6,
+    //96 => 6rem 6rem
+    8: $spacer * 8,
+    // 128px => 8rem
+    9: $spacer * 12,
+    //192px => 12rem
+    10: $spacer,
+    //16px => 1rem,
+    11: $spacer * 2,
+    //32px => 2rem,
+    12: $spacer * 1.65,
+    13: $spacer * 2.5,
+) !default;
+
+$headings-margin-bottom: $spacer * 1 !default;
+$line-height-base: 1.7 !default;
+
+$input-radius: 0px;
+$input-btn-padding-y: 1rem;
+$input-btn-padding-x: 1rem;
+$input-border-radius: $input-radius;
+$input-border-radius-sm: $input-radius;
+$input-border-radius-lg: $input-radius;
+$input-border-color: #666;
+// Buttons
+$button-radius: 50px;
+$button-padding-x: 20px;
+$button-padding-y: 8px;
+
+$btn-border-radius: $button-radius;
+$btn-border-radius-sm: $button-radius;
+$btn-border-radius-lg: $button-radius;
+$btn-padding-y: $button-padding-y;
+$btn-padding-y-lg: $button-padding-y;
+$btn-padding-y-sm: $button-padding-y;
+$btn-padding-x: $button-padding-x;
+$btn-padding-x-lg: $button-padding-x;
+$btn-padding-x-sm: $button-padding-x;
+@import "../node_modules/bootstrap/scss/bootstrap";

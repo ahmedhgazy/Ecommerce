@@ -1,0 +1,249 @@
+{
+    "HEADER": {
+        "LANGUAGE_PLACEHOLDER": "Select Language",
+        "register": "Sign up",
+        "HOME": "Home",
+        "CONTACT": "Contact",
+        "ABOUT": "About",
+        "SEARCH_PLACEHOLDER": "What are you looking for?",
+        "EXCLUSIVE": "Exclusive",
+        "LOG_OUT": "Log out",
+        "WISHLIST": "Wishlist",
+        "PROFILE": "Profile",
+        "CART": "Cart"
+    },
+
+    "SIDEBAR": {
+        "HEADER": "Exclusive",
+        "PLACEHOLDER": "What are you looking for?",
+        "LABEL": "Search"
+    },
+    "REGISTER": {
+        "CREATE_ACCOUNT": "Create an account",
+        "ENTER_DETAILS_BELOW": "Enter your details below",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "CREATE_ACCOUNT_BUTTON": "Create Account",
+        "SIGN_UP_GOOGLE": "Sign up with Google",
+        "ALREADY_HAVE_ACCOUNT": "Already have an account",
+        "LOGIN": "Log in",
+        "LOGIN_TO_EXCLUSIVE": "Log in to Exclusive",
+        "FORGET_PASSWORD": "Forget Password?",
+        "ENTER_EMAIL": "Enter your email",
+        "SUBMIT": "Submit",
+        "RESET_PASSWORD": "Reset your Password"
+    },
+
+    "BANNER": {
+        "SUMMER_SALE": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
+        "SHOP_NOW": "Shop Now",
+        "CATEGORIES": "Categories",
+        "ENHANCE_MUSIC": "Enhance Your Music Experience",
+        "DAYS": "Days",
+        "HOURS": "Hours",
+        "MINUTES": "Minutes",
+        "SECONDS": "Seconds",
+        "BUY_NOW": "Buy Now!"
+    },
+    "HOME": {
+        "TODAYS": "Today's",
+        "FLASH_SALES": " Flash Sales",
+        "CATEGORIES": "Categories",
+        "BROWSE_BY_CATEGORY": "Browse By Category",
+        "THIS_MONTH": "This Month",
+        "BEST_SELLING_PRODUCTS": "Best Selling Products",
+        "LOAD_MORE": "Load More",
+        "SHOW_LESS": "Show Less",
+        "OUR_PRODUCTS": "Our products",
+        "EXPLORE_OUR_PRODUCTS": "Explore Our Products",
+        "FEATURED": "Featured",
+        "NEW_ARRIVALS": "New Arrivals"
+    },
+    "FOOTER": {
+        "EXCLUSIVE": "Exclusive",
+        "SUBSCRIBE": "Subscribe",
+        "GET_DISCOUNT": "Get 10% off your first order",
+        "ENTER_EMAIL": "Enter your email",
+        "SUPPORT": "Support",
+        "ADDRESS": "111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.",
+        "EMAIL_SUPPORT": "exclusive@gmail.com",
+        "PHONE_SUPPORT": "+88015-88888-9999",
+        "ACCOUNT": "Account",
+        "MY_ACCOUNT": "My Account",
+        "CART": "Cart",
+        "LOGIN_REGISTER": "Login / Register",
+        "WISHLIST": "Wishlist",
+        "SHOP": "Shop",
+        "QUICK_LINK": "Quick Link",
+        "PRIVACY_POLICY": "Privacy Policy",
+        "TERMS_OF_USE": "Terms Of Use",
+        "FAQ": "FAQ",
+        "CONTACT": "Contact",
+        "DOWNLOAD_APP": "Download App",
+        "SAVE_WITH_APP": "Save $3 with App New User Only"
+    },
+
+    "STAT": {
+        "FREE_AND_FAST_DELIVERY": "Free and fast delivery",
+        "FREE_DELIVERY_DESCRIPTION": "Free delivery for all orders over $140",
+        "CUSTOMER_SERVICE": "24/7 customer service",
+        "CUSTOMER_SERVICE_DESCRIPTION": "Friendly 24/7 customer support",
+        "MONEY_BACK_GUARANTEE": "Money back guarantee",
+        "MONEY_BACK_GUARANTEE_DESCRIPTION": "We return money within 30 days"
+    },
+
+    "DETAILS": {
+        "QUANTITY": "Quantity",
+        "ADD_TO_CART": "Add To Cart",
+        "FREE_DELIVERY": "Free Delivery",
+        "ENTER_POSTAL_CODE": "Enter your postal code for Delivery Availability",
+        "RETURN_DELIVERY": "Return Delivery",
+        "FREE_DELIVERY_RETURNS": "Free 30 Days Delivery Returns. Details"
+    },
+
+    "CONTACT": {
+        "CALL_TO_US": "Call To Us",
+        "AVAILABLE_24_7": "We are available 24/7, 7 days a week.",
+        "PHONE": "Phone: +8801611112222",
+        "WRITE_TO_US": "Write To Us",
+        "CONTACT_FORM_INFO": "Fill out our form and we will contact you within 24 hours.",
+        "EMAILS": "Emails: customer@exclusive.com",
+        "YOUR_NAME": "Your Name",
+        "YOUR_EMAIL": "Your Email",
+        "YOUR_MESSAGE": "Your Message",
+        "SEND": "Send"
+    },
+    "ABOUT": {
+        "OUR_STORY": "Our Story",
+        "OUR_STORY_DESCRIPTION": "Launched in 2015, Exclusive is South Asia’s premier online shopping marketplace with an active presence in Bangladesh. Supported by a wide range of tailored marketing, data, and service solutions, Exclusive has 10,500 sellers and 300 brands and serves 3 million customers across the region.",
+        "PRODUCT_OFFER": "Exclusive has more than 1 Million products to offer, growing at a very fast pace. Exclusive offers a diverse assortment in categories ranging from consumer goods.",
+        "SELLERS_COUNT": "10.5k",
+        "SELLERS_DESCRIPTION": "Sellers active on our site",
+        "MONTHLY_SALES_COUNT": "33K",
+        "MONTHLY_SALES_DESCRIPTION": "Monthly Product Sale",
+        "CUSTOMER_COUNT": "45.5L",
+        "CUSTOMER_DESCRIPTION": "Customers active on our site",
+        "ANNUAL_SALES_COUNT": "25K",
+        "ANNUAL_SALES_DESCRIPTION": "Annual gross sale on our site",
+        "FREE_FAST_DELIVERY": "Free and fast delivery",
+        "FREE_DELIVERY_DESCRIPTION": "Free delivery for all orders over $140",
+        "CUSTOMER_SERVICE": "24/7 customer service",
+        "CUSTOMER_SERVICE_DESCRIPTION": "Friendly 24/7 customer support",
+        "MONEY_BACK": "Money back guarantee",
+        "MONEY_BACK_DESCRIPTION": "We return money within 30 days"
+    },
+    "PROFILE": {
+        "MANAGE_ACCOUNT": "Manage Account",
+        "YOUR_PROFILE": "Your Profile",
+        "MY_ORDERS": "My Orders",
+        "YOUR_ORDERS": "Your Orders",
+        "MY_WISHLIST": "My WishList",
+        "YOUR_WISHLIST": "Your WishList",
+        "SAVED_ITEMS_COLLECTIONS": "Saved Items & Collections",
+        "EDIT_YOUR_PROFILE": "Edit Your Profile",
+        "FIRST_NAME": "First Name",
+        "EMAIL": "Email",
+        "ZIP_CODE": "Zip Code",
+        "SECOND_NAME": "Second Name",
+        "ADDRESS": "Address",
+        "BIRTH_DATE": "Birth Date",
+        "DD": "DD",
+        "MM": "MM",
+        "YYYY": "YYYY",
+        "CANCEL": "Cancel",
+        "SAVE_CHANGES": "Save Changes"
+    },
+
+    "WISHLIST": {
+        "addToSavedItems": "Add to Saved Items",
+        "addToWishlist": "Add to wishlist"
+    },
+
+    "CART": {
+        "PRODUCT": "Product",
+        "PRICE": "Price",
+        "QUANTITY": "Quantity",
+        "SUBTOTAL": "Subtotal",
+        "RETURN_TO_SHOP": "Return To Shop",
+        "CART_TOTAL": "Cart Total",
+        "SHIPPING": "Shipping",
+        "FREE": "Free",
+        "TOTAL": "Total",
+        "PROCEED_TO_CHECKOUT": "Proceed to checkout"
+    },
+
+    "ORDERS": {
+        "ORDERS": "Orders",
+        "SEARCH": "Search"
+    },
+
+    "BILLING": {
+        "BILLING_DETAILS": "Billing Details",
+        "NAME": "Name",
+        "EMAIL": "Email",
+        "PHONE": "Phone",
+        "CITY": "City",
+        "SHIPPING_ADDRESS": "Shipping Address",
+        "ZIP_CODE": "Zip Code",
+        "COUNTRY": "Country",
+        "SAVE_INFO": "Save this information for faster check-out next time",
+        "PLACE_ORDER": "Place Order",
+        "NAME_REQUIRED": "Name is required",
+        "EMAIL_REQUIRED": "Email is required",
+        "EMAIL_INVALID": "Email is invalid",
+        "PHONE_REQUIRED": "Phone is required",
+        "APARTMENT_REQUIRED": "Shipping address is required",
+        "CITY_REQUIRED": "City is required",
+        "ZIP_CODE_REQUIRED": "Zip code is required",
+        "COUNTRY_REQUIRED": "Country is required"
+    },
+
+    "ROUTES": {
+        "HOME": "Home",
+        "ABOUT": "About",
+        "CONTACT": "Contact",
+        "PROFILE": "MY Account",
+        "CART": "Cart",
+        "CHECKOUT": "Checkout"
+    },
+
+    "NOT_FOUND": {
+        "NOT_FOUND": "404 Not Found",
+        "NOT_FOUND_DESC": "Oops! The page you are looking for does not exist."
+    },
+
+    "TOAST_MESSAGE": {
+        "addToSavedItems": "Add to Saved Items",
+        "addToWishlist": "Add to wishlist",
+        "cartUpdated": "Cart Updated",
+        "productAddedSuccessfully": "Product added successfully",
+        "productAlreadyExists": "This product already exists",
+        "success": "Success",
+        "productAddedToWishlist": "Product added to wishlist",
+        "orderPlacedSuccessfully": "Order placed successfully",
+        "warning": "Warning",
+        "productAlreadyInWishlist": "Product already in wishlist",
+        "itemRemovedFromCart": "Item removed from the cart",
+        "emailSent": "Password reset email sent. Please check your inbox and spam folder. Follow the link in the email to reset your password.",
+        "fillForm": "Please fill out the form correctly",
+
+        "wrongPassword": "Wrong password",
+        "googleSignInError": "An error occurred while signing in with Google. Please try again later."
+    },
+
+    "ERROR": {
+        "errorMessage": "An error occurred. try to login again or reload the page"
+    },
+
+    "ERROR_MESSAGES": {
+        "NO_INTERNET": "There is no internet connection.",
+        "EMAIL_EXISTS": "The email address is already in use by another account.",
+        "OPERATION_NOT_ALLOWED": "Password sign-in is disabled for this project.",
+        "TOO_MANY_ATTEMPTS_TRY_LATER": "We have blocked all requests from this device due to unusual activity. Try again later.",
+        "EMAIL_NOT_FOUND": "There is no user record corresponding to this identifier. The user may have been deleted.",
+        "INVALID_PASSWORD": "The password is invalid or the user does not have a password.",
+        "USER_DISABLED": "The user account has been disabled by an administrator.",
+        "UNKNOWN_ERROR": "An unexpected error occurred. Please try again later."
+    }
+}

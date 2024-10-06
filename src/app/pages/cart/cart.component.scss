@@ -1,0 +1,98 @@
+.product-details__header {
+    p {
+        font-family: var(--secondary-font);
+        font-weight: 400;
+        color: #000000;
+    }
+}
+
+.product__N-image {
+    overflow: hidden;
+    img {
+        max-width: 100%;
+    }
+
+    span {
+        font-family: var(--secondary-font);
+        color: #000000;
+    }
+}
+
+input {
+    border: 1px solid #333;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    outline: none;
+
+    &:focus,
+    &:hover {
+        border: 0;
+        box-shadow: none;
+        outline: none;
+        border: 1px solid #333;
+    }
+}
+
+::ng-deep {
+    span.p-inputnumber {
+        height: 2.6rem;
+
+        .p-inputnumber-button-group {
+            border-color: var(--btn-color-red) !important;
+        }
+        input.p-inputtext {
+            &:focus,
+            &:hover {
+                outline: none;
+                box-shadow: none;
+                border-color: var(--btn-color-red) !important;
+            }
+        }
+    }
+
+    .p-button {
+        border-color: var(--btn-color-red) !important;
+    }
+
+    .p-element.p-button-icon-only.p-inputnumber-button.p-button.p-component {
+        background-color: var(--btn-color-red);
+    }
+}
+
+.back__btn {
+    margin-top: 2.5rem;
+    padding: 1rem 2rem;
+    border: 0;
+    outline: none;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    background-color: transparent;
+    color: #000000;
+    transition: all 0.2s ease-out;
+    &:hover {
+        background-color: var(--btn-color-red);
+        color: #fff;
+        border: 1px solid transparent;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .cart {
+        .product__N-image {
+            img {
+                display: none;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .quantity,
+    .p-input_wrapper {
+        display: none;
+    }
+}

@@ -1,0 +1,76 @@
+@import "../../../../assets/styles/mixins";
+footer {
+    * {
+        color: #fff !important;
+    }
+
+    @include respond(tab-port) {
+        margin-top: 2rem;
+    }
+
+    padding: 2rem 1rem;
+    h5,
+    h3,
+    h4.subscribe {
+        font-family: var(--secondary-font);
+        font-weight: 500;
+        color: #fafafa;
+        padding-bottom: 1.5rem;
+        font-size: 1.25rem;
+        @media (min-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    .text,
+    .address,
+    .account,
+    .QuikLink,
+    .media {
+        width: 100%;
+        @media (min-width: 768px) {
+            width: 130%;
+        }
+
+        p,
+        small {
+            font-size: 1rem;
+            line-height: 1.5rem;
+            color: #fafafa;
+        }
+    }
+
+    .input-wrapper {
+        width: 100%;
+        max-width: 300px;
+        border-radius: 4px;
+        padding: 0.5rem;
+        border: 1px solid #fff;
+
+        input {
+            width: 100%;
+
+            border: 0;
+
+            &::placeholder {
+                font-size: 0.875rem;
+            }
+        }
+    }
+
+    .download-app {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .left,
+        .right {
+            margin-bottom: 1rem;
+            @media (min-width: 768px) {
+                margin-bottom: 0;
+            }
+            img {
+                max-width: 100px;
+            }
+        }
+    }
+}

@@ -1,0 +1,125 @@
+@if (toggleSidebar) {
+<section class="sidebar d-flex flex-column">
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-12 my-3">
+                <!-- Sidebar header -->
+                <div class="sidebar__header d-flex align-items-center mb-4">
+                    <button
+                        (click)="closeSidebar()"
+                        style="
+                            font-size: 1.2rem !important;
+                            margin-inline-end: 1.5rem;
+                        "
+                        class="btn btn-close"
+                    ></button>
+
+                    <h4 class="title p-0 my-0 fw-bold text-secondary">
+                        {{ "SIDEBAR.HEADER" | translate }}
+                    </h4>
+                </div>
+            </div>
+
+            <!-- Search section -->
+            <div class="col-12">
+                <div class="sidebar-search__section mb-2">
+                    <label for="search" class="mb-1">
+                        {{ "SIDEBAR.LABEL" | translate }}
+                    </label>
+                    <div
+                        class="input-wrapper d-flex align-items-center"
+                        style="overflow: hidden"
+                    >
+                        <input
+                            type="text"
+                            class="form-control border-0"
+                            placeholder="{{
+                                'SIDEBAR.PLACEHOLDER' | translate
+                            }}"
+                            id="search"
+                        />
+                        <span class="bg-secondary p-4 text-light">
+                            <i style="cursor: pointer" class="pi pi-search"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation section -->
+            <div class="navigation">
+                <nav class="navigation--wrapper">
+                    <ul
+                        class="p-0 m-0 navigation__menu list-unstyled d-flex align-items-center justify-content-start flex-column gap-5 text-start text-dark"
+                    >
+                        <li class="navigation__item">
+                            <a class="navigation__link" (click)="navTo('home')">
+                                {{ "HEADER.HOME" | translate }}
+                            </a>
+                        </li>
+                        <li class="navigation__item">
+                            <a
+                                class="navigation__link"
+                                (click)="navTo('contact')"
+                                >{{ "HEADER.CONTACT" | translate }}</a
+                            >
+                        </li>
+                        <li class="navigation__item">
+                            <a
+                                (click)="navTo('about')"
+                                class="navigation__link"
+                                >{{ "HEADER.ABOUT" | translate }}</a
+                            >
+                        </li>
+                        <li class="navigation__item">
+                            <a
+                                (click)="navTo('wishlist')"
+                                class="navigation__link"
+                                >{{ "HEADER.WISHLIST" | translate }}</a
+                            >
+                        </li>
+
+                        <li class="navigation__item">
+                            <a
+                                (click)="navTo('cart')"
+                                class="navigation__link"
+                                >{{ "HEADER.CART" | translate }}</a
+                            >
+                        </li>
+                        <li class="navigation__item">
+                            <a
+                                (click)="navTo('profile')"
+                                class="navigation__link"
+                                >{{ "HEADER.PROFILE" | translate }}</a
+                            >
+                        </li>
+
+                        <li class="navigation__item">
+                            <a
+                                *ngIf="
+                                    (auth.isLoggedOut$ | async) &&
+                                    (googleS.isLoggedOutFromGoogle$ | async)
+                                "
+                                (click)="navTo('auth')"
+                                class="navigation__link"
+                                >{{ "HEADER.register" | translate }}
+                            </a>
+
+                            <a
+                                *ngIf="
+                                    (auth.isLoggedIn$ | async) ||
+                                    (googleS.isLoggedInFromGoogle$ | async)
+                                "
+                                (click)="logout()"
+                                class="navigation__link"
+                            >
+                                {{ "HEADER.LOG_OUT" | translate }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+}

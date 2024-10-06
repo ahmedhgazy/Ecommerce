@@ -1,0 +1,129 @@
+@import "../../../../assets/styles/mixins";
+.register {
+    .rgstr-area {
+        height: 530px !important;
+        padding-top: 1.6rem;
+        max-width: 100%;
+        .auth-header {
+            margin-bottom: 48px;
+            h1 {
+                font-family: var(--main-font);
+                font-weight: 500;
+                font-size: 2rem;
+                display: block;
+                line-height: 30px;
+                letter-spacing: 0.04em;
+                color: #000000;
+            }
+            p {
+                display: inline-block;
+                font-family: var(--secondary-font);
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+
+        form {
+            .form-group {
+                input {
+                    width: 100%;
+                    // height: 2.5rem;
+                    max-width: 370px;
+                    background-color: transparent;
+                    border: 0;
+                    border-bottom: 1px solid #333;
+                    padding-bottom: 0.5rem;
+
+                    &::placeholder {
+                        font-family: var(--secondary-font);
+                        font-weight: 400;
+                        font-size: 1rem;
+                        color: #000;
+                        opacity: 0.4;
+                        transition: all 0.3s ease-in-out;
+                    }
+
+                    &:focus::placeholder {
+                        transform: translate(-1.5rem, -1rem) scale(0.8);
+                    }
+                }
+            }
+
+            button {
+                width: 371px;
+                height: 56px;
+                border: 0;
+                outline: 0;
+                border-radius: 4px;
+                display: block;
+                &:first-of-type {
+                    background-color: var(--btn-color-red);
+                    color: var(--text);
+                }
+                &:not(:last-child) {
+                    margin-bottom: 1rem;
+                }
+                &:last-of-type {
+                    border: 1px solid var(--text-one);
+                    margin-bottom: 32px;
+                    font-family: var(--secondary-font);
+                    font-weight: 400;
+                    background-color: var(--white);
+                }
+            }
+            &__footer-text {
+                font-family: var(--secondary-font);
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                padding: 0;
+                margin: 0;
+                opacity: 0.7;
+                a {
+                    font-family: var(--secondary-font);
+                    font-weight: 500 !important;
+                    opacity: 0.7;
+                }
+            }
+        }
+    }
+
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover {
+        -webkit-text-fill-color: transparent;
+        -webkit-box-shadow: 0 0 0px 0 inset !important;
+        box-shadow: 0 0 0px 0 inset !important;
+        transition: background-color 5000s ease-in-out 0s !important;
+        background-color: transparent !important;
+        color: #0000 !important;
+        -webkit-text-fill-color: var(--text-dark) !important;
+    }
+}
+
+span.p-dialog-title {
+    font-family: var(--secondary-font);
+    font-weight: 400;
+}
+
+.form-control {
+    &:focus {
+        box-shadow: none;
+        outline: none;
+    }
+}
+
+.btn {
+    background-color: var(--btn-color-red) !important;
+    color: white;
+}
+
+img {
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+.error-message {
+    margin-inline: 2rem !important;
+}

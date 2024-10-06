@@ -1,0 +1,54 @@
+<section class="banner text-light py-lg-5 py-3" style="margin-top: 60px">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-7 banner__text">
+                <div class="banner__header">
+                    <p class="text-success mb-3">
+                        {{ "BANNER.CATEGORIES" | translate }}
+                    </p>
+                </div>
+                <h1 class="banner__offer mb-4">
+                    {{ "BANNER.ENHANCE_MUSIC" | translate }}
+                </h1>
+                <div
+                    class="banner__counter d-flex flex-wrap justify-content-start align-items-center mb-4"
+                >
+                    <div
+                        class="count bg-white text-dark rounded-circle me-3 mb-3"
+                    >
+                        <p class="mb-0">{{ countdown().days }}</p>
+                        <span>{{ "BANNER.DAYS" | translate }}</span>
+                    </div>
+                    <div
+                        class="count bg-white text-dark rounded-circle me-3 mb-3"
+                    >
+                        <p class="mb-0">{{ countdown().hours }}</p>
+                        <span>{{ "BANNER.HOURS" | translate }}</span>
+                    </div>
+                    <div
+                        class="count bg-white text-dark rounded-circle me-3 mb-3"
+                    >
+                        <p class="mb-0">{{ countdown().minutes }}</p>
+                        <span>{{ "BANNER.MINUTES" | translate }}</span>
+                    </div>
+                    <div class="count bg-white text-dark rounded-circle mb-3">
+                        <p class="mb-0">{{ countdown().seconds }}</p>
+                        <span>{{ "BANNER.SECONDS" | translate }}</span>
+                    </div>
+                </div>
+                <button class="btn btn-success btn-lg">
+                    {{ "BANNER.BUY_NOW" | translate }}
+                </button>
+            </div>
+            <div class="col-lg-5 banner__img">
+                <div class="img-wrapper">
+                    <img
+                        class="img-fluid"
+                        src="../../../../../assets/images/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png"
+                        alt="JBL Boombox"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

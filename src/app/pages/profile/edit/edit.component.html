@@ -1,0 +1,107 @@
+<section class="form-section p-0" style="padding-inline-start: 2rem">
+    <h5 class="form-title mb-10 p-0">
+        {{ "PROFILE.EDIT_YOUR_PROFILE" | translate }}
+    </h5>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col-12 col-md-5 ps-0 left">
+                <div class="form-group">
+                    <label for="firstname" class="mb-2">
+                        {{ "PROFILE.FIRST_NAME" | translate }}
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control bg-primary"
+                        id="firstname"
+                        formControlName="fname"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="email " class="mb-2 mt-4">
+                        {{ "PROFILE.EMAIL" | translate }}
+                    </label>
+
+                    <input
+                        type="email"
+                        class="form-control bg-primary"
+                        id="email"
+                        formControlName="email"
+                    />
+                </div>
+                <div class="form-group">
+                    <label for="Zip " class="mb-2 mt-4">
+                        {{ "PROFILE.ZIP_CODE" | translate }}
+                    </label>
+
+                    <input
+                        type="number"
+                        class="form-control bg-primary"
+                        id="Zip"
+                        formControlName="zip"
+                    />
+                </div>
+            </div>
+
+            <div class="col-12 col-md-5 offset-md-1 ps-0 right">
+                <div class="form-group">
+                    <label for="secondname " class="mb-2">
+                        {{ "PROFILE.SECOND_NAME" | translate }}
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control bg-primary"
+                        id="secondname"
+                        formControlName="sName"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="address " class="mb-2 mt-4">
+                        {{ "PROFILE.ADDRESS" | translate }}
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control bg-primary"
+                        id="address"
+                        formControlName="address"
+                    />
+                </div>
+                <div class="form-group">
+                    <label class="mb-2 mt-4">
+                        {{ "PROFILE.BIRTH_DATE" | translate }}
+                    </label>
+
+                    <app-shared-input formControlName="date"></app-shared-input>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div
+                class="actions mt-4 d-flex align-items-center justify-content-end"
+            >
+                <a
+                    routerLink="/home"
+                    class="cancel text-dark"
+                    style="margin-inline-end: 2rem !important"
+                    type="submit"
+                >
+                    {{ "PROFILE.CANCEL" | translate }}
+                </a>
+
+                <button
+                    class="text-light submit py-10 bg-secondary"
+                    type="submit"
+                    style="padding-inline: 3rem"
+                >
+                    {{ "PROFILE.SAVE_CHANGES" | translate }}
+                </button>
+            </div>
+        </div>
+    </form>
+</section>
+<app-loading></app-loading>
+<p-toast />

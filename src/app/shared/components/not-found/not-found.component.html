@@ -1,0 +1,37 @@
+<section class="not-found">
+    <div class="container">
+        <div class="row my-6">
+            <app-shared-routes-header class="header-shared_routes">
+                <span routerLink="/home" header style="cursor: pointer">
+                    {{ "ROUTES.HOME" | translate }}
+                </span>
+                <p route>
+                    {{ "NOT_FOUND.NOT_FOUND" | translate }}
+                </p>
+            </app-shared-routes-header>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-center text">
+                <p class="error mb-13">
+                    {{ "NOT_FOUND.NOT_FOUND" | translate }}
+                </p>
+                <p class="not_found">
+                    {{ "NOT_FOUND.NOT_FOUND_DESC" | translate }}
+                </p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 d-flex justify-content-center">
+                <button
+                    routerLink="/home"
+                    style="border-radius: 0.25rem"
+                    class="btn btn-secondary text-light py-10 px-5"
+                >
+                    Back to home page
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

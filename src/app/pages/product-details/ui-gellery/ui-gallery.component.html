@@ -1,0 +1,45 @@
+<section class="gallery">
+    <div class="row">
+        <div class="col-4">
+            <div class="gallery__images">
+                <ul class="list-unstyled d-flex flex-column align-items-center">
+                    <ng-container *ngIf="images">
+                        <li
+                            *ngFor="let image of images; let i = index"
+                            (click)="changeSelectedImage(image, i)"
+                            [ngStyle]="{
+                                'background-image': 'url(' + image + ')'
+                            }"
+                            [class.active]="image === selectedImage"
+                        ></li>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+        <div
+            class="d-flex justify-content-center col-8 p-0 gallery_main_image_container"
+        >
+            <div
+                class="gallery_main_image position-relative mb-5 text-center"
+                (mousemove)="onImageHover($event)"
+                (mouseleave)="onImageLeave()"
+            >
+                <img
+                    [src]="selectedImage"
+                    [class.slide-from-left]="
+                        isImageChanging && direction === 'next'
+                    "
+                    [class.slide-from-right]="
+                        isImageChanging && direction === 'prev'
+                    "
+                    alt="Selected Image"
+                />
+                <div
+                    class="zoom-overlay"
+                    [style.backgroundImage]="'url(' + selectedImage + ')'"
+                    [style.backgroundPosition]="zoomPosition"
+                ></div>
+            </div>
+        </div>
+    </div>
+</section>

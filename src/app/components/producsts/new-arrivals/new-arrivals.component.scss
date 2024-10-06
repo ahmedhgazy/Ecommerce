@@ -1,0 +1,146 @@
+// Variables
+$primary-color: #fafafa;
+$secondary-color: #000;
+$font-family: var(--secondary-font);
+
+// Mixins
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin card-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+}
+
+// Styles
+.arrivals {
+    background-color: #f8f9fa;
+
+    .card {
+        @include card-hover;
+        border: none;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .card-title {
+        font-family: $font-family;
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+        font-family: $font-family;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .btn-outline-light {
+        border-width: 2px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem !important;
+
+        &:hover {
+            background-color: $primary-color;
+            color: $secondary-color;
+        }
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    // PlayStation 5 Card
+    .col-lg-6:first-child .card {
+        height: 100%;
+
+        img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+    }
+
+    // Men's Collections Card
+    .col-12 .card {
+        background: linear-gradient(to right, #333333, #111111);
+    }
+
+    // Speakers and Perfume Cards
+    .col-sm-6 .card {
+        background: radial-gradient(circle, #333333 50%, #111111 100%);
+
+        img {
+            max-height: 200px;
+            object-fit: contain;
+        }
+    }
+}
+
+// Media Queries
+@media (max-width: 991.98px) {
+    .arrivals {
+        .card-title {
+            font-size: 1.25rem;
+        }
+
+        .card-text {
+            font-size: 0.8rem;
+        }
+
+        .btn {
+            font-size: 0.9rem;
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+    .arrivals {
+        .col-lg-6:first-child .card {
+            img {
+                max-height: 250px;
+            }
+        }
+
+        .col-sm-6 .card img {
+            max-height: 150px;
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .arrivals {
+        .card-title {
+            font-size: 1.1rem;
+        }
+
+        .card-text {
+            font-size: 0.75rem;
+        }
+
+        .btn {
+            font-size: 0.8rem;
+        }
+
+        .col-lg-6:first-child .card,
+        .col-12 .card {
+            .row {
+                flex-direction: column;
+            }
+
+            img {
+                max-height: 200px;
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+.details {
+    .col-3 {
+        &:not(:last-child) {
+            margin-inline-end: 88px;
+        }
+
+        .desc {
+            font-family: var(--secondary-font);
+            padding-top: 24px;
+            padding-bottom: 4px;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+
+            color: #000000;
+        }
+        .sub-desc {
+            font-family: var(--secondary-font);
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+
+            color: #000000;
+        }
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .col-12 {
+        &:first-child {
+            flex: 0 1 auto;
+        }
+        flex: 1 0 auto;
+        &:not(:last-child) {
+            margin-bottom: 5rem;
+        }
+    }
+}

@@ -1,0 +1,207 @@
+@import url("https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic");
+@import "primeicons/primeicons.css";
+@import "./assets/styles/mixins";
+@import "./assets/styles/variables";
+
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+Arabic:100,200,300,regular,500,600,700,800,900");
+/*
+  * *************************Start Global****************************
+*/
+
+html {
+    font-size: 16px;
+    // overflow-y: scroll;
+
+    // @include respond(phone) {
+    //     font-size: 14px;
+    // }
+}
+
+::selection {
+    background-color: orangered;
+    color: #fff;
+}
+
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box !important;
+}
+
+body {
+    padding: 0 !important;
+    margin: 0 !important;
+    padding-right: 0 !important;
+    transition: background-color 0.3s ease;
+    font-family: "Inter", sans-serif;
+}
+
+ul,
+a {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+a {
+    color: #000;
+    cursor: pointer;
+}
+
+/*****************************End Global**********************************/
+.header-shared_routes {
+    span,
+    p {
+        line-height: 21px;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: var(--secondary-font);
+        cursor: pointer;
+        text-wrap: nowrap;
+    }
+
+    span {
+        opacity: 0.5;
+    }
+
+    p {
+        padding: 0;
+        margin-bottom: 0;
+    }
+}
+
+$checkboxWidth: 20px;
+$checkboxHeight: 20px;
+$checkboxBorderRadius: 4px;
+$checkboxBorder: 2px solid #ced4da;
+$checkboxActiveBorderColor: red;
+$checkboxActiveBg: red;
+$checkboxIconFontSize: 14px;
+$checkboxIconActiveColor: #ffffff;
+
+// Image Preview Modal
+
+.modal-open {
+    overflow: auto !important;
+    // overflow: hidden !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    margin-right: 0 !important;
+}
+
+.image-preview-modal .modal-dialog {
+    max-width: 100%;
+    margin: 0 !important;
+}
+
+.image-preview-modal .modal-content {
+    height: 100vh;
+    border: none;
+    border-radius: 0;
+}
+
+// Toast messages
+body .p-toast-container {
+    z-index: 1000000 !important;
+}
+
+body .p-toast-message {
+    z-index: 1000001 !important;
+}
+
+body .p-toast {
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+}
+
+body .p-component-overlay,
+body .p-dialog-mask,
+body .p-sidebar-mask {
+    z-index: 999999 !important;
+}
+
+// footer input placeholder color
+footer {
+    input {
+        &::placeholder {
+            color: #fff !important;
+        }
+    }
+}
+
+// register area form
+.register {
+    .rgstr-area {
+        @media only screen and (max-width: 900px) {
+            height: auto;
+            width: 100%;
+            padding-top: 1.6rem;
+            max-width: 100%;
+            display: grid !important;
+            place-content: center;
+        }
+    }
+}
+
+.register__btn {
+    @media screen and (max-width: 950px) {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    button,
+    a {
+        @media screen and (max-width: 950px) {
+            width: 100%;
+            flex: 1 1 auto;
+        }
+    }
+}
+
+.custom-dropdown {
+    background-color: #000 !important;
+}
+
+.contact {
+    @media only screen and (max-width: 900px) {
+        .card-section,
+        .form-section-col {
+            width: 100%;
+            flex: 1 1 auto;
+            justify-content: center !important;
+            margin: 0 auto 3rem auto !important;
+        }
+    }
+}
+
+.p-toast.p-component {
+    z-index: 999999999999999999999999 !important;
+}
+
+.register {
+    .error-message {
+        margin-inline-end: 1rem !important;
+        margin-inline-start: 1rem !important;
+        margin-inline: 3rem !important;
+    }
+}
+
+.btn-col {
+    @media only screen and (max-width: 430px) {
+        margin-inline: 3rem !important;
+        justify-content: center !important;
+    }
+}
+
+.btn-input {
+    @media only screen and (max-width: 430px) {
+        margin-inline: auto;
+        justify-content: center !important;
+        display: flex;
+    }
+}

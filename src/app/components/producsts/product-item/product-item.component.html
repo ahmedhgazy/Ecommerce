@@ -1,0 +1,65 @@
+@if (product) {
+<div class="card" style="cursor: pointer">
+    @if (!inWishList) {
+    <div class="card__icons d-flex align-items-center flex-column">
+        <div class="icon icon-1" (click)="showConfirmPopUp()">
+            <i class="pi pi-heart"></i>
+        </div>
+        <div class="icon icon-2" (click)="openImagePreview()">
+            <i class="pi pi-eye"> </i>
+        </div>
+    </div>
+    }
+    <div
+        class="card-top"
+        [routerLink]="['/products', product.category, product.id]"
+    >
+        <div
+            class="wrraper overflow-hidden"
+            style="
+                text-align: center;
+                width: 64%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+                top: 35%;
+                left: 50%;
+            "
+        >
+            <img
+                *ngIf="product?.img"
+                [src]="product?.img"
+                class="card-img-top img-fluid"
+                [alt]="product.name"
+            />
+        </div>
+    </div>
+    <div class="card-body">
+        <a
+            [routerLink]="['/products', product.category, product.id]"
+            class="card-title"
+            >{{ product.name }}</a
+        >
+        <p class="card-text">
+            <span>${{ product.discount }}</span>
+            <span>${{ product.price }}</span>
+        </p>
+        <div class="d-flex stars">
+            <ngx-stars
+                [initialStars]="product.rating"
+                [maxStars]="5"
+                [readonly]="true"
+                [color]="'#FFAD33'"
+            ></ngx-stars>
+            <p>{{ product.available }}</p>
+        </div>
+    </div>
+</div>
+
+<app-confirm-popup
+    *ngIf="showPopup"
+    @fadeInOut
+    (closePopup)="closePopup()"
+    [product]="product"
+></app-confirm-popup>
+
+}

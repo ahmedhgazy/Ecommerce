@@ -1,0 +1,110 @@
+<section class="register mb-6" style="margin-top: 1.9rem">
+    <!-- <div class="container"> -->
+    <div class="row p-0 m-0">
+        <div
+            class="col-12 p-0 m-0 col-md-6 text-center img_container-colDiv align-content-center"
+            style="background-color: var(--bg-auth)"
+        >
+            <img
+                style="max-width: 90%"
+                src="../../../../assets/images/rgstr.png"
+                alt=""
+            />
+        </div>
+        <div class="col-12 col-md-4 offset-md-1" style="flex: 1 1 auto">
+            <div
+                *ngIf="!error"
+                class="rgstr-area"
+                style="width: 100%; height: 100%"
+            >
+                <div class="auth-header">
+                    <h1>{{ "REGISTER.LOGIN_TO_EXCLUSIVE" | translate }}</h1>
+                    <p class="mt-4">
+                        {{ "REGISTER.ENTER_DETAILS_BELOW" | translate }}
+                    </p>
+                </div>
+                <form [formGroup]="form" (ngSubmit)="submit()">
+                    <div class="form-group mb-4">
+                        <input
+                            class="form-control"
+                            formControlName="email"
+                            type="email"
+                            placeholder="{{ 'REGISTER.EMAIL' | translate }}"
+                        />
+                    </div>
+                    <div class="form-group mb-4">
+                        <input
+                            class="form-control"
+                            type="password"
+                            formControlName="password"
+                            placeholder="{{ 'REGISTER.PASSWORD' | translate }}"
+                        />
+                    </div>
+
+                    <div
+                        class="register__btn d-flex justify-content-between align-items-center"
+                        style="width: 100%; max-width: 370px"
+                    >
+                        <button
+                            type="submit"
+                            style="
+                                width: 143px;
+                                height: 56px;
+                                background-color: var(--btn-color-red);
+                            "
+                            class="login-btn"
+                        >
+                            {{ "REGISTER.LOGIN" | translate }}
+                        </button>
+                        <a
+                            (click)="showDialog()"
+                            style="
+                                width: 143px;
+                                height: 56px;
+                                background-color: transparent;
+                                color: var(--btn-color-red);
+                            "
+                        >
+                            {{ "REGISTER.FORGET_PASSWORD" | translate }}
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <div
+                *ngIf="error"
+                class="error-message mt-3 alert alert-danger d-flex align-items-center justify-content-between"
+            >
+                <p>{{ error }}</p>
+                <button
+                    (click)="cancelError()"
+                    class="btn btn-sm btn-danger float-end"
+                >
+                    X
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p-toast styleClass="custom-toast" />
+
+<!--**************************** Reset password-*************************** -->
+<p-dialog
+    header="{{ 'REGISTER.RESET_PASSWORD' | translate }}"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '25rem' }"
+    [draggable]="false"
+>
+    <span class="p-text-secondary block mb-5">
+        {{ "REGISTER.ENTER_EMAIL" | translate }}</span
+    >
+    <input #email class="form-control mt-3" style="width: 100%" type="email" />
+    <button
+        type="submit"
+        (click)="resetPassword(email.value)"
+        class="btn btn-sm rounded-3 mt-3"
+    >
+        {{ "REGISTER.SUBMIT" | translate }}
+    </button>
+</p-dialog>

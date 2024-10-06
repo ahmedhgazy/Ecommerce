@@ -1,0 +1,29 @@
+.shared-header {
+    margin-top: 60px;
+
+    .title {
+        margin-bottom: 1.5rem;
+
+        &__icon {
+            flex-shrink: 0;
+        }
+
+        &__text {
+            margin-inline-start: 1rem;
+            font-family: var(--secondary-font);
+            font-weight: 600;
+            line-height: 20px;
+            color: var(--btn-color-red);
+            position: relative;
+        }
+    }
+
+    .description {
+        font-family: var(--main-font);
+        font-weight: 600;
+        font-size: 36px;
+        line-height: 48px;
+        letter-spacing: 0.04em;
+        color: #000000;
+    }
+}

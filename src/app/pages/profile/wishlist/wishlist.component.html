@@ -1,0 +1,16 @@
+<ng-container *ngIf="products$ | async as products">
+    <section class="wishlist-section p-0 ms-11">
+        <h5 class="form-title pt-0 mt-0 mb-11 p-0 text-center">
+            {{ "PROFILE.SAVED_ITEMS_COLLECTIONS" | translate }}
+        </h5>
+        <div class="row">
+            @for (product of products; track $index) {
+            <div class="col-12 col-md-6 col-lg-4">
+                <app-product-item [product]="product"></app-product-item>
+            </div>
+            }
+        </div>
+    </section>
+</ng-container>
+
+<app-loading></app-loading>

@@ -1,0 +1,122 @@
+<section class="cart">
+    <div class="container">
+        <div class="row my-6">
+            <app-shared-routes-header class="header-shared_routes">
+                <span routerLink="/home" header style="cursor: pointer">
+                    {{ "ROUTES.HOME" | translate }}
+                </span>
+                <p route>
+                    {{ "ROUTES.CART" | translate }}
+                </p>
+            </app-shared-routes-header>
+        </div>
+
+        <div
+            class="row shadow-sm product-details__header"
+            style="padding: 1.5rem 2.5rem; margin-bottom: 2.5rem"
+        >
+            <div class="col-1 col-md-2 p-0">
+                <p>
+                    {{ "CART.PRODUCT" | translate }}
+                </p>
+            </div>
+            <div class="col-1 offset-3 offset-md-2 p-0">
+                <p>
+                    {{ "CART.PRICE" | translate }}
+                </p>
+            </div>
+            <div class="col-1 offset-2 p-0 quantity">
+                <p>
+                    {{ "CART.QUANTITY" | translate }}
+                </p>
+            </div>
+            <div class="col-2 offset-1 p-0 text-center">
+                <p>
+                    {{ "CART.SUBTOTAL" | translate }}
+                </p>
+            </div>
+        </div>
+
+        @if (cartItems.length!=0 || cartItems!=null || cartItems!=undefined) {
+        @for (product of cartItems; track product;let i = $index) {
+
+        <div class="row shadow-sm" style="padding: 1.5rem 2.5rem">
+            <div class="col-4 col-md-3 p-0">
+                <div class="product__N-image">
+                    <img [src]="product.img" width="50px" alt="image" />
+                    <span style="margin-inline-start: 1rem !important">
+                        {{ product.name | truncate : 13 }}
+                    </span>
+                </div>
+            </div>
+
+            <div
+                class="col-1 offset-2 offset-md-1 p-0"
+                style="align-content: center !important"
+            >
+                <p class="pb-0 mb-0">{{ "$" + product.price }}</p>
+            </div>
+
+            <div class="col-1 offset-2 p-0 p-input_wrapper">
+                <p-inputNumber
+                    [(ngModel)]="product.quantity"
+                    mode="decimal"
+                    [showButtons]="true"
+                    inputId="minmax-buttons"
+                    [min]="1"
+                    [max]="100"
+                    size="1"
+                    (ngModelChange)="onQuantityChange(i, $event)"
+                >
+                </p-inputNumber>
+            </div>
+
+            <div
+                class="col-2 offset-1 p-0"
+                style="align-content: center !important"
+            >
+                <p class="pb-0 mb-0 text-center">
+                    {{ "$" + product.price * product.quantity }}
+                </p>
+            </div>
+
+            <div
+                class="col-1"
+                style="
+                    align-content: center;
+                    padding: 0 !important;
+                    margin: 0 !important;
+                    text-align: center;
+                "
+            >
+                <i
+                    (click)="removeItem(i)"
+                    class="pi pi-trash text-danger"
+                    style="cursor: pointer"
+                    severity="danger"
+                ></i>
+            </div>
+        </div>
+        } }
+
+        <div class="row">
+            <div class="col-12 col-md-5">
+                <button class="back__btn" routerLink="/home">
+                    {{ "CART.RETURN_TO_SHOP" | translate }}
+                </button>
+            </div>
+
+            <div
+                class="col-12 p-0 col-md-5 offset-md-2"
+                style="margin-top: 2.5rem text-center"
+            >
+                <app-order-summary
+                    [totalPrice]="totalPrice"
+                ></app-order-summary>
+            </div>
+        </div>
+    </div>
+</section>
+<p-toast />
+
+<app-loading></app-loading>

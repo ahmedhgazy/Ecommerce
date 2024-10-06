@@ -1,0 +1,118 @@
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, RouterModule } from '@angular/router';
+import { EMPTY, map, Observable, switchMap } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { NgxStarsModule } from 'ngx-stars';
+import { UiGalleryComponent } from './ui-gellery/ui-gallery.component';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ButtonModule } from 'primeng/button';
+import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { SharedRoutesHeader } from '../../shared/components/shared-routes-header/shared-routes-header.component';
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { ProductsService } from '../../services/products/products.service';
+import { LoadingService } from '../../shared/components/loading/loading.service';
+import { CartItem } from '../../models/cart.model';
+import { Product } from '../../models/product.model';
+import { mapToProduct } from '../../models/product.model';
+import { CartService } from '../../services/orders/cart.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+@Component({
+    selector: 'app-product-details',
+    standalone: true,
+    imports: [
+        CommonModule,
+        NgxStarsModule,
+        UiGalleryComponent,
+        InputNumberModule,
+        ButtonModule,
+        FormsModule,
+        ToastModule,
+        SharedRoutesHeader,
+        RouterModule,
+        LoadingComponent,
+        RouterModule,
+        TranslateModule,
+    ],
+    templateUrl: './product-details.component.html',
+    styleUrl: './product-details.component.scss',
+    providers: [
+        {
+            provide: MessageService,
+        },
+    ],
+})
+export class ProductDetailsComponent implements OnInit {
+    messageService = inject(MessageService);
+    cartService = inject(CartService);
+    id: number;
+    category: string;
+    product$: Observable<Product>;
+    productsService = inject(ProductsService);
+    translate = inject(TranslateService);
+
+    route = inject(ActivatedRoute);
+    loadingS = inject(LoadingService);
+    quantity: number = 1;
+    product: Product | null = null;
+
+    ngOnInit(): void {
+        this.route.params.subscribe((param: Params) => {
+            this.id = param['id'] - 1;
+            this.category = param['category'];
+        });
+        this.getItemDetails(this.category);
+    }
+
+    getItemDetails(category) {
+        let productObservable: Observable<Product[]>;
+        switch (category) {
+            case 'bestSelling':
+                productObservable = this.productsService.bestSellingAllItems();
+                break;
+            case 'products':
+                productObservable = this.productsService.productsAllItems();
+                break;
+            case 'flashSales':
+                productObservable = this.productsService.flashSalesAllItems();
+                break;
+            default:
+                throw new Error(`Unknown product`);
+        }
+        this.product$ = this.loadingS.showLoadingUntilCompleted(
+            productObservable.pipe(
+                map(
+                    (products: Product[]) =>
+                        (this.product = mapToProduct(products, this.id))
+                )
+            )
+        );
+    }
+
+    addToCart() {
+        if (this.product != null) {
+            const cartItem: CartItem = {
+                productId: this.product.id,
+                quantity: this.quantity,
+                category: this.product.category,
+            };
+
+            this.cartService.setCartItem(cartItem, false);
+
+            this.translate
+                .get(['TOAST_MESSAGE.success', 'TOAST_MESSAGE.cartUpdated'])
+                .pipe(
+                    switchMap((translations) => {
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: translations['TOAST_MESSAGE.success'],
+                            detail: translations['TOAST_MESSAGE.cartUpdated'],
+                        });
+                        return EMPTY;
+                    })
+                )
+                .subscribe();
+        }
+    }
+}

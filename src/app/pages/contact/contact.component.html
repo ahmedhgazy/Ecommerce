@@ -1,0 +1,176 @@
+<section class="contact">
+    <div class="container">
+        <div class="row my-6">
+            <app-shared-routes-header class="header-shared_routes">
+                <span header style="cursor: pointer" routerLink="/home">
+                    {{ "ROUTES.HOME" | translate }}
+                </span>
+                <p route>
+                    {{ "ROUTES.CONTACT" | translate }}
+                </p>
+            </app-shared-routes-header>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-4 shadow card-section">
+                <div class="row" style="padding: 2.5rem 2.1875rem">
+                    <div class="col-12">
+                        <div
+                            class="icon d-flex align-items-center"
+                            style="margin-bottom: 2.125rem"
+                        >
+                            <span
+                                class="bg-secondary d-flex justify-content-center align-items-center"
+                                style="
+                                    width: 2.5rem;
+                                    height: 2.5rem;
+                                    border-radius: 50%;
+                                    margin-inline-end: 1rem;
+                                "
+                            >
+                                <svg
+                                    width="22"
+                                    height="22"
+                                    viewBox="0 0 22 22"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M9.55423 5.24L6.17123 1.335C5.78123 0.885 5.06623 0.887 4.61323 1.341L1.83123 4.128C1.00323 4.957 0.766232 6.188 1.24523 7.175C4.10685 13.1 8.88528 17.8851 14.8062 20.755C15.7922 21.234 17.0222 20.997 17.8502 20.168L20.6582 17.355C21.1132 16.9 21.1142 16.181 20.6602 15.791L16.7402 12.426C16.3302 12.074 15.6932 12.12 15.2822 12.532L13.9182 13.898C13.8484 13.9712 13.7565 14.0194 13.6566 14.0353C13.5567 14.0512 13.4543 14.0339 13.3652 13.986C11.1357 12.7021 9.28622 10.8502 8.00523 8.619C7.95726 8.52975 7.93989 8.42723 7.95578 8.32716C7.97168 8.22708 8.01996 8.13499 8.09323 8.065L9.45323 6.704C9.86523 6.29 9.91023 5.65 9.55423 5.239V5.24Z"
+                                        stroke="white"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </span>
+                            <p class="header p-0 m-0">
+                                {{ "CONTACT.CALL_TO_US" | translate }}
+                            </p>
+                        </div>
+                        <div class="text">
+                            <p class="mb-10">
+                                {{ "CONTACT.AVAILABLE_24_7" | translate }}
+                            </p>
+                            <p>
+                                {{ "CONTACT.PHONE" | translate }}
+                            </p>
+                        </div>
+                    </div>
+                    <hr
+                        class="my-11"
+                        style="display: inline-block; width: 270px"
+                    />
+                    <div class="col-12">
+                        <div
+                            class="icon d-flex align-items-center"
+                            style="margin-bottom: 2.125rem"
+                        >
+                            <span
+                                class="bg-secondary d-flex justify-content-center align-items-center"
+                                style="
+                                    width: 2.5rem;
+                                    height: 2.5rem;
+                                    border-radius: 50%;
+                                    margin-inline-end: 1rem;
+                                "
+                            >
+                                <svg
+                                    width="22"
+                                    height="16"
+                                    viewBox="0 0 22 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M1 1L11 8L21 1M1 15H21V1H1V15Z"
+                                        stroke="white"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </span>
+                            <p class="header p-0 m-0">
+                                {{ "CONTACT.WRITE_TO_US" | translate }}
+                            </p>
+                        </div>
+
+                        <div class="text">
+                            <p class="mb-10">
+                                {{ "CONTACT.CONTACT_FORM_INFO" | translate }}
+                            </p>
+                            <p>
+                                {{ "CONTACT.EMAILS" | translate }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="col-12 col-md-6 form-section-col"
+                style="margin-inline-start: 9rem"
+            >
+                <form #form="ngForm" (ngSubmit)="submit(form)">
+                    <div class="row">
+                        <div class="col-6">
+                            <input
+                                type="text"
+                                placeholder=" {{
+                                    'CONTACT.YOUR_NAME' | translate
+                                }}"
+                                name="name"
+                                ngModel
+                                class="form-control bg-primary"
+                                required
+                            />
+                        </div>
+                        <div class="col-6">
+                            <input
+                                type="email"
+                                placeholder=" {{
+                                    'CONTACT.YOUR_EMAIL' | translate
+                                }}"
+                                class="form-control bg-primary"
+                                name="email"
+                                email
+                                ngModel
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 mt-11">
+                            <!-- Corrected textarea element -->
+                            <textarea
+                                class="bg-primary form-control"
+                                placeholder=" {{
+                                    'CONTACT.YOUR_MESSAGE' | translate
+                                }}"
+                                rows="5"
+                                cols="50"
+                                name="message"
+                                ngModel
+                                required
+                            ></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-grid">
+                            <button
+                                [disabled]="!form.valid"
+                                type="submit"
+                                class="btn btn-secondary my-4 text-light"
+                            >
+                                {{ "CONTACT.SEND" | translate }}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<p-toast />

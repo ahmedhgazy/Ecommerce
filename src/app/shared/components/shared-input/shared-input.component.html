@@ -1,0 +1,35 @@
+<form [formGroup]="dateForm" class="custom-form">
+    <div class="date d-flex align-item-center gap-1">
+        <input
+            type="number"
+            formControlName="day"
+            placeholder="
+          {{ 'PROFILE.DD' | translate }}
+          "
+            class="form-control bg-primary"
+            min="1"
+            max="31"
+        />
+
+        <input
+            type="number"
+            formControlName="month"
+            class="form-control bg-primary"
+            placeholder="
+            {{ 'PROFILE.MM' | translate }}
+            "
+            min="1"
+            max="12"
+        />
+        <input
+            type="number"
+            formControlName="year"
+            placeholder="
+            {{ 'PROFILE.YYYY' | translate }}
+            "
+            min="1900"
+            class="form-control bg-primary"
+            max="2099"
+        />
+    </div>
+</form>

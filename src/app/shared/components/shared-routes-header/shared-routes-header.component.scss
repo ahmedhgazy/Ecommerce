@@ -1,0 +1,18 @@
+.header {
+    span,
+    p {
+        line-height: 21px;
+        color: #000000;
+        font-size: 14px;
+        font-weight: 400;
+        font-family: var(--secondary-font);
+        cursor: pointer;
+    }
+    span {
+        opacity: 0.5;
+    }
+    p {
+        padding-inline: 0;
+        margin-bottom: 0;
+    }
+}

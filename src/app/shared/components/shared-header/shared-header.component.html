@@ -1,0 +1,32 @@
+<section class="shared-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="title d-flex align-items-center">
+                    <span class="title__icon">
+                        <svg
+                            width="20"
+                            height="40"
+                            viewBox="0 0 20 40"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <rect
+                                width="20"
+                                height="40"
+                                rx="4"
+                                fill="#DB4444"
+                            />
+                        </svg>
+                    </span>
+                    <div class="title__text">
+                        <ng-content select="[header-title]"></ng-content>
+                    </div>
+                </div>
+                <div class="description">
+                    <ng-content select="[header-desc]"></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

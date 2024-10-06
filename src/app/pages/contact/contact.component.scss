@@ -1,0 +1,41 @@
+.text {
+    p {
+        font-family: var(--secondary-font);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+
+        color: #000000;
+    }
+}
+.icon {
+    p {
+        font-family: var(--secondary-font);
+
+        font-weight: 500;
+        line-height: 24px;
+
+        color: #000000;
+    }
+}
+
+input,
+textarea {
+    // border: 0 !important;
+    border: 1px solid transparent !important;
+
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+input.ng-touched.ng-invalid,
+textarea.ng-touched.ng-invalid {
+    border: 1px solid var(--btn-color-red) !important;
+}
+
+@media only screen and (max-width: 991px) {
+    .card-section {
+        margin-bottom: 2.5rem;
+    }
+}

@@ -1,0 +1,249 @@
+{
+    "HEADER": {
+        "LANGUAGE_PLACEHOLDER": "اختر اللغة",
+
+        "register": "تسجيل الدخول",
+        "HOME": "الرئيسية",
+        "CONTACT": "اتصل بنا",
+        "ABOUT": "عن الشركة",
+        "SEARCH_PLACEHOLDER": "عم تبحث؟",
+        "EXCLUSIVE": "حصري",
+        "LOG_OUT": "تسجيل خروج",
+        "WISHLIST": "المفضلة ",
+        "PROFILE": "حسابى ",
+        "CART": "العربة"
+    },
+    "SIDEBAR": {
+        "HEADER": "حصرى",
+        "PLACEHOLDER": "عم تبحث",
+        "LABEL": "بحث"
+    },
+
+    "REGISTER": {
+        "CREATE_ACCOUNT": "إنشاء حساب",
+        "ENTER_DETAILS_BELOW": "أدخل بياناتك أدناه",
+        "NAME": "الاسم",
+        "EMAIL": "البريد الإلكتروني",
+        "PASSWORD": "كلمة المرور",
+        "CREATE_ACCOUNT_BUTTON": "إنشاء حساب",
+        "SIGN_UP_GOOGLE": "التسجيل باستخدام جوجل",
+        "ALREADY_HAVE_ACCOUNT": "هل لديك حساب بالفعل؟",
+        "LOGIN": "تسجيل الدخول",
+        "LOGIN_TO_EXCLUSIVE": "تسجيل الدخول إلى Exclusive",
+        "FORGET_PASSWORD": "نسيت كلمة المرور؟",
+        "ENTER_EMAIL": "أدخل بريدك الألكترونى",
+        "SUBMIT": "أرسال",
+        "RESET_PASSWORD": "إعادة تعيين كلمة المرور"
+    },
+    "BANNER": {
+        "SUMMER_SALE": "تخفيضات الصيف على جميع ملابس السباحة مع توصيل مجاني سريع - خصم 50٪!",
+        "SHOP_NOW": "تسوق الآن",
+        "CATEGORIES": "الفئات",
+        "ENHANCE_MUSIC": "عزز تجربتك الموسيقية",
+        "DAYS": "أيام ",
+        "HOURS": "ساعات",
+        "MINUTES": "دقائق",
+        "SECONDS": "ثوانى ",
+        "BUY_NOW": "اشتري الآن!"
+    },
+    "HOME": {
+        "TODAYS": "اليوم",
+        "FLASH_SALES": " المبيعات الفلاشية",
+        "CATEGORIES": "الفئات",
+        "BROWSE_BY_CATEGORY": "تصفح حسب الفئة",
+        "THIS_MONTH": "هذا الشهر",
+        "BEST_SELLING_PRODUCTS": "المنتجات الأكثر مبيعًا",
+        "LOAD_MORE": "تحميل المزيد",
+        "SHOW_LESS": "عرض أقل ",
+
+        "OUR_PRODUCTS": "منتجاتنا",
+        "EXPLORE_OUR_PRODUCTS": "استكشف منتجاتنا",
+        "FEATURED": "مميز",
+        "NEW_ARRIVALS": "الوافدون الجدد"
+    },
+    "FOOTER": {
+        "EXCLUSIVE": "حصري",
+        "SUBSCRIBE": "اشترك",
+        "GET_DISCOUNT": " خصم 10% على طلبك الأول",
+        "ENTER_EMAIL": "أدخل بريدك الإلكتروني",
+        "SUPPORT": "الدعم",
+        "ADDRESS": "111 بيجوي ساراني، دكا، DH 1515، بنغلاديش.",
+        "EMAIL_SUPPORT": "exclusive@gmail.com",
+        "PHONE_SUPPORT": "+88015-88888-9999",
+        "ACCOUNT": "الحساب",
+        "MY_ACCOUNT": "حسابي",
+        "CART": "عربة التسوق",
+        "LOGIN_REGISTER": "تسجيل الدخول / التسجيل",
+        "WISHLIST": "قائمة الرغبات",
+        "SHOP": "المتجر",
+        "QUICK_LINK": "روابط سريعة",
+        "PRIVACY_POLICY": "سياسة الخصوصية",
+        "TERMS_OF_USE": "شروط الاستخدام",
+        "FAQ": "الأسئلة الشائعة",
+        "CONTACT": "اتصل",
+        "DOWNLOAD_APP": "تحميل التطبيق",
+        "SAVE_WITH_APP": "وفر 3 دولارات مع التطبيق للمستخدمين الجدد فقط"
+    },
+
+    "STAT": {
+        "FREE_AND_FAST_DELIVERY": "توصيل مجاني وسريع",
+        "FREE_DELIVERY_DESCRIPTION": "توصيل مجاني لجميع الطلبات التي تزيد عن 140 دولارًا",
+        "CUSTOMER_SERVICE": "خدمة العملاء على مدار 24 ساعة طوال أيام الأسبوع",
+        "CUSTOMER_SERVICE_DESCRIPTION": "دعم عملاء ودود على مدار 24 ساعة طوال أيام الأسبوع",
+        "MONEY_BACK_GUARANTEE": "ضمان استرداد الأموال",
+        "MONEY_BACK_GUARANTEE_DESCRIPTION": "نعود الأموال خلال 30 يومًا"
+    },
+
+    "DETAILS": {
+        "QUANTITY": "الكمية",
+        "ADD_TO_CART": "أضف إلى السلة",
+        "FREE_DELIVERY": "توصيل مجاني",
+        "ENTER_POSTAL_CODE": "أدخل الرمز البريدي للتحقق من توفر التوصيل",
+        "RETURN_DELIVERY": "إرجاع التوصيل",
+        "FREE_DELIVERY_RETURNS": "إرجاع التوصيل خلال 30 يومًا مجانًا. التفاصيل"
+    },
+
+    "CONTACT": {
+        "CALL_TO_US": "اتصل بنا",
+        "AVAILABLE_24_7": "نحن متاحون 24/7، 7 أيام في الأسبوع.",
+        "PHONE": "الهاتف: +8801611112222",
+        "WRITE_TO_US": "اكتب لنا",
+        "CONTACT_FORM_INFO": "املأ النموذج وسنتواصل معك في غضون 24 ساعة.",
+        "EMAILS": "البريد الإلكتروني: customer@exclusive.com",
+        "YOUR_NAME": "اسمك",
+        "YOUR_EMAIL": "بريدك الإلكتروني",
+        "YOUR_MESSAGE": "رسالتك",
+        "SEND": "إرسال"
+    },
+
+    "ABOUT": {
+        "OUR_STORY": "قصتنا",
+        "OUR_STORY_DESCRIPTION": "تم إطلاق Exclusive في عام 2015 وهو السوق الإلكتروني الأول في جنوب آسيا مع وجود نشط في بنغلاديش. بدعم من مجموعة واسعة من الحلول التسويقية والخدمية والبيانات المخصصة، يضم Exclusive 10,500 بائع و 300 علامة تجارية ويخدم 3 ملايين عميل في المنطقة.",
+        "PRODUCT_OFFER": "يقدم Exclusive أكثر من مليون منتج، وينمو بسرعة كبيرة. يوفر Exclusive مجموعة متنوعة من الفئات التي تتراوح من السلع الاستهلاكية.",
+        "SELLERS_COUNT": "10.5k",
+        "SELLERS_DESCRIPTION": "البائعين النشطين على موقعنا",
+        "MONTHLY_SALES_COUNT": "33K",
+        "MONTHLY_SALES_DESCRIPTION": "المبيعات الشهرية للمنتجات",
+        "CUSTOMER_COUNT": "45.5L",
+        "CUSTOMER_DESCRIPTION": "العملاء النشطين على موقعنا",
+        "ANNUAL_SALES_COUNT": "25K",
+        "ANNUAL_SALES_DESCRIPTION": "إجمالي المبيعات السنوية على موقعنا",
+        "FREE_FAST_DELIVERY": "توصيل مجاني وسريع",
+        "FREE_DELIVERY_DESCRIPTION": "توصيل مجاني لجميع الطلبات التي تزيد عن 140 دولارًا",
+        "CUSTOMER_SERVICE": "خدمة العملاء 24/7",
+        "CUSTOMER_SERVICE_DESCRIPTION": "دعم عملاء ودود على مدار الساعة طوال أيام الأسبوع",
+        "MONEY_BACK": "ضمان استرداد الأموال",
+        "MONEY_BACK_DESCRIPTION": "نسترد الأموال خلال 30 يومًا"
+    },
+
+    "PROFILE": {
+        "MANAGE_ACCOUNT": "إدارة الحساب",
+        "YOUR_PROFILE": "ملفك الشخصي",
+        "MY_ORDERS": "طلباتي",
+        "YOUR_ORDERS": "طلباتك",
+        "MY_WISHLIST": "قائمة رغباتي",
+        "YOUR_WISHLIST": "قائمة رغباتك",
+        "SAVED_ITEMS_COLLECTIONS": "العناصر المحفوظة والمجموعات",
+        "EDIT_YOUR_PROFILE": "تعديل ملفك الشخصي",
+        "FIRST_NAME": "الاسم الأول",
+        "EMAIL": "البريد الإلكتروني",
+        "ZIP_CODE": "الرمز البريدي",
+        "SECOND_NAME": "الاسم الثاني",
+        "ADDRESS": "العنوان",
+        "BIRTH_DATE": "تاريخ الميلاد",
+        "DD": "يوم",
+        "MM": "شهر",
+        "YYYY": "سنة",
+        "CANCEL": "إلغاء",
+        "SAVE_CHANGES": "حفظ التغييرات"
+    },
+
+    "WISHLIST": {
+        "addToSavedItems": "أضف إلى العناصر المحفوظة",
+        "addToWishlist": "أضف إلى قائمة الرغبات"
+    },
+    "CART": {
+        "PRODUCT": "المنتج",
+        "PRICE": "السعر",
+        "QUANTITY": "الكمية",
+        "SUBTOTAL": "الإجمالي الفرعي",
+        "RETURN_TO_SHOP": "العودة إلى المتجر",
+        "CART_TOTAL": "إجمالي السلة",
+        "SHIPPING": "الشحن",
+        "FREE": "مجاني",
+        "TOTAL": "الإجمالي",
+        "PROCEED_TO_CHECKOUT": "المتابعة إلى الدفع"
+    },
+
+    "ORDERS": {
+        "ORDERS": "الطلبات",
+        "SEARCH": "بحث"
+    },
+
+    "BILLING": {
+        "BILLING_DETAILS": "تفاصيل الفاتورة",
+        "NAME": "الاسم",
+        "EMAIL": "البريد الإلكتروني",
+        "PHONE": "الهاتف",
+        "CITY": "المدينة",
+        "SHIPPING_ADDRESS": "عنوان الشحن",
+        "ZIP_CODE": "الرمز البريدي",
+        "COUNTRY": "البلد",
+        "SAVE_INFO": "احفظ هذه المعلومات لتسريع عملية الدفع في المرة القادمة",
+        "PLACE_ORDER": "إتمام الطلب",
+        "NAME_REQUIRED": "الاسم مطلوب",
+        "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
+        "EMAIL_INVALID": "البريد الإلكتروني غير صالح",
+        "PHONE_REQUIRED": "رقم الهاتف مطلوب",
+        "APARTMENT_REQUIRED": "عنوان التوصيل مطلوبة",
+        "CITY_REQUIRED": "المدينة مطلوبة",
+        "ZIP_CODE_REQUIRED": "الرمز البريدي مطلوب",
+        "COUNTRY_REQUIRED": "البلد مطلوب"
+    },
+    "ROUTES": {
+        "HOME": "الرئيسية",
+        "ABOUT": "عن الشركة",
+        "CONTACT": "اتصل بنا",
+        "PROFILE": "الملف الشخصي",
+        "CART": "العربة",
+        "CHECKOUT": "الدفع"
+    },
+
+    "NOT_FOUND": {
+        "NOT_FOUND": "404 غير موجود ",
+        "NOT_FOUND_DESC": "الصفحة التي زرتها غير موجودة. يمكنك الانتقال إلى الصفحة الرئيسية"
+    },
+    "TOAST_MESSAGE": {
+        "addToSavedItems": "أضف إلى العناصر المحفوظة",
+        "addToWishlist": "أضف إلى قائمة الرغبات",
+        "cartUpdated": "تم تحديث السلة",
+        "productAddedSuccessfully": "تمت إضافة المنتج بنجاح",
+        "productAlreadyExists": "هذا المنتج موجود بالفعل",
+        "success": "نجاح",
+        "productAddedToWishlist": "تمت إضافة المنتج إلى قائمة الرغبات",
+        "orderPlacedSuccessfully": "تم تقديم الطلب بنجاح",
+        "warning": "تحذير",
+        "productAlreadyInWishlist": "المنتج موجود بالفعل في قائمة الرغبات",
+        "itemRemovedFromCart": "تمت إزالة العنصر من السلة",
+        "emailSent": "تم إرسال بريد إلكتروني لإعادة تعيين كلمة المرور. يرجى التحقق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها. اتبع الرابط الموجود في البريد الإلكتروني لإعادة تعيين كلمة المرور الخاصة بك.",
+        "error": "خطأ",
+        "wrongPassword": "كلمة مرور خاطئة",
+        "fillForm": "يرجى ملء النموذج بشكل صحيح , ربما يكون اسم المستخدم أو كلمة المرور غير صحيحة",
+        "googleSignInError": "حدث خطأ أثناء تسجيل الدخول عبر Google. يرجى المحاولة مرة أخرى في وقت لاحق."
+    },
+
+    "ERROR": {
+        "errorMessage": "حدث خطأ. ربما يكون اسم المستخدم أو كلمة المرور غير صحيحة."
+    },
+
+    "ERROR_MESSAGES": {
+        "NO_INTERNET": "لا يوجد اتصال بالإنترنت.",
+        "EMAIL_EXISTS": "البريد الإلكتروني مستخدم بالفعل.",
+        "OPERATION_NOT_ALLOWED": "تسجيل الدخول بكلمة مرور غير مسموح به لهذا المشروع.",
+        "TOO_MANY_ATTEMPTS_TRY_LATER": "لقد حظرنا جميع الطلبات من هذا الجهاز بسبب نشاط غير معتاد. حاول مرة أخرى لاحقًا.",
+        "EMAIL_NOT_FOUND": "لا يوجد سجل مستخدم لهذا المعرف. قد تم حذف المستخدم.",
+        "INVALID_PASSWORD": "كلمة المرور غير صالحة أو المستخدم ليس لديه كلمة مرور.",
+        "USER_DISABLED": "تم تعطيل حساب المستخدم بواسطة المسؤول.",
+        "UNKNOWN_ERROR": "حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا."
+    }
+}

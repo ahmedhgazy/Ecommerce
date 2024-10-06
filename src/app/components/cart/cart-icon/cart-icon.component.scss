@@ -1,0 +1,39 @@
+i {
+    cursor: pointer;
+}
+
+::ng-dep {
+    .p-badge.p-component.p-badge-success.p-badge-dot {
+        display: none;
+    }
+
+    span.p-badge.p-component.p-badge-danger.p-badge-dot {
+        display: none;
+        opacity: 0;
+    }
+
+    .p-badge-dot {
+        display: none !important;
+        opacity: 0 !important;
+    }
+
+    span:nth-child(2) {
+        display: none;
+    }
+
+    span.p-badge {
+        background: var(--btn-color-red) !important;
+        color: #ffffff;
+        font-size: 0.75rem;
+        font-weight: 700;
+        min-width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+    }
+    
+}
+
+.p-badge-dot {
+    display: none !important;
+    opacity: 0 !important;
+}

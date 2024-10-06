@@ -1,0 +1,65 @@
+<app-cat-banner
+    style="display: grid; place-content: center; align-content: center"
+></app-cat-banner>
+
+<app-shared-header>
+    <span header-title>{{ "HOME.TODAYS" | translate }}</span>
+    <span header-desc>{{ "HOME.FLASH_SALES" | translate }}</span>
+</app-shared-header>
+<app-product-list [products]="flashSales$ | async"></app-product-list>
+<section
+    class="shared-btn d-flex justify-content-center"
+    style="width: 100%; margin-top: 60px"
+>
+    <app-shared-button
+        [allLoaded]="allFlashSalesLoaded"
+        (loadMoreEvent)="loadMore('flashSales')"
+    ></app-shared-button>
+</section>
+<app-shared-header>
+    <span header-title>{{ "HOME.CATEGORIES" | translate }}</span>
+    <span header-desc>{{ "HOME.BROWSE_BY_CATEGORY" | translate }}</span>
+</app-shared-header>
+<app-categories></app-categories>
+<app-shared-header>
+    <span header-title>{{ "HOME.THIS_MONTH" | translate }}</span>
+    <span header-desc>{{ "HOME.BEST_SELLING_PRODUCTS" | translate }}</span>
+</app-shared-header>
+<app-product-list [products]="bestSelling$ | async"></app-product-list>
+<section
+    class="shared-btn d-flex justify-content-center"
+    style="width: 100%; margin-top: 60px"
+>
+    <app-shared-button
+        [allLoaded]="allBestSellingLoaded"
+        (loadMoreEvent)="loadMore('bestSelling')"
+    ></app-shared-button>
+</section>
+<div class="home-banner">
+    <app-cat-banner class="d-flex justify-content-center"></app-cat-banner>
+</div>
+<!-- <app-banner
+    class="d-flex justify-content-center"
+    style="margin-top: 1.5rem"
+></app-banner> -->
+<app-shared-header>
+    <span header-title>{{ "HOME.OUR_PRODUCTS" | translate }}</span>
+    <span header-desc>{{ "HOME.EXPLORE_OUR_PRODUCTS" | translate }}</span>
+</app-shared-header>
+<app-product-list [products]="products$ | async"></app-product-list>
+<section
+    class="shared-btn d-flex justify-content-center"
+    style="width: 100%; margin-top: 60px"
+>
+    <app-shared-button
+        [allLoaded]="allProductsLoaded"
+        (loadMoreEvent)="loadMore('products')"
+    ></app-shared-button>
+</section>
+<app-shared-header>
+    <span header-title>{{ "HOME.FEATURED" | translate }}</span>
+    <span header-desc>{{ "HOME.NEW_ARRIVALS" | translate }}</span>
+</app-shared-header>
+<app-new-arrivals></app-new-arrivals>
+<app-details></app-details>
+<app-loading></app-loading>

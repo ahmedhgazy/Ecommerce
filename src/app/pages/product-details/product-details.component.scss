@@ -1,0 +1,118 @@
+.product {
+    &__name {
+        font-family: var(--main-font);
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 24px;
+        letter-spacing: 0.03em;
+        color: #000000;
+    }
+
+    &__reviews {
+        font-family: var(--secondary-font);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        color: #000000;
+        opacity: 0.5;
+    }
+
+    &__availbility {
+        font-family: var(--secondary-font);
+
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+
+        opacity: 0.6;
+    }
+
+    &__price {
+        h5 {
+            font-family: var(--main-font);
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 24px;
+            letter-spacing: 0.03em;
+        }
+    }
+
+    &__description {
+        font-family: var(--secondary-font);
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        color: #000000;
+    }
+
+    .car__btn {
+        padding: 10px 3rem;
+        font-family: var(--secondary-font);
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #fafafa;
+        border: 0;
+        outline: none;
+        background-color: var(--btn-color-red);
+        border-radius: 4px;
+        margin-inline-end: -4rem;
+        margin-top: 1.899rem !important;
+
+        @media (min-width: 992px) and (max-width: 1200px) {
+            margin-inline: -5rem !important;
+            padding: 10px 2rem;
+        }
+
+        @media (max-width: 430px) {
+            margin-inline-end: -2.39rem !important;
+        }
+    }
+
+    .delivery {
+        padding: 1.5rem 3.1875rem 1.5rem 1rem;
+        &__upper,
+        &__lower {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+::ng-deep {
+    span.p-inputnumber {
+        height: 2.6rem;
+
+        .p-inputnumber-button-group {
+            border-color: var(--btn-color-red) !important;
+        }
+        input.p-inputtext {
+            &:focus,
+            &:hover {
+                outline: none;
+                box-shadow: none;
+                border-color: var(--btn-color-red) !important;
+            }
+        }
+    }
+
+    .p-button {
+        border-color: var(--btn-color-red) !important;
+    }
+
+    .p-element.p-button-icon-only.p-inputnumber-button.p-button.p-component {
+        background-color: var(--btn-color-red);
+    }
+}
+
+.mar_gallery {
+    @media only screen and (max-width: 768px) {
+        margin-bottom: 2rem;
+    }
+}
+
+@media only screen and (max-width: 430px) {
+    .btn-col {
+        justify-content: center !important;
+    }
+}

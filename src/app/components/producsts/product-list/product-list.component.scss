@@ -1,0 +1,10 @@
+.product__item {
+    @media only screen and (max-width: 768px) {
+        margin-bottom: 3rem;
+        width: 80%;
+        margin: auto;
+        display: flex;
+        text-align: center;
+        margin-left: auto !important;
+    }
+}

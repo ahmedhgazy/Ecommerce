@@ -1,0 +1,39 @@
+.profile {
+    &__actions {
+        .title {
+            font-family: var(--secondary-font);
+            font-weight: 500;
+            color: #000000;
+        }
+
+        .actions {
+            margin-bottom: 1rem;
+
+            &__details {
+                a {
+                    font-family: var(--secondary-font);
+                    font-weight: 400;
+                    color: #000000;
+                    opacity: 0.5;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+a {
+    color: #000;
+    opacity: 0.5;
+    transition: color 0.3s, opacity 0.3s;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 1 !important;
+}
+
+.active-link {
+    color: var(--btn-color-red) !important;
+    opacity: 1 !important;
+}

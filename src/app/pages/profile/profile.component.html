@@ -1,0 +1,80 @@
+<section class="profile">
+    <div class="container">
+        <div class="row my-4">
+            <app-shared-routes-header
+                class="header-shared_routes d-flex align-items-center"
+            >
+                <span header style="cursor: pointer" routerLink="/home">
+                    {{ "ROUTES.HOME" | translate }}
+                </span>
+                <p route class="mb-0">
+                    {{ "ROUTES.PROFILE" | translate }}
+                </p>
+            </app-shared-routes-header>
+        </div>
+
+        <div class="row">
+            <div
+                class="col-12 col-md-3 col-lg-2 ps-0 profile__actions"
+                [ngClass]="{ 'col-lg-2': inOrders, 'col-md-3': !inOrders }"
+            >
+                <div class="actions mb-4">
+                    <h5 class="title mb-3">
+                        {{ "PROFILE.MANAGE_ACCOUNT" | translate }}
+                    </h5>
+
+                    <div class="actions__details text-center">
+                        <a
+                            routerLink="/profile"
+                            routerLinkActive="active-link"
+                            [routerLinkActiveOptions]="{ exact: true }"
+                        >
+                            {{ "PROFILE.YOUR_PROFILE" | translate }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="actions mb-4">
+                    <h5 class="title mb-3">
+                        {{ "PROFILE.MY_ORDERS" | translate }}
+                    </h5>
+
+                    <div class="actions__details text-center">
+                        <a
+                            routerLink="/profile/orders"
+                            routerLinkActive="active-link"
+                        >
+                            {{ "PROFILE.YOUR_ORDERS" | translate }}
+                        </a>
+                    </div>
+                </div>
+
+                <div class="actions mb-4">
+                    <h5 class="title mb-3">
+                        {{ "PROFILE.MY_WISHLIST" | translate }}
+                    </h5>
+
+                    <div class="actions__details text-center">
+                        <a
+                            routerLink="/profile/wishlist"
+                            routerLinkActive="active-link"
+                        >
+                            {{ "PROFILE.YOUR_WISHLIST" | translate }}
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="col-12 col-md-8 col-lg-10 my-3"
+                [ngClass]="{
+                    'col-lg-10': inOrders,
+                    'col-md-8': !inOrders,
+                    'offset-md-1': !inOrders
+                }"
+            >
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</section>
