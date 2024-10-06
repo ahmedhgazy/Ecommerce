@@ -45,8 +45,20 @@
         color: #000000;
     }
 
+    &-actions {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .quantity-container,
+    .button-container {
+        width: 100%;
+        max-width: 250px;
+    }
+
     .car__btn {
-        padding: 10px 3rem;
+        padding: 10px 1.5rem;
         font-family: var(--secondary-font);
         font-weight: 500;
         font-size: 16px;
@@ -56,19 +68,27 @@
         outline: none;
         background-color: var(--btn-color-red);
         border-radius: 4px;
-        margin-inline-end: -4rem;
-        margin-top: 1.899rem !important;
-
-        @media (min-width: 992px) and (max-width: 1200px) {
-            margin-inline: -5rem !important;
-            padding: 10px 2rem;
-        }
-
-        @media (max-width: 430px) {
-            margin-inline-end: -2.39rem !important;
-        }
+        width: 100%;
+        max-width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-left: 1rem !important;
+        margin-top: 2rem;
     }
 
+    @media (max-width: 767px) {
+        .col-12 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        p-inputNumber {
+            width: 100%;
+            max-width: 250px;
+        }
+    }
     .delivery {
         padding: 1.5rem 3.1875rem 1.5rem 1rem;
         &__upper,
@@ -80,6 +100,11 @@
 }
 
 ::ng-deep {
+    .p-inputnumber {
+        width: 100%;
+        max-width: 250px;
+    }
+
     span.p-inputnumber {
         height: 2.6rem;
 
@@ -87,6 +112,7 @@
             border-color: var(--btn-color-red) !important;
         }
         input.p-inputtext {
+            width: 100%;
             &:focus,
             &:hover {
                 outline: none;
@@ -111,8 +137,33 @@
     }
 }
 
-@media only screen and (max-width: 430px) {
-    .btn-col {
-        justify-content: center !important;
+@media (max-width: 575px) {
+    .product-actions {
+        align-items: center;
+    }
+
+    .quantity-container,
+    .button-container {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .car__btn {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .product-actions {
+        justify-content: space-around;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-actions {
+        justify-content: space-between;
     }
 }

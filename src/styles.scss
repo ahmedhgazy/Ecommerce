@@ -78,11 +78,8 @@ $checkboxActiveBg: red;
 $checkboxIconFontSize: 14px;
 $checkboxIconActiveColor: #ffffff;
 
-// Image Preview Modal
-
 .modal-open {
     overflow: auto !important;
-    // overflow: hidden !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
     margin-right: 0 !important;
@@ -191,17 +188,13 @@ footer {
     }
 }
 
-.btn-col {
-    @media only screen and (max-width: 430px) {
-        margin-inline: 3rem !important;
-        justify-content: center !important;
-    }
-}
-
-.btn-input {
-    @media only screen and (max-width: 430px) {
-        margin-inline: auto;
-        justify-content: center !important;
-        display: flex;
+@media (max-width: 991px) {
+    .product {
+        .button-container {
+            button {
+                padding: 0.5rem !important;
+                margin-inline: 0.5rem !important;
+            }
+        }
     }
 }

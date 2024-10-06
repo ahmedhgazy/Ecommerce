@@ -81,12 +81,16 @@
                             </div>
                         </div>
                     </section>
-                    <div class="col-12">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-3 my-10 flex-wrap btn-input">
-                                <label for="minmax-buttons " class="mb-1">{{
-                                    "DETAILS.QUANTITY" | translate
-                                }}</label>
+                    <div class="col-12 mb-2">
+                        <div
+                            class="product-actions d-flex flex-column flex-sm-row align-items-center justify-content-between"
+                        >
+                            <div class="quantity-container mb-3 mb-sm-0">
+                                <label
+                                    for="minmax-buttons"
+                                    class="mb-2 d-block"
+                                    >{{ "DETAILS.QUANTITY" | translate }}</label
+                                >
                                 <p-inputNumber
                                     [(ngModel)]="quantity"
                                     mode="decimal"
@@ -98,9 +102,7 @@
                                 >
                                 </p-inputNumber>
                             </div>
-                            <div
-                                class="col-7 my-10 d-flex justify-content-end btn-col"
-                            >
+                            <div class="button-container">
                                 <button class="car__btn" (click)="addToCart()">
                                     {{ "DETAILS.ADD_TO_CART" | translate }}
                                 </button>
