@@ -1,6 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, RouterModule } from '@angular/router';
-import { EMPTY, map, Observable, switchMap } from 'rxjs';
+import { EMPTY, map, Observable, Subject, switchMap, takeUntil } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NgxStarsModule } from 'ngx-stars';
 import { UiGalleryComponent } from './ui-gellery/ui-gallery.component';
@@ -43,7 +43,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
         },
     ],
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
     messageService = inject(MessageService);
     cartService = inject(CartService);
     id: number;
@@ -56,7 +56,7 @@ export class ProductDetailsComponent implements OnInit {
     loadingS = inject(LoadingService);
     quantity: number = 1;
     product: Product | null = null;
-
+    endsubs$ = new Subject<void>();
     ngOnInit(): void {
         this.route.params.subscribe((param: Params) => {
             this.id = param['id'] - 1;
@@ -110,9 +110,15 @@ export class ProductDetailsComponent implements OnInit {
                             detail: translations['TOAST_MESSAGE.cartUpdated'],
                         });
                         return EMPTY;
-                    })
+                    }),
+                    takeUntil(this.endsubs$)
                 )
                 .subscribe();
         }
+    }
+
+    ngOnDestroy(): void {
+        this.endsubs$.next();
+        this.endsubs$.complete;
     }
 }
