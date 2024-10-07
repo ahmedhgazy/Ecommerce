@@ -5,7 +5,6 @@ import {
     OnDestroy,
     OnInit,
 } from '@angular/core';
-import { BannerComponent } from '../../shared/components/banner/banner.component';
 import { CommonModule } from '@angular/common';
 import { ProductItemComponent } from '../../components/producsts/product-item/product-item.component';
 import { ProductListComponent } from '../../components/producsts/product-list/product-list.component';
@@ -32,7 +31,6 @@ export interface sharedHeader {
     selector: 'app-home',
     standalone: true,
     imports: [
-        BannerComponent,
         CommonModule,
         ProductItemComponent,
         ProductListComponent,

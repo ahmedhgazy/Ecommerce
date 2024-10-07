@@ -20,7 +20,6 @@ import { TranslateModule } from '@ngx-translate/core';
         TranslateModule,
     ],
     templateUrl: './wishlist.component.html',
-    styleUrl: './wishlist.component.scss',
 })
 export class WishlistComponent implements OnInit {
     loadingS = inject(LoadingService);
