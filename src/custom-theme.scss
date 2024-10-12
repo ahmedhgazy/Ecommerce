@@ -25,6 +25,10 @@
 /*
 * ************************ Customized Dark Theme ************************* */
 .dark {
+    svg {
+        fill: #fff !important;
+    }
+
     form.custom-form {
         input::placeholder {
             color: #fff !important;

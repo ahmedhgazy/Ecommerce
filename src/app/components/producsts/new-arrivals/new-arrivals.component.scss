@@ -70,10 +70,11 @@ $font-family: var(--secondary-font);
             object-fit: contain;
         }
     }
+    // background: linear-gradient(to right, #333333, #111111);
 
     // Men's Collections Card
     .col-12 .card {
-        background: linear-gradient(to right, #333333, #111111);
+        background: linear-gradient(to right, #111111, #333333);
     }
 
     // Speakers and Perfume Cards

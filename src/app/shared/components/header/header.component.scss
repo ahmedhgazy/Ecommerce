@@ -5,7 +5,7 @@
     overflow-x: hidden;
 
     .upper {
-        width: 100%;
+        width: inherit;
         height: 3rem;
         padding: 0 1rem;
 
@@ -17,8 +17,8 @@
         .sub-header-text {
             font-family: var(--secondary-font);
             font-weight: 400;
-            font-size: 14px;
-            line-height: 21px;
+            font-size: 0.875rem;
+            line-height: 1.3125rem;
         }
 
         .drop-down {
@@ -27,21 +27,21 @@
     }
 
     .main-header {
-        width: 100%;
+        width: inherit;
         height: 5.75rem;
         color: var(--text-dark);
         overflow: hidden;
 
         .container {
-            height: 100%;
+            height: inherit;
         }
 
         .brand-title {
             a {
                 font-weight: 700;
-                font-size: 24px;
-                line-height: 24px;
-                letter-spacing: 0.03em;
+                font-size: 1.5rem;
+                line-height: 1.5rem;
+                letter-spacing: 0.03rem;
                 font-family: var(--main-font);
                 &.active {
                     text-decoration: underline;
@@ -56,8 +56,8 @@
             &__link {
                 font-family: var(--secondary-font);
                 font-weight: 400;
-                font-size: 16px;
-                line-height: 24px;
+                font-size: 1rem;
+                line-height: 1.5rem;
             }
         }
 
@@ -65,8 +65,8 @@
             width: 15.1875rem;
             height: 2.375rem;
             background-color: var(--secondary-2);
-            padding: 5px 12px 7px 20px;
-            border-radius: 4px;
+            padding: 0.3125rem 0.75rem 0.4375rem 1.25rem;
+            border-radius: 0.25rem;
             align-content: center;
 
             input {
@@ -78,8 +78,8 @@
                 &::placeholder {
                     font-family: var(--secondary-font);
                     font-weight: 400;
-                    font-size: 12px;
-                    line-height: 18px;
+                    font-size: 0.75rem;
+                    line-height: 1.125rem;
                     color: #000000;
                     opacity: 0.5;
                 }

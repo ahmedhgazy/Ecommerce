@@ -1,10 +1,4 @@
-import {
-    ChangeDetectionStrategy,
-    Component,
-    inject,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductItemComponent } from '../../components/producsts/product-item/product-item.component';
 import { ProductListComponent } from '../../components/producsts/product-list/product-list.component';
@@ -46,7 +40,6 @@ export interface sharedHeader {
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
-    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit, OnDestroy {
     products$: Observable<Product[]>;
@@ -56,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     allFlashSalesLoaded = false;
     allBestSellingLoaded = false;
     loadingS = inject(LoadingService);
-    constructor(private productsService: ProductsService) {}
+    productsService = inject(ProductsService);
 
     ngOnInit(): void {
         this.products$ = this.loadingS.showLoadingUntilCompleted(

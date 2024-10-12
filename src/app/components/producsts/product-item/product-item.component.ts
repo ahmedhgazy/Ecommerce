@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     inject,
     Input,
@@ -26,7 +27,6 @@ import { fadeInOut } from '../../../shared/animations/popup.animation';
     ],
     templateUrl: './product-item.component.html',
     styleUrl: './product-item.component.scss',
-    animations: [fadeInOut],
 
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -35,7 +35,10 @@ export class ProductItemComponent {
     previewImage = false;
     inWishList = false;
     router = inject(Router);
-    constructor(private modalService: NgbModal) {
+    constructor(
+        private modalService: NgbModal,
+        private cdr: ChangeDetectorRef
+    ) {
         if (this.router.url.includes('wishlist')) {
             this.inWishList = true;
         }

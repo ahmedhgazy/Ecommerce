@@ -18,10 +18,10 @@ export class LoadingService {
     showLoadingUntilCompleted<T>(obs$: Observable<T>): Observable<T> {
         return of(null).pipe(
             tap(() => {
-                this.loadingOn();
+                this.loadingOn(); // action taken before the observable is completed
             }),
             concatMap(() => obs$),
-            finalize(() => this.loadingOf())
+            finalize(() => this.loadingOf()) // action taken after the observable is completed or unsubscribe from the observable
         );
     }
 

@@ -6,10 +6,11 @@
     <span header-title>{{ "HOME.TODAYS" | translate }}</span>
     <span header-desc>{{ "HOME.FLASH_SALES" | translate }}</span>
 </app-shared-header>
+
 <app-product-list [products]="flashSales$ | async"></app-product-list>
 <section
     class="shared-btn d-flex justify-content-center"
-    style="width: 100%; margin-top: 60px"
+    style="width: 100%; margin-top: 3.75rem"
 >
     <app-shared-button
         [allLoaded]="allFlashSalesLoaded"
