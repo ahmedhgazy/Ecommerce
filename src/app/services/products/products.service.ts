@@ -34,9 +34,9 @@ export class ProductsService {
                         }),
                         catchError((err) => {
                             const message =
-                                'Something went wrong,please try again later';
+                                'Something went wrong, please try again later';
                             this.messages.showErrors(message);
-                            return throwError(err);
+                            return throwError(() => new Error(err.message));
                         })
                     );
             } else {
@@ -62,9 +62,9 @@ export class ProductsService {
                         }),
                         catchError((err) => {
                             const message =
-                                'Something went wrong,please try again later';
+                                'Something went wrong, please try again later';
                             this.messages.showErrors(message);
-                            return throwError(err);
+                            return throwError(() => new Error(err.message));
                         })
                     );
             } else {
@@ -94,9 +94,9 @@ export class ProductsService {
                         }),
                         catchError((err) => {
                             const message =
-                                'Something went wrong,please try again later';
+                                'Something went wrong, please try again later';
                             this.messages.showErrors(message);
-                            return throwError(err);
+                            return throwError(() => new Error(err.message));
                         })
                     );
             } else {
@@ -122,9 +122,9 @@ export class ProductsService {
                         }),
                         catchError((err) => {
                             const message =
-                                'Something went wrong,please try again later';
+                                'Something went wrong, please try again later';
                             this.messages.showErrors(message);
-                            return throwError(err);
+                            return throwError(() => new Error(err.message));
                         })
                     );
             } else {
@@ -154,9 +154,9 @@ export class ProductsService {
                         }),
                         catchError((err) => {
                             const message =
-                                'Something went wrong,please try again later';
+                                'Something went wrong, please try again later';
                             this.messages.showErrors(message);
-                            return throwError(err);
+                            return throwError(() => new Error(err.message));
                         })
                     );
             } else {
@@ -183,9 +183,9 @@ export class ProductsService {
                         }),
                         catchError((err) => {
                             const message =
-                                'Something went wrong,please try again later';
+                                'Something went wrong, please try again later';
                             this.messages.showErrors(message);
-                            return throwError(err);
+                            return throwError(() => new Error(err.message));
                         })
                     );
             } else {

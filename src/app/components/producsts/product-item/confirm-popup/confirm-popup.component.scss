@@ -58,11 +58,18 @@
             font-size: 10px !important;
         }
         button {
-            font-size: 9px !important;
+            font-size: 8px !important;
         }
     }
 }
 
+@media only screen and (max-width: 351px) {
+    .popup {
+        button {
+            font-size: 7px !important;
+        }
+    }
+}
 @keyframes fadeIn {
     from {
         opacity: 0;
