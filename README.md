@@ -18,7 +18,7 @@ Exclusive is a full-stack e-commerce website built with Angular and Firebase. It
 
 # Demo
 
-https://e-commerce-nine-sand-64.vercel.app
+https://e-commerce-omega-peach.vercel.app
 
 ## Features
 
