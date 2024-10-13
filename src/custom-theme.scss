@@ -25,6 +25,54 @@
 /*
 * ************************ Customized Dark Theme ************************* */
 .dark {
+    input:-webkit-autofill,
+    input:-webkit-autofill:hover,
+    .form-control {
+        -webkit-box-shadow: 0 0 0px 0 inset !important;
+        box-shadow: 0 0 0px 0 inset !important;
+        // transition: background-color 1s ease-in-out 0s !important;
+        background-color: transparent !important;
+        color: #fff !important;
+        -webkit-text-fill-color: #fff !important;
+    }
+
+    /* Custom styles for black dialog */
+    .black-dialog .p-dialog-header,
+    .black-dialog .p-dialog-content {
+        background-color: black !important;
+        color: #fff !important;
+    }
+
+    .black-dialog .p-dialog-header-icon {
+        color: #fff !important;
+    }
+
+    .black-dialog .p-dialog-header-icon:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    .white-text {
+        color: #fff !important;
+    }
+
+    /* Style for the input field */
+    .black-dialog .form-control {
+        background-color: #333 !important;
+        color: #fff !important;
+        border: 1px solid #555 !important;
+    }
+
+    /* Style for the button */
+    .black-dialog .btn {
+        background-color: #555 !important;
+        color: #fff !important;
+        border: none !important;
+    }
+
+    .black-dialog .btn:hover {
+        background-color: #777 !important;
+    }
+
     svg {
         fill: #fff !important;
     }
@@ -247,17 +295,6 @@
                     opacity: 1 !important;
                 }
             }
-        }
-
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        .form-control {
-            -webkit-box-shadow: 0 0 0px 0 inset !important;
-            box-shadow: 0 0 0px 0 inset !important;
-            transition: background-color 5000s ease-in-out 0s !important;
-            background-color: transparent !important;
-            color: #fff !important;
-            -webkit-text-fill-color: #fff !important;
         }
     }
 

@@ -105,12 +105,12 @@
     input:-webkit-autofill,
     input:-webkit-autofill:hover {
         -webkit-text-fill-color: transparent;
-        -webkit-box-shadow: 0 0 0px 0 inset !important;
-        box-shadow: 0 0 0px 0 inset !important;
-        transition: background-color 5000s ease-in-out 0s !important;
-        background-color: transparent !important;
-        color: #0000 !important;
-        -webkit-text-fill-color: var(--text-dark) !important;
+        -webkit-box-shadow: 0 0 0px 0 inset;
+        box-shadow: 0 0 0px 0 inset;
+        transition: background-color 5000s ease-in-out 0s;
+        background-color: transparent;
+        color: #0000;
+        -webkit-text-fill-color: var(--text-dark);
     }
 }
 
@@ -120,9 +120,11 @@ span.p-dialog-title {
 }
 
 .form-control {
+    border: 3px solid #0009012e;
     &:focus {
         box-shadow: none;
         outline: none;
+        border: 3px solid #0009012e;
     }
 }
 

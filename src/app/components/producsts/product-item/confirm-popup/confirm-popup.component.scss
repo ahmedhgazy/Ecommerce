@@ -70,6 +70,15 @@
         }
     }
 }
+
+@media (min-width: 992px) and (max-width: 1037px) {
+    .popup {
+        button {
+            font-size: 1rem !important;
+        }
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
