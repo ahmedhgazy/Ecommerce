@@ -28,8 +28,8 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "src/custom-theme.scss",
               "node_modules/primeng/resources/primeng.min.css",
+              "src/custom-theme.scss",
 
               "src/styles.scss",
               "src/__bs-vars.scss"
@@ -92,11 +92,11 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/primeng/resources/themes/saga-blue/theme.css",
-              "src/custom-theme.scss",
 
               "node_modules/primeng/resources/primeng.min.css",
 
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/custom-theme.scss",
               "src/styles.scss",
               "src/__bs-vars.scss"
             ],
