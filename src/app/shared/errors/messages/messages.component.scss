@@ -19,8 +19,12 @@
     position: relative;
     justify-content: space-between;
     align-items: center;
-    width: 44% !important;
+    width: 44%;
     margin: 0 auto !important;
+    @media only screen and (max-width: 992px) {
+        width: 90%;
+        font-size: 13px;
+    }
 }
 
 .close {

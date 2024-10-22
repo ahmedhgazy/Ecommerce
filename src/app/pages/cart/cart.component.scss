@@ -15,6 +15,10 @@
     span {
         font-family: var(--secondary-font);
         color: #000000;
+
+        @media screen and (max-width: 460px) {
+            font-size: 13.5px;
+        }
     }
 }
 
@@ -80,7 +84,7 @@ input {
     }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
     .cart {
         .product__N-image {
             img {
@@ -90,9 +94,29 @@ input {
     }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
     .quantity,
     .p-input_wrapper {
         display: none;
+    }
+
+    .products-row {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        div {
+            offset: 0 !important;
+            margin-left: 0;
+            margin-right: 0;
+            span {
+                margin-inline-start: 0 !important;
+            }
+        }
+    }
+
+    .product-header_row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
     }
 }

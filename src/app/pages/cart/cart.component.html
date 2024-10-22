@@ -12,7 +12,7 @@
         </div>
 
         <div
-            class="row shadow-sm product-details__header"
+            class="row product-header_row shadow-sm product-details__header"
             style="padding: 1.5rem 2.5rem; margin-bottom: 2.5rem"
         >
             <div class="col-1 col-md-2 p-0">
@@ -40,11 +40,11 @@
         @if (cartItems.length!=0 || cartItems!=null || cartItems!=undefined) {
         @for (product of cartItems; track product;let i = $index) {
 
-        <div class="row shadow-sm" style="padding: 1.5rem 2.5rem">
+        <div class="row products-row shadow-sm" style="padding: 1.5rem 2.5rem">
             <div class="col-4 col-md-3 p-0">
                 <div class="product__N-image">
                     <img [src]="product.img" width="50px" alt="image" />
-                    <span style="margin-inline-start: 1rem !important">
+                    <span style="margin-inline-start: 1rem">
                         {{ product.name | truncate : 13 }}
                     </span>
                 </div>
@@ -52,7 +52,7 @@
 
             <div
                 class="col-1 offset-2 offset-md-1 p-0"
-                style="align-content: center !important"
+                style="align-content: center"
             >
                 <p class="pb-0 mb-0">{{ "$" + product.price }}</p>
             </div>
@@ -81,7 +81,7 @@
             </div>
 
             <div
-                class="col-1"
+                class="col-1 d-none d-md-block"
                 style="
                     align-content: center;
                     padding: 0 !important;
