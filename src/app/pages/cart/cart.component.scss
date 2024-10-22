@@ -105,11 +105,11 @@ input {
         width: 100%;
         justify-content: space-between;
         div {
-            offset: 0 !important;
+            offset: 0;
             margin-left: 0;
             margin-right: 0;
             span {
-                margin-inline-start: 0 !important;
+                margin-inline-start: 0;
             }
         }
     }
