@@ -97,8 +97,9 @@
                 ></i>
             </div>
         </div>
+        } @empty {
+        <h1>{{ "CART.emptyMessage" | translate }}</h1>
         } }
-
         <div class="row">
             <div class="col-12 col-md-5">
                 <button class="back__btn" routerLink="/home">

@@ -172,7 +172,8 @@
         "SHIPPING": "الشحن",
         "FREE": "مجاني",
         "TOTAL": "الإجمالي",
-        "PROCEED_TO_CHECKOUT": "المتابعة إلى الدفع"
+        "PROCEED_TO_CHECKOUT": "المتابعة إلى الدفع",
+        "emptyMessage": "عربة التسوق الخاصة بك فارغة."
     },
 
     "ORDERS": {

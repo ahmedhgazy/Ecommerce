@@ -170,7 +170,8 @@
         "SHIPPING": "Shipping",
         "FREE": "Free",
         "TOTAL": "Total",
-        "PROCEED_TO_CHECKOUT": "Proceed to checkout"
+        "PROCEED_TO_CHECKOUT": "Proceed to checkout",
+        "emptyMessage": "Your cart is empty."
     },
 
     "ORDERS": {
