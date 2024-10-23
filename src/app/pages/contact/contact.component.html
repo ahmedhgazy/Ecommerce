@@ -13,7 +13,15 @@
 
         <div class="row justify-content-center">
             <div class="col-12 col-lg-4 shadow card-section">
-                <div class="row" style="padding: 2.5rem 2.1875rem">
+                <div
+                    class="row"
+                    style="
+                        padding: 2.5rem 2.1875rem;
+                        @media screen and (max-width: 992px) {
+                            width: 100%;
+                        }
+                    "
+                >
                     <div class="col-12">
                         <div
                             class="icon d-flex align-items-center"
@@ -108,8 +116,9 @@
                 </div>
             </div>
 
+            <!-- form section -->
             <div
-                class="col-12 col-lg-6 form-section-col"
+                class="col-12 col-lg-6 form-section-col justify-content-center"
                 style="margin-inline-start: 9rem"
             >
                 <form #form="ngForm" (ngSubmit)="submit(form)">
