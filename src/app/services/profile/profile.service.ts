@@ -25,7 +25,7 @@ export class ProfileService {
     http = inject(HttpClient);
     private baseUrl = 'https://e-commerce-ac5d3-default-rtdb.firebaseio.com';
 
-    updateProfile(profileInfo: Profile) {
+    updateProfile(profileInfo: Partial<Profile>) {
         let ProfileList = [];
         ProfileList.push(profileInfo);
         return this.http

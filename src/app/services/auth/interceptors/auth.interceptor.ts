@@ -1,9 +1,17 @@
-import { HttpInterceptorFn, HttpParams } from '@angular/common/http';
+import {
+    HttpHandlerFn,
+    HttpInterceptorFn,
+    HttpParams,
+    HttpRequest,
+} from '@angular/common/http';
 import { inject } from '@angular/core';
 import { exhaustMap, Observable, take } from 'rxjs';
 import { AuthService } from '../auth.service';
 
-export const UserInterceptor: HttpInterceptorFn = (req, next) => {
+export const UserInterceptor: HttpInterceptorFn = (
+    req: HttpRequest<any>,
+    next: HttpHandlerFn
+) => {
     const authService = inject(AuthService);
     return authService.user$.pipe(
         take(1),

@@ -81,7 +81,7 @@ export class EditComponent implements OnInit, OnDestroy {
             .updateProfile(this.form.value)
             .pipe(takeUntil(this.endSubs$))
             .subscribe({
-                next: (data) => {
+                next: () => {
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
