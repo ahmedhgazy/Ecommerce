@@ -14,6 +14,7 @@ export class ProductsService {
     private flashSalesPagination: ProductPagination;
     private bestSellingPagination: ProductPagination;
     allLoaded = false;
+
     constructor(private http: HttpClient) {}
 
     getProducts(loadMore: boolean) {
@@ -28,10 +29,7 @@ export class ProductsService {
                             );
                             return this.productsPagination.getItems(8);
                         }),
-                        shareReplay({
-                            bufferSize: 1,
-                            refCount: true,
-                        }),
+                        shareReplay(1),
                         catchError((err) => {
                             const message =
                                 'Something went wrong, please try again later';
@@ -56,10 +54,8 @@ export class ProductsService {
                             );
                             return this.productsPagination.reset();
                         }),
-                        shareReplay({
-                            bufferSize: 1,
-                            refCount: true,
-                        }),
+                        shareReplay(1),
+
                         catchError((err) => {
                             const message =
                                 'Something went wrong, please try again later';
@@ -88,10 +84,8 @@ export class ProductsService {
                             );
                             return this.flashSalesPagination.getItems();
                         }),
-                        shareReplay({
-                            bufferSize: 1,
-                            refCount: true,
-                        }),
+                        shareReplay(1),
+
                         catchError((err) => {
                             const message =
                                 'Something went wrong, please try again later';
@@ -116,10 +110,8 @@ export class ProductsService {
                             );
                             return this.flashSalesPagination.reset();
                         }),
-                        shareReplay({
-                            bufferSize: 1,
-                            refCount: true,
-                        }),
+                        shareReplay(1),
+
                         catchError((err) => {
                             const message =
                                 'Something went wrong, please try again later';
@@ -136,7 +128,7 @@ export class ProductsService {
         }
     }
 
-    bestSelling(loadMore) {
+    bestSelling(loadMore: boolean) {
         if (loadMore) {
             if (!this.bestSellingPagination) {
                 return this.http
@@ -148,10 +140,8 @@ export class ProductsService {
                             );
                             return this.bestSellingPagination.getItems();
                         }),
-                        shareReplay({
-                            bufferSize: 1,
-                            refCount: true,
-                        }),
+                        shareReplay(1),
+
                         catchError((err) => {
                             const message =
                                 'Something went wrong, please try again later';
@@ -176,11 +166,8 @@ export class ProductsService {
                             );
                             return this.bestSellingPagination.reset();
                         }),
+                        shareReplay(1),
 
-                        shareReplay({
-                            bufferSize: 1,
-                            refCount: true,
-                        }),
                         catchError((err) => {
                             const message =
                                 'Something went wrong, please try again later';
@@ -200,39 +187,30 @@ export class ProductsService {
     bestSellingAllItems() {
         return this.http
             .get<Product[]>(`${this.baseUrl}/bestSelling.json`)
-            .pipe(
-                shareReplay({
-                    bufferSize: 1,
-                    refCount: true,
-                })
-            );
+            .pipe(shareReplay(1));
     }
 
     productsAllItems() {
-        return this.http.get<Product[]>(`${this.baseUrl}/products.json`).pipe(
-            shareReplay({
-                bufferSize: 1,
-                refCount: true,
-            })
-        );
+        return this.http
+            .get<Product[]>(`${this.baseUrl}/products.json`)
+            .pipe(shareReplay(1));
     }
 
     flashSalesAllItems() {
-        return this.http.get<Product[]>(`${this.baseUrl}/flashSales.json`).pipe(
-            shareReplay({
-                bufferSize: 1,
-                refCount: true,
-            })
-        );
+        return this.http
+            .get<Product[]>(`${this.baseUrl}/flashSales.json`)
+            .pipe(shareReplay(1));
     }
 
     get resetProducts() {
         return this.productsPagination;
     }
+
     get resetFlashSales() {
-        return this.bestSellingPagination;
-    }
-    get resetBestSelling() {
         return this.flashSalesPagination;
+    }
+
+    get resetBestSelling() {
+        return this.bestSellingPagination;
     }
 }
