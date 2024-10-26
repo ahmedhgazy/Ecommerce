@@ -12,8 +12,12 @@ export class ProductPagination {
             return this.loadedItems;
         }
 
+        // If this is the first load and no limit is specified, use defaultLimit
+        const effectiveLimit =
+            this.loadedItems.length === 0 ? limit : this.defaultLimit;
+
         const start = this.nextIndex;
-        const end = Math.min(start + limit, this.productsArray.length);
+        const end = Math.min(start + effectiveLimit, this.productsArray.length);
         const newItems = this.productsArray.slice(start, end);
 
         this.loadedItems = this.loadedItems.concat(newItems);
@@ -25,13 +29,10 @@ export class ProductPagination {
 
     reset(): Product[] {
         this.nextIndex = this.defaultLimit;
-        this.allLoaded = this.nextIndex >= this.productsArray.length;
+        this.allLoaded = false;
         this.loadedItems = this.productsArray.slice(0, this.defaultLimit);
+        this.allLoaded = this.nextIndex >= this.productsArray.length;
         return this.loadedItems;
-    }
-
-    getInitialItems(): Product[] {
-        return this.reset();
     }
 
     get isAllLoaded(): boolean {
