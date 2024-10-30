@@ -39,17 +39,24 @@ export class CartService {
 
             if (cartItemExist) {
                 cart.items.map((item) => {
-                    if (item.productId === cartItem.productId) {
+                    if (
+                        item.productId === cartItem.productId &&
+                        item.category == cartItem.category
+                    ) {
                         if ((updateQuantity = true)) {
+                            // update quantity in cart page [take the new value from NgModel]
                             item.quantity = cartItem.quantity;
                         } else {
+                            //Update quantity in details page , quantity[Prev+Next]vale of an existing product
                             item.quantity = item.quantity + cartItem.quantity;
                         }
                     }
                 });
             } else {
+                // Push the product to cart if it doesn't exist in cart
                 cart.items.push(cartItem);
             }
+            // Set the updated cart in local storage
             localStorage.setItem(CART_KEY, JSON.stringify(cart));
             this.cartSubject.next(cart);
             return cart;

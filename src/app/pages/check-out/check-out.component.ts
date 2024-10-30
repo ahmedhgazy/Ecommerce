@@ -15,19 +15,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { OrdersService } from '../../services/orders/orders.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CartService } from '../../services/orders/cart.service';
-import {
-    catchError,
-    concatMap,
-    EMPTY,
-    finalize,
-    map,
-    mergeMap,
-    Subject,
-    switchMap,
-    takeUntil,
-    tap,
-    zip,
-} from 'rxjs';
+import { finalize, Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { LoadingService } from '../../shared/components/loading/loading.service';
 
@@ -59,7 +47,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     totalPrice: number;
     form;
     isSubmitted;
-    countries = [];
     orderItems: OrderItem[] = [];
     cartS = inject(CartService);
     translate = inject(TranslateService);
@@ -116,7 +103,6 @@ export class CheckOutComponent implements OnInit, OnDestroy {
             apartment: [initForm.apartment, Validators.required],
             checked: [initForm.checked],
         });
-        // }
     }
 
     get checkoutForm() {
