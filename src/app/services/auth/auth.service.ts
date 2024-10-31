@@ -6,7 +6,7 @@ import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { User } from '../../models/user.model';
 import {} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-declare var google: any;
+import { ResponsePayload } from '../../models/auth.res';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -56,14 +56,14 @@ export class AuthService {
 
     signUp(email: string, password: string): Observable<any> {
         return this.http
-            .post(this.signUpUrl, {
+            .post<ResponsePayload>(this.signUpUrl, {
                 email: email,
                 password: password,
                 returnSecureToken: true,
             })
 
             .pipe(
-                tap((resData: User) => {
+                tap((resData: ResponsePayload) => {
                     this.handleAuthentication(
                         resData.email,
                         resData.localId,
@@ -71,21 +71,21 @@ export class AuthService {
                         +resData.expiresIn
                     );
                 }),
-                shareReplay(),
+                shareReplay(1),
                 catchError(this.handleError)
             );
     }
 
     login(email: string, password: string): Observable<any> {
         return this.http
-            .post(this.signInUrl, {
+            .post<ResponsePayload>(this.signInUrl, {
                 email: email,
                 password: password,
                 returnSecureToken: true,
             })
 
             .pipe(
-                tap((resData: User) => {
+                tap((resData: ResponsePayload) => {
                     this.handleAuthentication(
                         resData.email,
                         resData.localId,
@@ -93,7 +93,7 @@ export class AuthService {
                         +resData.expiresIn
                     );
                 }),
-                shareReplay(),
+                shareReplay(1),
                 catchError(this.handleError)
             );
     }
@@ -129,50 +129,42 @@ export class AuthService {
         );
         const user = new User(email, userId, token, expirationDate);
         this.user.next(user);
-        // this.autoLogout(expiresIn * 1000);
+        this.autoLogout(expiresIn * 1000);
         if (isPlatformBrowser(this.platformId)) {
             localStorage.setItem('user', JSON.stringify(user));
         }
     }
 
-    // private handleError(errorResponse: any) {
-    //     let error = 'Wrong password';
-    //     if (!errorResponse.error || !errorResponse.error.error) {
-    //         console.log(errorResponse.error, errorResponse.error.error);
+    autoLogin(): void {
+        if (isPlatformBrowser(this.platformId)) {
+            const userData: {
+                email: string;
+                id: string;
+                _token: string;
+                _tokenExpirationDate: string;
+            } = JSON.parse(localStorage.getItem('user') || 'null');
 
-    //         return throwError(() => new Error(error));
-    //     }
-    //     switch (errorResponse.error.error.message) {
-    //         case 'ERR_NAME_NOT_RESOLVED':
-    //             error = 'There is no internet connection';
-    //             break;
-    //         case 'EMAIL_EXISTS':
-    //             error =
-    //                 'The email address is already in use by another account.';
-    //             break;
-    //         case 'OPERATION_NOT_ALLOWED':
-    //             error = 'Password sign-in is disabled for this project.';
-    //             break;
-    //         case 'TOO_MANY_ATTEMPTS_TRY_LATER':
-    //             error =
-    //                 'We have blocked all requests from this device due to unusual activity. Try again later.';
-    //             break;
-    //         case 'EMAIL_NOT_FOUND':
-    //             error =
-    //                 'There is no user record corresponding to this identifier. The user may have been deleted.';
-    //             break;
-    //         case 'INVALID_PASSWORD':
-    //             error =
-    //                 'he password is invalid or the user does not have a password.';
-    //             break;
-    //         case 'USER_DISABLED':
-    //             error =
-    //                 'The user account has been disabled by an administrator.';
-    //             break;
-    //     }
+            if (!userData) {
+                return;
+            }
 
-    //     return throwError(() => new Error(error));
-    // }
+            const loadedUser = new User(
+                userData.email,
+                userData.id,
+                userData._token,
+                new Date(userData._tokenExpirationDate)
+            );
+
+            if (loadedUser.token) {
+                this.user.next(loadedUser);
+            }
+
+            const expirationDuration =
+                new Date(userData._tokenExpirationDate).getTime() -
+                new Date().getTime();
+            this.autoLogout(expirationDuration);
+        }
+    }
 
     private handleError(errorResponse: any) {
         let errorKey = 'ERROR_MESSAGES.UNKNOWN_ERROR';

@@ -40,18 +40,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     auth = inject(AuthService);
     cdr = inject(ChangeDetectorRef);
 
-    form = this.fb.group({
-        name: [''],
-        email: ['', [Validators.required, Validators.email]],
-        password: [
-            '',
-            [
-                Validators.required,
-                Validators.minLength(6),
-                Validators.maxLength(16),
-            ],
-        ],
-    });
+    form;
 
     isLoggedIn = false;
     error: string | null = null;
@@ -60,7 +49,20 @@ export class RegisterComponent implements OnInit, OnDestroy {
     constructor(
         @Inject(PLATFORM_ID) private platformId: Object,
         private messageService: MessageService
-    ) {}
+    ) {
+        this.form = this.fb.group({
+            name: [''],
+            email: ['', [Validators.required, Validators.email]],
+            password: [
+                '',
+                [
+                    Validators.required,
+                    Validators.minLength(6),
+                    Validators.maxLength(16),
+                ],
+            ],
+        });
+    }
 
     ngOnInit(): void {
         this.googleS.initializeGoogleSignIn().subscribe({
