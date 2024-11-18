@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic");
-@import "primeicons/primeicons.css";
-@import "./assets/styles/mixins";
-@import "./assets/styles/variables";
+@import url('https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic');
+@import 'primeicons/primeicons.css';
+@import './assets/styles/mixins';
+@import './assets/styles/variables';
 
-@import url("https://fonts.googleapis.com/css?family=Noto+Sans+Arabic:100,200,300,regular,500,600,700,800,900");
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+Arabic:100,200,300,regular,500,600,700,800,900');
 /*
   * *************************Start Global****************************
 */
@@ -32,7 +32,7 @@ body {
     margin: 0 !important;
     padding-right: 0 !important;
     transition: background-color 0.3s ease;
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 ul,
@@ -197,4 +197,8 @@ footer {
             }
         }
     }
+}
+
+.stars-line {
+    z-index: 998 !important;
 }
