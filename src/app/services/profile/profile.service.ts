@@ -1,16 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
-import {
-    BehaviorSubject,
-    catchError,
-    map,
-    shareReplay,
-    tap,
-    throwError,
-} from 'rxjs';
-import { Profile } from '../../models/profile.model';
-import { MessagesService } from '../../shared/errors/messages/messages.service';
+import {HttpClient} from '@angular/common/http';
+import {inject, Injectable} from '@angular/core';
+import {AuthService} from '../auth/auth.service';
+import {BehaviorSubject, catchError, map, shareReplay, tap, throwError,} from 'rxjs';
+import {Profile} from '../../models/profile.model';
+import {MessagesService} from '../../shared/errors/messages/messages.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
@@ -58,8 +51,7 @@ export class ProfileService {
                     for (const key in data) {
                         profileDataList.push(data[key]);
                     }
-                    const profileData = profileDataList[0];
-                    return profileData;
+                  return profileDataList[0];
                 }),
                 tap((response: Profile) => {
                     this.profileSubject.next(response);

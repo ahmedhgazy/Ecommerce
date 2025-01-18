@@ -30,7 +30,6 @@ html {
 body {
     padding: 0 !important;
     margin: 0 !important;
-    padding-right: 0 !important;
     transition: background-color 0.3s ease;
     font-family: 'Inter', sans-serif;
 }
@@ -54,7 +53,7 @@ a {
         color: #000000;
         font-size: 14px;
         font-weight: 400;
-        font-family: var(--secondary-font);
+        font-family: var(--secondary-font), sans-serif;
         cursor: pointer;
         text-wrap: nowrap;
     }
@@ -82,7 +81,6 @@ $checkboxIconActiveColor: #ffffff;
     overflow: auto !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    margin-right: 0 !important;
     margin-right: 0 !important;
 }
 
