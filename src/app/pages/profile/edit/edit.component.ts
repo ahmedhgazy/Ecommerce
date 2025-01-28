@@ -1,5 +1,10 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+    FormBuilder,
+    FormGroup,
+    ReactiveFormsModule,
+    Validators,
+} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -38,7 +43,7 @@ export class EditComponent implements OnInit, OnDestroy {
     endSubs$ = new Subject<any>();
     profileData: Profile;
     activeProfile = false;
-    form: any;
+    form: FormGroup;
     subscription: Subscription;
     constructor(private fb: FormBuilder) {}
     ngOnInit(): void {

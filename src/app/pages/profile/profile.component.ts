@@ -14,7 +14,6 @@ import { TranslateModule } from '@ngx-translate/core';
         RouterModule,
         CommonModule,
         SharedRoutesHeader,
-        SharedInputComponent,
         ReactiveFormsModule,
         TranslateModule,
     ],

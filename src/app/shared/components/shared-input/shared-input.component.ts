@@ -29,6 +29,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class SharedInputComponent implements ControlValueAccessor {
     dateForm: FormGroup;
+    disabled = false;
 
     constructor(private fb: FormBuilder) {
         this.dateForm = this.fb.group({
