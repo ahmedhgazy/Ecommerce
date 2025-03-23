@@ -14,7 +14,7 @@
                     margin-inline-start: 0.5rem !important;
                 "
             >
-                {{ "BANNER.SUMMER_SALE" | translate }}
+                {{ 'BANNER.SUMMER_SALE' | translate }}
             </p>
             <a
                 class="text-underline text-center d-inline-block"
@@ -24,9 +24,10 @@
                     margin-inline-start: 0.7rem !important;
                 "
             >
-                {{ "BANNER.SHOP_NOW" | translate }}
+                {{ 'BANNER.SHOP_NOW' | translate }}
             </a>
         </div>
+
         <div class="drop-down" style="background-color: #000 !important">
             <p-dropdown
                 [options]="lang"
@@ -47,73 +48,67 @@
             <!-- Brand title -->
             <div class="brand-title">
                 <a class="p-0 m-0" routerLink="/home">{{
-                    "HEADER.EXCLUSIVE" | translate
+                    'HEADER.EXCLUSIVE' | translate
                 }}</a>
             </div>
 
             <!-- Navigation -->
-            <div class="navigation d-none d-md-block">
-                <nav class="navigation--wrapper">
-                    <ul
-                        class="p-0 m-0 navigation__menu list-unstyled d-flex align-items-center"
-                    >
-                        <li class="navigation__item">
-                            <a class="navigation__link" routerLink="/home">
-                                {{ "HEADER.HOME" | translate }}
-                            </a>
-                        </li>
-                        <li class="navigation__item">
-                            <a class="navigation__link" routerLink="/contact">{{
-                                "HEADER.CONTACT" | translate
-                            }}</a>
-                        </li>
-                        <li class="navigation__item">
-                            <a routerLink="about" class="navigation__link">{{
-                                "HEADER.ABOUT" | translate
-                            }}</a>
-                        </li>
+            <!-- <div class="navigation d-none d-md-block"> -->
+            <nav class="navigation--wrapper navigation d-none d-md-block">
+                <ul
+                    class="p-0 m-0 navigation__menu list-unstyled d-flex align-items-center"
+                >
+                    <li class="navigation__item">
+                        <a class="navigation__link" routerLink="/home">
+                            {{ 'HEADER.HOME' | translate }}
+                        </a>
+                    </li>
+                    <li class="navigation__item">
+                        <a class="navigation__link" routerLink="/contact">{{
+                            'HEADER.CONTACT' | translate
+                        }}</a>
+                    </li>
+                    <li class="navigation__item">
+                        <a routerLink="about" class="navigation__link">{{
+                            'HEADER.ABOUT' | translate
+                        }}</a>
+                    </li>
 
-                        <li class="navigation__item">
-                            <a
-                                *ngIf="
-                                    (auth.isLoggedOut$ | async) &&
-                                    (googleS.isLoggedOutFromGoogle$ | async)
-                                "
-                                routerLink="/auth/register"
-                                class="navigation__link"
-                                >{{ "HEADER.register" | translate }}
-                            </a>
+                    <li class="navigation__item">
+                        <a
+                            *ngIf="
+                                (auth.isLoggedOut$ | async) &&
+                                (googleS.isLoggedOutFromGoogle$ | async)
+                            "
+                            routerLink="/auth/register"
+                            class="navigation__link"
+                            >{{ 'HEADER.register' | translate }}
+                        </a>
 
-                            <a
-                                *ngIf="
-                                    (auth.isLoggedIn$ | async) ||
-                                    (googleS.isLoggedInFromGoogle$ | async)
-                                "
-                                (click)="logout()"
-                                class="navigation__link"
-                            >
-                                {{ "HEADER.LOG_OUT" | translate }}
-                            </a>
-                        </li>
+                        <a
+                            *ngIf="
+                                (auth.isLoggedIn$ | async) ||
+                                (googleS.isLoggedInFromGoogle$ | async)
+                            "
+                            (click)="logout()"
+                            class="navigation__link"
+                        >
+                            {{ 'HEADER.LOG_OUT' | translate }}
+                        </a>
+                    </li>
 
-                        <li class="navigation__item d-none d-lg-inline-block">
-                            @if (activeDarkMode) {
+                    <li class="navigation__item d-none d-lg-inline-block">
+                        @if (activeDarkMode) {
 
-                            <i
-                                class="pi pi-sun"
-                                (click)="changeTheme('light')"
-                            ></i>
-                            } @else{
+                        <i class="pi pi-sun" (click)="changeTheme('light')"></i>
+                        } @else{
 
-                            <i
-                                class="pi pi-moon"
-                                (click)="changeTheme('dark')"
-                            ></i>
-                            }
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+                        <i class="pi pi-moon" (click)="changeTheme('dark')"></i>
+                        }
+                    </li>
+                </ul>
+            </nav>
+            <!-- </div> -->
 
             <div class="wrapper d-flex align-items-center p-0 m-0">
                 <!-- Search section -->
@@ -147,6 +142,7 @@
                         class="pi pi-heart p-text-secondary"
                         style="font-size: 1.4rem"
                     ></i>
+
                     <app-cart-icon class="mx-4"></app-cart-icon>
 
                     <i

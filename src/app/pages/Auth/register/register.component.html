@@ -18,9 +18,9 @@
                 class="rgstr-area d-flex flex-column justify-content-center h-100"
             >
                 <div class="auth-header">
-                    <h1>{{ "REGISTER.CREATE_ACCOUNT" | translate }}</h1>
+                    <h1>{{ 'REGISTER.CREATE_ACCOUNT' | translate }}</h1>
                     <p class="mt-4">
-                        {{ "REGISTER.ENTER_DETAILS_BELOW" | translate }}
+                        {{ 'REGISTER.ENTER_DETAILS_BELOW' | translate }}
                     </p>
                 </div>
                 <form [formGroup]="form" (ngSubmit)="submit()">
@@ -49,7 +49,7 @@
                         />
                     </div>
                     <button type="submit" class="btn btn-primary w-100 mb-3">
-                        {{ "REGISTER.CREATE_ACCOUNT_BUTTON" | translate }}
+                        {{ 'REGISTER.CREATE_ACCOUNT_BUTTON' | translate }}
                     </button>
                     <button
                         type="button"
@@ -93,7 +93,7 @@
                             </defs>
                         </svg>
                         <span style="margin-inline-start: 0.75rem !important">
-                            {{ "REGISTER.SIGN_UP_GOOGLE" | translate }}
+                            {{ 'REGISTER.SIGN_UP_GOOGLE' | translate }}
                         </span>
                     </button>
                     <div
@@ -101,7 +101,7 @@
                         style="width: 100%; max-width: 370px"
                     >
                         <p class="form__footer-text">
-                            {{ "REGISTER.ALREADY_HAVE_ACCOUNT" | translate }}
+                            {{ 'REGISTER.ALREADY_HAVE_ACCOUNT' | translate }}
                             <a
                                 [routerLink]="['/auth/login']"
                                 class="text-secondary"
@@ -110,7 +110,7 @@
                                     margin-inline-start: 0.75rem !important;
                                 "
                             >
-                                {{ "REGISTER.LOGIN" | translate }}
+                                {{ 'REGISTER.LOGIN' | translate }}
                             </a>
                         </p>
                     </div>
@@ -132,8 +132,3 @@
     </div>
 </section>
 <p-toast />
-
-<!--
-input type="text"
-placeholder='ebter a text ti call it frin outside '
--->

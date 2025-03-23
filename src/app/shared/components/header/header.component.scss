@@ -10,7 +10,7 @@
         padding: 0 1rem;
 
         a {
-            color: white !important;
+            color: #fff !important;
             cursor: pointer;
         }
 
@@ -154,7 +154,7 @@ i,
     }
 }
 
-[dir="rtl"] {
+[dir='rtl'] {
     .header {
         .navigation {
             &__item {
