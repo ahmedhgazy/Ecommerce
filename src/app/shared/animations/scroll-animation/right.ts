@@ -2,6 +2,7 @@ import { Directive } from '@angular/core';
 import { BaseAnimationDirective } from './base';
 import { animate, style } from '@angular/animations';
 @Directive({
+    standalone: true,
     selector: '[animateFromRight]',
 })
 export class AnimateFromRightDirective extends BaseAnimationDirective {
@@ -9,7 +10,7 @@ export class AnimateFromRightDirective extends BaseAnimationDirective {
         const factory = this.animationBuilder.build([
             style({ opacity: 0, transform: 'translateX(100px)' }),
             animate(
-                '500ms ease-out',
+                '800ms ease-out',
                 style({ opacity: 1, transform: 'translateX(0)' })
             ),
         ]);

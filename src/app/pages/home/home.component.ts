@@ -1,6 +1,5 @@
 import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductItemComponent } from '../../components/producsts/product-item/product-item.component';
 import { ProductListComponent } from '../../components/producsts/product-list/product-list.component';
 import { CategoriesComponent } from '../../components/producsts/catepgries/categories.component';
 import { CatBannerComponent } from '../../components/producsts/catepgries/cat-banner/cat-banner.component';
@@ -15,7 +14,9 @@ import { SharedButton } from '../../shared/components/shared-button/shared-butto
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { mapToPaginatedProducts } from '../../models/product.model';
 import { TranslateModule } from '@ngx-translate/core';
-import { BackToTopDirective } from '../../shared/directives/top.directive';
+import { AnimateFromTopDirective } from '../../shared/animations/scroll-animation/top';
+import { AnimateFromRightDirective } from '../../shared/animations/scroll-animation/right';
+import { AnimateFromLeftDirective } from '../../shared/animations/scroll-animation/left';
 export interface sharedHeader {
     title: string;
     desc: string;
@@ -26,7 +27,6 @@ export interface sharedHeader {
     standalone: true,
     imports: [
         CommonModule,
-        ProductItemComponent,
         ProductListComponent,
         CategoriesComponent,
         CatBannerComponent,
@@ -36,7 +36,9 @@ export interface sharedHeader {
         SharedButton,
         LoadingComponent,
         TranslateModule,
-        BackToTopDirective,
+        AnimateFromTopDirective,
+        AnimateFromRightDirective,
+        AnimateFromLeftDirective,
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',

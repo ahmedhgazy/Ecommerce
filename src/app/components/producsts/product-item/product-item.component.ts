@@ -13,6 +13,7 @@ import { ConfirmPopupComponent } from './confirm-popup/confirm-popup.component';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImagePreviewComponent } from './image-preview/image-preview.component';
 import { fadeInOut } from '../../../shared/animations/popup.animation';
+import { AnimateFromTopDirective } from '../../../shared/animations/scroll-animation/top';
 
 @Component({
     selector: 'app-product-item',
@@ -24,6 +25,7 @@ import { fadeInOut } from '../../../shared/animations/popup.animation';
         ConfirmPopupComponent,
         NgbModule,
         ImagePreviewComponent,
+        AnimateFromTopDirective,
     ],
     templateUrl: './product-item.component.html',
     styleUrl: './product-item.component.scss',

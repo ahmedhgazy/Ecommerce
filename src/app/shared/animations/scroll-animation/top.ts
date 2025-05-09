@@ -2,6 +2,7 @@ import { Directive } from '@angular/core';
 import { BaseAnimationDirective } from './base';
 import { animate, style } from '@angular/animations';
 @Directive({
+    standalone: true,
     selector: '[animateFromTop]',
 })
 export class AnimateFromTopDirective extends BaseAnimationDirective {
@@ -9,7 +10,7 @@ export class AnimateFromTopDirective extends BaseAnimationDirective {
         const factory = this.animationBuilder.build([
             style({ opacity: 0, transform: 'translateY(-100px)' }),
             animate(
-                '500ms ease-out',
+                '800ms ease-out',
                 style({ opacity: 1, transform: 'translateY(0)' })
             ),
         ]);
