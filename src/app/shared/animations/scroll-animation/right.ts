@@ -8,7 +8,7 @@ import { animate, style } from '@angular/animations';
 export class AnimateFromRightDirective extends BaseAnimationDirective {
     protected override createAnimation() {
         const factory = this.animationBuilder.build([
-            style({ opacity: 0, transform: 'translateX(100px)' }),
+            style({ opacity: 0, transform: 'translateY(100px)' }),
             animate(
                 '800ms ease-out',
                 style({ opacity: 1, transform: 'translateX(0)' })
