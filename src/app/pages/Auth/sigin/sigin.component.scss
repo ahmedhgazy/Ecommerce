@@ -1,12 +1,15 @@
 @import "../../../../assets/styles/mixins";
+
 .register {
     .rgstr-area {
         height: 530px !important;
         padding-top: 1.6rem;
         max-width: 100%;
+
         .auth-header {
             margin-bottom: 48px;
             margin-top: 1rem;
+
             h1 {
                 font-family: var(--main-font);
                 font-weight: 500;
@@ -15,19 +18,24 @@
                 line-height: 30px;
                 letter-spacing: 0.04em;
                 color: #000000;
+
                 @media only screen and (min-width: 992px) {
                     font-size: 2.5rem;
                 }
+
                 @media (min-width: 768px) and (max-width: 991px) {
                     font-size: 1.8rem;
                 }
+
                 @media only screen and (max-width: 400px) {
                     font-size: 1.4rem;
                 }
+
                 @media only screen and (max-width: 250px) {
                     font-size: 1rem;
                 }
             }
+
             p {
                 display: inline-block;
                 font-family: var(--secondary-font);
@@ -70,13 +78,16 @@
                 outline: 0;
                 border-radius: 4px;
                 display: block;
+
                 &:first-of-type {
                     background-color: var(--btn-color-red);
                     color: var(--text);
                 }
+
                 &:not(:last-child) {
                     margin-bottom: 1rem;
                 }
+
                 &:last-of-type {
                     border: 1px solid var(--text-one);
                     margin-bottom: 32px;
@@ -85,6 +96,7 @@
                     background-color: var(--white);
                 }
             }
+
             &__footer-text {
                 font-family: var(--secondary-font);
                 font-weight: 400;
@@ -93,6 +105,7 @@
                 padding: 0;
                 margin: 0;
                 opacity: 0.7;
+
                 a {
                     font-family: var(--secondary-font);
                     font-weight: 500 !important;
@@ -112,6 +125,18 @@
         color: #0000;
         -webkit-text-fill-color: var(--text-dark);
     }
+
+    .signup-link {
+        .line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .click-cursor {
+            cursor: pointer;
+        }
+    }
 }
 
 span.p-dialog-title {
@@ -121,6 +146,7 @@ span.p-dialog-title {
 
 .form-control {
     border: 3px solid #0009012e;
+
     &:focus {
         box-shadow: none;
         outline: none;

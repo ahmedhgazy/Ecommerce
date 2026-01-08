@@ -12,7 +12,7 @@ import {
     Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
@@ -21,7 +21,9 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Subject, switchMap, takeUntil, tap } from 'rxjs';
+import { LoadingService } from '../../../shared/components/loading/loading.service';
+import { Subject, switchMap, takeUntil, tap, finalize } from 'rxjs';
+import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 @Component({
     selector: 'app-sigin',
     standalone: true,
@@ -35,6 +37,8 @@ import { Subject, switchMap, takeUntil, tap } from 'rxjs';
         ButtonModule,
         InputTextModule,
         TranslateModule,
+        RouterModule,
+        LoadingComponent
     ],
     templateUrl: './sigin.component.html',
     styleUrl: './sigin.component.scss',
@@ -42,7 +46,7 @@ import { Subject, switchMap, takeUntil, tap } from 'rxjs';
     providers: [MessageService],
 })
 export class SigInComponent implements OnDestroy {
-    constructor(private messageService: MessageService) {}
+    constructor(private messageService: MessageService) { }
     translate = inject(TranslateService);
     fb = inject(NonNullableFormBuilder);
     auth = inject(AuthService);
@@ -74,6 +78,8 @@ export class SigInComponent implements OnDestroy {
             ],
         });
     }
+
+    resetEmail = this.fb.control('', [Validators.required, Validators.email]);
 
     submit() {
         if (this.form.valid) {
@@ -133,15 +139,26 @@ export class SigInComponent implements OnDestroy {
 
     visible: boolean = false;
 
+    loadingService = inject(LoadingService);
+
     showDialog() {
         this.visible = true;
     }
-    resetPassword(email: string) {
+
+    resetPassword() {
+        if (this.resetEmail.invalid) {
+            this.resetEmail.markAsTouched();
+            return;
+        }
+
+        const email = this.resetEmail.value;
+        this.loadingService.loadingOn();
         this.auth
-            .resetPassword(email)
+            .forgotPassword(email)
             .pipe(
                 switchMap(() => {
                     this.visible = false;
+                    this.resetEmail.reset();
                     return this.translate.get([
                         'TOAST_MESSAGE.success',
                         'TOAST_MESSAGE.emailSent',
@@ -154,6 +171,7 @@ export class SigInComponent implements OnDestroy {
                         detail: translations['TOAST_MESSAGE.emailSent'],
                     });
                 }),
+                finalize(() => this.loadingService.loadingOf()),
                 takeUntil(this.endSubs)
             )
             .subscribe({});

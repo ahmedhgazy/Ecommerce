@@ -5,10 +5,12 @@
     border-radius: 8px;
     overflow: hidden;
     padding-inline-start: 1rem;
+
     @media only screen and (max-width: 768px) {
         margin-top: -2.5rem !important;
         flex: 0 0 100%;
     }
+
     &__header p {
         font-family: var(--secondary-font);
         font-weight: 600;
@@ -26,6 +28,7 @@
         @media only screen and (max-width: 768px) {
             justify-content: center !important;
         }
+
         .count {
             width: 62px;
             height: 62px;
@@ -35,6 +38,7 @@
             align-items: center;
             padding: 2.4rem;
             margin-inline-end: 1.5rem !important;
+
             p {
                 font-weight: 600;
                 font-size: 1.25rem;

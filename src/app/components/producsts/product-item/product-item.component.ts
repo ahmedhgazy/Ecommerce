@@ -66,6 +66,6 @@ export class ProductItemComponent {
             fullscreen: true,
             windowClass: 'image-preview-modal',
         });
-        modalRef.componentInstance.imageUrl = this.product.img;
+        modalRef.componentInstance.imageUrl = this.product.imageUrl;
     }
 }

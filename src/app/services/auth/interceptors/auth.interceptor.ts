@@ -1,28 +1,51 @@
-import {
-    HttpHandlerFn,
-    HttpInterceptorFn,
-    HttpParams,
-    HttpRequest,
-} from '@angular/common/http';
+import { HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { exhaustMap, Observable, take } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { catchError, switchMap, throwError } from 'rxjs';
 
 export const UserInterceptor: HttpInterceptorFn = (
     req: HttpRequest<any>,
     next: HttpHandlerFn
 ) => {
     const authService = inject(AuthService);
-    return authService.user$.pipe(
-        take(1),
-        exhaustMap((user) => {
-            if (!user || !user.token) {
-                return next(req);
+    const user = authService.user.value;
+
+    // Skip auth header for auth endpoints (except /me and /logout)
+    const isAuthEndpoint = req.url.includes('/auth/') &&
+        !req.url.includes('/auth/me') &&
+        !req.url.includes('/auth/logout');
+
+    if (!user || !user.token || isAuthEndpoint) {
+        return next(req);
+    }
+
+    // Clone request with Authorization header
+    const authReq = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${user.token}`)
+    });
+
+    return next(authReq).pipe(
+        catchError((error: HttpErrorResponse) => {
+            // If 401 Unauthorized and we have a refresh token, try to refresh
+            if (error.status === 401 && user.refreshToken && !req.url.includes('/refresh-token')) {
+                return authService.refreshToken().pipe(
+                    switchMap(() => {
+                        const newUser = authService.user.value;
+                        if (newUser && newUser.token) {
+                            const retryReq = req.clone({
+                                headers: req.headers.set('Authorization', `Bearer ${newUser.token}`)
+                            });
+                            return next(retryReq);
+                        }
+                        return throwError(() => error);
+                    }),
+                    catchError(() => {
+                        authService.logout(false);
+                        return throwError(() => error);
+                    })
+                );
             }
-            const reqClone = req.clone({
-                params: req.params.set('auth', user.token),
-            });
-            return next(reqClone);
+            return throwError(() => error);
         })
     );
 };

@@ -8,6 +8,7 @@
             color: #000000;
             line-height: 1.3;
         }
+
         &__desc {
             font-family: var(--secondary-font);
             font-weight: 400;
@@ -23,15 +24,18 @@
         &__col {
             transition: all 0.2s ease-in-out;
             cursor: pointer;
+
             &:hover {
                 background-color: var(--btn-color-red);
                 color: #fff !important;
             }
+
             &:hover {
                 p.number {
                     color: #fff !important;
                 }
             }
+
             padding: 1.875rem 2rem;
 
             p:not(:last-child) {
@@ -42,6 +46,7 @@
                 letter-spacing: 0.04em;
                 color: #000000;
             }
+
             p:last-child {
                 font-family: var(--secondary-font);
                 font-weight: 400;

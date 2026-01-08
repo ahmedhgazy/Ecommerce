@@ -8,6 +8,7 @@
 
 .product__N-image {
     overflow: hidden;
+
     img {
         max-width: 100%;
     }
@@ -44,7 +45,9 @@ input {
         .p-inputnumber-button-group {
             border-color: var(--btn-color-red) !important;
         }
+
         input.p-inputtext {
+
             &:focus,
             &:hover {
                 outline: none;
@@ -77,6 +80,7 @@ input {
     background-color: transparent;
     color: #000000;
     transition: all 0.2s ease-out;
+
     &:hover {
         background-color: var(--btn-color-red);
         color: #fff;
@@ -95,6 +99,7 @@ input {
 }
 
 @media only screen and (max-width: 767px) {
+
     .quantity,
     .p-input_wrapper {
         display: none;
@@ -104,10 +109,12 @@ input {
         display: flex;
         width: 100%;
         justify-content: space-between;
+
         div {
             offset: 0;
             margin-left: 0;
             margin-right: 0;
+
             span {
                 margin-inline-start: 0;
             }

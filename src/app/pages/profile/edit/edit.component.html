@@ -10,12 +10,7 @@
                         {{ "PROFILE.FIRST_NAME" | translate }}
                     </label>
 
-                    <input
-                        type="text"
-                        class="form-control bg-primary"
-                        id="firstname"
-                        formControlName="fname"
-                    />
+                    <input type="text" class="form-control bg-primary" id="firstname" formControlName="firstName" />
                 </div>
 
                 <div class="form-group">
@@ -23,24 +18,14 @@
                         {{ "PROFILE.EMAIL" | translate }}
                     </label>
 
-                    <input
-                        type="email"
-                        class="form-control bg-primary"
-                        id="email"
-                        formControlName="email"
-                    />
+                    <input type="email" class="form-control bg-primary" id="email" formControlName="email" />
                 </div>
                 <div class="form-group">
                     <label for="Zip " class="mb-2 mt-4">
                         {{ "PROFILE.ZIP_CODE" | translate }}
                     </label>
 
-                    <input
-                        type="number"
-                        class="form-control bg-primary"
-                        id="Zip"
-                        formControlName="zip"
-                    />
+                    <input type="number" class="form-control bg-primary" id="Zip" formControlName="zipCode" />
                 </div>
             </div>
 
@@ -50,12 +35,7 @@
                         {{ "PROFILE.SECOND_NAME" | translate }}
                     </label>
 
-                    <input
-                        type="text"
-                        class="form-control bg-primary"
-                        id="secondname"
-                        formControlName="sName"
-                    />
+                    <input type="text" class="form-control bg-primary" id="secondname" formControlName="lastName" />
                 </div>
 
                 <div class="form-group">
@@ -63,40 +43,24 @@
                         {{ "PROFILE.ADDRESS" | translate }}
                     </label>
 
-                    <input
-                        type="text"
-                        class="form-control bg-primary"
-                        id="address"
-                        formControlName="address"
-                    />
+                    <input type="text" class="form-control bg-primary" id="address" formControlName="address" />
                 </div>
                 <div class="form-group">
                     <label class="mb-2 mt-4">
                         {{ "PROFILE.BIRTH_DATE" | translate }}
                     </label>
 
-                    <app-shared-input formControlName="date"></app-shared-input>
+                    <app-shared-input formControlName="dateOfBirth"></app-shared-input>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div
-                class="actions mt-4 d-flex align-items-center justify-content-end"
-            >
-                <a
-                    routerLink="/home"
-                    class="cancel text-dark"
-                    style="margin-inline-end: 2rem !important"
-                    type="submit"
-                >
+            <div class="actions mt-4 d-flex align-items-center justify-content-end">
+                <a routerLink="/home" class="cancel text-dark" style="margin-inline-end: 2rem !important" type="submit">
                     {{ "PROFILE.CANCEL" | translate }}
                 </a>
 
-                <button
-                    class="text-light submit py-10 bg-secondary"
-                    type="submit"
-                    style="padding-inline: 3rem"
-                >
+                <button class="text-light submit py-10 bg-secondary" type="submit" style="padding-inline: 3rem">
                     {{ "PROFILE.SAVE_CHANGES" | translate }}
                 </button>
             </div>

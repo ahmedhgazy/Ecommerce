@@ -8,10 +8,10 @@ export interface Product {
     colors: string[];
     images: string[];
     reviews: any[];
-    available: number;
     discount: number;
-    img: string;
+    imageUrl: string;
     inWishlist: boolean;
+    available:boolean;
     new: boolean;
     sales?: number;
     category: string;

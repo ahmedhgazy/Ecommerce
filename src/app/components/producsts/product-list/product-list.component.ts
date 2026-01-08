@@ -12,9 +12,6 @@ import { LoadingComponent } from '../../../shared/components/loading/loading.com
     imports: [
         ProductItemComponent,
         CommonModule,
-        SharedButton,
-        SharedHeaderComponent,
-        LoadingComponent,
     ],
     templateUrl: './product-list.component.html',
     styleUrl: './product-list.component.scss',

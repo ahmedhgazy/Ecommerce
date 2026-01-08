@@ -7,7 +7,7 @@ import { SharedHeaderComponent } from '../../shared/components/shared-header/sha
 import { NewArrivalsComponent } from '../../components/producsts/new-arrivals/new-arrivals.component';
 import { DetailsComponent } from '../../components/details/details.component';
 import { ProductsService } from '../../services/products/products.service';
-import { concatMap, map, Observable, take } from 'rxjs';
+import { concatMap, map, Observable, take, BehaviorSubject } from 'rxjs';
 import { Product } from '../../models/product.model';
 import { LoadingService } from '../../shared/components/loading/loading.service';
 import { SharedButton } from '../../shared/components/shared-button/shared-button.component';
@@ -43,278 +43,142 @@ export interface sharedHeader {
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit, OnDestroy {
-    products$: Observable<Product[]>;
-    flashSales$: Observable<Product[]>;
-    bestSelling$: Observable<Product[]>;
+export class HomeComponent implements OnInit {
+    productsSub = new BehaviorSubject<Product[]>([]);
+    flashSalesSub = new BehaviorSubject<Product[]>([]);
+    bestSellingSub = new BehaviorSubject<Product[]>([]);
+
+    products$ = this.productsSub.asObservable();
+    flashSales$ = this.flashSalesSub.asObservable();
+    bestSelling$ = this.bestSellingSub.asObservable();
+
+    productsPage = 1;
+    flashSalesPage = 1;
+    bestSellingPage = 1;
+
     allProductsLoaded = false;
     allFlashSalesLoaded = false;
     allBestSellingLoaded = false;
+
     loadingS = inject(LoadingService);
     productsService = inject(ProductsService);
 
     ngOnInit(): void {
-        this.products$ = this.loadingS.showLoadingUntilCompleted(
-            this.productsService.getProducts(true).pipe(take(1))
-        );
-
-        this.flashSales$ = this.loadingS.showLoadingUntilCompleted(
-            this.productsService.getFlashSales(true).pipe(take(1))
-        );
-
-        this.bestSelling$ = this.loadingS.showLoadingUntilCompleted(
-            this.productsService.bestSelling(true).pipe(take(1))
-        );
+        this.loadInitialData();
     }
 
-    loadMore(category) {
-        if (
-            this.allProductsLoaded &&
-            (!this.allBestSellingLoaded || !this.allFlashSalesLoaded)
-        ) {
-            switch (category) {
-                // !loaded
-                case 'products':
-                    this.products$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.productsAllItems().pipe(
-                            take(1),
+    loadInitialData() {
+        // Load Products
+        this.productsService.getProducts({ pageNumber: 1 }).pipe(take(1)).subscribe(res => {
+            this.productsSub.next(res.items);
+            this.productsPage++;
+            this.allProductsLoaded = !res.hasNextPage;
+        });
 
-                            concatMap((all) => {
-                                return this.productsService
-                                    .getProducts(false)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allProductsLoaded
-                                                );
-                                            this.allProductsLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
-                            })
-                        )
-                    );
-                    break;
-                // !Not loaded
-                case 'bestSelling':
-                    this.bestSelling$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.bestSellingAllItems().pipe(
-                            take(1),
+        // Load Flash Sales
+        this.productsService.getFlashSales(1).pipe(take(1)).subscribe(res => {
+            this.flashSalesSub.next(res.items);
+            this.flashSalesPage++;
+            this.allFlashSalesLoaded = !res.hasNextPage;
+        });
 
-                            concatMap((all) => {
-                                return this.productsService
-                                    .bestSelling(true)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allBestSellingLoaded
-                                                );
-                                            this.allBestSellingLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
-                            })
-                        )
-                    );
-                    break;
-                // !Not loaded
-                case 'flashSales':
-                    this.flashSales$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.flashSalesAllItems().pipe(
-                            take(1),
+        // Load Best Selling
+        this.productsService.getBestSelling(1).pipe(take(1)).subscribe(res => {
+            this.bestSellingSub.next(res.items);
+            this.bestSellingPage++;
+            this.allBestSellingLoaded = !res.hasNextPage;
+        });
+    }
 
-                            concatMap((all) => {
-                                return this.productsService
-                                    .getFlashSales(true)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allFlashSalesLoaded
-                                                );
-                                            this.allFlashSalesLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
+    loadMore(category: string) {
+        switch (category) {
+            case 'products':
+                if (!this.allProductsLoaded) {
+                    this.loadingS.showLoadingUntilCompleted(
+                        this.productsService.getProducts({ pageNumber: this.productsPage }).pipe(
+                            map(res => {
+                                const current = this.productsSub.value;
+                                this.productsSub.next([...current, ...res.items]);
+                                this.productsPage++;
+                                this.allProductsLoaded = !res.hasNextPage;
+                                return res.items;
                             })
                         )
-                    );
-                    break;
-            }
-        } else if (
-            !this.allProductsLoaded &&
-            (this.allBestSellingLoaded || !this.allFlashSalesLoaded)
-        ) {
-            switch (category) {
-                // !Loaded
-                case 'bestSelling':
-                    this.bestSelling$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.bestSellingAllItems().pipe(
-                            take(1),
-                            concatMap((all) => {
-                                return this.productsService
-                                    .bestSelling(false)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allBestSellingLoaded
-                                                );
-                                            this.allBestSellingLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
+                    ).subscribe();
+                } else {
+                    // Show Less: Reset to Page 1
+                    this.loadingS.showLoadingUntilCompleted(
+                        this.productsService.getProducts({ pageNumber: 1 }).pipe(
+                            map(res => {
+                                this.productsSub.next(res.items);
+                                this.productsPage = 2;
+                                this.allProductsLoaded = !res.hasNextPage;
+                                return res.items;
                             })
                         )
-                    );
-                    break;
-                // !Not loaded
-                case 'products':
-                    this.products$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.productsAllItems().pipe(
-                            take(1),
+                    ).subscribe();
+                }
+                break;
 
-                            concatMap((all) => {
-                                return this.productsService
-                                    .getProducts(true)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allProductsLoaded
-                                                );
-                                            this.allProductsLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
+            case 'bestSelling':
+                if (!this.allBestSellingLoaded) {
+                    this.loadingS.showLoadingUntilCompleted(
+                        this.productsService.getBestSelling(this.bestSellingPage).pipe(
+                            map(res => {
+                                const current = this.bestSellingSub.value;
+                                this.bestSellingSub.next([...current, ...res.items]);
+                                this.bestSellingPage++;
+                                this.allBestSellingLoaded = !res.hasNextPage;
+                                return res.items;
                             })
                         )
-                    );
-                    break;
-                // !Not loaded
-                case 'flashSales':
-                    this.flashSales$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.flashSalesAllItems().pipe(
-                            take(1),
+                    ).subscribe();
+                } else {
+                    // Show Less: Reset to Page 1
+                    this.loadingS.showLoadingUntilCompleted(
+                        this.productsService.getBestSelling(1).pipe(
+                            map(res => {
+                                this.bestSellingSub.next(res.items);
+                                this.bestSellingPage = 2;
+                                this.allBestSellingLoaded = !res.hasNextPage;
+                                return res.items;
+                            })
+                        )
+                    ).subscribe();
+                }
+                break;
 
-                            concatMap((all) => {
-                                return this.productsService
-                                    .getFlashSales(true)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allFlashSalesLoaded
-                                                );
-                                            this.allFlashSalesLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
+            case 'flashSales':
+                if (!this.allFlashSalesLoaded) {
+                    this.loadingS.showLoadingUntilCompleted(
+                        this.productsService.getFlashSales(this.flashSalesPage).pipe(
+                            map(res => {
+                                const current = this.flashSalesSub.value;
+                                this.flashSalesSub.next([...current, ...res.items]);
+                                this.flashSalesPage++;
+                                this.allFlashSalesLoaded = !res.hasNextPage;
+                                return res.items;
                             })
                         )
-                    );
-                    break;
-            }
-        } else if (
-            !this.allProductsLoaded &&
-            (!this.allBestSellingLoaded || this.allFlashSalesLoaded)
-        ) {
-            switch (category) {
-                // !Loaded
-                case 'flashSales':
-                    this.flashSales$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.flashSalesAllItems().pipe(
-                            take(1),
-
-                            concatMap((all) => {
-                                return this.productsService
-                                    .getFlashSales(false)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allFlashSalesLoaded
-                                                );
-                                            this.allFlashSalesLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
+                    ).subscribe();
+                } else {
+                    // Show Less: Reset to Page 1
+                    this.loadingS.showLoadingUntilCompleted(
+                        this.productsService.getFlashSales(1).pipe(
+                            map(res => {
+                                this.flashSalesSub.next(res.items);
+                                this.flashSalesPage = 2;
+                                this.allFlashSalesLoaded = !res.hasNextPage;
+                                return res.items;
                             })
                         )
-                    );
-                    break;
-                // !Not loaded
-                case 'products':
-                    this.products$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.productsAllItems().pipe(
-                            take(1),
-
-                            concatMap((all) => {
-                                return this.productsService
-                                    .getProducts(true)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allProductsLoaded
-                                                );
-                                            this.allProductsLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
-                            })
-                        )
-                    );
-                    break;
-                // !Not loaded
-                case 'bestSelling':
-                    this.bestSelling$ = this.loadingS.showLoadingUntilCompleted(
-                        this.productsService.bestSellingAllItems().pipe(
-                            take(1),
-
-                            concatMap((all) => {
-                                return this.productsService
-                                    .bestSelling(true)
-                                    .pipe(
-                                        map((paginated) => {
-                                            let { loaded, paginatedProducts } =
-                                                mapToPaginatedProducts(
-                                                    paginated,
-                                                    all,
-                                                    this.allBestSellingLoaded
-                                                );
-                                            this.allBestSellingLoaded = loaded;
-                                            return paginatedProducts;
-                                        })
-                                    );
-                            })
-                        )
-                    );
-                    break;
-            }
+                    ).subscribe();
+                }
+                break;
         }
     }
+
     ngOnDestroy(): void {
-        this.productsService.resetFlashSales?.reset();
-        this.productsService.resetProducts?.reset();
-        this.productsService.resetBestSelling?.reset();
+        // No reset needed as service is stateless
     }
 }

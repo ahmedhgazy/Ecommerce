@@ -1,7 +1,6 @@
 {
     "HEADER": {
         "LANGUAGE_PLACEHOLDER": "اختر اللغة",
-
         "register": "تسجيل الدخول",
         "HOME": "الرئيسية",
         "CONTACT": "اتصل بنا",
@@ -18,11 +17,11 @@
         "PLACEHOLDER": "عم تبحث",
         "LABEL": "بحث"
     },
-
     "REGISTER": {
         "CREATE_ACCOUNT": "إنشاء حساب",
         "ENTER_DETAILS_BELOW": "أدخل بياناتك أدناه",
-        "NAME": "الاسم",
+        "FIRST_NAME": "الاسم الأول",
+        "LAST_NAME": "الاسم الثانى",
         "EMAIL": "البريد الإلكتروني",
         "PASSWORD": "كلمة المرور",
         "CREATE_ACCOUNT_BUTTON": "إنشاء حساب",
@@ -33,7 +32,11 @@
         "FORGET_PASSWORD": "نسيت كلمة المرور؟",
         "ENTER_EMAIL": "أدخل بريدك الألكترونى",
         "SUBMIT": "أرسال",
-        "RESET_PASSWORD": "إعادة تعيين كلمة المرور"
+        "RESET_PASSWORD": "إعادة تعيين كلمة المرور",
+        "NO_ACCOUNT": "ليس لديك حساب؟",
+        "SIGNUP": "إنشاء حساب",
+        "EMAIL_REQUIRED": "البريد الإلكتروني مطلوب",
+        "EMAIL_INVALID": "يرجى إدخال عنوان بريد إلكتروني صالح"
     },
     "BANNER": {
         "SUMMER_SALE": "تخفيضات الصيف على جميع ملابس السباحة مع توصيل مجاني سريع - خصم 50٪!",
@@ -55,7 +58,6 @@
         "BEST_SELLING_PRODUCTS": "المنتجات الأكثر مبيعًا",
         "LOAD_MORE": "تحميل المزيد",
         "SHOW_LESS": "عرض أقل ",
-
         "OUR_PRODUCTS": "منتجاتنا",
         "EXPLORE_OUR_PRODUCTS": "استكشف منتجاتنا",
         "FEATURED": "مميز",
@@ -84,7 +86,6 @@
         "DOWNLOAD_APP": "تحميل التطبيق",
         "SAVE_WITH_APP": "وفر 3 دولارات مع التطبيق للمستخدمين الجدد فقط"
     },
-
     "STAT": {
         "FREE_AND_FAST_DELIVERY": "توصيل مجاني وسريع",
         "FREE_DELIVERY_DESCRIPTION": "توصيل مجاني لجميع الطلبات التي تزيد عن 140 دولارًا",
@@ -93,7 +94,6 @@
         "MONEY_BACK_GUARANTEE": "ضمان استرداد الأموال",
         "MONEY_BACK_GUARANTEE_DESCRIPTION": "نعود الأموال خلال 30 يومًا"
     },
-
     "DETAILS": {
         "QUANTITY": "الكمية",
         "ADD_TO_CART": "أضف إلى السلة",
@@ -102,7 +102,6 @@
         "RETURN_DELIVERY": "إرجاع التوصيل",
         "FREE_DELIVERY_RETURNS": "إرجاع التوصيل خلال 30 يومًا مجانًا. التفاصيل"
     },
-
     "CONTACT": {
         "CALL_TO_US": "اتصل بنا",
         "AVAILABLE_24_7": "نحن متاحون 24/7، 7 أيام في الأسبوع.",
@@ -115,7 +114,6 @@
         "YOUR_MESSAGE": "رسالتك",
         "SEND": "إرسال"
     },
-
     "ABOUT": {
         "OUR_STORY": "قصتنا",
         "OUR_STORY_DESCRIPTION": "تم إطلاق Exclusive في عام 2015 وهو السوق الإلكتروني الأول في جنوب آسيا مع وجود نشط في بنغلاديش. بدعم من مجموعة واسعة من الحلول التسويقية والخدمية والبيانات المخصصة، يضم Exclusive 10,500 بائع و 300 علامة تجارية ويخدم 3 ملايين عميل في المنطقة.",
@@ -135,7 +133,6 @@
         "MONEY_BACK": "ضمان استرداد الأموال",
         "MONEY_BACK_DESCRIPTION": "نسترد الأموال خلال 30 يومًا"
     },
-
     "PROFILE": {
         "MANAGE_ACCOUNT": "إدارة الحساب",
         "YOUR_PROFILE": "ملفك الشخصي",
@@ -157,7 +154,6 @@
         "CANCEL": "إلغاء",
         "SAVE_CHANGES": "حفظ التغييرات"
     },
-
     "WISHLIST": {
         "addToSavedItems": "أضف إلى العناصر المحفوظة",
         "addToWishlist": "أضف إلى قائمة الرغبات"
@@ -175,12 +171,10 @@
         "PROCEED_TO_CHECKOUT": "المتابعة إلى الدفع",
         "emptyMessage": "عربة التسوق الخاصة بك فارغة."
     },
-
     "ORDERS": {
         "ORDERS": "الطلبات",
         "SEARCH": "بحث"
     },
-
     "BILLING": {
         "BILLING_DETAILS": "تفاصيل الفاتورة",
         "NAME": "الاسم",
@@ -209,7 +203,6 @@
         "CART": "العربة",
         "CHECKOUT": "الدفع"
     },
-
     "NOT_FOUND": {
         "NOT_FOUND": "404 غير موجود ",
         "NOT_FOUND_DESC": "الصفحة التي زرتها غير موجودة. يمكنك الانتقال إلى الصفحة الرئيسية"
@@ -232,11 +225,9 @@
         "fillForm": "يرجى ملء النموذج بشكل صحيح , ربما يكون اسم المستخدم أو كلمة المرور غير صحيحة",
         "googleSignInError": "حدث خطأ أثناء تسجيل الدخول عبر Google. يرجى المحاولة مرة أخرى في وقت لاحق."
     },
-
     "ERROR": {
         "errorMessage": "حدث خطأ. ربما يكون اسم المستخدم أو كلمة المرور غير صحيحة."
     },
-
     "ERROR_MESSAGES": {
         "NO_INTERNET": "لا يوجد اتصال بالإنترنت.",
         "EMAIL_EXISTS": "البريد الإلكتروني مستخدم بالفعل.",

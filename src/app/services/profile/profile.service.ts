@@ -1,68 +1,56 @@
-import {HttpClient} from '@angular/common/http';
-import {inject, Injectable} from '@angular/core';
-import {AuthService} from '../auth/auth.service';
-import {BehaviorSubject, catchError, map, shareReplay, tap, throwError,} from 'rxjs';
-import {Profile} from '../../models/profile.model';
-import {MessagesService} from '../../shared/errors/messages/messages.service';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { ApiResponse } from '../../models/auth.model';
+
+export interface UserProfile {
+    id: number;
+    userId: number;
+    firstName: string;
+    lastName: string;
+    address?: string;
+    zipCode?: string;
+    phoneNumber?: string;
+    dateOfBirth?: string;
+    city?: string;
+    country?: string;
+    email: string;
+}
+
+export interface UpdateProfileRequest {
+    firstName: string;
+    lastName: string;
+    address?: string;
+    zipCode?: string;
+    phoneNumber?: string;
+    dateOfBirth?: string;
+    city?: string;
+    country?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProfileService {
-    private userID: string = '';
-    auth = inject(AuthService);
-    profileSubject = new BehaviorSubject<Profile>({});
-    profileObs$ = this.profileSubject.asObservable();
-    private messages: MessagesService;
-    constructor() {
-        this.userID = this.auth.user.getValue()?.id;
-    }
-    http = inject(HttpClient);
-    private baseUrl = 'https://e-commerce-ac5d3-default-rtdb.firebaseio.com';
+    private readonly apiUrl = `${environment.apiUrl}/profile`;
 
-    updateProfile(profileInfo: Partial<Profile>) {
-        let ProfileList = [];
-        ProfileList.push(profileInfo);
-        return this.http
-            .put<Profile[]>(
-                `${this.baseUrl}/user/${this.userID}.json`,
-                ProfileList
-            )
+    profile$ = new BehaviorSubject<UserProfile | null>(null);
+
+    constructor(private http: HttpClient) { }
+
+    getProfile(): Observable<UserProfile> {
+        return this.http.get<ApiResponse<UserProfile>>(`${this.apiUrl}`)
             .pipe(
-                tap((data: Profile[]) => {
-                    this.profileSubject.next(data[0]);
-                }),
-                shareReplay(1),
-                catchError((err) => {
-                    const message =
-                        'Something went wrong, please try again later';
-                    this.messages.showErrors(message);
-                    return throwError(() => new Error(err));
-                })
+                map(response => response.data!),
+                tap(profile => this.profile$.next(profile))
             );
     }
 
-    getProfileInfo() {
-        return this.http
-            .get<{ [key: string]: Profile }>(
-                `${this.baseUrl}/user/${this.userID}.json`
-            )
+    updateProfile(request: UpdateProfileRequest): Observable<UserProfile> {
+        return this.http.put<ApiResponse<UserProfile>>(`${this.apiUrl}`, request)
             .pipe(
-                map((data: { [key: string]: Profile }) => {
-                    let profileDataList = [];
-                    for (const key in data) {
-                        profileDataList.push(data[key]);
-                    }
-                  return profileDataList[0];
-                }),
-                tap((response: Profile) => {
-                    this.profileSubject.next(response);
-                }),
-                shareReplay(1),
-                catchError((err) => {
-                    const message =
-                        'Something went wrong,please try again later';
-                    this.messages.showErrors(message);
-                    return throwError(() => new Error(err));
-                })
+                map(response => response.data!),
+                tap(profile => this.profile$.next(profile))
             );
     }
 }

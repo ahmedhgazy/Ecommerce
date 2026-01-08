@@ -1,37 +1,32 @@
 export class User {
     constructor(
+        public id: number,
         public email: string,
-        public id: string,
-        private _token,
-        public ExpirationDate: Date,
+        private _accessToken: string,
+        private _refreshToken: string,
+        public expirationDate: Date,
         public displayName?: string,
-        public emailVerified?: boolean,
-        public expiresIn?: string,
-        public federatedId?: string,
         public firstName?: string,
-        public fullName?: string,
-        public idToken?: string,
-        public kind?: string,
-
         public lastName?: string,
+        public photoUrl?: string
+    ) { }
 
-        public localId?: string,
-
-        public oauthIdToken?: string,
-
-        public photoUrl?: string,
-
-        public providerId?: string,
-        public rawUserInfo?: string,
-
-        public refreshToken?: string
-    ) {}
-
-    get token() {
-        if (!this.ExpirationDate || new Date() > this.ExpirationDate) {
+    get token(): string | null {
+        if (!this.expirationDate || new Date() > this.expirationDate) {
             return null;
         }
+        return this._accessToken;
+    }
 
-        return this._token;
+    get accessToken(): string {
+        return this._accessToken;
+    }
+
+    get refreshToken(): string {
+        return this._refreshToken;
+    }
+
+    get isTokenExpired(): boolean {
+        return !this.expirationDate || new Date() > this.expirationDate;
     }
 }

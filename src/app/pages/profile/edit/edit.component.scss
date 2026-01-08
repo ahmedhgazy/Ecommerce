@@ -1,5 +1,6 @@
 .form-section {
     padding: 3.49rem;
+
     .form-title {
         font-family: var(--secondary-font);
         font-weight: 500;
@@ -13,8 +14,9 @@
     label {
         font-family: var(--secondary-font);
         font-weight: 400;
-        color: #000000;
+        color: var(--label-color);
     }
+
     input {
         opacity: 0.5;
     }

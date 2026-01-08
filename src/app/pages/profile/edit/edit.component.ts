@@ -45,36 +45,40 @@ export class EditComponent implements OnInit, OnDestroy {
     activeProfile = false;
     form: FormGroup;
     subscription: Subscription;
-    constructor(private fb: FormBuilder) {}
+    constructor(private fb: FormBuilder) { }
     ngOnInit(): void {
+        this._initForm(); // Initialize immediately
         this.getProfileData();
-        this.profileService.profileSubject.pipe().subscribe((data) => {
-            this.profileData = data;
-
-            this._initForm();
+        this.profileService.profile$.pipe().subscribe((data) => {
+            if (data) {
+                // Patch values when data arrives
+                this.form.patchValue({
+                    firstName: data.firstName,
+                    lastName: data.lastName,
+                    email: data.email,
+                    zipCode: data.zipCode,
+                    address: data.address,
+                    dateOfBirth: data.dateOfBirth
+                });
+            }
         });
         this.inProfile();
     }
 
     private _initForm() {
         let emailAddress = this.auth.user.getValue()?.email;
-        let fname = this.profileData?.fname;
-        let sName = this.profileData?.sName;
-        let zip = this.profileData?.zip;
-        let date = this.profileData?.date;
-        let address = this.profileData?.address;
         this.form = this.fb.group({
-            fname: [fname, Validators.required],
+            firstName: ['', Validators.required],
+            lastName: ['', Validators.required],
             email: [
                 {
                     value: emailAddress,
                     disabled: true,
                 },
             ],
-            sName: [sName, Validators.required],
-            zip: [zip, Validators.required],
-            address: [address, Validators.required],
-            date: [date, Validators.required],
+            zipCode: ['', Validators.required],
+            address: ['', Validators.required],
+            dateOfBirth: ['', Validators.required],
         });
     }
 
@@ -98,8 +102,8 @@ export class EditComponent implements OnInit, OnDestroy {
 
     getProfileData() {
         this.subscription = this.loadingS
-            .showLoadingUntilCompleted(this.profileService.getProfileInfo())
-            .subscribe((data) => {});
+            .showLoadingUntilCompleted(this.profileService.getProfile())
+            .subscribe((data) => { });
     }
 
     inProfile() {

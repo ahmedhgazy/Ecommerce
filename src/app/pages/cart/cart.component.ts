@@ -67,7 +67,7 @@ export class CartComponent implements OnInit, OnDestroy {
         private cartService: CartService,
         private messageService: MessageService,
         private cdr: ChangeDetectorRef
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.getItems();
@@ -83,122 +83,77 @@ export class CartComponent implements OnInit, OnDestroy {
     }
 
     getItems(): void {
-        this.cartService.cartSubject
-            .pipe(
-                switchMap((cart: Cart) => {
-                    const productObservables = cart.items.map((item) =>
-                        this.getProductByCategory(item)
-                    );
-                    return forkJoin(productObservables);
-                })
-            )
-            .subscribe((products: Product[]) => {
-                this.cartItems = products;
-                this.calculateTotalPrice();
-                this.cdr.markForCheck();
+        this.cartService.cart$
+            .pipe(takeUntil(this.endSubs$))
+            .subscribe((cart) => {
+                if (cart) {
+                    this.cartItems = cart.items.map(item => ({
+                        id: item.productId,
+                        name: item.productName,
+                        imageUrl: item.productImageUrl,
+                        price: item.price,
+                        discount: item.discount, // Assuming discount/discountPrice logic matches Product
+                        discountPrice: item.discountedPrice,
+                        description: '',
+                        quantity: item.quantity,
+                        subTotal: item.subTotal,
+                        category: '', // Category not needed for display or removal anymore
+                        reviews: [],
+                        inStock: item.inStock
+                    } as any as Product));
+                    this.totalPrice = cart.totalPrice;
+                    this.cdr.markForCheck();
+                }
             });
     }
 
-    private getProductByCategory(item: CartItem): Observable<Product> {
-        let productObservable: Observable<Product[]>;
-
-        switch (item.category) {
-            case 'bestSelling':
-                productObservable = this.loadingS.showLoadingUntilCompleted(
-                    this.productsService.bestSellingAllItems()
-                );
-                break;
-            case 'products':
-                productObservable = this.loadingS.showLoadingUntilCompleted(
-                    this.productsService.productsAllItems()
-                );
-                break;
-            case 'flashSales':
-                productObservable = this.loadingS.showLoadingUntilCompleted(
-                    this.productsService.flashSalesAllItems()
-                );
-                break;
-            default:
-                throw new Error(`Unknown category: ${item.category}`);
-        }
-
-        return productObservable.pipe(
-            map((products: Product[]) => {
-                const product = products[item.productId - 1];
-                return {
-                    ...product,
-                    quantity: item.quantity,
-                    subTotal: product.price * item.quantity,
-                    category: item.category,
-                };
-            })
-        );
-    }
+    // getProductByCategory removed as it's no longer needed
 
     removeItem(index: number): void {
         const item = this.cartItems[index];
-        this.cartService.removeItem(item.category, item.id);
-        this.cartItems.splice(index, 1);
-        this.calculateTotalPrice();
-        this.cdr.markForCheck();
-
-        this.translate
-            .get(['TOAST_MESSAGE.success', 'TOAST_MESSAGE.itemRemovedFromCart'])
-            .pipe(
-                switchMap((translations) => {
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: translations['TOAST_MESSAGE.success'],
-                        detail: translations[
-                            'TOAST_MESSAGE.itemRemovedFromCart'
-                        ],
-                    });
-                    return EMPTY;
-                })
-            )
-            .subscribe();
+        this.cartService.removeFromCart(item.id).subscribe(() => {
+            this.translate
+                .get(['TOAST_MESSAGE.success', 'TOAST_MESSAGE.itemRemovedFromCart'])
+                .pipe(
+                    switchMap((translations) => {
+                        this.messageService.add({
+                            severity: 'success',
+                            summary: translations['TOAST_MESSAGE.success'],
+                            detail: translations['TOAST_MESSAGE.itemRemovedFromCart'],
+                        });
+                        return EMPTY;
+                    })
+                )
+                .subscribe();
+        });
     }
 
     onQuantityChange(index: number, quantity: number): void {
-        this.cartItems[index].quantity = quantity;
-        this.cartItems[index].subTotal = this.cartItems[index].price * quantity;
-        this.calculateTotalPrice();
-        this.cdr.markForCheck();
-
         this.quantityUpdate$.next({ index, quantity });
     }
+
     private updateQuantity(index: number, quantity: number): void {
         const item = this.cartItems[index];
-        this.cartService.setCartItem(
-            {
-                productId: item.id,
-                category: item.category,
-                quantity: quantity,
-            },
-            true
-        );
-
-        this.translate
-            .get(['TOAST_MESSAGE.success', 'TOAST_MESSAGE.cartUpdated'])
-            .pipe(
-                switchMap((translations) => {
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: translations['TOAST_MESSAGE.success'],
-                        detail: translations['TOAST_MESSAGE.cartUpdated'],
-                    });
-                    return EMPTY;
-                })
-            )
-            .subscribe();
+        this.cartService.updateCartItem(item.id, quantity)
+            .subscribe(() => {
+                this.translate
+                    .get(['TOAST_MESSAGE.success', 'TOAST_MESSAGE.cartUpdated'])
+                    .pipe(
+                        switchMap((translations) => {
+                            this.messageService.add({
+                                severity: 'success',
+                                summary: translations['TOAST_MESSAGE.success'],
+                                detail: translations['TOAST_MESSAGE.cartUpdated'],
+                            });
+                            return EMPTY;
+                        })
+                    )
+                    .subscribe();
+            });
     }
 
     private calculateTotalPrice(): void {
-        this.totalPrice = this.cartItems.reduce(
-            (sum, item) => sum + item.subTotal,
-            0
-        );
-        this.cartService.setTotalPrice(this.totalPrice);
+        // Handled by service
     }
 
     ngOnDestroy(): void {

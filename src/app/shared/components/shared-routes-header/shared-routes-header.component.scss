@@ -1,4 +1,5 @@
 .header {
+
     span,
     p {
         line-height: 21px;
@@ -8,9 +9,11 @@
         font-family: var(--secondary-font);
         cursor: pointer;
     }
+
     span {
         opacity: 0.5;
     }
+
     p {
         padding-inline: 0;
         margin-bottom: 0;

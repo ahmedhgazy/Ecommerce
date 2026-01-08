@@ -11,10 +11,8 @@
             </app-shared-routes-header>
         </div>
 
-        <div
-            class="row product-header_row shadow-sm product-details__header"
-            style="padding: 1.5rem 2.5rem; margin-bottom: 2.5rem"
-        >
+        <div class="row product-header_row shadow-sm product-details__header"
+            style="padding: 1.5rem 2.5rem; margin-bottom: 2.5rem">
             <div class="col-1 col-md-2 p-0">
                 <p>
                     {{ "CART.PRODUCT" | translate }}
@@ -43,58 +41,38 @@
         <div class="row products-row shadow-sm" style="padding: 1.5rem 2.5rem">
             <div class="col-4 col-md-3 p-0">
                 <div class="product__N-image">
-                    <img [src]="product.img" width="50px" alt="image" />
+                    <img [src]="product.imageUrl" width="50px" alt="image" />
                     <span style="margin-inline-start: 1rem">
                         {{ product.name | truncate : 13 }}
                     </span>
                 </div>
             </div>
 
-            <div
-                class="col-1 offset-2 offset-md-1 p-0"
-                style="align-content: center"
-            >
+            <div class="col-1 offset-2 offset-md-1 p-0" style="align-content: center">
                 <p class="pb-0 mb-0">{{ "$" + product.price }}</p>
             </div>
 
             <div class="col-1 offset-2 p-0 p-input_wrapper">
-                <p-inputNumber
-                    [(ngModel)]="product.quantity"
-                    mode="decimal"
-                    [showButtons]="true"
-                    inputId="minmax-buttons"
-                    [min]="1"
-                    [max]="100"
-                    size="1"
-                    (ngModelChange)="onQuantityChange(i, $event)"
-                >
+                <p-inputNumber [(ngModel)]="product.quantity" mode="decimal" [showButtons]="true"
+                    inputId="minmax-buttons" [min]="1" [max]="100" size="1"
+                    (ngModelChange)="onQuantityChange(i, $event)">
                 </p-inputNumber>
             </div>
 
-            <div
-                class="col-2 offset-1 p-0"
-                style="align-content: center !important"
-            >
+            <div class="col-2 offset-1 p-0" style="align-content: center !important">
                 <p class="pb-0 mb-0 text-center">
                     {{ "$" + product.price * product.quantity }}
                 </p>
             </div>
 
-            <div
-                class="col-1 d-none d-md-block"
-                style="
+            <div class="col-1 d-none d-md-block" style="
                     align-content: center;
                     padding: 0 !important;
                     margin: 0 !important;
                     text-align: center;
-                "
-            >
-                <i
-                    (click)="removeItem(i)"
-                    class="pi pi-trash text-danger"
-                    style="cursor: pointer"
-                    severity="danger"
-                ></i>
+                ">
+                <i (click)="removeItem(i)" class="pi pi-trash text-danger" style="cursor: pointer"
+                    severity="danger"></i>
             </div>
         </div>
         } @empty {
@@ -107,13 +85,8 @@
                 </button>
             </div>
 
-            <div
-                class="col-12 p-0 col-md-5 offset-md-2"
-                style="margin-top: 2.5rem text-center"
-            >
-                <app-order-summary
-                    [totalPrice]="totalPrice"
-                ></app-order-summary>
+            <div class="col-12 p-0 col-md-5 offset-md-2" style="margin-top: 2.5rem text-center">
+                <app-order-summary [totalPrice]="totalPrice"></app-order-summary>
             </div>
         </div>
     </div>

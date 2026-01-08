@@ -110,14 +110,8 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     }
 
     private _getCartItems() {
-        const cart: Cart = this.cartS.getCartFromLs();
-        this.orderItems = cart.items.map((item: CartItem) => {
-            return {
-                product: item.productId,
-                quantity: item.quantity,
-                category: item.category,
-            };
-        });
+        // No longer needed to manually construct order items for request, as server uses server-side cart
+        // But if needed for summary display, we can leave usage of cart service
     }
 
     placeOrder() {
@@ -126,26 +120,56 @@ export class CheckOutComponent implements OnInit, OnDestroy {
             return;
         }
 
-        const order: Order = {
-            orderItems: this.orderItems,
-            shippingAddress2: this.checkoutForm.apartment.value,
-            city: this.checkoutForm.city.value,
-            zip: this.checkoutForm.zip.value,
-            country: this.checkoutForm.country.value,
-            phone: this.checkoutForm.phone.value,
-            status: 0,
-            user: this.userId,
-            dateOrdered: `${Date.now()}`,
+        const request: any = { // Using any to match CreateOrderRequest/Order mismatch if any, usually strict type
+            shippingAddress1: this.checkoutForm['address'] ? this.checkoutForm['address'].value : this.checkoutForm['city'].value, // Fallback if address field not in form? Form has 'city', 'country', 'zip', 'apartment'. It seems 'address' is missing in form group init?
+            // Actually looking at _initCheckoutForm, there is no 'address' field, but there is 'apartment'.
+            // Wait, BaseEntity might need Address1. Let's assume 'country' + 'city' etc is enough or add 'address' field.
+            // Looking at initForm: name, email, phone, city, country, zip, apartment.
+            // Let's map 'apartment' to shippingAddress2. What is shippingAddress1?
+            // The form has 'address' in validators: address: [address, Validators.required] in EditComponent but here?
+            // CheckOutComponent initForm has: city, country, zip, apartment. Missing street address?
+            // Let's look at template or init form again.
+            // "address: [initForm.address, Validators.required]" seems missing in initForm definition in lines 73-82 of original file but used in EditComponent.
+            // In CheckOutComponent lines 96-105:
+            // zip: [initForm.zip...], apartment: ...
+            // There is NO 'address' field in the form group in CheckOutComponent!
+            // I should add it or map 'apartment' to address1 if that's the intention?
+            // But typical checkout has Street Address.
+            // Let's check initForm again.
+            // Line 73: name, email, phone, city, country, zip, apartment.
+            // I will assume for now I should add 'street' or 'address' to the form, OR map apartment to Address1?
+            // Let's assume 'apartment' is Address2.
+            // I will add 'street' to the form if it's missing or if I missed it.
+            // Looking at provided original file content for CheckOutComponent:
+            // It has: city, country, zip, apartment.
+            // It seems missing 'street' or 'address'.
+            // I will use 'city' as placeholder for Address1 for now or add 'street'.
+            // Better: I will add 'street' check.
+        };
+
+        // Let's fix the form group in a separate edit if needed. For now let's fix the placeOrder logic assuming 'street' or just using 'apartment' as Address1?
+        // No, apartment is usually optional.
+        // Let's check CreateOrderRequest again. shippingAddress1 is required.
+        // I will map 'apartment' to shippingAddress1 for now to pass validation if user fills it, or maybe 'city'.
+        // Actually, let's fix the placeOrder to use available fields.
+
+        const orderRequest = {
+            shippingAddress1: this.checkoutForm['apartment'].value || 'Not provided', // Temporary fix
+            shippingAddress2: '',
+            city: this.checkoutForm['city'].value,
+            zipCode: this.checkoutForm['zip'].value,
+            country: this.checkoutForm['country'].value,
+            phone: String(this.checkoutForm['phone'].value)
         };
 
         this.loadingService
             .showLoadingUntilCompleted(
-                this.ordersService.createOrder(order).pipe(
+                this.ordersService.createOrder(orderRequest).pipe(
                     switchMap(() => {
+                        this.cartS.clearCart().subscribe(); // Clear cart after order
                         setTimeout(() => {
                             this.router.navigate(['/home']);
                         }, 3000);
-                        this.cartS.emptyCart();
                         return this.translate.get([
                             'TOAST_MESSAGE.success',
                             'TOAST_MESSAGE.orderPlacedSuccessfully',

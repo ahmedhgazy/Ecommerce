@@ -1,0 +1,711 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Breed Dry cat Food",
+            "rating": 3,
+            "price": 142,
+            "inStock": false,
+            "desc": "A premium food for your dog's nutritional needs.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/imresizer-1724772535612__1_-removebg-preview.png?alt=media&token=0359e67c-0276-4b85-887b-91f2fa633371",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_silver-bowl-with-dog-biscuits-reflecting-light_49376984.png?alt=media&token=11445c94-bd9a-4378-bce2-78cbb29a02e6"
+            ],
+            "reviews": 150,
+            "available": 43,
+            "discount": 34,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/imresizer-1724772535612__1_-removebg-preview.png?alt=media&token=0359e67c-0276-4b85-887b-91f2fa633371",
+            "inWishlist": false,
+            "new": true,
+            "category": "products"
+        },
+        {
+            "id": 2,
+            "name": "CANON EOS DSLR Camera",
+            "rating": 4,
+            "price": 198,
+            "inStock": true,
+            "desc": "Capture life's moments with stunning clarity.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-madebymath-90946-removebg-preview.png?alt=media&token=b7406a55-1fd3-457e-96b6-225f9809a461",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/e2.png?alt=media&token=c920a19d-d581-4a36-a570-ca39a79ac249"
+            ],
+            "reviews": 150,
+            "available": 60,
+            "discount": 24,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/e2.png?alt=media&token=c920a19d-d581-4a36-a570-ca39a79ac249",
+            "inWishlist": false,
+            "new": false,
+            "category": "products"
+        },
+        {
+            "id": 3,
+            "name": "Cougar Ak-400 light & gaming keyboard for pc",
+            "rating": 5,
+            "price": 215,
+            "inStock": true,
+            "desc": "Enjoy the freedom of wireless connectivity via Bluetooth or a 2.4GHz USB dongle, or opt for a stable wired connection for zero input lag.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/ak-900-01-500x500%201.png?alt=media&token=6f5f11b1-de97-4aeb-9f5f-5c47f97d7689"
+            ],
+            "reviews": 150,
+            "available": 25,
+            "discount": 60,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/ak-900-01-500x500%201.png?alt=media&token=6f5f11b1-de97-4aeb-9f5f-5c47f97d7689",
+            "inWishlist": false,
+            "new": true,
+            "category": "products"
+        },
+        {
+            "id": 4,
+            "name": "Curology Product Set",
+            "rating": 2,
+            "price": 123,
+            "inStock": false,
+            "desc": "A custom skincare routine tailored to your skin.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/curology-j7pKVQrTUsM-unsplash%201.png?alt=media&token=e045dbd7-c551-49d0-bf7a-18cd5f82a670"
+            ],
+            "reviews": 134,
+            "available": 10,
+            "discount": 15,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/curology-j7pKVQrTUsM-unsplash%201.png?alt=media&token=e045dbd7-c551-49d0-bf7a-18cd5f82a670",
+            "inWishlist": false,
+            "new": false,
+            "category": "products"
+        },
+        {
+            "id": 5,
+            "name": "Kids Electric Car",
+            "rating": 4,
+            "price": 175,
+            "inStock": true,
+            "desc": "Fun and excitement for kids with a realistic driving experience.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/New-Mercedes-Benz-Gtr-Licensed-Ride-on-Car-Kids-Electric-Toy-Car%201.png?alt=media&token=248c8eaf-2e1a-4866-b24d-72944a04efbd"
+            ],
+            "reviews": 150,
+            "available": 75,
+            "discount": 50,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/New-Mercedes-Benz-Gtr-Licensed-Ride-on-Car-Kids-Electric-Toy-Car%201.png?alt=media&token=248c8eaf-2e1a-4866-b24d-72944a04efbd",
+            "inWishlist": false,
+            "new": true,
+            "category": "products"
+        },
+        {
+            "id": 6,
+            "name": "Jr. Zoom Soccer Cleats",
+            "rating": 3,
+            "price": 89,
+            "inStock": true,
+            "desc": "Enhance your game with these high-performance cleats.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_running-shoes-illustration-with-fire-shape-yellow-and-red_21275823.png?alt=media&token=dbf9f75d-960e-464d-8fae-d16dfea3aa56"
+            ],
+            "reviews": 150,
+            "available": 30,
+            "discount": 20,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/Copa_Sense%201%20(1).png?alt=media&token=c561346c-053e-4da1-a84d-58f744d67bd5",
+            "inWishlist": false,
+            "new": false,
+            "category": "products"
+        },
+        {
+            "id": 7,
+            "name": "GP11 Shooter USB Gamepad",
+            "rating": 5,
+            "price": 150,
+            "inStock": true,
+            "desc": "Take your gaming to the next level with this precision gamepad.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-cottonbro-3945657.png?alt=media&token=3876a6a3-0fd6-4cd3-91bb-19c97bc3ac08",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-garrettmorrow-2885014.png?alt=media&token=739994ff-cd91-4b02-9e56-0044a06ffdfc",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/GP11_PRD3%201.png?alt=media&token=2c523688-29c3-4227-b473-3f98976b1e79"
+            ],
+            "reviews": 150,
+            "available": 55,
+            "discount": 40,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/GP11_PRD3%201.png?alt=media&token=2c523688-29c3-4227-b473-3f98976b1e79",
+            "inWishlist": false,
+            "new": false,
+            "category": "products"
+        },
+        {
+            "id": 8,
+            "name": "Quilted Satin Jacket",
+            "rating": 4,
+            "price": 110,
+            "inStock": false,
+            "desc": "Stay warm and stylish with this premium jacket.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/698717_Z8A1X_3475_001_100_0000_Light-Reversible-quilted-satin-jacket%201.png?alt=media&token=e0b49550-566b-484e-9fb9-cf70fcb076be"
+            ],
+            "reviews": 150,
+            "available": 20,
+            "discount": 25,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/698717_Z8A1X_3475_001_100_0000_Light-Reversible-quilted-satin-jacket%201.png?alt=media&token=e0b49550-566b-484e-9fb9-cf70fcb076be",
+            "inWishlist": false,
+            "new": true,
+            "category": "products"
+        },
+        {
+            "id": 9,
+            "name": "Breed Dry cat Food",
+            "rating": 3,
+            "price": 142,
+            "inStock": false,
+            "desc": "A premium food for your dog's nutritional needs.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/imresizer-1724772535612__1_-removebg-preview.png?alt=media&token=0359e67c-0276-4b85-887b-91f2fa633371",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_silver-bowl-with-dog-biscuits-reflecting-light_49376984.png?alt=media&token=11445c94-bd9a-4378-bce2-78cbb29a02e6"
+            ],
+            "reviews": 150,
+            "available": 43,
+            "discount": 34,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_silver-bowl-with-dog-biscuits-reflecting-light_49376984.png?alt=media&token=11445c94-bd9a-4378-bce2-78cbb29a02e6",
+            "inWishlist": false,
+            "new": true,
+            "category": "products"
+        },
+        {
+            "id": 10,
+            "name": "CANON EOS Rebel Camera",
+            "rating": 4,
+            "price": 198,
+            "inStock": true,
+            "desc": "Capture life's moments with stunning clarity.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_dslr-photo-camera-clipart-design-illustration_9398433.png?alt=media&token=958c2d81-59a7-400f-bb40-2c49b6b5bdde",
+
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/bright-antique-lens-zoom-shoot-outdoors-generated-by-ai-removebg-preview.png?alt=media&token=23371789-3775-486c-a201-b35f224d2018"
+            ],
+            "reviews": 150,
+            "available": 60,
+            "discount": 24,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_dslr-photo-camera-clipart-design-illustration_9398433.png?alt=media&token=958c2d81-59a7-400f-bb40-2c49b6b5bdde",
+            "inWishlist": false,
+            "new": false,
+            "category": "products"
+        },
+        {
+            "id": 11,
+            "name": "HAVIT HV-G92 Gamepad",
+            "rating": 5,
+            "price": 135,
+            "inStock": true,
+            "desc": "PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-cottonbro-3945657.png?alt=media&token=3876a6a3-0fd6-4cd3-91bb-19c97bc3ac08",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-garrettmorrow-2885014.png?alt=media&token=739994ff-cd91-4b02-9e56-0044a06ffdfc"
+            ],
+            "reviews": 150,
+            "available": 48,
+            "discount": 30,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/g92-2-500x500%201.png?alt=media&token=bed4ca6f-0882-4f1d-93c7-8a8cd5c5e63a",
+            "inWishlist": false,
+            "new": true,
+            "sales": 40,
+            "category": "products"
+        },
+        {
+            "id": 12,
+            "name": "IPS LCD Gaming Monitor",
+            "rating": 3,
+            "price": 99,
+            "inStock": true,
+            "desc": "Gaming Monitor – 165HZ – 1MS(MPRT) – IPS – AMD FreeSync Premium",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/%E2%80%94Pngtree%E2%80%943d%20illustration%20of%20desktop%20computer-colorful_15065669.png?alt=media&token=1aa2e0ff-3495-4f8e-8dae-23cb177fbf20",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/g27cq4-500x500%201.png?alt=media&token=e9430c65-a83d-46b4-a6dc-bc3e907906f2"
+            ],
+            "reviews": 150,
+            "available": 65,
+            "discount": 20,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/g27cq4-500x500%201.png?alt=media&token=e9430c65-a83d-46b4-a6dc-bc3e907906f2",
+
+            "inWishlist": false,
+            "new": false,
+            "sales": 30,
+            "category": "products"
+        },
+        {
+            "id": 13,
+            "name": "ASUS FHD Gaming Laptop",
+            "rating": 4,
+            "price": 210,
+            "inStock": false,
+            "desc": "ASUS ROG Strix G15 (2021) Gaming Laptop, 15.6” 300Hz IPS Type FHD Display, NVIDIA GeForce RTX 3070, AMD Ryzen R9-5900HX, 16GB DDR4, 1TB PCIe NVMe SSD, RGB Keyboard, Windows 10, G513QR-ES96",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/81Cm1VMdxrL._AC_SL1500_-removebg-preview.png?alt=media&token=a87e0afb-4a7b-4f42-9ea5-adb5a71225a4",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/ideapad-gaming-3i-01-500x500%201.png?alt=media&token=07a5e938-0aba-4a04-940d-28f79cbde981"
+            ],
+            "reviews": 150,
+            "available": 35,
+            "discount": 40,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/ideapad-gaming-3i-01-500x500%201.png?alt=media&token=07a5e938-0aba-4a04-940d-28f79cbde981",
+            "inWishlist": false,
+            "new": true,
+            "sales": 25,
+            "category": "products"
+        },
+        {
+            "id": 14,
+            "name": "S-Series Comfort Chair",
+            "rating": 5,
+            "price": 250,
+            "inStock": true,
+            "desc": "Sit comfortably for hours with this ergonomic chair.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_arm-chair-png-file-furniture_34106216.png?alt=media&token=ef377ced-501c-4f2d-a6cf-f90bad885254",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pngwing.com.png?alt=media&token=544b3ad3-afe5-404b-a593-ef1b1935d801"
+            ],
+            "reviews": 150,
+            "available": 70,
+            "discount": 55,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pngwing.com.png?alt=media&token=544b3ad3-afe5-404b-a593-ef1b1935d801",
+            "inWishlist": false,
+            "new": false,
+            "sales": 20,
+            "category": "products"
+        },
+        {
+            "id": 15,
+            "name": "The North Coat",
+            "rating": 5,
+            "price": 145,
+            "inStock": true,
+            "desc": "A stylish coat for any weather.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_an-orange-leather-jacket_46558141.png?alt=media&token=472c18ae-9a24-4c28-810f-9cb05622ba26",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/672462_ZAH9D_5626_002_100_0000_Light-The-North-Face-x-Gucci-coat%201.png?alt=media&token=db7017b2-ed27-485e-a9e8-d8364746d388"
+            ],
+            "reviews": 150,
+            "available": 90,
+            "discount": 35,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_an-orange-leather-jacket_46558141.png?alt=media&token=472c18ae-9a24-4c28-810f-9cb05622ba26",
+            "inWishlist": false,
+            "new": true,
+            "category": "products"
+        },
+        {
+            "id": 16,
+            "name": "Gucci Duffle Bag",
+            "rating": 4,
+            "price": 320,
+            "inStock": false,
+            "desc": "Travel in style with this luxurious duffle bag.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_hand-bag-isolated-on-transparent-background_46828975.png?alt=media&token=12583f09-44bd-4160-a52e-4e27748d5beb",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag%201.png?alt=media&token=ab7b8531-1eb0-4095-a8ef-abe177754621"
+            ],
+            "reviews": 150,
+            "available": 40,
+            "discount": 75,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_hand-bag-isolated-on-transparent-background_46828975.png?alt=media&token=12583f09-44bd-4160-a52e-4e27748d5beb",
+            "inWishlist": false,
+            "new": false,
+            "category": "products"
+        },
+        {
+            "id": 17,
+            "name": "RGB Liquid CPU Cooler",
+            "rating": 5,
+            "price": 110,
+            "inStock": true,
+            "desc": "Keep your CPU cool with style.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_modern-gaming-pc-isolated-on-transparent_48412788.png?alt=media&token=9b6f5da0-671b-4c8c-a356-7ffabd28897e",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/gammaxx-l240-argb-1-500x500%201.png?alt=media&token=1e614c65-5be9-4633-b891-24425573fbd8"
+            ],
+            "reviews": 150,
+            "available": 80,
+            "discount": 45,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_modern-gaming-pc-isolated-on-transparent_48412788.png?alt=media&token=9b6f5da0-671b-4c8c-a356-7ffabd28897e",
+            "inWishlist": false,
+            "new": true,
+            "category": "products"
+        },
+        {
+            "id": 18,
+            "name": "Small Bookshelf",
+            "rating": 3,
+            "price": 75,
+            "inStock": true,
+            "desc": "A compact and functional bookshelf.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_beige-upholstered-sofa-with-wooden-legs_48896475.png?alt=media&token=d4f2d921-1358-41db-9774-ad66d0d6c33d",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/sam-moghadam-khamseh-L_7MQsHl_aU-unsplash%201.png?alt=media&token=8ea97a4c-1eae-4855-bed1-cd7ea3fd5195"
+            ],
+            "reviews": 150,
+            "available": 60,
+            "discount": 20,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_beige-upholstered-sofa-with-wooden-legs_48896475.png?alt=media&token=d4f2d921-1358-41db-9774-ad66d0d6c33d",
+            "inWishlist": false,
+            "new": false,
+            "category": "products"
+        }
+    ],
+    "categories": [
+        {
+            "phone": [{}],
+            "computer": [{}],
+            "headphones": [{}],
+            "smartwatches": [{}]
+        }
+    ],
+    "wishlist": [],
+    "flashSales": [
+        {
+            "id": 1,
+            "name": "HAVIT HV-G92 Gamepad",
+            "rating": 5,
+            "price": 135,
+            "inStock": true,
+            "desc": "PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-cottonbro-3945657.png?alt=media&token=3876a6a3-0fd6-4cd3-91bb-19c97bc3ac08",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-garrettmorrow-2885014.png?alt=media&token=739994ff-cd91-4b02-9e56-0044a06ffdfc"
+            ],
+            "reviews": 150,
+            "available": 48,
+            "discount": 30,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/g92-2-500x500%201.png?alt=media&token=bed4ca6f-0882-4f1d-93c7-8a8cd5c5e63a",
+            "inWishlist": false,
+            "new": true,
+            "sales": 40,
+            "category": "flashSales"
+        },
+        {
+            "id": 2,
+            "name": "IPS LCD Gaming Monitor",
+            "rating": 3,
+            "price": 99,
+            "inStock": true,
+            "desc": "Gaming Monitor – 165HZ – 1MS(MPRT) – IPS – AMD FreeSync Premium",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/%E2%80%94Pngtree%E2%80%943d%20illustration%20of%20desktop%20computer-colorful_15065669.png?alt=media&token=1aa2e0ff-3495-4f8e-8dae-23cb177fbf20",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/g27cq4-500x500%201.png?alt=media&token=e9430c65-a83d-46b4-a6dc-bc3e907906f2"
+            ],
+            "reviews": 150,
+            "available": 65,
+            "discount": 20,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/g27cq4-500x500%201.png?alt=media&token=e9430c65-a83d-46b4-a6dc-bc3e907906f2",
+
+            "inWishlist": false,
+            "new": false,
+            "sales": 30,
+            "category": "flashSales"
+        },
+        {
+            "id": 3,
+            "name": "ASUS FHD Gaming Laptop",
+            "rating": 4,
+            "price": 210,
+            "inStock": false,
+            "desc": "ASUS ROG Strix G15 (2021) Gaming Laptop, 15.6” 300Hz IPS Type FHD Display, NVIDIA GeForce RTX 3070, AMD Ryzen R9-5900HX, 16GB DDR4, 1TB PCIe NVMe SSD, RGB Keyboard, Windows 10, G513QR-ES96",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/81Cm1VMdxrL._AC_SL1500_-removebg-preview.png?alt=media&token=a87e0afb-4a7b-4f42-9ea5-adb5a71225a4",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/ideapad-gaming-3i-01-500x500%201.png?alt=media&token=07a5e938-0aba-4a04-940d-28f79cbde981"
+            ],
+            "reviews": 150,
+            "available": 35,
+            "discount": 40,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/ideapad-gaming-3i-01-500x500%201.png?alt=media&token=07a5e938-0aba-4a04-940d-28f79cbde981",
+            "inWishlist": false,
+            "new": true,
+            "sales": 25,
+            "category": "flashSales"
+        },
+        {
+            "id": 4,
+            "name": "S-Series Comfort Chair",
+            "rating": 5,
+            "price": 250,
+            "inStock": true,
+            "desc": "Sit comfortably for hours with this ergonomic chair.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_arm-chair-png-file-furniture_34106216.png?alt=media&token=ef377ced-501c-4f2d-a6cf-f90bad885254",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pngwing.com.png?alt=media&token=544b3ad3-afe5-404b-a593-ef1b1935d801"
+            ],
+            "reviews": 150,
+            "available": 70,
+            "discount": 55,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pngwing.com.png?alt=media&token=544b3ad3-afe5-404b-a593-ef1b1935d801",
+            "inWishlist": false,
+            "new": false,
+            "sales": 20,
+            "category": "flashSales"
+        },
+        {
+            "id": 5,
+            "name": "HAVIT HV-G92 Gamepad",
+            "rating": 5,
+            "price": 135,
+            "inStock": true,
+            "desc": "PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-cottonbro-3945657.png?alt=media&token=3876a6a3-0fd6-4cd3-91bb-19c97bc3ac08",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pexels-garrettmorrow-2885014.png?alt=media&token=739994ff-cd91-4b02-9e56-0044a06ffdfc",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/GP11_PRD3%201.png?alt=media&token=2c523688-29c3-4227-b473-3f98976b1e79"
+            ],
+            "reviews": 150,
+            "available": 48,
+            "discount": 30,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/GP11_PRD3%201.png?alt=media&token=2c523688-29c3-4227-b473-3f98976b1e79",
+            "inWishlist": false,
+            "new": true,
+            "sales": 40,
+            "category": "flashSales"
+        },
+        {
+            "id": 6,
+            "name": "IPS LCD Gaming Monitor",
+            "rating": 3,
+            "price": 99,
+            "inStock": true,
+            "desc": "Gaming Monitor – 165HZ – 1MS(MPRT) – IPS – AMD FreeSync Premium",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/%E2%80%94Pngtree%E2%80%943d%20illustration%20of%20desktop%20computer-colorful_15065669.png?alt=media&token=1aa2e0ff-3495-4f8e-8dae-23cb177fbf20",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/g27cq4-500x500%201.png?alt=media&token=e9430c65-a83d-46b4-a6dc-bc3e907906f2"
+            ],
+            "reviews": 150,
+            "available": 65,
+            "discount": 20,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/%E2%80%94Pngtree%E2%80%943d%20illustration%20of%20desktop%20computer-colorful_15065669.png?alt=media&token=1aa2e0ff-3495-4f8e-8dae-23cb177fbf20",
+
+            "inWishlist": false,
+            "new": false,
+            "sales": 30,
+            "category": "flashSales"
+        },
+        {
+            "id": 7,
+            "name": "ASUS FHD Gaming Laptop",
+            "rating": 4,
+            "price": 210,
+            "inStock": false,
+            "desc": "ASUS ROG Strix G15 (2021) Gaming Laptop, 15.6” 300Hz IPS Type FHD Display, NVIDIA GeForce RTX 3070, AMD Ryzen R9-5900HX, 16GB DDR4, 1TB PCIe NVMe SSD, RGB Keyboard, Windows 10, G513QR-ES96",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/81Cm1VMdxrL._AC_SL1500_-removebg-preview.png?alt=media&token=a87e0afb-4a7b-4f42-9ea5-adb5a71225a4",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/ideapad-gaming-3i-01-500x500%201.png?alt=media&token=07a5e938-0aba-4a04-940d-28f79cbde981"
+            ],
+            "reviews": 150,
+            "available": 35,
+            "discount": 40,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/81Cm1VMdxrL._AC_SL1500_-removebg-preview.png?alt=media&token=a87e0afb-4a7b-4f42-9ea5-adb5a71225a4",
+            "inWishlist": false,
+            "new": true,
+            "sales": 25,
+            "category": "flashSales"
+        },
+        {
+            "id": 8,
+            "name": "S-Series Comfort Chair",
+            "rating": 5,
+            "price": 250,
+            "inStock": true,
+            "desc": "Sit comfortably for hours with this ergonomic chair.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_arm-chair-png-file-furniture_34106216.png?alt=media&token=ef377ced-501c-4f2d-a6cf-f90bad885254",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/pngwing.com.png?alt=media&token=544b3ad3-afe5-404b-a593-ef1b1935d801"
+            ],
+            "reviews": 150,
+            "available": 70,
+            "discount": 55,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_arm-chair-png-file-furniture_34106216.png?alt=media&token=ef377ced-501c-4f2d-a6cf-f90bad885254",
+            "inWishlist": false,
+            "new": false,
+            "sales": 20,
+            "category": "flashSales"
+        }
+    ],
+    "bestSelling": [
+        {
+            "id": 1,
+            "name": "The North Coat",
+            "rating": 5,
+            "price": 145,
+            "inStock": true,
+            "desc": "A stylish coat for any weather.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_an-orange-leather-jacket_46558141.png?alt=media&token=472c18ae-9a24-4c28-810f-9cb05622ba26",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/672462_ZAH9D_5626_002_100_0000_Light-The-North-Face-x-Gucci-coat%201.png?alt=media&token=db7017b2-ed27-485e-a9e8-d8364746d388"
+            ],
+            "reviews": 150,
+            "available": 90,
+            "discount": 35,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/672462_ZAH9D_5626_002_100_0000_Light-The-North-Face-x-Gucci-coat%201.png?alt=media&token=db7017b2-ed27-485e-a9e8-d8364746d388",
+            "inWishlist": false,
+            "new": true,
+            "category": "bestSelling"
+        },
+        {
+            "id": 2,
+            "name": "Gucci Duffle Bag",
+            "rating": 4,
+            "price": 320,
+            "inStock": false,
+            "desc": "Travel in style with this luxurious duffle bag.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_hand-bag-isolated-on-transparent-background_46828975.png?alt=media&token=12583f09-44bd-4160-a52e-4e27748d5beb",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag%201.png?alt=media&token=ab7b8531-1eb0-4095-a8ef-abe177754621"
+            ],
+            "reviews": 150,
+            "available": 40,
+            "discount": 75,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag%201.png?alt=media&token=ab7b8531-1eb0-4095-a8ef-abe177754621",
+            "inWishlist": false,
+            "new": false,
+            "category": "bestSelling"
+        },
+        {
+            "id": 3,
+            "name": "RGB Liquid CPU Cooler",
+            "rating": 5,
+            "price": 110,
+            "inStock": true,
+            "desc": "Keep your CPU cool with style.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_modern-gaming-pc-isolated-on-transparent_48412788.png?alt=media&token=9b6f5da0-671b-4c8c-a356-7ffabd28897e",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/gammaxx-l240-argb-1-500x500%201.png?alt=media&token=1e614c65-5be9-4633-b891-24425573fbd8"
+            ],
+            "reviews": 150,
+            "available": 80,
+            "discount": 45,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/gammaxx-l240-argb-1-500x500%201.png?alt=media&token=1e614c65-5be9-4633-b891-24425573fbd8",
+            "inWishlist": false,
+            "new": true,
+            "category": "bestSelling"
+        },
+        {
+            "id": 4,
+            "name": "Small Bookshelf",
+            "rating": 3,
+            "price": 75,
+            "inStock": true,
+            "desc": "A compact and functional bookshelf.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_beige-upholstered-sofa-with-wooden-legs_48896475.png?alt=media&token=d4f2d921-1358-41db-9774-ad66d0d6c33d",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/sam-moghadam-khamseh-L_7MQsHl_aU-unsplash%201.png?alt=media&token=8ea97a4c-1eae-4855-bed1-cd7ea3fd5195"
+            ],
+            "reviews": 150,
+            "available": 60,
+            "discount": 20,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/sam-moghadam-khamseh-L_7MQsHl_aU-unsplash%201.png?alt=media&token=8ea97a4c-1eae-4855-bed1-cd7ea3fd5195",
+            "inWishlist": false,
+            "new": false,
+            "category": "bestSelling"
+        },
+        {
+            "id": 5,
+            "name": "The North Coat",
+            "rating": 5,
+            "price": 145,
+            "inStock": true,
+            "desc": "A stylish coat for any weather.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_an-orange-leather-jacket_46558141.png?alt=media&token=472c18ae-9a24-4c28-810f-9cb05622ba26",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/672462_ZAH9D_5626_002_100_0000_Light-The-North-Face-x-Gucci-coat%201.png?alt=media&token=db7017b2-ed27-485e-a9e8-d8364746d388"
+            ],
+            "reviews": 150,
+            "available": 90,
+            "discount": 35,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_an-orange-leather-jacket_46558141.png?alt=media&token=472c18ae-9a24-4c28-810f-9cb05622ba26",
+            "inWishlist": false,
+            "new": true,
+            "category": "bestSelling"
+        },
+        {
+            "id": 6,
+            "name": "Gucci Duffle Bag",
+            "rating": 4,
+            "price": 320,
+            "inStock": false,
+            "desc": "Travel in style with this luxurious duffle bag.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_hand-bag-isolated-on-transparent-background_46828975.png?alt=media&token=12583f09-44bd-4160-a52e-4e27748d5beb",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/547953_9C2ST_8746_001_082_0000_Light-Gucci-Savoy-medium-duffle-bag%201.png?alt=media&token=ab7b8531-1eb0-4095-a8ef-abe177754621"
+            ],
+            "reviews": 150,
+            "available": 40,
+            "discount": 75,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_hand-bag-isolated-on-transparent-background_46828975.png?alt=media&token=12583f09-44bd-4160-a52e-4e27748d5beb",
+            "inWishlist": false,
+            "new": false,
+            "category": "bestSelling"
+        },
+        {
+            "id": 7,
+            "name": "RGB Liquid CPU Cooler",
+            "rating": 5,
+            "price": 110,
+            "inStock": true,
+            "desc": "Keep your CPU cool with style.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_modern-gaming-pc-isolated-on-transparent_48412788.png?alt=media&token=9b6f5da0-671b-4c8c-a356-7ffabd28897e",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/gammaxx-l240-argb-1-500x500%201.png?alt=media&token=1e614c65-5be9-4633-b891-24425573fbd8"
+            ],
+            "reviews": 150,
+            "available": 80,
+            "discount": 45,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_modern-gaming-pc-isolated-on-transparent_48412788.png?alt=media&token=9b6f5da0-671b-4c8c-a356-7ffabd28897e",
+            "inWishlist": false,
+            "new": true,
+            "category": "bestSelling"
+        },
+        {
+            "id": 8,
+            "name": "Small Bookshelf",
+            "rating": 3,
+            "price": 75,
+            "inStock": true,
+            "desc": "A compact and functional bookshelf.",
+            "colors": [],
+            "images": [
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_beige-upholstered-sofa-with-wooden-legs_48896475.png?alt=media&token=d4f2d921-1358-41db-9774-ad66d0d6c33d",
+                "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/sam-moghadam-khamseh-L_7MQsHl_aU-unsplash%201.png?alt=media&token=8ea97a4c-1eae-4855-bed1-cd7ea3fd5195"
+            ],
+            "reviews": 150,
+            "available": 60,
+            "discount": 20,
+            "img": "https://firebasestorage.googleapis.com/v0/b/e-commerce-ac5d3.appspot.com/o/vecteezy_beige-upholstered-sofa-with-wooden-legs_48896475.png?alt=media&token=d4f2d921-1358-41db-9774-ad66d0d6c33d",
+            "inWishlist": false,
+            "new": false,
+            "category": "bestSelling"
+        }
+    ],
+    "newArrivals": [{}]
+}

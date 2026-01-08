@@ -89,8 +89,10 @@
             max-width: 250px;
         }
     }
+
     .delivery {
         padding: 1.5rem 3.1875rem 1.5rem 1rem;
+
         &__upper,
         &__lower {
             display: flex;
@@ -111,8 +113,10 @@
         .p-inputnumber-button-group {
             border-color: var(--btn-color-red) !important;
         }
+
         input.p-inputtext {
             width: 100%;
+
             &:focus,
             &:hover {
                 outline: none;

@@ -47,19 +47,19 @@ export class ConfirmPopupComponent implements OnDestroy {
 
     SaveItem() {
         this.wishlistS
-            .addToWishlist(this.product)
+            .addToWishlist(this.product.id)
             .pipe(
                 switchMap((result) => {
                     const translationKeys =
                         result === null
                             ? [
-                                  'TOAST_MESSAGE.warning',
-                                  'TOAST_MESSAGE.productAlreadyInWishlist',
-                              ]
+                                'TOAST_MESSAGE.warning',
+                                'TOAST_MESSAGE.productAlreadyInWishlist',
+                            ]
                             : [
-                                  'TOAST_MESSAGE.success',
-                                  'TOAST_MESSAGE.productAddedToWishlist',
-                              ];
+                                'TOAST_MESSAGE.success',
+                                'TOAST_MESSAGE.productAddedToWishlist',
+                            ];
 
                     return this.translate.get(translationKeys).pipe(
                         switchMap((translations) => {

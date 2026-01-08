@@ -1,21 +1,25 @@
-export class OrderItem {
-    product?: number;
-    quantity?: number;
-    category?: string;
+import { OrderStatus } from "../services/orders/orders.service";
+
+export interface OrderItem {
+    id: number;
+    productId: number;
+    productName: string;
+    productImageUrl: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
 }
 
-export class Order {
-    id?: string;
-    orderItems?: OrderItem[];
-    shippingAddress1?: string;
+export interface Order {
+    id: number;
+    shippingAddress1: string;
     shippingAddress2?: string;
-    city?: string;
-    zip?: string;
-    country?: string;
-    phone?: number;
-    status?: number;
-    totalPrice?: string;
-    user?: any;
-    dateOrdered?: string;
-    encryptedId?: string;
+    city: string;
+    zipCode: string;
+    country: string;
+    phone: string;
+    status: OrderStatus;
+    totalPrice: number;
+    dateOrdered: string;
+    orderItems: OrderItem[];
 }

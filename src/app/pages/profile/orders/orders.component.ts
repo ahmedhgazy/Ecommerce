@@ -5,20 +5,25 @@ import {
     inject,
     OnInit,
     ViewChild,
+    ViewChildren,
+    ElementRef,
+    QueryList,
+    AfterViewInit
 } from '@angular/core';
-import { Table, TableModule } from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import { OrderStatus } from '../../../services/orders/orders.service';
+import { FilterService } from 'primeng/api';
+import { OrdersService } from '../../../services/orders/orders.service';
 import { Observable } from 'rxjs';
+import { Order } from '../../../services/orders/orders.service';
+import { Table, TableModule } from 'primeng/table';
 import { InputIconModule } from 'primeng/inputicon';
 import { IconFieldModule } from 'primeng/iconfield';
-import { OrdersService } from '../../../services/orders/orders.service';
-import { LoadingService } from '../../../shared/components/loading/loading.service';
-import { Order } from '../../../models/order.model';
 import { ButtonModule } from 'primeng/button';
-import { LoadingComponent } from '../../../shared/components/loading/loading.component';
-import { FilterService } from 'primeng/api';
-import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
-
+import { Router } from '@angular/router';
+import { LoadingComponent } from '../../../shared/components/loading/loading.component';
+import { LoadingService } from '../../../shared/components/loading/loading.service';
 @Component({
     selector: 'app-orders',
     standalone: true,
@@ -30,6 +35,7 @@ import { TranslateModule } from '@ngx-translate/core';
         ButtonModule,
         LoadingComponent,
         TranslateModule,
+        TagModule
     ],
 
     templateUrl: './orders.component.html',
@@ -46,6 +52,9 @@ export class OrdersComponent implements OnInit {
         'pink',
         'yellow',
     ];
+
+    // Make OrderStatus available in template
+    OrderStatus = OrderStatus;
 
     getBackgroundColor(index: number): string {
         return this.orderItemsStyleColors[
@@ -77,6 +86,8 @@ export class OrdersComponent implements OnInit {
         'orderItems',
         'shippingAddress1',
         'dateOrdered',
+        'status',
+        'totalPrice'
     ];
 
     ngOnInit(): void {
@@ -84,6 +95,28 @@ export class OrdersComponent implements OnInit {
         });
         this.checkScreenSize();
         window.addEventListener('resize', this.checkScreenSize.bind(this));
+    }
+
+    getSeverity(status: OrderStatus): "success" | "secondary" | "info" | "warning" | "danger" | "contrast" | undefined {
+        switch (status) {
+            case OrderStatus.Pending:
+                return 'warning';
+            case OrderStatus.Processing:
+                return 'info';
+            case OrderStatus.Shipped:
+                return 'secondary'; // Or primary if valid
+            case OrderStatus.Delivered:
+                return 'success';
+            case OrderStatus.Cancelled:
+                return 'danger';
+            default:
+                return 'info';
+        }
+    }
+
+    // Status number to string for display usually handled by pipe or simple helper
+    getStatusText(status: OrderStatus): string {
+        return this.ordersS.getStatusString(status);
     }
 
     onGlobalFilter(event: Event) {
@@ -119,8 +152,47 @@ export class OrdersComponent implements OnInit {
         return false;
     }
 
+    @ViewChildren('rowElement', { read: ElementRef }) rowElements!: QueryList<ElementRef>;
+
+    observer: IntersectionObserver | undefined;
+
+    ngAfterViewInit() {
+        this.setupObserver();
+
+        // Re-observe when rows change (e.g. pagination, filtering)
+        this.rowElements.changes.subscribe(() => {
+            this.setupObserver();
+        });
+    }
+
+    setupObserver() {
+        if (this.observer) {
+            this.observer.disconnect();
+        }
+
+        this.observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible-row');
+                    entry.target.classList.remove('hidden-row');
+                    this.observer?.unobserve(entry.target); // Animate once
+                }
+            });
+        }, {
+            root: null,
+            threshold: 0.1,
+            rootMargin: '0px'
+        });
+
+        this.rowElements.forEach((el) => {
+            el.nativeElement.classList.add('hidden-row'); // Start hidden
+            this.observer?.observe(el.nativeElement);
+        });
+    }
+
     ngOnDestroy(): void {
         window.removeEventListener('resize', this.checkScreenSize.bind(this));
+        this.observer?.disconnect();
     }
 
     checkScreenSize(): void {

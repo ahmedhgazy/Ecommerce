@@ -4,41 +4,27 @@
             <div class="gallery__images">
                 <ul class="list-unstyled d-flex flex-column align-items-center">
                     <ng-container *ngIf="images">
-                        <li
-                            *ngFor="let image of images; let i = index"
-                            (click)="changeSelectedImage(image, i)"
-                            [ngStyle]="{
+                        <li *ngFor="let image of images; let i = index" (click)="changeSelectedImage(image, i)"
+                            (mouseenter)="changeSelectedImage(image, i)" [ngStyle]="{
                                 'background-image': 'url(' + image + ')'
-                            }"
-                            [class.active]="image === selectedImage"
-                        ></li>
+                            }" [class.active]="image === selectedImage"></li>
                     </ng-container>
                 </ul>
             </div>
         </div>
-        <div
-            class="d-flex justify-content-center col-8 p-0 gallery_main_image_container"
-        >
-            <div
-                class="gallery_main_image position-relative mb-5 text-center"
-                (mousemove)="onImageHover($event)"
-                (mouseleave)="onImageLeave()"
-            >
-                <img
-                    [src]="selectedImage"
-                    [class.slide-from-left]="
-                        isImageChanging && direction === 'next'
-                    "
-                    [class.slide-from-right]="
-                        isImageChanging && direction === 'prev'
-                    "
-                    alt="Selected Image"
-                />
-                <div
-                    class="zoom-overlay"
-                    [style.backgroundImage]="'url(' + selectedImage + ')'"
-                    [style.backgroundPosition]="zoomPosition"
-                ></div>
+        <div class="d-flex justify-content-center col-8 p-0 gallery_main_image_container">
+            <div #mainImageContainer class="gallery_main_image position-relative mb-5 text-center"
+                (mousemove)="onImageHover($event)" (mouseleave)="onImageLeave()">
+
+                <img [src]="selectedImage" [style.opacity]="opacity" alt="Selected Image" />
+
+                <!-- Lens Element -->
+                <div *ngIf="showLens" class="lens" [style.top.px]="lensTop" [style.left.px]="lensLeft"></div>
+
+                <!-- Zoom Window (Amazon Style: Usually to the side, but keeping overlay logic with shifted position) -->
+                <div class="zoom-overlay" [class.active]="showLens"
+                    [style.backgroundImage]="'url(' + selectedImage + ')'" [style.backgroundPosition]="zoomPosition">
+                </div>
             </div>
         </div>
     </div>

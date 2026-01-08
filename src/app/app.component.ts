@@ -29,8 +29,7 @@ export class AppComponent implements OnInit {
     loading = inject(LoadingService);
     authS = inject(AuthService);
     ngOnInit(): void {
-        this.goService.initializeGoogleSignIn();
-
-        this.goService.autoLogin();
+        this.authS.autoLogin();
     }
 }
+

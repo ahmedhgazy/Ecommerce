@@ -59,50 +59,25 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     endsubs$ = new Subject<void>();
     ngOnInit(): void {
         this.route.params.subscribe((param: Params) => {
-            this.id = param['id'] - 1;
+            this.id = +param['id']; // Use actual ID
             this.category = param['category'];
+            this.getItemDetails(this.id);
         });
-        this.getItemDetails(this.category);
     }
 
-    getItemDetails(category) {
-        let productObservable: Observable<Product[]>;
-        switch (category) {
-            case 'bestSelling':
-                productObservable = this.productsService.bestSellingAllItems();
-                break;
-            case 'products':
-                productObservable = this.productsService.productsAllItems();
-                break;
-            case 'flashSales':
-                productObservable = this.productsService.flashSalesAllItems();
-                break;
-            default:
-                throw new Error(`Unknown product`);
-        }
+    getItemDetails(id: number) {
         this.product$ = this.loadingS.showLoadingUntilCompleted(
-            productObservable.pipe(
-                map(
-                    (products: Product[]) =>
-                        (this.product = mapToProduct(products, this.id))
-                )
+            this.productsService.getProductById(id).pipe(
+                map(product => this.product = product)
             )
         );
     }
 
     addToCart() {
         if (this.product != null) {
-            const cartItem: CartItem = {
-                productId: this.product.id,
-                quantity: this.quantity,
-                category: this.product.category,
-            };
-
-            this.cartService.setCartItem(cartItem, false);
-
-            this.translate
-                .get(['TOAST_MESSAGE.success', 'TOAST_MESSAGE.cartUpdated'])
+            this.cartService.addToCart(this.product.id, this.quantity)
                 .pipe(
+                    switchMap(() => this.translate.get(['TOAST_MESSAGE.success', 'TOAST_MESSAGE.cartUpdated'])),
                     switchMap((translations) => {
                         this.messageService.add({
                             severity: 'success',

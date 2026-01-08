@@ -24,16 +24,8 @@
                             <label class="mb-2 mt-11" for="name">
                                 {{ "BILLING.NAME" | translate }}
                             </label>
-                            <input
-                                type="text"
-                                id="name"
-                                formControlName="name"
-                                class="form-control bg-primary"
-                            />
-                            <small
-                                class="text-danger"
-                                *ngIf="checkoutForm.name.invalid && isSubmitted"
-                            >
+                            <input type="text" id="name" formControlName="name" class="form-control bg-primary" />
+                            <small class="text-danger" *ngIf="checkoutForm.name.invalid && isSubmitted">
                                 {{ "BILLING.NAME_REQUIRED" | translate }}
                             </small>
                         </div>
@@ -43,28 +35,14 @@
                             <label class="mb-2 mt-11" for="email">
                                 {{ "BILLING.EMAIL" | translate }}
                             </label>
-                            <input
-                                type="email"
-                                id="email"
-                                class="form-control bg-primary"
-                                formControlName="email"
-                            />
-                            <small
-                                class="text-danger"
-                                *ngIf="
+                            <input type="email" id="email" class="form-control bg-primary" formControlName="email" />
+                            <small class="text-danger" *ngIf="
                                     checkoutForm.email.invalid && isSubmitted
-                                "
-                            >
-                                <span
-                                    class="text-danger"
-                                    *ngIf="checkoutForm.email.errors.required"
-                                >
+                                ">
+                                <span class="text-danger" *ngIf="checkoutForm.email.errors.required">
                                     {{ "BILLING.EMAIL_REQUIRED" | translate }}
                                 </span>
-                                <span
-                                    class="text-danger"
-                                    *ngIf="checkoutForm.email.errors.email"
-                                >
+                                <span class="text-danger" *ngIf="checkoutForm.email.errors.email">
                                     {{ "BILLING.EMAIL_INVALID" | translate }}
                                 </span>
                             </small>
@@ -75,18 +53,10 @@
                             <label class="mb-2 mt-11" for="phone">
                                 {{ "BILLING.PHONE" | translate }}
                             </label>
-                            <input
-                                type="number"
-                                id="phone"
-                                class="form-control bg-primary"
-                                formControlName="phone"
-                            />
-                            <small
-                                class="text-danger"
-                                *ngIf="
+                            <input type="tel" id="phone" class="form-control bg-primary" formControlName="phone" />
+                            <small class="text-danger" *ngIf="
                                     checkoutForm.phone.invalid && isSubmitted
-                                "
-                            >
+                                ">
                                 {{ "BILLING.PHONE_REQUIRED" | translate }}
                             </small>
                         </div>
@@ -96,16 +66,8 @@
                             <label class="mb-2 mt-11" for="city">
                                 {{ "BILLING.CITY" | translate }}
                             </label>
-                            <input
-                                type="text"
-                                id="city"
-                                class="form-control bg-primary"
-                                formControlName="city"
-                            />
-                            <small
-                                class="text-danger"
-                                *ngIf="checkoutForm.city.invalid && isSubmitted"
-                            >
+                            <input type="text" id="city" class="form-control bg-primary" formControlName="city" />
+                            <small class="text-danger" *ngIf="checkoutForm.city.invalid && isSubmitted">
                                 {{ "BILLING.CITY_REQUIRED" | translate }}
                             </small>
                         </div>
@@ -115,19 +77,12 @@
                             <label class="mb-2 mt-11" for="apartment">
                                 {{ "BILLING.SHIPPING_ADDRESS" | translate }}
                             </label>
-                            <input
-                                type="text"
-                                formControlName="apartment"
-                                id="apartment"
-                                class="form-control bg-primary"
-                            />
-                            <small
-                                class="text-danger"
-                                *ngIf="
+                            <input type="text" formControlName="apartment" id="apartment"
+                                class="form-control bg-primary" />
+                            <small class="text-danger" *ngIf="
                                     checkoutForm.apartment.invalid &&
                                     isSubmitted
-                                "
-                            >
+                                ">
                                 {{ "BILLING.APARTMENT_REQUIRED" | translate }}
                             </small>
                         </div>
@@ -137,17 +92,9 @@
                             <label class="mb-2 mt-11" for="zip">
                                 {{ "BILLING.ZIP_CODE" | translate }}
                             </label>
-                            <input
-                                type="text"
-                                formControlName="zip"
-                                id="zip"
-                                class="form-control bg-primary"
-                            />
+                            <input type="text" formControlName="zip" id="zip" class="form-control bg-primary" />
 
-                            <small
-                                class="text-danger"
-                                *ngIf="checkoutForm.zip.invalid && isSubmitted"
-                            >
+                            <small class="text-danger" *ngIf="checkoutForm.zip.invalid && isSubmitted">
                                 {{ "BILLING.ZIP_CODE_REQUIRED" | translate }}
                             </small>
                         </div>
@@ -157,61 +104,39 @@
                             <label class="mb-2 mt-11" for="country">
                                 {{ "BILLING.COUNTRY" | translate }}
                             </label>
-                            <input
-                                type="text"
-                                formControlName="country"
-                                id="country"
-                                class="form-control bg-primary"
-                            />
-                            <small
-                                class="text-danger"
-                                *ngIf="
+                            <input type="text" formControlName="country" id="country" class="form-control bg-primary" />
+                            <small class="text-danger" *ngIf="
                                     checkoutForm.country.invalid && isSubmitted
-                                "
-                            >
+                                ">
                                 {{ "BILLING.COUNTRY_REQUIRED" | translate }}
                             </small>
                         </div>
                     </div>
                     <div class="form-group mt-4 d-flex align-items-center">
-                        <p-checkbox
-                            inputId="checkbox"
-                            formControlName="checked"
-                            (onChange)="onCheckboxChange($event)"
-                            [binary]="true"
-                        />
-                        <label
-                            style="
+                        <p-checkbox inputId="checkbox" formControlName="checked" (onChange)="onCheckboxChange($event)"
+                            [binary]="true" />
+                        <label style="
                                 opacity: 1;
                                 font-weight: 400;
                                 cursor: pointer;
                                 margin-inline-start: 1rem !important;
-                            "
-                            class="pt-1"
-                            for="checkbox"
-                        >
+                            " class="pt-1" for="checkbox">
                             {{ "BILLING.SAVE_INFO" | translate }}
                         </label>
                     </div>
 
                     <!-- [disabled]="!form.valid" -->
 
-                    <button
-                        type="submit"
-                        class="mt-5 border-0 py-10 px-5 text-light"
-                        style="
+                    <button type="submit" class="mt-5 border-0 py-10 px-5 text-light" style="
                             outline: none;
                             background-color: var(--btn-color-red);
-                        "
-                    >
+                        ">
                         {{ "BILLING.PLACE_ORDER" | translate }}
                     </button>
                 </form>
             </div>
             <div class="col-12 col-md-5 offset-md-1">
-                <app-order-summary
-                    [totalPrice]="totalPrice"
-                ></app-order-summary>
+                <app-order-summary [totalPrice]="totalPrice"></app-order-summary>
             </div>
         </div>
     </div>

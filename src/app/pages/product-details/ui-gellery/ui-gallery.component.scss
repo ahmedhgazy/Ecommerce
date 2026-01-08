@@ -53,55 +53,64 @@
         display: flex;
         align-items: center;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #f5f5f5;
-        z-index: 999;
-        cursor: zoom-in;
-        img,
-        img.slide-from-left,
-        img.slide-from-right {
-            width: 80%;
-            max-width: 80%;
-            height: 80%;
-            max-height: 80%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); // Lighter shadow
+        background-color: #fff; // Grid usually white
+        z-index: 10; // Base index
+
+        // Prevent cursor flickering
+        overflow: visible;
+
+        img {
+            width: auto;
+            max-width: 90%; // Give some breathing room
+            height: auto;
+            max-height: 90%;
             object-fit: contain;
-            transition: transform 0.6s ease;
+            transition: opacity 0.2s ease-in-out; // Smooth fade transition
+            // transition: transform 0.6s ease; // Removed transform transition to avoid conflict
+        }
+
+        .lens {
+            position: absolute;
+            width: 40%; // Match TS logic (container / 2.5)
+            height: 40%;
+            border: 1px solid #888;
+            background-color: rgba(255, 255, 255, 0.4);
+            cursor: crosshair;
+            pointer-events: none; // Let mouse events pass through to container
+            z-index: 20;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
         }
 
         .zoom-overlay {
-            @media only screen and (min-width: 1200px) {
-                width: 36rem !important;
-                right: -600px;
+            position: absolute;
+            top: 0;
+            left: 105%; // Position to the right
+            width: 500px; // Larger zoom window
+            height: 500px; // Square or match aspect
+            border: 1px solid #ddd;
+            background-repeat: no-repeat;
+            background-color: #fff;
+            opacity: 0;
+            display: none; // Hidden by default
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            background-size: 250%; // 2.5x Zoom match TS
+            border-radius: 4px;
+
+            &.active {
+                display: block;
+                opacity: 1;
             }
 
             @media only screen and (max-width: 1180px) {
-                right: -464px;
-                width: 26rem;
+                width: 400px;
+                height: 400px;
+                left: 102%;
             }
-            position: absolute;
-            top: 0;
-            right: -560px;
-            height: 32rem;
-            background-size: 2.5 * 100% 2.5 * 100%;
-            background-repeat: no-repeat;
-            opacity: 0;
-            display: none;
-            background-color: #f5f5f5;
-            z-index: 999999999;
-            pointer-events: none;
-            border-radius: 8px;
-            transition: opacity 0.6s ease, transform 0.1s ease;
-        }
 
-        @media (min-width: 992px) {
-            &:hover {
-                transform: all 0.6s ease;
-                .zoom-overlay {
-                    position: absolute;
-                    display: block;
-                    opacity: 1;
-                    transform: all 0.6s ease;
-                }
+            @media only screen and (max-width: 992px) {
+                display: none !important; // Disable on tablet/mobile
             }
         }
     }

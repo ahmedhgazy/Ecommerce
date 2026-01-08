@@ -1,6 +1,7 @@
 .order {
     margin-top: 2.5rem;
     border: 1px solid #333;
+
     .title {
         font-family: var(--secondary-font);
         font-weight: 500;
@@ -10,6 +11,7 @@
     }
 
     padding: 2rem 1.5rem;
+
     &__details {
         display: flex;
         align-items: center;

@@ -1,63 +1,42 @@
-<header
-    class="header p-0 m-0"
-    [dir]="selectedLang?.code === 'ar' ? 'rtl' : 'ltr'"
->
+<header class="header p-0 m-0" [dir]="selectedLang?.code === 'ar' ? 'rtl' : 'ltr'">
     <!-- Upper header -->
-    <div
-        class="d-none d-lg-flex text-light upper bg-dark d-flex justify-content-center align-items-center"
-    >
+    <div class="d-none d-lg-flex text-light upper bg-dark d-flex justify-content-center align-items-center">
         <div class="text-center">
-            <p
-                class="text-center sub-header-text p-0 m-0 d-inline-block"
-                style="
+            <p class="text-center sub-header-text p-0 m-0 d-inline-block" style="
                     margin-inline-end: 0.5rem;
                     margin-inline-start: 0.5rem !important;
-                "
-            >
+                ">
                 {{ 'BANNER.SUMMER_SALE' | translate }}
             </p>
-            <a
-                class="text-underline text-center d-inline-block"
-                style="
+            <a class="text-underline text-center d-inline-block" style="
                     text-decoration: underline;
                     margin-inline-end: 0.7rem !important;
                     margin-inline-start: 0.7rem !important;
-                "
-            >
+                ">
                 {{ 'BANNER.SHOP_NOW' | translate }}
             </a>
         </div>
 
         <div class="drop-down" style="background-color: #000 !important">
-            <p-dropdown
-                [options]="lang"
-                [(ngModel)]="selectedLang"
-                optionLabel="name"
-                (ngModelChange)="onLangChange()"
-                [placeholder]="'LANGUAGE_PLACEHOLDER' | translate"
-                styleClass="custom-dropdown"
-            ></p-dropdown>
+            <p-dropdown [options]="lang" [(ngModel)]="selectedLang" optionLabel="name" (ngModelChange)="onLangChange()"
+                [placeholder]="'LANGUAGE_PLACEHOLDER' | translate" styleClass="custom-dropdown"></p-dropdown>
         </div>
     </div>
 
     <!-- Lower header -->
     <div class="main-header position-relative">
-        <div
-            class="container d-flex justify-content-between align-items-center"
-        >
+        <div class="container d-flex justify-content-between align-items-center">
             <!-- Brand title -->
             <div class="brand-title">
                 <a class="p-0 m-0" routerLink="/home">{{
                     'HEADER.EXCLUSIVE' | translate
-                }}</a>
+                    }}</a>
             </div>
 
             <!-- Navigation -->
             <!-- <div class="navigation d-none d-md-block"> -->
             <nav class="navigation--wrapper navigation d-none d-md-block">
-                <ul
-                    class="p-0 m-0 navigation__menu list-unstyled d-flex align-items-center"
-                >
+                <ul class="p-0 m-0 navigation__menu list-unstyled d-flex align-items-center">
                     <li class="navigation__item">
                         <a class="navigation__link" routerLink="/home">
                             {{ 'HEADER.HOME' | translate }}
@@ -66,33 +45,20 @@
                     <li class="navigation__item">
                         <a class="navigation__link" routerLink="/contact">{{
                             'HEADER.CONTACT' | translate
-                        }}</a>
+                            }}</a>
                     </li>
                     <li class="navigation__item">
                         <a routerLink="about" class="navigation__link">{{
                             'HEADER.ABOUT' | translate
-                        }}</a>
+                            }}</a>
                     </li>
 
                     <li class="navigation__item">
-                        <a
-                            *ngIf="
-                                (auth.isLoggedOut$ | async) &&
-                                (googleS.isLoggedOutFromGoogle$ | async)
-                            "
-                            routerLink="/auth/register"
-                            class="navigation__link"
-                            >{{ 'HEADER.register' | translate }}
+                        <a *ngIf="auth.isLoggedOut$ | async" routerLink="/auth/register" class="navigation__link">{{
+                            'HEADER.register' | translate }}
                         </a>
 
-                        <a
-                            *ngIf="
-                                (auth.isLoggedIn$ | async) ||
-                                (googleS.isLoggedInFromGoogle$ | async)
-                            "
-                            (click)="logout()"
-                            class="navigation__link"
-                        >
+                        <a *ngIf="auth.isLoggedIn$ | async" (click)="logout()" class="navigation__link">
                             {{ 'HEADER.LOG_OUT' | translate }}
                         </a>
                     </li>
@@ -113,43 +79,23 @@
             <div class="wrapper d-flex align-items-center p-0 m-0">
                 <!-- Search section -->
 
-                <div
-                    class="search-section d-none d-xl-block"
-                    style="margin-inline-end: 1rem !important"
-                >
+                <div class="search-section d-none d-xl-block" style="margin-inline-end: 1rem !important">
                     <div class="input--wrapper">
-                        <input
-                            class="header__input"
-                            type="text"
-                            placeholder=" {{
+                        <input class="header__input" type="text" placeholder=" {{
                                 'HEADER.SEARCH_PLACEHOLDER' | translate
-                            }}"
-                        />
+                            }}" />
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
                 </div>
 
                 <!-- Actions section -->
-                <div
-                    class="action"
-                    *ngIf="
-                        (auth.isLoggedIn$ | async) ||
-                        (googleS.isLoggedInFromGoogle$ | async)
-                    "
-                >
-                    <i
-                        routerLink="/profile/wishlist"
-                        class="pi pi-heart p-text-secondary"
-                        style="font-size: 1.4rem"
-                    ></i>
+                <div class="action" *ngIf="auth.isLoggedIn$ | async">
+                    <i routerLink="/profile/wishlist" class="pi pi-heart p-text-secondary"
+                        style="font-size: 1.4rem"></i>
 
                     <app-cart-icon class="mx-4"></app-cart-icon>
 
-                    <i
-                        routerLink="/profile"
-                        class="pi pi-user p-text-secondary"
-                        style="font-size: 1.5rem"
-                    ></i>
+                    <i routerLink="/profile" class="pi pi-user p-text-secondary" style="font-size: 1.5rem"></i>
                 </div>
             </div>
 
@@ -159,11 +105,7 @@
             </div>
         </div>
 
-        <app-sidebar
-            (close)="closeSidebar()"
-            [toggleSidebar]="toggleSidebar"
-            (logOut)="logout()"
-        ></app-sidebar>
+        <app-sidebar (close)="closeSidebar()" [toggleSidebar]="toggleSidebar" (logOut)="logout()"></app-sidebar>
     </div>
 </header>
 <hr style="width: 100%" />

@@ -1,216 +1,93 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { catchError, map, Observable, shareReplay, throwError } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Product } from '../../models/product.model';
-import { ProductPagination } from './pagination';
-import { MessagesService } from '../../shared/errors/messages/messages.service';
+import { ApiResponse } from '../../models/auth.model';
+import { environment } from '../../../environments/environment';
+
+export interface PagedResult<T> {
+    items: T[];
+    totalCount: number;
+    pageNumber: number;
+    pageSize: number;
+    totalPages: number;
+    hasPreviousPage: boolean;
+    hasNextPage: boolean;
+}
+
+export interface ProductQueryParams {
+    pageNumber?: number;
+    pageSize?: number;
+    categoryId?: number;
+    search?: string;
+    sortBy?: string;
+    sortOrder?: string;
+    inStock?: boolean;
+    minPrice?: number;
+    maxPrice?: number;
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-    private baseUrl = 'https://e-commerce-ac5d3-default-rtdb.firebaseio.com';
-    private messages: MessagesService = inject(MessagesService);
+    private readonly apiUrl = `${environment.apiUrl}/products`;
 
-    private productsPagination: ProductPagination;
-    private flashSalesPagination: ProductPagination;
-    private bestSellingPagination: ProductPagination;
-    allLoaded = false;
+    constructor(private http: HttpClient) { }
 
-    constructor(private http: HttpClient) {}
+    getProducts(params: ProductQueryParams = {}): Observable<PagedResult<Product>> {
+        let httpParams = new HttpParams();
 
-    getProducts(loadMore: boolean) {
-        if (loadMore) {
-            if (!this.productsPagination) {
-                return this.http
-                    .get<Product[]>(`${this.baseUrl}/products.json`)
-                    .pipe(
-                        map((data: Product[]) => {
-                            this.productsPagination = new ProductPagination(
-                                data
-                            );
-                            return this.productsPagination.getItems(8);
-                        }),
-                        shareReplay(1),
-                        catchError((err) => {
-                            const message =
-                                'Something went wrong, please try again later';
-                            this.messages.showErrors(message);
-                            return throwError(() => new Error(err.message));
-                        })
-                    );
-            } else {
-                return new Observable<Product[]>((observer) => {
-                    observer.next(this.productsPagination.getItems(4));
-                    observer.complete();
-                });
-            }
-        } else {
-            if (!this.productsPagination) {
-                return this.http
-                    .get<Product[]>(`${this.baseUrl}/products.json`)
-                    .pipe(
-                        map((data: Product[]) => {
-                            this.productsPagination = new ProductPagination(
-                                data
-                            );
-                            return this.productsPagination.reset();
-                        }),
-                        shareReplay(1),
+        if (params.pageNumber) httpParams = httpParams.set('pageNumber', params.pageNumber.toString());
+        if (params.pageSize) httpParams = httpParams.set('pageSize', params.pageSize.toString());
+        if (params.categoryId) httpParams = httpParams.set('categoryId', params.categoryId.toString());
+        if (params.search) httpParams = httpParams.set('search', params.search);
+        if (params.sortBy) httpParams = httpParams.set('sortBy', params.sortBy);
+        if (params.sortOrder) httpParams = httpParams.set('sortOrder', params.sortOrder);
+        if (params.inStock !== undefined) httpParams = httpParams.set('inStock', params.inStock.toString());
+        if (params.minPrice) httpParams = httpParams.set('minPrice', params.minPrice.toString());
+        if (params.maxPrice) httpParams = httpParams.set('maxPrice', params.maxPrice.toString());
 
-                        catchError((err) => {
-                            const message =
-                                'Something went wrong, please try again later';
-                            this.messages.showErrors(message);
-                            return throwError(() => new Error(err.message));
-                        })
-                    );
-            } else {
-                return new Observable<Product[]>((observer) => {
-                    observer.next(this.productsPagination.reset());
-                    observer.complete();
-                });
-            }
-        }
+        return this.http.get<ApiResponse<PagedResult<Product>>>(`${this.apiUrl}`, { params: httpParams })
+            .pipe(map(response => response.data!));
     }
 
-    getFlashSales(loadMore: boolean) {
-        if (loadMore) {
-            if (!this.flashSalesPagination) {
-                return this.http
-                    .get<Product[]>(`${this.baseUrl}/flashSales.json`)
-                    .pipe(
-                        map((data: Product[]) => {
-                            this.flashSalesPagination = new ProductPagination(
-                                data
-                            );
-                            return this.flashSalesPagination.getItems();
-                        }),
-                        shareReplay(1),
-
-                        catchError((err) => {
-                            const message =
-                                'Something went wrong, please try again later';
-                            this.messages.showErrors(message);
-                            return throwError(() => new Error(err.message));
-                        })
-                    );
-            } else {
-                return new Observable<Product[]>((observer) => {
-                    observer.next(this.flashSalesPagination.getItems(4));
-                    observer.complete();
-                });
-            }
-        } else {
-            if (!this.flashSalesPagination) {
-                return this.http
-                    .get<Product[]>(`${this.baseUrl}/flashSales.json`)
-                    .pipe(
-                        map((data: Product[]) => {
-                            this.flashSalesPagination = new ProductPagination(
-                                data
-                            );
-                            return this.flashSalesPagination.reset();
-                        }),
-                        shareReplay(1),
-
-                        catchError((err) => {
-                            const message =
-                                'Something went wrong, please try again later';
-                            this.messages.showErrors(message);
-                            return throwError(() => new Error(err.message));
-                        })
-                    );
-            } else {
-                return new Observable<Product[]>((observer) => {
-                    observer.next(this.flashSalesPagination.reset());
-                    observer.complete();
-                });
-            }
-        }
+    getProductById(id: number): Observable<Product> {
+        return this.http.get<ApiResponse<Product>>(`${this.apiUrl}/${id}`)
+            .pipe(map(response => response.data!));
     }
 
-    bestSelling(loadMore: boolean) {
-        if (loadMore) {
-            if (!this.bestSellingPagination) {
-                return this.http
-                    .get<Product[]>(`${this.baseUrl}/bestSelling.json`)
-                    .pipe(
-                        map((data: Product[]) => {
-                            this.bestSellingPagination = new ProductPagination(
-                                data
-                            );
-                            return this.bestSellingPagination.getItems();
-                        }),
-                        shareReplay(1),
+    getFlashSales(pageNumber: number = 1, pageSize: number = 8): Observable<PagedResult<Product>> {
+        const params = new HttpParams()
+            .set('pageNumber', pageNumber.toString())
+            .set('pageSize', pageSize.toString());
 
-                        catchError((err) => {
-                            const message =
-                                'Something went wrong, please try again later';
-                            this.messages.showErrors(message);
-                            return throwError(() => new Error(err.message));
-                        })
-                    );
-            } else {
-                return new Observable<Product[]>((observer) => {
-                    observer.next(this.bestSellingPagination.getItems(4));
-                    observer.complete();
-                });
-            }
-        } else {
-            if (!this.bestSellingPagination) {
-                return this.http
-                    .get<Product[]>(`${this.baseUrl}/bestSelling.json`)
-                    .pipe(
-                        map((data: Product[]) => {
-                            this.bestSellingPagination = new ProductPagination(
-                                data
-                            );
-                            return this.bestSellingPagination.reset();
-                        }),
-                        shareReplay(1),
-
-                        catchError((err) => {
-                            const message =
-                                'Something went wrong, please try again later';
-                            this.messages.showErrors(message);
-                            return throwError(() => new Error(err.message));
-                        })
-                    );
-            } else {
-                return new Observable<Product[]>((observer) => {
-                    observer.next(this.bestSellingPagination.reset());
-                    observer.complete();
-                });
-            }
-        }
+        return this.http.get<ApiResponse<PagedResult<Product>>>(`${this.apiUrl}/flash-sales`, { params })
+            .pipe(map(response => response.data!));
     }
 
-    bestSellingAllItems() {
-        return this.http
-            .get<Product[]>(`${this.baseUrl}/bestSelling.json`)
-            .pipe(shareReplay(1));
+    getBestSelling(pageNumber: number = 1, pageSize: number = 8): Observable<PagedResult<Product>> {
+        const params = new HttpParams()
+            .set('pageNumber', pageNumber.toString())
+            .set('pageSize', pageSize.toString());
+
+        return this.http.get<ApiResponse<PagedResult<Product>>>(`${this.apiUrl}/best-selling`, { params })
+            .pipe(map(response => response.data!));
     }
 
-    productsAllItems() {
-        return this.http
-            .get<Product[]>(`${this.baseUrl}/products.json`)
-            .pipe(shareReplay(1));
+    getNewArrivals(pageNumber: number = 1, pageSize: number = 8): Observable<PagedResult<Product>> {
+        const params = new HttpParams()
+            .set('pageNumber', pageNumber.toString())
+            .set('pageSize', pageSize.toString());
+
+        return this.http.get<ApiResponse<PagedResult<Product>>>(`${this.apiUrl}/new-arrivals`, { params })
+            .pipe(map(response => response.data!));
     }
 
-    flashSalesAllItems() {
-        return this.http
-            .get<Product[]>(`${this.baseUrl}/flashSales.json`)
-            .pipe(shareReplay(1));
+    getProductsByCategory(categoryId: number, pageNumber: number = 1, pageSize: number = 8): Observable<PagedResult<Product>> {
+        return this.getProducts({ categoryId, pageNumber, pageSize });
     }
 
-    get resetProducts() {
-        return this.productsPagination;
-    }
-
-    get resetFlashSales() {
-        return this.flashSalesPagination;
-    }
-
-    get resetBestSelling() {
-        return this.bestSellingPagination;
+    searchProducts(search: string, pageNumber: number = 1, pageSize: number = 8): Observable<PagedResult<Product>> {
+        return this.getProducts({ search, pageNumber, pageSize });
     }
 }

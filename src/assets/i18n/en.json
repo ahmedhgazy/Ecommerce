@@ -12,7 +12,6 @@
         "PROFILE": "Profile",
         "CART": "Cart"
     },
-
     "SIDEBAR": {
         "HEADER": "Exclusive",
         "PLACEHOLDER": "What are you looking for?",
@@ -21,7 +20,8 @@
     "REGISTER": {
         "CREATE_ACCOUNT": "Create an account",
         "ENTER_DETAILS_BELOW": "Enter your details below",
-        "NAME": "Name",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
         "EMAIL": "Email",
         "PASSWORD": "Password",
         "CREATE_ACCOUNT_BUTTON": "Create Account",
@@ -32,9 +32,12 @@
         "FORGET_PASSWORD": "Forget Password?",
         "ENTER_EMAIL": "Enter your email",
         "SUBMIT": "Submit",
-        "RESET_PASSWORD": "Reset your Password"
+        "RESET_PASSWORD": "Reset your Password",
+        "NO_ACCOUNT": "Don't have an account?",
+        "SIGNUP": "Sign Up",
+        "EMAIL_REQUIRED": "Email is required",
+        "EMAIL_INVALID": "Please enter a valid email address"
     },
-
     "BANNER": {
         "SUMMER_SALE": "Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!",
         "SHOP_NOW": "Shop Now",
@@ -83,7 +86,6 @@
         "DOWNLOAD_APP": "Download App",
         "SAVE_WITH_APP": "Save $3 with App New User Only"
     },
-
     "STAT": {
         "FREE_AND_FAST_DELIVERY": "Free and fast delivery",
         "FREE_DELIVERY_DESCRIPTION": "Free delivery for all orders over $140",
@@ -92,7 +94,6 @@
         "MONEY_BACK_GUARANTEE": "Money back guarantee",
         "MONEY_BACK_GUARANTEE_DESCRIPTION": "We return money within 30 days"
     },
-
     "DETAILS": {
         "QUANTITY": "Quantity",
         "ADD_TO_CART": "Add To Cart",
@@ -101,7 +102,6 @@
         "RETURN_DELIVERY": "Return Delivery",
         "FREE_DELIVERY_RETURNS": "Free 30 Days Delivery Returns. Details"
     },
-
     "CONTACT": {
         "CALL_TO_US": "Call To Us",
         "AVAILABLE_24_7": "We are available 24/7, 7 days a week.",
@@ -154,12 +154,10 @@
         "CANCEL": "Cancel",
         "SAVE_CHANGES": "Save Changes"
     },
-
     "WISHLIST": {
         "addToSavedItems": "Add to Saved Items",
         "addToWishlist": "Add to wishlist"
     },
-
     "CART": {
         "PRODUCT": "Product",
         "PRICE": "Price",
@@ -173,12 +171,10 @@
         "PROCEED_TO_CHECKOUT": "Proceed to checkout",
         "emptyMessage": "Your cart is empty."
     },
-
     "ORDERS": {
         "ORDERS": "Orders",
         "SEARCH": "Search"
     },
-
     "BILLING": {
         "BILLING_DETAILS": "Billing Details",
         "NAME": "Name",
@@ -199,7 +195,6 @@
         "ZIP_CODE_REQUIRED": "Zip code is required",
         "COUNTRY_REQUIRED": "Country is required"
     },
-
     "ROUTES": {
         "HOME": "Home",
         "ABOUT": "About",
@@ -208,12 +203,10 @@
         "CART": "Cart",
         "CHECKOUT": "Checkout"
     },
-
     "NOT_FOUND": {
         "NOT_FOUND": "404 Not Found",
         "NOT_FOUND_DESC": "Oops! The page you are looking for does not exist."
     },
-
     "TOAST_MESSAGE": {
         "addToSavedItems": "Add to Saved Items",
         "addToWishlist": "Add to wishlist",
@@ -228,15 +221,12 @@
         "itemRemovedFromCart": "Item removed from the cart",
         "emailSent": "Password reset email sent. Please check your inbox and spam folder. Follow the link in the email to reset your password.",
         "fillForm": "Please fill out the form correctly",
-
         "wrongPassword": "Wrong password",
         "googleSignInError": "An error occurred while signing in with Google. Please try again later."
     },
-
     "ERROR": {
         "errorMessage": "An error occurred. try to login again or reload the page"
     },
-
     "ERROR_MESSAGES": {
         "NO_INTERNET": "There is no internet connection.",
         "EMAIL_EXISTS": "The email address is already in use by another account.",

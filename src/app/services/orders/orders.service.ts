@@ -1,85 +1,93 @@
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Inject, inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { Order } from '../../models/order.model';
-import { AuthService } from '../auth/auth.service';
-import { platformBrowser } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
-import { User } from '../../models/user.model';
-import { catchError, map, Observable, throwError } from 'rxjs';
-import { MessagesService } from '../../shared/errors/messages/messages.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { ApiResponse } from '../../models/auth.model';
+
+export enum OrderStatus {
+    Pending = 0,
+    Processing = 1,
+    Shipped = 2,
+    Delivered = 3,
+    Cancelled = 4
+}
+
+export interface OrderItem {
+    id: number;
+    productId: number;
+    productName: string;
+    productImageUrl: string;
+    quantity: number;
+    unitPrice: number;
+    totalPrice: number;
+}
+
+export interface Order {
+    id: number;
+    shippingAddress1: string;
+    shippingAddress2?: string;
+    city: string;
+    zipCode: string;
+    country: string;
+    phone: string;
+    status: OrderStatus;
+    totalPrice: number;
+    dateOrdered: string;
+    orderItems: OrderItem[];
+}
+
+export interface CreateOrderRequest {
+    shippingAddress1: string;
+    shippingAddress2?: string;
+    city: string;
+    zipCode: string;
+    country: string;
+    phone: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class OrdersService {
-    auth = inject(AuthService);
-    constructor(
-        @Inject(PLATFORM_ID) private platformId: Object,
-        private messages: MessagesService
-    ) {}
-    ORDER_DETAILS = 'orderDetails';
+    private readonly apiUrl = `${environment.apiUrl}/orders`;
 
-    private baseUrl = 'https://e-commerce-ac5d3-default-rtdb.firebaseio.com';
-    // /products.json
-
-    http = inject(HttpClient);
-
-    createOrder(order): Observable<Order> {
-        const userId = this.auth.user.getValue()?.id;
-
-        return this.http.post<{ [key: string]: Order }>(
-            `${this.baseUrl}/orders/${userId}.json`,
-            order
-        );
-    }
+    constructor(private http: HttpClient) { }
 
     getOrders(): Observable<Order[]> {
-        const userId = this.auth.user.getValue()?.id;
-        return this.http
-            .get<{ [key: string]: Order }>(
-                `${this.baseUrl}/orders/${userId}.json`
-            )
-            .pipe(
-                map((res: { [key: string]: Order }) => {
-                    const ordersList: Order[] = [];
-
-                    for (const key in res) {
-                        if (res.hasOwnProperty(key)) {
-                            ordersList.push({ ...res[key], encryptedId: key });
-                        }
-                    }
-                    return ordersList;
-                }),
-                catchError((err) => {
-                    const message =
-                        'Something went wrong,please try again later';
-                    this.messages.showErrors(message);
-                    return throwError(err);
-                })
-            );
+        return this.http.get<ApiResponse<Order[]>>(`${this.apiUrl}`)
+            .pipe(map(response => response.data!));
     }
 
-    saveUserDetails(userOrderDetails) {
-        if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem(
-                'orderDetails',
-                JSON.stringify(userOrderDetails)
-            );
+    getOrderById(id: number): Observable<Order> {
+        return this.http.get<ApiResponse<Order>>(`${this.apiUrl}/${id}`)
+            .pipe(map(response => response.data!));
+    }
+
+    createOrder(request: CreateOrderRequest): Observable<Order> {
+        return this.http.post<ApiResponse<Order>>(`${this.apiUrl}`, request)
+            .pipe(map(response => response.data!));
+    }
+
+    // Helper for displaying status
+    getStatusString(status: OrderStatus): string {
+        switch (status) {
+            case OrderStatus.Pending: return 'Pending';
+            case OrderStatus.Processing: return 'Processing';
+            case OrderStatus.Shipped: return 'Shipped';
+            case OrderStatus.Delivered: return 'Delivered';
+            case OrderStatus.Cancelled: return 'Cancelled';
+            default: return 'Unknown';
         }
+    }
+
+    saveUserDetails(orderDetails: any) {
+        localStorage.setItem('checkoutDetails', JSON.stringify(orderDetails));
     }
 
     getUserOrderDetails() {
-        if (isPlatformBrowser(this.platformId)) {
-            const form = JSON.parse(
-                localStorage.getItem(`${this.ORDER_DETAILS}`)
-            );
-            return form;
-        } else {
-            return null;
+        if (typeof localStorage !== 'undefined') {
+            const details = localStorage.getItem('checkoutDetails');
+            return details ? JSON.parse(details) : null;
         }
-    }
-
-    emptyOrderDetailsStorage() {
-        if (isPlatformBrowser(this.platformId)) {
-            localStorage.removeItem(`${this.ORDER_DETAILS}`);
-        }
+        return null;
     }
 }

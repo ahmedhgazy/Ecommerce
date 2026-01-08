@@ -1,240 +1,281 @@
-import { Injectable, NgZone, Inject, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, from, throwError } from 'rxjs';
-import { catchError, map, shareReplay, switchMap, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, tap, map } from 'rxjs/operators';
 import { User } from '../../models/user.model';
-import {} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
-import { ResponsePayload } from '../../models/auth.res';
+import {
+    AuthResponse,
+    ApiResponse,
+    LoginRequest,
+    RegisterRequest,
+    RefreshTokenRequest
+} from '../../models/auth.model';
+import { environment } from '../../../environments/environment';
+
+const USER_DATA_KEY = 'userData';
+const TOKEN_REFRESH_THRESHOLD = 5 * 60 * 1000; // 5 minutes before expiry
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-    private baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts:';
 
-    private api_key = 'AIzaSyArXnKU909e-tuZ1sQbznfCC_hjhODpZuw';
+    private readonly apiUrl = `${environment.apiUrl}/auth`;
 
-    private signUpUrl = `${this.baseUrl}signUp?key=${this.api_key}`;
-
-    private signInUrl = `${this.baseUrl}signInWithPassword?key=${this.api_key}`;
-
-    userId: string;
-
-    user = new BehaviorSubject<User>(null);
-
+    user = new BehaviorSubject<User | null>(null);
     user$: Observable<User> = this.user.asObservable();
 
+    private tokenExpirationTimer: any;
+    private refreshTokenTimer: any;
+
+    // get isLoggedIn$(): Observable<boolean> {
+    //     return this.user.pipe(map(user => !!user));
+    // }
+
+    // get isLoggedOut$(): Observable<boolean> {
+    //     return this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
+    // }
     isLoggedIn$: Observable<boolean>;
 
     isLoggedOut$: Observable<boolean>;
 
-    private tokenExpirationTimer: any;
-
     constructor(
-        @Inject(PLATFORM_ID) private platformId: Object,
         private http: HttpClient,
-        private router: Router
+        private router: Router,
     ) {
-        if (isPlatformBrowser(this.platformId)) {
+
+
             this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
 
             this.isLoggedOut$ = this.isLoggedIn$.pipe(
                 map((loggedIn) => !loggedIn)
             );
 
-            const user = localStorage.getItem('user');
+            const user = localStorage.getItem(USER_DATA_KEY);
 
             if (user) {
                 this.user.next(JSON.parse(user));
             } else {
-                this.logout();
+                return;
             }
+
+    }
+
+    signUp(email: string, password: string, firstName?: string, lastName?: string): Observable<ApiResponse<AuthResponse>> {
+        const request: RegisterRequest = { email, password, firstName, lastName };
+
+        return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/register`, request)
+            .pipe(
+                tap(response => {
+                    if (response.success && response.data) {
+                        this.handleAuthentication(response.data);
+                    }
+                }),
+                catchError(this.handleError)
+            );
+    }
+
+    login(email: string, password: string): Observable<ApiResponse<AuthResponse>> {
+        const request: LoginRequest = { email, password };
+
+        return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/login`, request)
+            .pipe(
+                tap(response => {
+                    if (response.success && response.data) {
+                        this.handleAuthentication(response.data);
+                    }
+                }),
+                catchError(this.handleError)
+            );
+    }
+
+    googleLogin(idToken: string): Observable<ApiResponse<AuthResponse>> {
+        return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/google`, { idToken })
+            .pipe(
+                tap(response => {
+                    if (response.success && response.data) {
+                        this.handleAuthentication(response.data);
+                    }
+                }),
+                catchError(this.handleError)
+            );
+    }
+
+    refreshToken(redirectOnFailure: boolean = true): Observable<ApiResponse<AuthResponse>> {
+        const user = this.user.value;
+        if (!user) {
+            return throwError(() => new Error('No user logged in'));
         }
 
-        this.userId = this.user.getValue()?.id;
-    }
+        const request: RefreshTokenRequest = { refreshToken: user.refreshToken };
 
-    signUp(email: string, password: string): Observable<any> {
-        return this.http
-            .post<ResponsePayload>(this.signUpUrl, {
-                email: email,
-                password: password,
-                returnSecureToken: true,
-            })
-
+        return this.http.post<ApiResponse<AuthResponse>>(`${this.apiUrl}/refresh-token`, request)
             .pipe(
-                tap((resData: ResponsePayload) => {
-                    this.handleAuthentication(
-                        resData.email,
-                        resData.localId,
-                        resData.idToken,
-                        +resData.expiresIn
-                    );
+                tap(response => {
+                    if (response.success && response.data) {
+                        this.handleAuthentication(response.data);
+                    }
                 }),
-                shareReplay(1),
-                catchError(this.handleError)
+                catchError(error => {
+                    this.logout(redirectOnFailure);
+                    return throwError(() => error);
+                })
             );
     }
 
-    login(email: string, password: string): Observable<any> {
-        return this.http
-            .post<ResponsePayload>(this.signInUrl, {
-                email: email,
-                password: password,
-                returnSecureToken: true,
-            })
-
-            .pipe(
-                tap((resData: ResponsePayload) => {
-                    this.handleAuthentication(
-                        resData.email,
-                        resData.localId,
-                        resData.idToken,
-                        +resData.expiresIn
-                    );
-                }),
-                shareReplay(1),
-                catchError(this.handleError)
-            );
+    forgotPassword(email: string): Observable<ApiResponse<boolean>> {
+        return this.http.post<ApiResponse<boolean>>(`${this.apiUrl}/forgot-password`, { email });
     }
 
-    logout() {
+    resetPassword(request: any): Observable<ApiResponse<boolean>> {
+        return this.http.post<ApiResponse<boolean>>(`${this.apiUrl}/reset-password`, request);
+    }
+
+    logout(redirect: boolean = true): void {
+        const user = this.user.value;
+
+        if (user) {
+            this.http.post(`${this.apiUrl}/logout`, {}).subscribe({
+                error: () => { } // Ignore logout errors
+            });
+        }
+
         this.user.next(null);
+        if (redirect) {
+            this.router.navigate(['/auth/login']);
+        }
 
-        localStorage.removeItem('user');
-
-        this.router.navigate(['/auth/register']);
+            localStorage.removeItem(USER_DATA_KEY);
 
         if (this.tokenExpirationTimer) {
             clearTimeout(this.tokenExpirationTimer);
+            this.tokenExpirationTimer = null;
         }
 
-        this.tokenExpirationTimer = null;
-    }
-
-    autoLogout(expirationDuration: number) {
-        this.tokenExpirationTimer = setTimeout(() => {
-            this.logout();
-        }, expirationDuration);
-    }
-
-    private handleAuthentication(
-        email: string,
-        userId: string,
-        token: string,
-        expiresIn: number
-    ) {
-        const expirationDate = new Date(
-            new Date().getTime() + expiresIn * 1000
-        );
-        const user = new User(email, userId, token, expirationDate);
-        this.user.next(user);
-        this.autoLogout(expiresIn * 1000);
-        if (isPlatformBrowser(this.platformId)) {
-            localStorage.setItem('user', JSON.stringify(user));
+        if (this.refreshTokenTimer) {
+            clearTimeout(this.refreshTokenTimer);
+            this.refreshTokenTimer = null;
         }
     }
 
     autoLogin(): void {
-        if (isPlatformBrowser(this.platformId)) {
-            const userData: {
-                email: string;
-                id: string;
-                _token: string;
-                _tokenExpirationDate: string;
-            } = JSON.parse(localStorage.getItem('user') || 'null');
 
-            if (!userData) {
-                return;
-            }
 
-            const loadedUser = new User(
-                userData.email,
-                userData.id,
-                userData._token,
-                new Date(userData._tokenExpirationDate)
-            );
+        const userDataStr = localStorage.getItem(USER_DATA_KEY);
+        if (!userDataStr) {
+            return;
+        }
 
-            if (loadedUser.token) {
-                this.user.next(loadedUser);
-            }
+        const userData = JSON.parse(userDataStr);
+        const expirationDate = new Date(userData._expirationDate);
 
-            const expirationDuration =
-                new Date(userData._tokenExpirationDate).getTime() -
-                new Date().getTime();
-            this.autoLogout(expirationDuration);
+        const loadedUser = new User(
+            userData.id,
+            userData.email,
+            userData._accessToken,
+            userData._refreshToken,
+            expirationDate,
+            userData.displayName,
+            userData.firstName,
+            userData.lastName,
+            userData.photoUrl
+        );
+
+        if (loadedUser.token) {
+            this.user.next(loadedUser);
+            this.setupAutoLogout(expirationDate);
+            this.setupTokenRefresh(expirationDate);
+        } else if (loadedUser.refreshToken) {
+            // Token expired but we have refresh token - try to refresh
+            this.refreshToken(false).subscribe({ // Don't redirect if auto-login fails
+                error: () => this.logout(false)
+            });
+        } else {
+            console.warn('AutoLogin failed: Token invalid and no refresh token available.', loadedUser);
         }
     }
 
-    private handleError(errorResponse: any) {
-        let errorKey = 'ERROR_MESSAGES.UNKNOWN_ERROR';
-        if (!errorResponse.error || !errorResponse.error.error) {
-            return throwError(() => new Error(errorKey));
+    isAuthenticated(): boolean {
+        const user = this.user.value;
+        return !!user && !!user.token;
+    }
+
+    getCurrentUser(): Observable<ApiResponse<any>> {
+        return this.http.get<ApiResponse<any>>(`${this.apiUrl}/me`);
+    }
+
+    private handleAuthentication(authData: AuthResponse): void {
+        let expirationDate = new Date(authData.expiresAt);
+        if (isNaN(expirationDate.getTime())) {
+            console.warn('Invalid expiration date from API, defaulting to 1 hour');
+            expirationDate = new Date(new Date().getTime() + 3600000);
         }
-        switch (errorResponse.error.error.message) {
-            case 'ERR_NAME_NOT_RESOLVED':
-                errorKey = 'ERROR_MESSAGES.NO_INTERNET';
-                break;
-            case 'EMAIL_EXISTS':
-                errorKey = 'ERROR_MESSAGES.EMAIL_EXISTS';
-                break;
-            case 'OPERATION_NOT_ALLOWED':
-                errorKey = 'ERROR_MESSAGES.OPERATION_NOT_ALLOWED';
-                break;
-            case 'TOO_MANY_ATTEMPTS_TRY_LATER':
-                errorKey = 'ERROR_MESSAGES.TOO_MANY_ATTEMPTS_TRY_LATER';
-                break;
-            case 'EMAIL_NOT_FOUND':
-                errorKey = 'ERROR_MESSAGES.EMAIL_NOT_FOUND';
-                break;
-            case 'INVALID_PASSWORD':
-                errorKey = 'ERROR_MESSAGES.INVALID_PASSWORD';
-                break;
-            case 'USER_DISABLED':
-                errorKey = 'ERROR_MESSAGES.USER_DISABLED';
-                break;
+
+        const user = new User(
+            authData.userId,
+            authData.email,
+            authData.accessToken,
+            authData.refreshToken,
+            expirationDate,
+            authData.displayName,
+            authData.firstName,
+            authData.lastName,
+            authData.photoUrl
+        );
+
+        this.user.next(user);
+        this.setupAutoLogout(expirationDate);
+        this.setupTokenRefresh(expirationDate);
+
+            localStorage.setItem(USER_DATA_KEY, JSON.stringify({
+                id: user.id,
+                email: user.email,
+                _accessToken: user.accessToken,
+                _refreshToken: user.refreshToken,
+                _expirationDate: expirationDate.toISOString(),
+                displayName: user.displayName,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                photoUrl: user.photoUrl
+            }));
+    }
+
+    private setupAutoLogout(expirationDate: Date): void {
+        if (this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer);
         }
-        return throwError(() => new Error(errorKey));
+
+        const expirationDuration = expirationDate.getTime() - new Date().getTime();
+
+        if (expirationDuration > 0) {
+            this.tokenExpirationTimer = setTimeout(() => {
+                this.logout();
+            }, expirationDuration);
+        }
     }
 
-    private readonly BASE_URL =
-        'https://identitytoolkit.googleapis.com/v1/accounts:';
+    private setupTokenRefresh(expirationDate: Date): void {
+        if (this.refreshTokenTimer) {
+            clearTimeout(this.refreshTokenTimer);
+        }
 
-    resetPassword(email: string): Observable<boolean> {
-        return this.http
-            .post<any>(`${this.BASE_URL}sendOobCode?key=${this.api_key}`, {
-                email,
-                requestType: 'PASSWORD_RESET',
-            })
-            .pipe(
-                map(() => true),
-                catchError(this.handleError)
-            );
+        const timeUntilRefresh = expirationDate.getTime() - new Date().getTime() - TOKEN_REFRESH_THRESHOLD;
+
+        if (timeUntilRefresh > 0) {
+            this.refreshTokenTimer = setTimeout(() => {
+                this.refreshToken().subscribe();
+            }, timeUntilRefresh);
+        }
     }
 
-    verifyPasswordResetCode(oobCode: string): Observable<string> {
-        return this.http
-            .post<any>(`${this.BASE_URL}resetPassword?key=${this.api_key}`, {
-                oobCode,
-            })
-            .pipe(
-                map((response) => response.email),
-                catchError(this.handleError)
-            );
-    }
+    private handleError(errorRes: HttpErrorResponse): Observable<never> {
+        let errorMessage = 'An unknown error occurred!';
 
-    confirmPasswordReset(
-        oobCode: string,
-        newPassword: string
-    ): Observable<boolean> {
-        return this.http
-            .post<any>(`${this.BASE_URL}resetPassword?key=${this.api_key}`, {
-                oobCode,
-                newPassword,
-            })
-            .pipe(
-                map(() => true),
-                catchError(this.handleError)
-            );
+        if (errorRes.error?.message) {
+            errorMessage = errorRes.error.message;
+        } else if (errorRes.error?.errors && errorRes.error.errors.length > 0) {
+            errorMessage = errorRes.error.errors.join(', ');
+        }
+
+        return throwError(() => new Error(errorMessage));
     }
 }
