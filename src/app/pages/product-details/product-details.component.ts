@@ -13,9 +13,7 @@ import { SharedRoutesHeader } from '../../shared/components/shared-routes-header
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { ProductsService } from '../../services/products/products.service';
 import { LoadingService } from '../../shared/components/loading/loading.service';
-import { CartItem } from '../../models/cart.model';
 import { Product } from '../../models/product.model';
-import { mapToProduct } from '../../models/product.model';
 import { CartService } from '../../services/orders/cart.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({

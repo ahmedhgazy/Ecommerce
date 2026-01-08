@@ -12,7 +12,6 @@ export class GoogleAuthService {
   private googleInitialized = false;
   private initializationPromise: Promise<void> | null = null;
 
-  // Backward compatibility helpers
   get isLoggedInFromGoogle$(): Observable<boolean> {
     return this.authService.isLoggedIn$;
   }
@@ -37,7 +36,6 @@ export class GoogleAuthService {
 
     this.initializationPromise = new Promise((resolve, reject) => {
       if (typeof google === 'undefined') {
-        // Load Google Sign-In script
         const script = document.createElement('script');
         script.src = 'https://accounts.google.com/gsi/client';
         script.async = true;
@@ -75,7 +73,6 @@ export class GoogleAuthService {
       this.initializeGoogleSignIn().then(() => {
         google.accounts.id.prompt((notification: any) => {
           if (notification.isNotDisplayed()) {
-            // Fall back to One Tap button if prompt not displayed
             observer.error(new Error('Google Sign-In not available. Please try again.'));
           } else if (notification.isSkippedMoment()) {
             observer.error(new Error('Google Sign-In was skipped.'));

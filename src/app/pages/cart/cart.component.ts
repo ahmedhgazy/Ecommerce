@@ -92,12 +92,12 @@ export class CartComponent implements OnInit, OnDestroy {
                         name: item.productName,
                         imageUrl: item.productImageUrl,
                         price: item.price,
-                        discount: item.discount, // Assuming discount/discountPrice logic matches Product
+                        discount: item.discount,
                         discountPrice: item.discountedPrice,
                         description: '',
                         quantity: item.quantity,
                         subTotal: item.subTotal,
-                        category: '', // Category not needed for display or removal anymore
+                        category: '',
                         reviews: [],
                         inStock: item.inStock
                     } as any as Product));
@@ -107,7 +107,6 @@ export class CartComponent implements OnInit, OnDestroy {
             });
     }
 
-    // getProductByCategory removed as it's no longer needed
 
     removeItem(index: number): void {
         const item = this.cartItems[index];
@@ -152,9 +151,7 @@ export class CartComponent implements OnInit, OnDestroy {
             });
     }
 
-    private calculateTotalPrice(): void {
-        // Handled by service
-    }
+
 
     ngOnDestroy(): void {
         this.endSubs$.next();

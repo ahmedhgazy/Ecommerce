@@ -12,7 +12,6 @@ import { Product } from '../../models/product.model';
 import { LoadingService } from '../../shared/components/loading/loading.service';
 import { SharedButton } from '../../shared/components/shared-button/shared-button.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
-import { mapToPaginatedProducts } from '../../models/product.model';
 import { TranslateModule } from '@ngx-translate/core';
 import { AnimateFromTopDirective } from '../../shared/animations/scroll-animation/top';
 import { AnimateFromRightDirective } from '../../shared/animations/scroll-animation/right';
@@ -37,8 +36,6 @@ export interface sharedHeader {
         LoadingComponent,
         TranslateModule,
         AnimateFromTopDirective,
-        AnimateFromRightDirective,
-        AnimateFromLeftDirective,
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',
@@ -178,7 +175,5 @@ export class HomeComponent implements OnInit {
         }
     }
 
-    ngOnDestroy(): void {
-        // No reset needed as service is stateless
-    }
+
 }

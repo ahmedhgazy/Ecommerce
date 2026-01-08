@@ -23,30 +23,3 @@ export function mapToProduct(products: Product[], id: number): Product {
     return products[id];
 }
 
-export function mapToPaginatedProducts(
-    paginatedProducts: Product[],
-    allProducts: Product[],
-    allLoaded
-) {
-    if (paginatedProducts.length >= allProducts.length) {
-        allLoaded = true;
-        const loaded = allLoaded;
-        return {
-            loaded,
-            paginatedProducts,
-        };
-    } else if (paginatedProducts.length < allProducts.length) {
-        allLoaded = false;
-        const loaded = allLoaded;
-        return {
-            loaded,
-            paginatedProducts,
-        };
-    } else {
-        const loaded = true;
-        return {
-            loaded,
-            paginatedProducts,
-        };
-    }
-}

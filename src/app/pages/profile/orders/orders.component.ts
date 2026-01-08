@@ -1,14 +1,13 @@
 import { CommonModule } from '@angular/common';
 import {
-    Component,
-    HostListener,
-    inject,
-    OnInit,
-    ViewChild,
-    ViewChildren,
-    ElementRef,
-    QueryList,
-    AfterViewInit
+  Component,
+  HostListener,
+  inject,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+  ElementRef,
+  QueryList,
 } from '@angular/core';
 import { TagModule } from 'primeng/tag';
 import { OrderStatus } from '../../../services/orders/orders.service';
@@ -25,182 +24,180 @@ import { Router } from '@angular/router';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 import { LoadingService } from '../../../shared/components/loading/loading.service';
 @Component({
-    selector: 'app-orders',
-    standalone: true,
-    imports: [
-        TableModule,
-        CommonModule,
-        InputIconModule,
-        IconFieldModule,
-        ButtonModule,
-        LoadingComponent,
-        TranslateModule,
-        TagModule
-    ],
+  selector: 'app-orders',
+  standalone: true,
+  imports: [
+    TableModule,
+    CommonModule,
+    InputIconModule,
+    IconFieldModule,
+    ButtonModule,
+    LoadingComponent,
+    TranslateModule,
+    TagModule
+  ],
 
-    templateUrl: './orders.component.html',
-    styleUrl: './orders.component.scss',
-    providers: [FilterService],
+  templateUrl: './orders.component.html',
+  styleUrl: './orders.component.scss',
+  providers: [FilterService],
 })
 export class OrdersComponent implements OnInit {
-    orderItemsStyleColors = [
-        'red',
-        'green',
-        'blue',
-        'orange',
-        'purple',
-        'pink',
-        'yellow',
+  orderItemsStyleColors = [
+    'red',
+    'green',
+    'blue',
+    'orange',
+    'purple',
+    'pink',
+    'yellow',
+  ];
+
+  // Make OrderStatus available in template
+  OrderStatus = OrderStatus;
+
+  getBackgroundColor(index: number): string {
+    return this.orderItemsStyleColors[
+      index % this.orderItemsStyleColors.length
     ];
+  }
 
-    // Make OrderStatus available in template
-    OrderStatus = OrderStatus;
+  smallScreen = false;
 
-    getBackgroundColor(index: number): string {
-        return this.orderItemsStyleColors[
-            index % this.orderItemsStyleColors.length
-        ];
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkScreenSize();
+  }
+
+  loadingS = inject(LoadingService);
+  ordersS = inject(OrdersService);
+  LoadingS = inject(LoadingService);
+  filterService = inject(FilterService);
+  router = inject(Router);
+  Orders$: Observable<Order[]> = this.loadingS.showLoadingUntilCompleted(
+    this.ordersS.getOrders()
+  );
+  @ViewChild('dt1') dt1: Table | undefined;
+  selectedOrder: Order | null = null;
+  isMobile: boolean = false;
+
+  displayedColumns: string[] = [
+    'product',
+    'orderItems',
+    'shippingAddress1',
+    'dateOrdered',
+    'status',
+    'totalPrice'
+  ];
+
+  ngOnInit(): void {
+    this.ordersS.getOrders().subscribe((res) => {
+    });
+    this.checkScreenSize();
+    window.addEventListener('resize', this.checkScreenSize.bind(this));
+  }
+
+  getSeverity(status: OrderStatus): "success" | "secondary" | "info" | "warning" | "danger" | "contrast" | undefined {
+    switch (status) {
+      case OrderStatus.Pending:
+        return 'warning';
+      case OrderStatus.Processing:
+        return 'info';
+      case OrderStatus.Shipped:
+        return 'secondary';
+      case OrderStatus.Delivered:
+        return 'success';
+      case OrderStatus.Cancelled:
+        return 'danger';
+      default:
+        return 'info';
+    }
+  }
+
+
+  getStatusText(status: OrderStatus): string {
+    return this.ordersS.getStatusString(status);
+  }
+
+  onGlobalFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dt1?.filterGlobal(filterValue, 'contains');
+  }
+
+  customFilter(value: any, filter: string): boolean {
+    if (filter === undefined || filter === null || filter.trim() === '') {
+      return true;
     }
 
-    smallScreen = false;
-
-    @HostListener('window:resize', ['$event'])
-    onResize(event: Event) {
-        this.checkScreenSize();
+    if (value === undefined || value === null) {
+      return false;
     }
 
-    loadingS = inject(LoadingService);
-    ordersS = inject(OrdersService);
-    LoadingS = inject(LoadingService);
-    filterService = inject(FilterService);
-    router = inject(Router);
-    Orders$: Observable<Order[]> = this.loadingS.showLoadingUntilCompleted(
-        this.ordersS.getOrders()
-    );
-    @ViewChild('dt1') dt1: Table | undefined;
-    selectedOrder: Order | null = null;
-    isMobile: boolean = false;
+    filter = filter.toLowerCase();
 
-    displayedColumns: string[] = [
-        'product',
-        'orderItems',
-        'shippingAddress1',
-        'dateOrdered',
-        'status',
-        'totalPrice'
-    ];
-
-    ngOnInit(): void {
-        this.ordersS.getOrders().subscribe((res) => {
-        });
-        this.checkScreenSize();
-        window.addEventListener('resize', this.checkScreenSize.bind(this));
+    if (typeof value === 'string') {
+      return value.toLowerCase().indexOf(filter) !== -1;
+    } else if (typeof value === 'number') {
+      return value.toString().toLowerCase().indexOf(filter) !== -1;
+    } else if (value instanceof Date) {
+      return value.toDateString().toLowerCase().indexOf(filter) !== -1;
+    } else if (Array.isArray(value)) {
+      return value.some((item) => this.customFilter(item, filter));
+    } else if (typeof value === 'object') {
+      return Object.values(value).some((item) =>
+        this.customFilter(item, filter)
+      );
     }
 
-    getSeverity(status: OrderStatus): "success" | "secondary" | "info" | "warning" | "danger" | "contrast" | undefined {
-        switch (status) {
-            case OrderStatus.Pending:
-                return 'warning';
-            case OrderStatus.Processing:
-                return 'info';
-            case OrderStatus.Shipped:
-                return 'secondary'; // Or primary if valid
-            case OrderStatus.Delivered:
-                return 'success';
-            case OrderStatus.Cancelled:
-                return 'danger';
-            default:
-                return 'info';
+    return false;
+  }
+
+  @ViewChildren('rowElement', { read: ElementRef }) rowElements!: QueryList<ElementRef>;
+
+  observer: IntersectionObserver | undefined;
+
+  ngAfterViewInit() {
+    this.setupObserver();
+    this.rowElements.changes.subscribe(() => {
+      this.setupObserver();
+    });
+  }
+
+  setupObserver() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+
+    this.observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible-row');
+          entry.target.classList.remove('hidden-row');
+          this.observer?.unobserve(entry.target); // Animate once
         }
-    }
+      });
+    }, {
+      root: null,
+      threshold: 0.1,
+      rootMargin: '0px'
+    });
 
-    // Status number to string for display usually handled by pipe or simple helper
-    getStatusText(status: OrderStatus): string {
-        return this.ordersS.getStatusString(status);
-    }
+    this.rowElements.forEach((el) => {
+      el.nativeElement.classList.add('hidden-row'); // Start hidden
+      this.observer?.observe(el.nativeElement);
+    });
+  }
 
-    onGlobalFilter(event: Event) {
-        const filterValue = (event.target as HTMLInputElement).value;
-        this.dt1?.filterGlobal(filterValue, 'contains');
-    }
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.checkScreenSize.bind(this));
+    this.observer?.disconnect();
+  }
 
-    customFilter(value: any, filter: string): boolean {
-        if (filter === undefined || filter === null || filter.trim() === '') {
-            return true;
-        }
+  checkScreenSize(): void {
+    this.isMobile = window.innerWidth < 768;
+    this.smallScreen = window.innerWidth <= 768;
+  }
 
-        if (value === undefined || value === null) {
-            return false;
-        }
-
-        filter = filter.toLowerCase();
-
-        if (typeof value === 'string') {
-            return value.toLowerCase().indexOf(filter) !== -1;
-        } else if (typeof value === 'number') {
-            return value.toString().toLowerCase().indexOf(filter) !== -1;
-        } else if (value instanceof Date) {
-            return value.toDateString().toLowerCase().indexOf(filter) !== -1;
-        } else if (Array.isArray(value)) {
-            return value.some((item) => this.customFilter(item, filter));
-        } else if (typeof value === 'object') {
-            return Object.values(value).some((item) =>
-                this.customFilter(item, filter)
-            );
-        }
-
-        return false;
-    }
-
-    @ViewChildren('rowElement', { read: ElementRef }) rowElements!: QueryList<ElementRef>;
-
-    observer: IntersectionObserver | undefined;
-
-    ngAfterViewInit() {
-        this.setupObserver();
-
-        // Re-observe when rows change (e.g. pagination, filtering)
-        this.rowElements.changes.subscribe(() => {
-            this.setupObserver();
-        });
-    }
-
-    setupObserver() {
-        if (this.observer) {
-            this.observer.disconnect();
-        }
-
-        this.observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible-row');
-                    entry.target.classList.remove('hidden-row');
-                    this.observer?.unobserve(entry.target); // Animate once
-                }
-            });
-        }, {
-            root: null,
-            threshold: 0.1,
-            rootMargin: '0px'
-        });
-
-        this.rowElements.forEach((el) => {
-            el.nativeElement.classList.add('hidden-row'); // Start hidden
-            this.observer?.observe(el.nativeElement);
-        });
-    }
-
-    ngOnDestroy(): void {
-        window.removeEventListener('resize', this.checkScreenSize.bind(this));
-        this.observer?.disconnect();
-    }
-
-    checkScreenSize(): void {
-        this.isMobile = window.innerWidth < 768;
-        this.smallScreen = window.innerWidth <= 768;
-    }
-
-    get inOrders(): boolean {
-        return this.router.url.includes('/profile/orders');
-    }
+  get inOrders(): boolean {
+    return this.router.url.includes('/profile/orders');
+  }
 }

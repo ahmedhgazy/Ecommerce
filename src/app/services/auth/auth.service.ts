@@ -185,8 +185,7 @@ export class AuthService {
             this.setupAutoLogout(expirationDate);
             this.setupTokenRefresh(expirationDate);
         } else if (loadedUser.refreshToken) {
-            // Token expired but we have refresh token - try to refresh
-            this.refreshToken(false).subscribe({ // Don't redirect if auto-login fails
+            this.refreshToken(false).subscribe({ 
                 error: () => this.logout(false)
             });
         } else {
