@@ -1,16 +1,25 @@
-import { Component, OnInit, OnDestroy, computed, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, computed, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { TimerDigitComponent } from './timer-digit/timer-digit.component';
+import { PromotionsService } from '../../../../services/promotions/promotions.service';
 
 @Component({
     selector: 'app-cat-banner',
     standalone: true,
-    imports: [CommonModule, TranslateModule],
+    imports: [CommonModule, TranslateModule, TimerDigitComponent],
     templateUrl: './cat-banner.component.html',
     styleUrl: './cat-banner.component.scss',
 })
 export class CatBannerComponent implements OnInit, OnDestroy {
-    targetDate = signal(this.calculateTargetDate(5));
+    promotionsService = inject(PromotionsService);
+    
+    // Initialize with a default value (e.g. now) to avoid errors before API returns
+    // or keep the calculation as a temporary placeholder? 
+    // Let's use current time + 1 day as a placeholder until API loads to prevent "00:00:00" if strict.
+    // Or just start with what we had (static) as fallback.
+    targetDate = signal(new Date(new Date().getTime() + 24 * 60 * 60 * 1000)); 
+    
     currentTime = signal(new Date());
     private animationFrameId: number | undefined;
 
@@ -30,13 +39,13 @@ export class CatBannerComponent implements OnInit, OnDestroy {
                 seconds: Math.floor((timeDifference % (1000 * 60)) / 1000),
             };
         } else {
-            this.resetCountdown();
             return { days: 0, hours: 0, minutes: 0, seconds: 0 };
         }
     });
 
     ngOnInit() {
-        this.updateTime(); // Start the update loop
+        this.fetchFlashSaleDate();
+        this.updateTime();
     }
 
     ngOnDestroy() {
@@ -45,53 +54,31 @@ export class CatBannerComponent implements OnInit, OnDestroy {
         }
     }
 
-    private calculateTargetDate(daysToAdd: number): Date {
-        const now = new Date();
-        return new Date(now.getTime() + daysToAdd * 24 * 60 * 60 * 1000);
+    private fetchFlashSaleDate() {
+        this.promotionsService.getFlashSaleEndDate().subscribe({
+            next: (date) => {
+                this.targetDate.set(date);
+            },
+            error: (err) => {
+                console.error('Failed to fetch flash sale date', err);
+                // Fallback to 1 day 5 hours 9 mins if API fails
+                this.targetDate.set(this.calculateFallbackDate(1, 5, 9));
+            }
+        });
     }
 
-    private resetCountdown() {
-        this.targetDate.set(this.calculateTargetDate(5));
+    private calculateFallbackDate(days: number, hours: number = 0, minutes: number = 0): Date {
+        const now = new Date();
+        return new Date(
+            now.getTime() +
+            days * 24 * 60 * 60 * 1000 +
+            hours * 60 * 60 * 1000 +
+            minutes * 60 * 1000
+        );
     }
 
     private updateTime() {
         this.currentTime.set(new Date());
         this.animationFrameId = requestAnimationFrame(() => this.updateTime());
     }
-
-    /*
-
-    *  Does not work properly (stuck in an infinite loop)
-        countdown$: Observable<CountdownTime>;
-    private countdownSubscription: Subscription | null = null;
-
-    constructor(private countdownService: CountdownService) {
-        console.log('CatBannerComponent constructed');
-    }
-
-    ngOnInit() {
-    this.countdown$ = this.countdownService.countdown$;
-    const endDate = new Date(
-        new Date().getTime() +
-            5 * 24 * 60 * 60 * 1000 +
-            5 * 60 * 60 * 1000 +
-            35 * 60 * 1000 +
-            30 * 1000
-    );
-    console.log('Setting countdown end date to:', endDate);
-    this.countdownService.startCountdown(endDate);
-    this.countdownSubscription = this.countdown$.subscribe(
-        (countdown) =>
-            console.log('Countdown update in component:', countdown),
-        (error) => console.error('Error in countdown subscription:', error)
-    );
-    }
-
-    ngOnDestroy() {
-    console.log('CatBannerComponent being destroyed');
-    if (this.countdownSubscription) {
-        this.countdownSubscription.unsubscribe();
-    }
-    }
-    */
 }

@@ -13,28 +13,22 @@
                 <div
                     class="banner__counter d-flex flex-wrap justify-content-start align-items-center mb-4"
                 >
-                    <div
-                        class="count bg-white text-dark rounded-circle me-3 mb-3"
-                    >
-                        <p class="mb-0">{{ countdown().days }}</p>
-                        <span>{{ "BANNER.DAYS" | translate }}</span>
-                    </div>
-                    <div
-                        class="count bg-white text-dark rounded-circle me-3 mb-3"
-                    >
-                        <p class="mb-0">{{ countdown().hours }}</p>
-                        <span>{{ "BANNER.HOURS" | translate }}</span>
-                    </div>
-                    <div
-                        class="count bg-white text-dark rounded-circle me-3 mb-3"
-                    >
-                        <p class="mb-0">{{ countdown().minutes }}</p>
-                        <span>{{ "BANNER.MINUTES" | translate }}</span>
-                    </div>
-                    <div class="count bg-white text-dark rounded-circle mb-3">
-                        <p class="mb-0">{{ countdown().seconds }}</p>
-                        <span>{{ "BANNER.SECONDS" | translate }}</span>
-                    </div>
+                    <app-timer-digit
+                        [value]="countdown().days"
+                        label="BANNER.DAYS"
+                    ></app-timer-digit>
+                    <app-timer-digit
+                        [value]="countdown().hours"
+                        label="BANNER.HOURS"
+                    ></app-timer-digit>
+                    <app-timer-digit
+                        [value]="countdown().minutes"
+                        label="BANNER.MINUTES"
+                    ></app-timer-digit>
+                    <app-timer-digit
+                        [value]="countdown().seconds"
+                        label="BANNER.SECONDS"
+                    ></app-timer-digit>
                 </div>
                 <button class="btn btn-success btn-lg">
                     {{ "BANNER.BUY_NOW" | translate }}

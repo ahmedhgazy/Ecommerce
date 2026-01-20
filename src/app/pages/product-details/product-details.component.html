@@ -38,11 +38,12 @@
                                         color: product.inStock
                                             ? ' #00FF66'
                                             : '#DB4444'
-                                    }">{{
-                                    product.inStock
-                                    ? "In Stock"
-                                    : "Out Of Stock"
-                                    }}</span>
+                                    }">
+                                    {{ product.inStock ? "In Stock" : "Out Of Stock" }}
+                                </span>
+                                <span *ngIf="product.inStock" class="ms-2 text-muted" style="font-size: 0.9em;">
+                                    ({{ product.availableQuantity }} units left)
+                                </span>
                             </div>
                             <div class="product__price">
                                 <h5 class="mb-4">${{ product.price }}</h5>

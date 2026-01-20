@@ -77,7 +77,11 @@ export class HeaderComponent implements OnInit {
 
     const theme = localStorage.getItem('theme');
     if (theme) {
-      this.changeTheme(JSON.parse(theme));
+      try {
+        this.changeTheme(JSON.parse(theme));
+      } catch (error) {
+        this.changeTheme(theme);
+      }
     }
   }
 

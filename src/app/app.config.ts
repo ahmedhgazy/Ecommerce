@@ -17,11 +17,14 @@ import { LoadingService } from './shared/components/loading/loading.service';
 
 import { TranslateModule } from '@ngx-translate/core';
 import { translateConfig } from './translation.config';
+import { provideNgxStripe } from 'ngx-stripe';
+import { environment } from '../environments/environment';
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
         provideClientHydration(),
+        provideNgxStripe(environment.stripePublishableKey),
         provideAnimationsAsync(),
         importProvidersFrom(
             HttpClientModule,

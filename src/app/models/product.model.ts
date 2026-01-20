@@ -15,7 +15,8 @@ export interface Product {
     new: boolean;
     sales?: number;
     category: string;
-    quantity: number;
+    availableQuantity: number;
+    quantity?: number;
     subTotal?: number;
 }
 

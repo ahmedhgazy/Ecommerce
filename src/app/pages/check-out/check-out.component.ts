@@ -128,11 +128,27 @@ export class CheckOutComponent implements OnInit, OnDestroy {
     this.loadingService
       .showLoadingUntilCompleted(
         this.ordersService.createOrder(orderRequest).pipe(
-          switchMap(() => {
-            this.cartS.clearCart().subscribe();
-            setTimeout(() => {
-              this.router.navigate(['/home']);
-            }, 3000);
+          switchMap((order: any) => {
+            // DON'T clear cart here - only clear after successful payment
+            // Capture cart items for payment page display
+            const cartItems = this.cartS.cartItems || [];
+
+            // Navigate to payment with full order context
+            const paymentContext = {
+              orderId: order.id || order.orderId,
+              amount: this.totalPrice,
+              items: cartItems.map((item: any) => ({
+                name: item.name,
+                quantity: item.quantity,
+                price: item.price
+              })),
+              shippingAddress: `${orderRequest.shippingAddress1}, ${orderRequest.city}, ${orderRequest.country} ${orderRequest.zipCode}`,
+              customerName: this.checkoutForm['name'].value,
+              customerEmail: this.checkoutForm['email'].value
+            };
+
+            this.router.navigate(['/payment'], { state: paymentContext });
+
             return this.translate.get([
               'TOAST_MESSAGE.success',
               'TOAST_MESSAGE.orderPlacedSuccessfully',

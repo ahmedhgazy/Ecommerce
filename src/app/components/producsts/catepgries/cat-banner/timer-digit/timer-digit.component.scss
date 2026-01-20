@@ -1,0 +1,105 @@
+.timer-digit-container {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+
+    @media (max-width: 767.98px) {
+        width: 55px;
+        height: 55px;
+    }
+
+    @media (max-width: 575.98px) {
+        width: 50px;
+        height: 50px;
+        margin-inline-end: 0.5rem;
+    }
+}
+
+.digit-viewport {
+    height: 24px; /* Adjust based on font size */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2px;
+    
+    @media (max-width: 767.98px) {
+        height: 22px;
+    }
+}
+
+.digit-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    /* Initial state: Old value is visible. But here we want the 'slid-down' effect.
+       Let's say 'old' is at top: 0, and 'new' is at top: -100%.
+       Wait, if we slide DOWN:
+       Start: Old is at 0. New is at -100% (above).
+       End: Old is at 100% (below). New is at 0.
+    */
+    transform: translateY(-50%); /* Start with New (top) hidden, Old (bottom) visible? No. */
+    
+    /* 
+       Let's structure it vertically:
+       [New Value]  <- translateY(-100%) relative to viewport?
+       [Old Value]
+    */
+    transform: translateY(-50%); /* Show the bottom half (Old Value) initially? */
+    /* Actually simpler: 
+       If flex-direction column:
+       New
+       Old
+       Height is 2x viewport.
+       To show Old: translateY(-50%) (assuming both are equal height)
+       To show New: translateY(0)
+    */
+    height: 200%;
+    width: 100%;
+    transition: transform 0s; /* No transition by default */
+
+    &.animate {
+        transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Smooth bounce */
+        transform: translateY(0);
+    }
+}
+
+.digit {
+    font-weight: 600;
+    font-size: 1.25rem;
+    height: 50%; /* Each takes half the track (which is 2x viewport) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    
+    @media (max-width: 767.98px) {
+        font-size: 1.1rem;
+    }
+    
+    @media (max-width: 575.98px) {
+        font-size: 1rem;
+    }
+}
+
+span {
+    font-size: 0.75rem;
+    line-height: 1;
+    
+    @media (max-width: 767.98px) {
+        font-size: 0.7rem;
+    }
+    
+    @media (max-width: 575.98px) {
+        font-size: 0.65rem;
+    }
+}

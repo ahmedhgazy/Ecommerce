@@ -22,9 +22,11 @@
             <span>${{ product.discount }}</span>
             <span>${{ product.price }}</span>
         </p>
-        <div class="d-flex stars">
+        <div class="d-flex stars align-items-center justify-content-between w-100 mt-2">
             <ngx-stars [initialStars]="product.rating" [maxStars]="5" [readonly]="true" [color]="'#FFAD33'"></ngx-stars>
-            <p>{{ product.available }}</p>
+            <span class="stock-info" [class.text-danger]="product.availableQuantity < 5" [class.text-success]="product.availableQuantity >= 5">
+                {{ product.availableQuantity > 0 ? product.availableQuantity + ' left' : 'Out of Stock' }}
+            </span>
         </div>
     </div>
 </div>
