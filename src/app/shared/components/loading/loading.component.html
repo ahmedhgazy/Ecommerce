@@ -1,3 +1,18 @@
-<div *ngIf="loadingService.loading$ | async" class="loading-overlay">
-    <p-progressSpinner ariaLabel="loading" strokeWidth="4" />
-</div>
+@if (loadingService.isLoading()) {
+    <div
+        class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center loading-overlay"
+        style="z-index: 1050"
+    >
+        <div class="position-relative" role="status">
+            <!-- Spinner -->
+            <div class="spinner-border spinner-custom">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <!-- Pulse Effect -->
+            <div
+                class="position-absolute top-0 start-0 pulse-effect"
+                aria-hidden="true"
+            ></div>
+        </div>
+    </div>
+}

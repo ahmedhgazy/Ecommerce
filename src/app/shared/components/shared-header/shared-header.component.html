@@ -1,31 +1,14 @@
-<section class="shared-header" animateFromRight>
+<section class="shared-header text-center" animateFromRight>
     <div class="container">
-        <div class="row">
-            <div class="col-12 mb-4">
-                <div class="title d-flex align-items-center">
-                    <span class="title__icon">
-                        <svg
-                            width="20"
-                            height="40"
-                            viewBox="0 0 20 40"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <rect
-                                width="20"
-                                height="40"
-                                rx="4"
-                                fill="#DB4444"
-                            />
-                        </svg>
-                    </span>
-                    <div class="title__text">
-                        <ng-content select="[header-title]"></ng-content>
-                    </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-8 mb-5">
+                <div class="section-badge mb-2">
+                    <ng-content select="[header-title]"></ng-content>
                 </div>
-                <div class="description">
+                <h2 class="section-title">
                     <ng-content select="[header-desc]"></ng-content>
-                </div>
+                </h2>
+                <div class="section-line"></div>
             </div>
         </div>
     </div>

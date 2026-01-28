@@ -1,0 +1,20 @@
+<div class="modal-premium-image">
+    <!-- Close Button (Absolute Top Right) -->
+    <button type="button" class="btn-close-floating" aria-label="Close" (click)="activeModal.dismiss()">
+        <i class="pi pi-times"></i>
+    </button>
+
+    <!-- Image Area -->
+    <div class="image-wrapper">
+        <div class="loader-container" *ngIf="isLoading">
+            <i class="pi pi-spin pi-spinner" style="font-size: 2rem; color: white"></i>
+        </div>
+        <img
+            [src]="imageUrl"
+            class="preview-img"
+            [class.loaded]="!isLoading"
+            (load)="isLoading = false"
+            alt="Product Preview"
+        />
+    </div>
+</div>

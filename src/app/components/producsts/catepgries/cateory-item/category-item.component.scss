@@ -1,41 +1,58 @@
 .card {
-    // border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    background: white; // Default fallback
+    border: 1px solid rgba(0, 0, 0, 0.05); // Subtle border
+    border-radius: 16px; // Larger radius
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Bouncy transition
     overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+    height: 100%; // Ensure uniform height
 
     @media screen and (max-width: 768px) {
         margin-bottom: 1rem !important;
     }
 
     &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        background-color: #fafafa;
-        border-color: transparent;
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        border-color: rgba(0, 0, 0, 0.1);
 
         .icon {
-            color: var(--bs-primary);
+            color: #DB4444; // Premium red/primary color
+            transform: scale(1.1);
         }
     }
 
     .card-body {
-        padding: 2rem 1.5rem;
+        padding: 2.5rem 1.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
     .icon {
-        transition: color 0.3s ease;
+        transition: all 0.4s ease;
         color: #333;
         text-align: center;
+        margin-bottom: 1rem;
+
+        svg {
+            stroke: currentColor; // Ensure SVG uses text color
+        }
     }
 
     .text {
-        margin-top: 1rem;
-    }
+        margin-top: 0.5rem;
 
-    .card-title {
-        font-weight: 600;
-        color: #333;
+        p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+        }
     }
 }
 

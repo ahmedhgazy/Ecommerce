@@ -14,9 +14,8 @@ import { Profile } from '../../../models/profile.model';
 import { CommonModule } from '@angular/common';
 import { SharedInputComponent } from '../../../shared/components/shared-input/shared-input.component';
 import { ToastModule } from 'primeng/toast';
-import { LoadingService } from '../../../shared/components/loading/loading.service';
-import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 
 @Component({
     selector: 'app-edit',
@@ -27,8 +26,8 @@ import { TranslateModule } from '@ngx-translate/core';
         SharedInputComponent,
         ReactiveFormsModule,
         ToastModule,
-        LoadingComponent,
         TranslateModule,
+        LoadingComponent,
     ],
     templateUrl: './edit.component.html',
     styleUrl: './edit.component.scss',
@@ -39,7 +38,6 @@ export class EditComponent implements OnInit, OnDestroy {
     router = inject(Router);
     auth = inject(AuthService);
     profileService = inject(ProfileService);
-    loadingS = inject(LoadingService);
     endSubs$ = new Subject<any>();
     profileData: Profile;
     activeProfile = false;
@@ -86,8 +84,14 @@ export class EditComponent implements OnInit, OnDestroy {
         if (this.form.invalid) {
             return;
         }
+
+        const formValue = { ...this.form.value };
+        if (formValue.zipCode) {
+            formValue.zipCode = String(formValue.zipCode);
+        }
+
         this.profileService
-            .updateProfile(this.form.value)
+            .updateProfile(formValue)
             .pipe(takeUntil(this.endSubs$))
             .subscribe({
                 next: () => {
@@ -101,8 +105,7 @@ export class EditComponent implements OnInit, OnDestroy {
     }
 
     getProfileData() {
-        this.subscription = this.loadingS
-            .showLoadingUntilCompleted(this.profileService.getProfile())
+        this.subscription = this.profileService.getProfile()
             .subscribe((data) => { });
     }
 

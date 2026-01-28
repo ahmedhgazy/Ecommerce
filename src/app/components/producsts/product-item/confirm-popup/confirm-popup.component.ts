@@ -1,11 +1,9 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    EventEmitter,
     inject,
     Input,
     OnDestroy,
-    Output,
 } from '@angular/core';
 import { Product } from '../../../../models/product.model';
 import { WishlistService } from '../../../../services/products/wishlist.service';
@@ -13,20 +11,21 @@ import {
     catchError,
     EMPTY,
     Subject,
-    Subscription,
     switchMap,
     takeUntil,
 } from 'rxjs';
-import { MessageService, PrimeNGConfig } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'app-confirm-popup',
     standalone: true,
     templateUrl: './confirm-popup.component.html',
     styleUrl: './confirm-popup.component.scss',
-    imports: [ToastModule, TranslateModule],
+    imports: [ToastModule, TranslateModule, CommonModule],
     providers: [MessageService],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -34,15 +33,14 @@ export class ConfirmPopupComponent implements OnDestroy {
     wishlistS = inject(WishlistService);
     messageService = inject(MessageService);
     translate = inject(TranslateService);
+    activeModal = inject(NgbActiveModal);
+
     endSubs$ = new Subject<void>();
-    @Output() addToSavedItems = new EventEmitter<boolean>();
-    @Output() closePopup = new EventEmitter<boolean>();
-    @Input()
-    product: Product;
-    subscription: Subscription;
+
+    @Input() product: Product;
 
     close() {
-        this.closePopup.emit(true);
+        this.activeModal.dismiss();
     }
 
     SaveItem() {
@@ -66,11 +64,24 @@ export class ConfirmPopupComponent implements OnDestroy {
                             const [summary, detail] = translationKeys.map(
                                 (key) => translations[key]
                             );
-                            this.messageService.add({
-                                severity: result === null ? 'error' : 'success',
-                                summary,
-                                detail,
-                            });
+
+                            if (result !== null) {
+                                this.messageService.add({
+                                    severity: result === null ? 'warn' : 'success',
+                                    summary,
+                                    detail,
+                                });
+
+                                if (result !== null) {
+                                    setTimeout(() => this.activeModal.close(true), 1000);
+                                }
+                            } else {
+                                this.messageService.add({
+                                    severity: 'warn',
+                                    summary,
+                                    detail,
+                                });
+                            }
                             return EMPTY;
                         })
                     );

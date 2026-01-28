@@ -10,7 +10,9 @@
         "LOG_OUT": "Log out",
         "WISHLIST": "Wishlist",
         "PROFILE": "Profile",
-        "CART": "Cart"
+        "CART": "Cart",
+        "PRODUCTS": "Products",
+        "LOG_OUT_CONFIRM": "Are you sure you want to log out?"
     },
     "SIDEBAR": {
         "HEADER": "Exclusive",
@@ -61,7 +63,34 @@
         "OUR_PRODUCTS": "Our products",
         "EXPLORE_OUR_PRODUCTS": "Explore Our Products",
         "FEATURED": "Featured",
-        "NEW_ARRIVALS": "New Arrivals"
+        "NEW_ARRIVALS": "New Arrivals",
+        "NEW_COLLECTIONS": "New Collections",
+        "ENHANCE_YOUR": "Enhance Your",
+        "MUSIC_EXPERIENCE": "Music Experience",
+        "LIMITED_TIME_OFFERS": "Limited Time Offers",
+        "BROWSE_COLLECTIONS": "Browse Collections",
+        "CUSTOMER_FAVORITES": "Customer Favorites",
+        "SUBSCRIBE_SAVE": "Subscribe & Save",
+        "JOIN_PREMIUM_CLUB": "Join the Premium Club",
+        "PREMIUM_CLUB_DESC": "Get exclusive access to new arrivals, premium offers, and",
+        "OFF_FIRST_ORDER": "20% off your first order.",
+        "ENTER_EMAIL_PLACEHOLDER": "Enter your email address",
+        "NO_SPAM": "No spam, unsubscribe anytime.",
+        "JUST_ARRIVED": "Just Arrived",
+        "EXPLORE_ALL": "Explore All",
+        "PLAYSTATION_5": "PlayStation 5",
+        "PS5_DESC": "Black and White version of the PS5 coming out on sale.",
+        "MENS_COLLECTIONS": "Men's Collections",
+        "MENS_COLLECTIONS_DESC": "Featured men's collections that give you another vibe.",
+        "SPEAKERS": "Speakers",
+        "AMAZON_SPEAKERS_DESC": "Amazon wireless speakers",
+        "PERFUME": "Perfume",
+        "GUCCI_PERFUME_DESC": "GUCCI INTENSE OUD EDP",
+        "PHONES": "Phones",
+        "COMPUTERS": "Computers",
+        "HEADPHONES": "Headphones",
+        "SMARTWATCHES": "SmartWatches",
+        "SHOP_NOW": "Shop Now"
     },
     "FOOTER": {
         "EXCLUSIVE": "Exclusive",
@@ -100,7 +129,11 @@
         "FREE_DELIVERY": "Free Delivery",
         "ENTER_POSTAL_CODE": "Enter your postal code for Delivery Availability",
         "RETURN_DELIVERY": "Return Delivery",
-        "FREE_DELIVERY_RETURNS": "Free 30 Days Delivery Returns. Details"
+        "FREE_DELIVERY_RETURNS": "Free 30 Days Delivery Returns. Details",
+        "ORDER_ITEMS": "Order Items",
+        "SHIPPING_ADDRESS": "Shipping Address",
+        "PAYMENT": "Payment",
+        "ORDER_STATUS": "Order Status"
     },
     "CONTACT": {
         "CALL_TO_US": "Call To Us",
@@ -169,11 +202,18 @@
         "FREE": "Free",
         "TOTAL": "Total",
         "PROCEED_TO_CHECKOUT": "Proceed to checkout",
-        "emptyMessage": "Your cart is empty."
+        "emptyMessage": "Your cart is empty.",
+        "START_SHOPPING": "Start Shopping"
     },
     "ORDERS": {
         "ORDERS": "Orders",
-        "SEARCH": "Search"
+        "SEARCH": "Search",
+        "ORDER_ID": "Order ID",
+        "DATE": "Date",
+        "STATUS": "Status",
+        "TOTAL": "Total",
+        "ACTIONS": "Actions",
+        "NO_ORDERS": "No orders found."
     },
     "BILLING": {
         "BILLING_DETAILS": "Billing Details",
@@ -236,5 +276,38 @@
         "INVALID_PASSWORD": "The password is invalid or the user does not have a password.",
         "USER_DISABLED": "The user account has been disabled by an administrator.",
         "UNKNOWN_ERROR": "An unexpected error occurred. Please try again later."
+    },
+    "PRODUCTS": {
+        "SUBTITLE": "Discover amazing products at great prices",
+        "FILTERS": "Filters",
+        "ALL_PRODUCTS": "All Products",
+        "PRICE_RANGE": "Price Range",
+        "MIN": "Min",
+        "MAX": "Max",
+        "AVAILABILITY": "Availability",
+        "IN_STOCK_ONLY": "In Stock Only",
+        "CLEAR_FILTERS": "Clear Filters",
+        "SHOWING": "Showing",
+        "OF": "of",
+        "SORT_BY": "Sort by",
+        "NO_PRODUCTS_FOUND": "No products found",
+        "TRY_ADJUSTING": "Try adjusting your filters or search term",
+        "LOADING": "Loading products...",
+        "OFF": "OFF",
+        "LEFT": "left",
+        "OUT_OF_STOCK": "Out of Stock",
+        "SORT_OPTIONS": {
+            "NEWEST": "Newest First",
+            "PRICE_LOW_HIGH": "Price: Low to High",
+            "PRICE_HIGH_LOW": "Price: High to Low",
+            "RATING": "Top Rated",
+            "BESTSELLING": "Best Selling"
+        }
+    },
+    "ACTIONS": {
+        "ADD_TO_WISHLIST": "Add to Wishlist",
+        "QUICK_VIEW": "Quick View",
+        "CANCEL": "Cancel",
+        "VIEW_DETAILS": "View Details"
     }
 }

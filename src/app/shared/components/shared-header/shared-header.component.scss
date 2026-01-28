@@ -1,29 +1,41 @@
+@import '../../../../assets/styles/premium';
+
 .shared-header {
-    margin-top: 3.75rem;
+  padding: 3rem 0 1.5rem;
 
-    .title {
-        margin-bottom: 1.5rem;
+  .section-badge {
+    display: inline-block;
+    color: $premium-primary;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0.5rem 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: $radius-full;
+  }
 
-        &__icon {
-            flex-shrink: 0;
-        }
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: $premium-dark;
+    margin: 1rem 0;
+    line-height: 1.2;
+    background: $gradient-dark;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 
-        &__text {
-            margin-inline-start: 1rem;
-            font-family: var(--secondary-font);
-            font-weight: 600;
-            line-height: 1.25rem;
-            color: var(--btn-color-red);
-            position: relative;
-        }
+    @media (max-width: 768px) {
+      font-size: 2rem;
     }
+  }
 
-    .description {
-        font-family: var(--main-font);
-        font-weight: 600;
-        font-size: 2.25rem;
-        line-height: 3rem;
-        letter-spacing: 0.04em;
-        color: #000000;
-    }
+  .section-line {
+    width: 60px;
+    height: 4px;
+    background: $gradient-primary;
+    margin: 1rem auto 0;
+    border-radius: $radius-full;
+  }
 }

@@ -3,23 +3,27 @@
         <div class="row justify-content-center">
             <app-category-item
                 class="col-8 mb-sm-3 offset-md-0 col-md-6 col-lg-3"
+                [queryParams]="{ category: 'phones' }"
             >
-                <ng-container title>Phones</ng-container>
+                <ng-container title>{{ 'HOME.PHONES' | translate }}</ng-container>
             </app-category-item>
             <app-category-item
                 class="col-8 mb-sm-3 offset-md-0 col-md-6 col-lg-3"
+                [queryParams]="{ category: 'computers' }"
             >
-                <ng-container title>Computers</ng-container>
+                <ng-container title>{{ 'HOME.COMPUTERS' | translate }}</ng-container>
             </app-category-item>
             <app-category-item
                 class="col-8 mb-sm-3 offset-md-0 col-md-6 col-lg-3"
+                [queryParams]="{ category: 'headphones' }"
             >
-                <ng-container title>Headphones</ng-container>
+                <ng-container title>{{ 'HOME.HEADPHONES' | translate }}</ng-container>
             </app-category-item>
             <app-category-item
                 class="col-8 mb-sm-3 offset-md-0 col-md-6 col-lg-3"
+                [queryParams]="{ category: 'smartwatches' }"
             >
-                <ng-container title>SmartWatches</ng-container>
+                <ng-container title>{{ 'HOME.SMARTWATCHES' | translate }}</ng-container>
             </app-category-item>
         </div>
     </div>

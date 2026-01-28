@@ -1,0 +1,25 @@
+import { Injectable, signal } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoadingService {
+  isLoading = signal(false);
+  private requestCount = 0;
+
+  show() {
+    this.requestCount++;
+    this.isLoading.set(true);
+  }
+
+  hide() {
+    this.requestCount--;
+    if (this.requestCount <= 0) {
+      this.requestCount = 0;
+      this.isLoading.set(false);
+    }
+  }
+
+
+}

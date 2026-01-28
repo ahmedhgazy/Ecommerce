@@ -1,15 +1,18 @@
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { LoadingService } from './loading.service';
+import { LoadingService } from '../../../core/services/loading.service';
+
 
 @Component({
-    selector: 'app-loading',
-    standalone: true,
-    imports: [ProgressSpinnerModule, CommonModule],
-    templateUrl: './loading.component.html',
-    styleUrl: './loading.component.scss',
+  selector: 'app-loading',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './loading.component.html',
+  styleUrls: ['./loading.component.scss']
 })
-export class LoadingComponent {
-    loadingService: LoadingService = inject(LoadingService);
+export class LoadingComponent implements OnInit {
+  loadingService = inject(LoadingService);
+
+  ngOnInit(): void {
+  }
 }

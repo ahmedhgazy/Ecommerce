@@ -1,87 +1,74 @@
-<!-- Register Section -->
-<section class="register mb-6" style="margin-top: 1.9rem">
-    <div class="row g-0">
-        <div class="col-12 col-md-6 text-center img_container-colDiv d-flex justify-content-center align-items-center"
-            style="background-color: var(--bg-auth)">
-            <img class="img-fluid" style="max-width: 90%" src="../../../../assets/images/rgstr.png" alt="Register" />
+<div class="auth-container">
+    <div class="auth-wrapper glass-card">
+        <!-- Left Side: Image -->
+        <div class="auth-image-side d-none d-lg-block">
+            <div class="image-overlay">
+                <div class="overlay-content">
+                    <h2 class="brand-title">Join Exclusive</h2>
+                    <p class="brand-tagline">Start your premium journey today</p>
+                </div>
+            </div>
+            <img src="assets/images/auth-premium.png" alt="Premium Auth Background">
         </div>
-        <div class="col-md-4 col-12 offset-md-1" style="flex: 1 1 auto">
-            <div *ngIf="!error" class="rgstr-area d-flex flex-column justify-content-center h-100">
-                <div class="auth-header">
-                    <h1>{{ 'REGISTER.CREATE_ACCOUNT' | translate }}</h1>
-                    <p class="mt-4">
-                        {{ 'REGISTER.ENTER_DETAILS_BELOW' | translate }}
+
+        <!-- Right Side: Form -->
+        <div class="auth-form-side" animateFromRight>
+            <div class="form-content text-start">
+                 <div class="text-start mb-4">
+                    <h1 class="auth-title gradient-text">{{ "REGISTER.CREATE_ACCOUNT" | translate }}</h1>
+                    <p class="auth-subtitle text-muted mt-2">
+                        {{ "REGISTER.ENTER_DETAILS_BELOW" | translate }}
                     </p>
                 </div>
-                <form [formGroup]="form" (ngSubmit)="submit()">
-                    <div class="form-group mb-4">
-                        <input type="text" formControlName="firstName"
-                            placeholder="{{ 'REGISTER.FIRST_NAME' | translate }}" class="form-control" />
+
+                <form [formGroup]="form" (ngSubmit)="submit()" class="d-flex flex-column gap-3">
+                     <!-- Error Alert -->
+                    <div *ngIf="error" class="alert alert-danger d-flex align-items-center justify-content-between p-3 rounded-3 mb-3">
+                        <span class="small">{{ error }}</span>
+                        <button type="button" class="btn-close btn-close-white small" (click)="cancelError()"></button>
                     </div>
-                    <div class="form-group mb-4">
-                        <input type="text" formControlName="lastName"
-                            placeholder="{{ 'REGISTER.LAST_NAME' | translate }}" class="form-control" />
+
+                    <div class="form-group">
+                        <input class="form-control-premium w-100" formControlName="firstName" type="text"
+                            placeholder="{{ 'REGISTER.FIRST_NAME' | translate }}" />
                     </div>
-                    <div class="form-group mb-4">
-                        <input formControlName="email" type="email" placeholder="{{ 'REGISTER.EMAIL' | translate }}"
-                            class="form-control" />
+
+                    <div class="form-group">
+                        <input class="form-control-premium w-100" formControlName="lastName" type="text"
+                            placeholder="{{ 'REGISTER.LAST_NAME' | translate }}" />
                     </div>
-                    <div class="form-group mb-4">
-                        <input type="password" formControlName="password"
-                            placeholder="{{ 'REGISTER.PASSWORD' | translate }}" class="form-control" />
+
+                    <div class="form-group">
+                        <input class="form-control-premium w-100" formControlName="email" type="email"
+                            placeholder="{{ 'REGISTER.EMAIL' | translate }}" />
                     </div>
-                    <button type="submit" class="btn btn-primary w-100 mb-3">
-                        {{ 'REGISTER.CREATE_ACCOUNT_BUTTON' | translate }}
+
+                    <div class="form-group">
+                        <input class="form-control-premium w-100" type="password" formControlName="password"
+                            placeholder="{{ 'REGISTER.PASSWORD' | translate }}" />
+                    </div>
+
+                    <button type="submit" class="btn-premium w-100 mt-2">
+                        {{ "REGISTER.CREATE_ACCOUNT_BUTTON" | translate }}
                     </button>
-                    <button type="button"
-                        class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center mb-4"
-                        (click)="authWgoo()">
-                        <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <g clip-path="url(#clip0_831_3336)">
-                                <path
-                                    d="M23.766 12.7764C23.766 11.9607 23.6999 11.1406 23.5588 10.3381H12.24V14.9591H18.7217C18.4528 16.4494 17.5885 17.7678 16.323 18.6056V21.6039H20.19C22.4608 19.5139 23.766 16.4274 23.766 12.7764Z"
-                                    fill="#4285F4" />
-                                <path
-                                    d="M12.2401 24.5008C15.4766 24.5008 18.2059 23.4382 20.1945 21.6039L16.3276 18.6055C15.2517 19.3375 13.8627 19.752 12.2445 19.752C9.11388 19.752 6.45946 17.6399 5.50705 14.8003H1.5166V17.8912C3.55371 21.9434 7.7029 24.5008 12.2401 24.5008Z"
-                                    fill="#34A853" />
-                                <path
-                                    d="M5.50253 14.8003C4.99987 13.3099 4.99987 11.6961 5.50253 10.2057V7.11481H1.51649C-0.18551 10.5056 -0.18551 14.5004 1.51649 17.8912L5.50253 14.8003Z"
-                                    fill="#FBBC04" />
-                                <path
-                                    d="M12.2401 5.24966C13.9509 5.2232 15.6044 5.86697 16.8434 7.04867L20.2695 3.62262C18.1001 1.5855 15.2208 0.465534 12.2401 0.500809C7.7029 0.500809 3.55371 3.05822 1.5166 7.11481L5.50264 10.2058C6.45064 7.36173 9.10947 5.24966 12.2401 5.24966Z"
-                                    fill="#EA4335" />
-                            </g>
-                            <defs>
-                                <clipPath id="clip0_831_3336">
-                                    <rect width="24" height="24" fill="white" transform="translate(0 0.5)" />
-                                </clipPath>
-                            </defs>
-                        </svg>
-                        <span style="margin-inline-start: 0.75rem !important">
-                            {{ 'REGISTER.SIGN_UP_GOOGLE' | translate }}
-                        </span>
+
+                    <!-- Google Auth -->
+                    <button type="button" class="btn-premium-outline w-100 d-flex align-items-center justify-content-center gap-2 mt-2" (click)="authWgoo()">
+                        <i class="pi pi-google text-danger fs-5"></i>
+                        <span>{{ 'REGISTER.SIGN_UP_GOOGLE' | translate }}</span>
                     </button>
-                    <div class="text-center" style="width: 100%; max-width: 370px">
-                        <p class="form__footer-text">
-                            {{ 'REGISTER.ALREADY_HAVE_ACCOUNT' | translate }}
-                            <a [routerLink]="['/auth/login']" class="text-secondary" style="
-                                    margin-inline-end: 0.75rem !important;
-                                    margin-inline-start: 0.75rem !important;
-                                ">
-                                {{ 'REGISTER.LOGIN' | translate }}
+
+                    <div class="signup-link text-center mt-3">
+                        <p class="text-muted small">
+                            {{ "REGISTER.ALREADY_HAVE_ACCOUNT" | translate }}
+                            <a [routerLink]="['/auth/login']" class="register-link fw-bold ms-1">
+                                {{ "REGISTER.LOGIN" | translate }}
                             </a>
                         </p>
                     </div>
                 </form>
             </div>
-            <div *ngIf="error"
-                class="error-message mt-3 alert alert-danger d-flex align-items-center justify-content-between">
-                <p>{{ error }}</p>
-                <button (click)="cancelError()" class="btn btn-sm btn-danger float-end">
-                    X
-                </button>
-            </div>
         </div>
     </div>
-</section>
+</div>
 <p-toast />

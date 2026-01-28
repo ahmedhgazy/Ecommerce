@@ -4,6 +4,9 @@ import {
     Component,
     inject,
     Input,
+    HostBinding,
+    OnInit,
+    OnDestroy,
 } from '@angular/core';
 import { NgxStarsModule } from 'ngx-stars';
 import { Product } from '../../../models/product.model';
@@ -13,7 +16,10 @@ import { ConfirmPopupComponent } from './confirm-popup/confirm-popup.component';
 import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImagePreviewComponent } from './image-preview/image-preview.component';
 import { fadeInOut } from '../../../shared/animations/popup.animation';
-import { AnimateFromTopDirective } from '../../../shared/animations/scroll-animation/top';
+import { AnimateFadeUpDirective } from '../../../shared/animations/scroll-animation/fade-up';
+import { TranslateModule } from '@ngx-translate/core';
+import { WishlistService } from '../../../services/products/wishlist.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-product-item',
@@ -25,26 +31,25 @@ import { AnimateFromTopDirective } from '../../../shared/animations/scroll-anima
         ConfirmPopupComponent,
         NgbModule,
         ImagePreviewComponent,
-        AnimateFromTopDirective,
+        AnimateFadeUpDirective,
+        TranslateModule
     ],
     templateUrl: './product-item.component.html',
     styleUrl: './product-item.component.scss',
 
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductItemComponent {
-    showPopup = false;
+export class ProductItemComponent implements OnInit, OnDestroy {
     previewImage = false;
-    inWishList = false;
-    router = inject(Router);
-    constructor(
-        private modalService: NgbModal,
-        private cdr: ChangeDetectorRef
-    ) {
-        if (this.router.url.includes('wishlist')) {
-            this.inWishList = true;
-        }
-    }
+    isInWishlist = false;
+    isOnWishlistPage = false;
+    isToggling = false; // Prevent double-clicks
+
+    private router = inject(Router);
+    private modalService = inject(NgbModal);
+    private cdr = inject(ChangeDetectorRef);
+    private wishlistService = inject(WishlistService);
+    private subscription?: Subscription;
 
     @Input()
     product: Product;
@@ -52,12 +57,80 @@ export class ProductItemComponent {
     @Input()
     flashSales: boolean;
 
-    showConfirmPopUp() {
-        this.showPopup = true;
+    @Input()
+    viewMode: 'grid' | 'list' = 'grid';
+
+    @HostBinding('class.list-view')
+    get isListView() {
+        return this.viewMode === 'list';
     }
 
-    closePopup() {
-        this.showPopup = false;
+    ngOnInit(): void {
+        // Check if we're on the wishlist page
+        this.isOnWishlistPage = this.router.url.includes('wishlist');
+
+        // Subscribe to wishlist changes to update heart state reactively
+        this.subscription = this.wishlistService.wishlist$.subscribe(() => {
+            this.updateWishlistState();
+        });
+
+        // Initial state check
+        this.updateWishlistState();
+    }
+
+    ngOnDestroy(): void {
+        this.subscription?.unsubscribe();
+    }
+
+    private updateWishlistState(): void {
+        if (this.product) {
+            this.isInWishlist = this.wishlistService.isProductInWishlist(this.product.id);
+            this.cdr.markForCheck();
+        }
+    }
+
+    toggleWishlist(event: Event): void {
+        event.stopPropagation(); // Prevent navigating to details
+
+        if (this.isToggling || !this.product) return;
+
+        this.isToggling = true;
+
+        if (this.isInWishlist) {
+            this.wishlistService.removeFromWishlist(this.product.id).subscribe({
+                next: () => {
+                    this.isInWishlist = false;
+                    this.isToggling = false;
+                    this.cdr.markForCheck();
+                },
+                error: () => {
+                    this.isToggling = false;
+                    this.cdr.markForCheck();
+                }
+            });
+        } else {
+            this.wishlistService.addToWishlist(this.product.id).subscribe({
+                next: () => {
+                    this.isInWishlist = true;
+                    this.isToggling = false;
+                    this.cdr.markForCheck();
+                },
+                error: () => {
+                    this.isToggling = false;
+                    this.cdr.markForCheck();
+                }
+            });
+        }
+    }
+
+    showConfirmPopUp(event: Event) {
+        event.stopPropagation(); // Prevent navigating to details
+        const modalRef = this.modalService.open(ConfirmPopupComponent, {
+            centered: true,
+            backdropClass: 'glass-backdrop',
+            windowClass: 'fade-scale'
+        });
+        modalRef.componentInstance.product = this.product;
     }
 
     openImagePreview() {
@@ -69,3 +142,4 @@ export class ProductItemComponent {
         modalRef.componentInstance.imageUrl = this.product.imageUrl;
     }
 }
+

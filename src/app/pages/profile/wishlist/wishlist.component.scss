@@ -1,0 +1,35 @@
+@import '../../../../assets/styles/premium';
+
+.wishlist-container {
+    @include glass-card;
+    padding: 2rem;
+    background: white;
+    min-height: 400px;
+
+    .section-header {
+        margin-bottom: 2rem;
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: $premium-dark;
+        }
+    }
+
+    .empty-wishlist {
+        text-align: center;
+        padding: 4rem 1rem;
+
+        i {
+            font-size: 3rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: $premium-muted;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+}

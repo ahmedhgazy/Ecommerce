@@ -1,57 +1,111 @@
-.about {
-    .text {
-        &__head {
-            font-family: var(--main-font);
-            font-weight: 600;
-            font-size: 3.375rem;
-            letter-spacing: 0.03em;
-            color: #000000;
-            line-height: 1.3;
-        }
+@import '../../../assets/styles/premium';
 
-        &__desc {
-            font-family: var(--secondary-font);
-            font-weight: 400;
-            font-size: 1rem;
-            line-height: 26px;
-            color: #000000;
-        }
+.about-page {
+  padding: 0 0 5rem;
+}
 
-        margin-bottom: 8.75rem;
+.story-section {
+    padding: 3rem 0;
+    max-width: 800px;
+    margin: 0 auto;
+
+    .story-title {
+        @include gradient-text($gradient-primary);
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
     }
 
-    .stat {
-        &__col {
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
+    .story-desc {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: $premium-muted;
+    }
+}
 
-            &:hover {
-                background-color: var(--btn-color-red);
-                color: #fff !important;
+.stats-grid {
+    margin-top: 3rem;
+
+    .stat-card {
+        @include glass-card;
+        padding: 2rem;
+        text-align: center;
+        transition: transform 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &:hover {
+            transform: translateY(-10px);
+            background: rgba($premium-primary, 0.05);
+
+            .stat-icon-wrapper {
+                background: $gradient-primary;
+                color: white;
+                transform: scale(1.1) rotate(5deg);
             }
+        }
 
-            &:hover {
-                p.number {
-                    color: #fff !important;
-                }
-            }
+        .stat-icon-wrapper {
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background: rgba($premium-dark, 0.05);
+            color: $premium-dark;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
 
-            padding: 1.875rem 2rem;
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: $premium-dark;
+            margin-bottom: 0.5rem;
+        }
 
-            p:not(:last-child) {
-                font-family: var(--main-font);
-                font-weight: 700;
-                font-size: 2rem;
-                line-height: 1.875rem;
-                letter-spacing: 0.04em;
-                color: #000000;
-            }
+        .stat-desc {
+            font-size: 0.9rem;
+            color: $premium-muted;
+            line-height: 1.5;
+            margin: 0;
+        }
+    }
+}
 
-            p:last-child {
-                font-family: var(--secondary-font);
-                font-weight: 400;
-                font-size: 1rem;
-                line-height: 1.5rem;
+// Dark Mode Overrides
+:host-context(body.dark) {
+    .stat-card {
+        background-color: rgba(31, 41, 55, 0.6) !important; // Dark background
+        border: 1px solid rgba(255, 255, 255, 0.05) !important;
+        box-shadow: none !important;
+
+        .stat-number {
+            color: white !important;
+        }
+
+        .stat-desc {
+            color: #d1d5db !important; // Light gray text
+        }
+
+        .stat-icon-wrapper {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+        }
+
+        // Disable hover effects completely in dark mode
+        &:hover {
+            transform: none !important;
+            background-color: rgba(31, 41, 55, 0.6) !important;
+
+            .stat-icon-wrapper {
+                transform: none !important;
+                background: rgba(255, 255, 255, 0.1) !important;
+                color: white !important;
             }
         }
     }

@@ -5,6 +5,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { GoogleAuthService } from '../../../services/auth/auth-google.service';
 import { CartIconComponent } from '../../../components/cart/cart-icon/cart-icon.component';
 import { CartService } from '../../../services/orders/cart.service';
+import { WishlistService } from '../../../services/products/wishlist.service';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -44,12 +45,14 @@ export class HeaderComponent implements OnInit {
     public googleS: GoogleAuthService,
   ) { }
   cartService = inject(CartService);
+  wishlistService = inject(WishlistService);
   activeDarkMode = false;
 
   ngOnInit(): void {
     this.auth.user.subscribe((user) => {
       if (user) {
         this.cartService.loadCart();
+        this.wishlistService.loadWishlist();
       }
     });
 

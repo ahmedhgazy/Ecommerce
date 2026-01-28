@@ -1,0 +1,68 @@
+<div class="details-container" *ngIf="order">
+    <!-- Items Section -->
+    <div class="details-section">
+        <h3 class="section-title">
+            <i class="pi pi-shopping-bag"></i>
+            {{ 'DETAILS.ORDER_ITEMS' | translate }}
+        </h3>
+        <div class="items-list">
+            <div class="item-row" *ngFor="let item of order.orderItems; let i = index"
+                 [style.border-left]="'3px solid ' + getBackgroundColor(i)">
+                 <!-- Placeholder image if no image provided -->
+                <div class="item-image d-flex align-items-center justify-content-center overflow-hidden">
+                     <ng-container *ngIf="item.productImageUrl; else noImage">
+                        <img [src]="item.productImageUrl" [alt]="item.productName" style="width: 100%; height: 100%; object-fit: cover;">
+                     </ng-container>
+                     <ng-template #noImage>
+                        <i class="pi pi-image text-muted fs-4"></i>
+                     </ng-template>
+                </div>
+                <div class="item-info ps-3">
+                    <span class="item-name">{{ item.productName }}</span>
+                </div>
+                <div class="item-pricing">
+                    <span class="item-qty">Qty: {{ item.quantity }}</span>
+                    <span class="item-total">{{ item.unitPrice | currency }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="details-section">
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">{{ 'DETAILS.SHIPPING_ADDRESS' | translate }}</span>
+                <div class="value address">
+                    {{ order.shippingAddress1 }}<br>
+                    <span *ngIf="order.shippingAddress2">{{ order.shippingAddress2 }}<br></span>
+                    {{ order.city }}, {{ order.zipCode }}<br>
+                    {{ order.country }}
+                </div>
+            </div>
+
+             <div class="info-item">
+                <span class="label">{{ 'DETAILS.ORDER_STATUS' | translate }}</span>
+                <div class="value">
+                     <p-tag [severity]="'info'" [value]="getStatusText(order.status)"></p-tag>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="order-summary">
+        <div class="summary-row">
+            <span>{{ 'CART.SUBTOTAL' | translate }}</span>
+            <span>{{ order.totalPrice | currency }}</span>
+        </div>
+        <div class="summary-row">
+            <span>{{ 'CART.SHIPPING' | translate }}</span>
+            <span>{{ 'CART.FREE' | translate }}</span>
+        </div>
+        <div class="summary-row total">
+            <span>{{ 'CART.TOTAL' | translate }}</span>
+            <span>{{ order.totalPrice | currency }}</span>
+        </div>
+    </div>
+</div>

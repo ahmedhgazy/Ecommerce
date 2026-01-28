@@ -14,6 +14,7 @@ import { MessageService } from 'primeng/api';
 import { GoogleAuthService } from '../../../services/auth/auth-google.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Subject, takeUntil } from 'rxjs';
+import { AnimateFromRightDirective } from '../../../shared/animations/scroll-animation/right';
 
 @Component({
   selector: 'app-register',
@@ -24,6 +25,7 @@ import { Subject, takeUntil } from 'rxjs';
     CommonModule,
     RouterModule,
     TranslateModule,
+    AnimateFromRightDirective
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',

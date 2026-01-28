@@ -6,16 +6,14 @@ import { animate, style } from '@angular/animations';
     selector: '[animateFromTop]',
 })
 export class AnimateFromTopDirective extends BaseAnimationDirective {
-    protected override createAnimation() {
+    protected override initializeAnimation() {
         const factory = this.animationBuilder.build([
-            style({ opacity: 0, transform: 'translateY(-100px)' }),
+            style({ opacity: 0, transform: 'translateY(-50px)' }),
             animate(
-                '800ms ease-out',
+                this.duration + ' ' + this.easing,
                 style({ opacity: 1, transform: 'translateY(0)' })
             ),
         ]);
         this.player = factory.create(this.el.nativeElement);
-        this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');
-        this.playAnimation();
     }
 }

@@ -3,6 +3,7 @@ import { SharedRoutesHeader } from '../../shared/components/shared-routes-header
 import { RouterModule } from '@angular/router';
 import { DetailsComponent } from '../../components/details/details.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { AnimateFadeUpDirective } from '../../shared/animations/scroll-animation/fade-up';
 
 @Component({
     selector: 'app-about',
@@ -12,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
         RouterModule,
         DetailsComponent,
         TranslateModule,
+        AnimateFadeUpDirective,
     ],
     templateUrl: './about.component.html',
     styleUrl: './about.component.scss',

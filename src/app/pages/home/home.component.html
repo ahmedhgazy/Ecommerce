@@ -1,64 +1,151 @@
-<app-cat-banner
-    animateFromTop
-    style="display: grid; place-content: center; align-content: center"
-></app-cat-banner>
+<!-- Hero Section (Premium Landing) -->
+<section class="hero-section">
+    <div class="container-premium h-100">
+        <div class="hero-banner-card">
+            <div class="row h-100 align-items-center g-0">
+                <!-- Left Content -->
+                <div class="col-lg-6 z-2 py-5 ps-lg-5 text-center text-lg-start" animateFromLeft>
+                    <div class="hero-badge badge-premium badge-success mb-3 d-inline-block">
+                        {{ 'HOME.NEW_COLLECTIONS' | translate }}
+                    </div>
+                    <h1 class="hero-title text-white mb-4">
+                        {{ 'HOME.ENHANCE_YOUR' | translate }}<br />
+                        <span class="gradient-text-warm">{{ 'HOME.MUSIC_EXPERIENCE' | translate }}</span>
+                    </h1>
 
-<app-shared-header>
-    <span header-title>{{ 'HOME.TODAYS' | translate }}</span>
-    <span header-desc>{{ 'HOME.FLASH_SALES' | translate }}</span>
-</app-shared-header>
+                    <div class="timer-container d-flex justify-content-center justify-content-lg-start gap-3 mb-4">
+                        <app-timer-digit [value]="countdown().days" label="BANNER.DAYS" class="timer-dark"></app-timer-digit>
+                        <app-timer-digit [value]="countdown().hours" label="BANNER.HOURS" class="timer-dark"></app-timer-digit>
+                        <app-timer-digit [value]="countdown().minutes" label="BANNER.MINUTES" class="timer-dark"></app-timer-digit>
+                        <app-timer-digit [value]="countdown().seconds" label="BANNER.SECONDS" class="timer-dark"></app-timer-digit>
+                    </div>
 
-<app-product-list [products]="flashSales$ | async"></app-product-list>
-<section
-    class="shared-btn d-flex justify-content-center"
-    style="width: 100%; margin-top: 3.75rem"
->
-    <app-shared-button
-        [allLoaded]="allFlashSalesLoaded"
-        (loadMoreEvent)="loadMore('flashSales')"
-    ></app-shared-button>
-</section>
-<app-shared-header>
-    <span header-title>{{ 'HOME.CATEGORIES' | translate }}</span>
-    <span header-desc>{{ 'HOME.BROWSE_BY_CATEGORY' | translate }}</span>
-</app-shared-header>
-<app-categories></app-categories>
-<app-shared-header>
-    <span header-title>{{ 'HOME.THIS_MONTH' | translate }}</span>
-    <span header-desc>{{ 'HOME.BEST_SELLING_PRODUCTS' | translate }}</span>
-</app-shared-header>
-<app-product-list [products]="bestSelling$ | async"></app-product-list>
-<section
-    class="shared-btn d-flex justify-content-center"
-    style="width: 100%; margin-top: 60px"
->
-    <app-shared-button
-        [allLoaded]="allBestSellingLoaded"
-        (loadMoreEvent)="loadMore('bestSelling')"
-    ></app-shared-button>
-</section>
-<div class="home-banner">
-    <app-cat-banner class="d-flex justify-content-center"></app-cat-banner>
-</div>
+                    <button class="btn btn-premium-success btn-lg px-5 hover-lift" routerLink="/products">
+                        {{ 'BANNER.BUY_NOW' | translate }}
+                    </button>
+                </div>
 
-<app-shared-header>
-    <span header-title>{{ 'HOME.OUR_PRODUCTS' | translate }}</span>
-    <span header-desc>{{ 'HOME.EXPLORE_OUR_PRODUCTS' | translate }}</span>
-</app-shared-header>
-<app-product-list [products]="products$ | async"></app-product-list>
-<section
-    class="shared-btn d-flex justify-content-center"
-    style="width: 100%; margin-top: 60px"
->
-    <app-shared-button
-        [allLoaded]="allProductsLoaded"
-        (loadMoreEvent)="loadMore('products')"
-    ></app-shared-button>
+                <!-- Right Image -->
+                <div class="col-lg-6 h-100 d-flex align-items-center justify-content-center position-relative z-1" animateFromRight>
+                   <div class="hero-glow"></div>
+                   <img src="assets/images/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png"
+                        alt="JBL Boombox"
+                        class="img-fluid hero-image hover-scale">
+                </div>
+            </div>
+        </div>
+    </div>
 </section>
-<app-shared-header>
-    <span header-title>{{ 'HOME.FEATURED' | translate }}</span>
-    <span header-desc>{{ 'HOME.NEW_ARRIVALS' | translate }}</span>
-</app-shared-header>
-<app-new-arrivals></app-new-arrivals>
+
+<!-- Flash Sales Section -->
+<section class="py-5 bg-light-premium">
+    <app-shared-header>
+        <span header-title>{{ 'HOME.LIMITED_TIME_OFFERS' | translate }}</span>
+        <span header-desc>{{ 'HOME.FLASH_SALES' | translate }}</span>
+    </app-shared-header>
+
+    <div class="container">
+        <app-product-list [products]="flashSales$ | async"></app-product-list>
+
+        <div class="d-flex justify-content-center mt-5">
+            <app-shared-button
+                [allLoaded]="allFlashSalesLoaded"
+                (loadMoreEvent)="loadMore('flashSales')"
+            ></app-shared-button>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-5">
+    <app-shared-header>
+        <span header-title>{{ 'HOME.BROWSE_COLLECTIONS' | translate }}</span>
+        <span header-desc>{{ 'HOME.BROWSE_BY_CATEGORY' | translate }}</span>
+    </app-shared-header>
+    <app-categories></app-categories>
+</section>
+
+<!-- Best Selling Section -->
+<section class="py-5 bg-light-premium">
+    <app-shared-header>
+        <span header-title>{{ 'HOME.CUSTOMER_FAVORITES' | translate }}</span>
+        <span header-desc>{{ 'HOME.BEST_SELLING_PRODUCTS' | translate }}</span>
+    </app-shared-header>
+
+    <div class="container">
+        <app-product-list [products]="bestSelling$ | async"></app-product-list>
+
+        <div class="d-flex justify-content-center mt-5">
+            <app-shared-button
+                [allLoaded]="allBestSellingLoaded"
+                (loadMoreEvent)="loadMore('bestSelling')"
+            ></app-shared-button>
+        </div>
+    </div>
+</section>
+
+<!-- Promo Banner -->
+<!-- Newsletter Section -->
+<section class="my-5 py-4 container">
+    <div class="newsletter-card position-relative overflow-hidden">
+        <div class="row align-items-center position-relative z-1 p-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="newsletter-content ps-lg-4">
+                    <span class="badge badge-premium badge-warning mb-3">{{ 'HOME.SUBSCRIBE_SAVE' | translate }}</span>
+                    <h2 class="section-title text-white mb-3">{{ 'HOME.JOIN_PREMIUM_CLUB' | translate }}</h2>
+                    <p class="text-white-50 fs-5 mb-0">
+                        {{ 'HOME.PREMIUM_CLUB_DESC' | translate }}
+                        <span class="text-white fw-bold">{{ 'HOME.OFF_FIRST_ORDER' | translate }}</span>
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <form class="newsletter-form d-flex gap-2">
+                    <input type="email" class="form-control form-control-lg border-0" [placeholder]="'HOME.ENTER_EMAIL_PLACEHOLDER' | translate">
+                    <button class="btn btn-premium-success btn-lg px-4" type="button">
+                        {{ 'FOOTER.SUBSCRIBE' | translate }}
+                    </button>
+                </form>
+                <p class="text-white-50 small mt-3 mb-0">
+                    <i class="pi pi-check-circle me-1 text-success"></i> {{ 'HOME.NO_SPAM' | translate }}
+                </p>
+            </div>
+        </div>
+
+        <!-- decorative elements -->
+        <div class="glow-effect"></div>
+        <div class="pattern-overlay"></div>
+    </div>
+</section>
+
+<!-- All Products Section -->
+<section class="py-5">
+    <app-shared-header>
+        <span header-title>{{ 'HOME.EXPLORE_ALL' | translate }}</span>
+        <span header-desc>{{ 'HOME.OUR_PRODUCTS' | translate }}</span>
+    </app-shared-header>
+
+    <div class="container">
+        <app-product-list [products]="products$ | async"></app-product-list>
+
+        <div class="d-flex justify-content-center mt-5 mb-5">
+            <app-shared-button
+                [allLoaded]="allProductsLoaded"
+                (loadMoreEvent)="loadMore('products')"
+            ></app-shared-button>
+        </div>
+    </div>
+</section>
+
+<!-- New Arrivals Section -->
+<section class="py-5 bg-light-premium">
+    <app-shared-header>
+        <span header-title>{{ 'HOME.JUST_ARRIVED' | translate }}</span>
+        <span header-desc>{{ 'HOME.NEW_ARRIVALS' | translate }}</span>
+    </app-shared-header>
+    <app-new-arrivals></app-new-arrivals>
+</section>
+
 <app-details></app-details>
 <app-loading></app-loading>
+

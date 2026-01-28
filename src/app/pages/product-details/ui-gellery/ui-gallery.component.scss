@@ -54,7 +54,8 @@
         align-items: center;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); // Lighter shadow
-        background-color: #fff; // Grid usually white
+        // background-color: #fff; // Grid usually white
+        border: 1px solid  rgba(86, 85, 85, 0.5);
         z-index: 10; // Base index
 
         // Prevent cursor flickering

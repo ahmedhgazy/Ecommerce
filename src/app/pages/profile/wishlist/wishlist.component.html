@@ -1,16 +1,28 @@
 <ng-container *ngIf="products$ | async as products">
-    <section class="wishlist-section p-0 ms-11">
-        <h5 class="form-title pt-0 mt-0 mb-11 p-0 text-center">
-            {{ "PROFILE.SAVED_ITEMS_COLLECTIONS" | translate }}
-        </h5>
-        <div class="row">
-            @for (product of products; track $index) {
-            <div class="col-12 col-md-6 col-lg-4">
-                <app-product-item [product]="product"></app-product-item>
-            </div>
-            }
+    <div class="wishlist-container">
+        <div class="section-header">
+            <h2 class="section-title">{{ "PROFILE.SAVED_ITEMS_COLLECTIONS" | translate }}</h2>
         </div>
-    </section>
+
+        @if (products.length > 0) {
+            <div class="row g-4">
+                @for (product of products; track $index) {
+                <div class="col-12 col-md-6 col-lg-4 col-xl-4">
+                    <app-product-item [product]="product"></app-product-item>
+                </div>
+                }
+            </div>
+        } @else {
+            <div class="empty-wishlist">
+                <i class="pi pi-heart"></i>
+                <p>You haven't saved any items yet.</p>
+                <a routerLink="/products" class="btn btn-premium p-2">
+                    Browse Products
+                </a>
+            </div>
+        }
+    </div>
 </ng-container>
+
 
 <app-loading></app-loading>

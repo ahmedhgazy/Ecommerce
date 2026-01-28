@@ -1,41 +1,43 @@
+@import '../../../../assets/styles/premium';
+
 .order {
-    margin-top: 2.5rem;
-    border: 1px solid #333;
+  @include glass-card;
+  padding: 1.5rem;
+  background: white;
 
-    .title {
-        font-family: var(--secondary-font);
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 28px;
-        color: #000000;
+  .title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: $premium-dark;
+    margin-bottom: 1.5rem;
+  }
+
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .order__price {
+      font-size: 1rem;
+      color: $premium-muted;
+      &.total {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $premium-dark;
+      }
     }
+  }
 
-    padding: 2rem 1.5rem;
+  hr {
+    border-color: #e5e7eb;
+    margin: 1.5rem 0;
+  }
 
-    &__details {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    &__price {
-        font-family: var(--secondary-font);
-        font-weight: 400;
-        line-height: 24px;
-        color: #000000;
-    }
-
-    .checkOut_btn {
-        display: block;
-
-        padding: 1rem 3rem;
-        font-family: 'Poppins';
-        font-weight: 500;
-        line-height: 24px;
-        font-family: var(--secondary-font);
-        color: #fafafa;
-        background-color: var(--btn-color-red);
-        border: 0;
-        border-radius: 4px;
-    }
+  .checkOut_btn {
+    @include btn-premium();
+    width: 100%;
+    margin-top: 1rem;
+  }
 }

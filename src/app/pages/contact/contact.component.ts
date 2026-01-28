@@ -8,6 +8,9 @@ import { MessageService } from 'primeng/api';
 
 import { ToastModule } from 'primeng/toast';
 import { TranslateModule } from '@ngx-translate/core';
+import { AnimateFadeUpDirective } from '../../shared/animations/scroll-animation/fade-up';
+import { AnimateFromLeftDirective } from '../../shared/animations/scroll-animation/left';
+import { AnimateFromRightDirective } from '../../shared/animations/scroll-animation/right';
 @Component({
     selector: 'app-contact',
     standalone: true,
@@ -18,6 +21,9 @@ import { TranslateModule } from '@ngx-translate/core';
         FormsModule,
         ToastModule,
         TranslateModule,
+        AnimateFadeUpDirective,
+        AnimateFromLeftDirective,
+        AnimateFromRightDirective
     ],
     templateUrl: './contact.component.html',
     styleUrl: './contact.component.scss',

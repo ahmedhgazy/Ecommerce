@@ -1,12 +1,36 @@
-.loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.32);
-    z-index: 99999 !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+       .loading-overlay {
+         background-color: rgba(255, 255, 255, 0.5);
+         backdrop-filter: blur(4px);
+         transition: opacity 0.3s ease;
+       }
+
+       /* Dark mode support */
+       [data-bs-theme="dark"] .loading-overlay {
+         background-color: rgba(17, 24, 39, 0.5);
+       }
+
+       .spinner-custom {
+         width: 4rem;
+         height: 4rem;
+         border-width: 4px;
+         border-color: #c7d2fe;
+         border-top-color: #4f46e5;
+       }
+
+       .pulse-effect {
+         width: 4rem;
+         height: 4rem;
+         border: 4px solid #818cf8;
+         border-radius: 50%;
+         opacity: 0.2;
+         animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+       }
+
+       @keyframes ping {
+
+         75%,
+         100% {
+           transform: scale(2);
+           opacity: 0;
+         }
+       }

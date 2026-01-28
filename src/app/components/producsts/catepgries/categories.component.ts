@@ -7,11 +7,12 @@ import {
 } from '@angular/core';
 import { SharedHeaderComponent } from '../../../shared/components/shared-header/shared-header.component';
 import { CategoryItemComponent } from './cateory-item/category-item.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-categories',
     standalone: true,
-    imports: [CommonModule, SharedHeaderComponent, CategoryItemComponent],
+    imports: [CommonModule, SharedHeaderComponent, CategoryItemComponent, TranslateModule],
     templateUrl: './categories.component.html',
     styleUrl: './categories.component.scss',
 })

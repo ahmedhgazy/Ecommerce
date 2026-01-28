@@ -1,96 +1,95 @@
 <section class="cart">
     <div class="container">
-        <div class="row my-6">
-            <app-shared-routes-header class="header-shared_routes">
-                <span routerLink="/home" header style="cursor: pointer">
-                    {{ "ROUTES.HOME" | translate }}
-                </span>
-                <p route>
-                    {{ "ROUTES.CART" | translate }}
-                </p>
-            </app-shared-routes-header>
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a routerLink="/home">{{ "ROUTES.HOME" | translate }}</a>
+                <span class="separator">/</span>
+                <span class="current">{{ "ROUTES.CART" | translate }}</span>
+            </div>
+            <h1 class="display-6 fw-bold text-dark">Your Shopping Cart</h1>
         </div>
 
-        <div class="row product-header_row shadow-sm product-details__header"
-            style="padding: 1.5rem 2.5rem; margin-bottom: 2.5rem">
-            <div class="col-1 col-md-2 p-0">
-                <p>
-                    {{ "CART.PRODUCT" | translate }}
-                </p>
-            </div>
-            <div class="col-1 price offset-3 offset-md-2 p-0">
-                <p>
-                    {{ "CART.PRICE" | translate }}
-                </p>
-            </div>
-            <div class="col-1 offset-2 p-0 quantity">
-                <p>
-                    {{ "CART.QUANTITY" | translate }}
-                </p>
-            </div>
-            <div class="col-2 offset-1 p-0 text-center">
-                <p>
-                    {{ "CART.SUBTOTAL" | translate }}
-                </p>
-            </div>
-        </div>
+        @if (cartItems.length > 0) {
+            <div class="row g-4">
+                <!-- Cart Items Column -->
+                <div class="col-lg-8">
+                    <div class="cart-items">
+                        @for (product of cartItems; track product; let i = $index) {
+                            <div class="cart-item">
+                                <!-- Image -->
+                                <div class="item-image">
+                                    <img [src]="product.imageUrl" [alt]="product.name" />
+                                </div>
 
-        @if (cartItems.length!=0 || cartItems!=null || cartItems!=undefined) {
-        @for (product of cartItems; track product;let i = $index) {
+                                <!-- Info -->
+                                <div class="item-info">
+                                    <a [routerLink]="['/products', product.category, product.id]" class="item-name">
+                                        {{ product.name | truncate : 50 }}
+                                    </a>
+                                    <span class="item-price">{{ product.price | currency }}</span>
+                                </div>
 
-        <div class="row products-row shadow-sm" style="padding: 1.5rem 2.5rem">
-            <div class="col-4 col-md-3 p-0">
-                <div class="product__N-image">
-                    <img [src]="product.imageUrl" width="50px" alt="image" />
-                    <span style="margin-inline-start: 1rem">
-                        {{ product.name | truncate : 13 }}
-                    </span>
+                                <!-- Actions -->
+                                <div class="item-actions">
+                                    <div class="item-quantity">
+                                        <p-inputNumber
+                                            [(ngModel)]="product.quantity"
+                                            mode="decimal"
+                                            [showButtons]="true"
+                                            inputId="minmax-buttons"
+                                            [min]="1"
+                                            [max]="100"
+                                            size="1"
+                                            buttonLayout="horizontal"
+                                            decrementButtonClass="p-button-secondary"
+                                            incrementButtonClass="p-button-secondary"
+                                            incrementButtonIcon="pi pi-plus"
+                                            decrementButtonIcon="pi pi-minus"
+                                            (ngModelChange)="onQuantityChange(i, $event)">
+                                        </p-inputNumber>
+                                    </div>
+
+                                    <div class="item-total">
+                                        {{ (product.price * product.quantity) | currency }}
+                                    </div>
+
+                                    <button class="delete-btn" (click)="removeItem(i)" title="Remove Item">
+                                        <i class="pi pi-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="mt-4">
+                        <a routerLink="/home" class="back-btn btn-premium-outline py-2 px-4 rounded-3 d-inline-flex align-items-center">
+                            <i class="pi pi-arrow-left me-2"></i>
+                            {{ "CART.RETURN_TO_SHOP" | translate }}
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Order Summary Column -->
+                <div class="col-lg-4">
+                    <div class="sticky-top" style="top: 2rem;">
+                        <app-order-summary [totalPrice]="totalPrice"></app-order-summary>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-1 offset-2 offset-md-1 p-0" style="align-content: center">
-                <p class="pb-0 mb-0">{{ "$" + product.price }}</p>
+        } @else {
+            <!-- Empty State -->
+            <div class="empty-cart">
+                <i class="pi pi-shopping-cart empty-icon"></i>
+                <h3>{{ "CART.emptyMessage" | translate }}</h3>
+                <p>Looks like you haven't added anything to your cart yet.</p>
+                <a routerLink="/products" class="btn btn-premium btn-lg py-3 px-5">
+                    {{ "CART.START_SHOPPING" | translate }}
+                </a>
             </div>
-
-            <div class="col-1 offset-2 p-0 p-input_wrapper">
-                <p-inputNumber [(ngModel)]="product.quantity" mode="decimal" [showButtons]="true"
-                    inputId="minmax-buttons" [min]="1" [max]="100" size="1"
-                    (ngModelChange)="onQuantityChange(i, $event)">
-                </p-inputNumber>
-            </div>
-
-            <div class="col-2 offset-1 p-0" style="align-content: center !important">
-                <p class="pb-0 mb-0 text-center">
-                    {{ "$" + product.price * product.quantity }}
-                </p>
-            </div>
-
-            <div class="col-1 d-none d-md-block" style="
-                    align-content: center;
-                    padding: 0 !important;
-                    margin: 0 !important;
-                    text-align: center;
-                ">
-                <i (click)="removeItem(i)" class="pi pi-trash text-danger" style="cursor: pointer"
-                    severity="danger"></i>
-            </div>
-        </div>
-        } @empty {
-        <h1>{{ "CART.emptyMessage" | translate }}</h1>
-        } }
-        <div class="row">
-            <div class="col-12 col-md-5">
-                <button class="back__btn" routerLink="/home">
-                    {{ "CART.RETURN_TO_SHOP" | translate }}
-                </button>
-            </div>
-
-            <div class="col-12 p-0 col-md-5 offset-md-2" style="margin-top: 2.5rem text-center">
-                <app-order-summary [totalPrice]="totalPrice"></app-order-summary>
-            </div>
-        </div>
+        }
     </div>
 </section>
-<p-toast />
 
+<p-toast />
 <app-loading></app-loading>

@@ -10,7 +10,9 @@
         "LOG_OUT": "تسجيل خروج",
         "WISHLIST": "المفضلة ",
         "PROFILE": "حسابى ",
-        "CART": "العربة"
+        "CART": "العربة",
+        "PRODUCTS": "المنتجات",
+        "LOG_OUT_CONFIRM": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
     },
     "SIDEBAR": {
         "HEADER": "حصرى",
@@ -61,7 +63,34 @@
         "OUR_PRODUCTS": "منتجاتنا",
         "EXPLORE_OUR_PRODUCTS": "استكشف منتجاتنا",
         "FEATURED": "مميز",
-        "NEW_ARRIVALS": "الوافدون الجدد"
+        "NEW_ARRIVALS": "الوافدون الجدد",
+        "NEW_COLLECTIONS": "مجموعات جديدة",
+        "ENHANCE_YOUR": "عزز",
+        "MUSIC_EXPERIENCE": "تجربتك الموسيقية",
+        "LIMITED_TIME_OFFERS": "عروض لفترة محدودة",
+        "BROWSE_COLLECTIONS": "تصفح المجموعات",
+        "CUSTOMER_FAVORITES": "مفضلات العملاء",
+        "SUBSCRIBE_SAVE": "اشترك ووفر",
+        "JOIN_PREMIUM_CLUB": "انضم إلى النادي المميز",
+        "PREMIUM_CLUB_DESC": "احصل على وصول حصري إلى المنتجات الجديدة، والعروض المميزة، و",
+        "OFF_FIRST_ORDER": "خصم 20% على طلبك الأول.",
+        "ENTER_EMAIL_PLACEHOLDER": "أدخل عنوان بريدك الإلكتروني",
+        "NO_SPAM": "لا رسائل مزعجة، يمكنك إلغاء الاشتراك في أي وقت.",
+        "JUST_ARRIVED": "وصل حديثًا",
+        "EXPLORE_ALL": "استكشف الكل",
+        "PLAYSTATION_5": "بلاي ستيشن 5",
+        "PS5_DESC": "نسخة بالأبيض والأسود من PS5 معروضة للبيع.",
+        "MENS_COLLECTIONS": "مجموعات الرجال",
+        "MENS_COLLECTIONS_DESC": "مجموعات رجالية مميزة تمنحك إطلالة مختلفة.",
+        "SPEAKERS": "مكبرات الصوت",
+        "AMAZON_SPEAKERS_DESC": "مكبرات صوت أمازون اللاسلكية",
+        "PERFUME": "عطور",
+        "GUCCI_PERFUME_DESC": "عطر قوتشي انتنس عود",
+        "PHONES": "هواتف",
+        "COMPUTERS": "أجهزة كمبيوتر",
+        "HEADPHONES": "سماعات رأس",
+        "SMARTWATCHES": "ساعات ذكية",
+        "SHOP_NOW": "تسوق الآن"
     },
     "FOOTER": {
         "EXCLUSIVE": "حصري",
@@ -100,7 +129,11 @@
         "FREE_DELIVERY": "توصيل مجاني",
         "ENTER_POSTAL_CODE": "أدخل الرمز البريدي للتحقق من توفر التوصيل",
         "RETURN_DELIVERY": "إرجاع التوصيل",
-        "FREE_DELIVERY_RETURNS": "إرجاع التوصيل خلال 30 يومًا مجانًا. التفاصيل"
+        "FREE_DELIVERY_RETURNS": "إرجاع التوصيل خلال 30 يومًا مجانًا. التفاصيل",
+        "ORDER_ITEMS": "عناصر الطلب",
+        "SHIPPING_ADDRESS": "عنوان الشحن",
+        "PAYMENT": "الدفع",
+        "ORDER_STATUS": "حالة الطلب"
     },
     "CONTACT": {
         "CALL_TO_US": "اتصل بنا",
@@ -169,11 +202,18 @@
         "FREE": "مجاني",
         "TOTAL": "الإجمالي",
         "PROCEED_TO_CHECKOUT": "المتابعة إلى الدفع",
-        "emptyMessage": "عربة التسوق الخاصة بك فارغة."
+        "emptyMessage": "عربة التسوق الخاصة بك فارغة.",
+        "START_SHOPPING": "ابدأ التسوق"
     },
     "ORDERS": {
         "ORDERS": "الطلبات",
-        "SEARCH": "بحث"
+        "SEARCH": "بحث",
+        "ORDER_ID": "رقم الطلب",
+        "DATE": "التاريخ",
+        "STATUS": "الحالة",
+        "TOTAL": "الإجمالي",
+        "ACTIONS": "إجراءات",
+        "NO_ORDERS": "لا توجد طلبات."
     },
     "BILLING": {
         "BILLING_DETAILS": "تفاصيل الفاتورة",
@@ -237,5 +277,38 @@
         "INVALID_PASSWORD": "كلمة المرور غير صالحة أو المستخدم ليس لديه كلمة مرور.",
         "USER_DISABLED": "تم تعطيل حساب المستخدم بواسطة المسؤول.",
         "UNKNOWN_ERROR": "حدث خطأ غير متوقع. حاول مرة أخرى لاحقًا."
+    },
+    "PRODUCTS": {
+        "SUBTITLE": "اكتشف منتجات مذهلة بأسعار رائعة",
+        "FILTERS": "تصفية",
+        "ALL_PRODUCTS": "كل المنتجات",
+        "PRICE_RANGE": "نطاق السعر",
+        "MIN": "من",
+        "MAX": "إلى",
+        "AVAILABILITY": "التوفر",
+        "IN_STOCK_ONLY": "المتوفر فقط",
+        "CLEAR_FILTERS": "مسح التصفيات",
+        "SHOWING": "عرض",
+        "OF": "من أصل",
+        "SORT_BY": "ترتيب حسب",
+        "NO_PRODUCTS_FOUND": "لم يتم العثور على منتجات",
+        "TRY_ADJUSTING": "حاول تعديل خيارات البحث أو التصفية",
+        "LOADING": "جاري تحميل المنتجات...",
+        "OFF": "خصم",
+        "LEFT": "متبقي",
+        "OUT_OF_STOCK": "نفذت الكمية",
+        "SORT_OPTIONS": {
+            "NEWEST": "الأحدث",
+            "PRICE_LOW_HIGH": "السعر: من الأقل للأعلى",
+            "PRICE_HIGH_LOW": "السعر: من الأعلى للأقل",
+            "RATING": "الأعلى تقييماً",
+            "BESTSELLING": "الأكثر مبيعاً"
+        }
+    },
+    "ACTIONS": {
+        "ADD_TO_WISHLIST": "أضف للمفضلة",
+        "QUICK_VIEW": "نظرة سريعة",
+        "CANCEL": "إلغاء",
+        "VIEW_DETAILS": "عرض التفاصيل"
     }
 }

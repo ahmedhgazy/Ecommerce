@@ -1,0 +1,211 @@
+  <!-- Hero Section with Search -->
+    <section class="hero-section">
+      <div class="container">
+        <h1 class="display-5 fw-bold text-center mb-3">{{ 'HOME.EXPLORE_OUR_PRODUCTS' | translate }}</h1>
+        <p class="text-center mb-4 opacity-75">{{ 'PRODUCTS.SUBTITLE' | translate }}</p>
+
+        <div class="search-box">
+          <i class="pi pi-search search-icon"></i>
+          <input
+            type="text"
+            class="search-input"
+            [placeholder]="'HEADER.SEARCH_PLACEHOLDER' | translate"
+            [(ngModel)]="filters().search"
+            (ngModelChange)="onSearchChange($event)"
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="container py-4">
+      <div class="row">
+        <!-- Mobile Filter Toggle -->
+        <div class="col-12 d-lg-none">
+          <button class="mobile-filter-toggle" (click)="toggleFilters()">
+            <i class="pi pi-filter"></i>
+            {{ 'PRODUCTS.FILTERS' | translate }}
+            @if (activeFiltersCount() > 0) {
+              <span class="badge bg-primary rounded-pill ms-2">{{ activeFiltersCount() }}</span>
+            }
+          </button>
+        </div>
+
+        <!-- Filter Overlay (Mobile) -->
+        @if (showFilters()) {
+          <div class="filter-overlay d-lg-none" (click)="toggleFilters()"></div>
+        }
+
+        <!-- Filters Sidebar -->
+        <div class="col-lg-3">
+          <div class="filters-sidebar" [class.show]="showFilters()">
+            <div class="d-flex justify-content-between align-items-center mb-3 d-lg-none">
+              <h5 class="fw-bold mb-0">{{ 'PRODUCTS.FILTERS' | translate }}</h5>
+              <button class="btn btn-link p-0" (click)="toggleFilters()">
+                <i class="pi pi-times fs-5"></i>
+              </button>
+            </div>
+
+            <!-- Categories -->
+            <div class="filter-section">
+              <h6 class="filter-title">{{ 'HOME.CATEGORIES' | translate }}</h6>
+              <div
+                class="category-item"
+                [class.active]="filters().categoryId === null"
+                (click)="selectCategory(null)"
+              >
+                <div class="category-icon">
+                  <i class="pi pi-th-large"></i>
+                </div>
+                <span>{{ 'PRODUCTS.ALL_PRODUCTS' | translate }}</span>
+              </div>
+              @for (category of categories(); track category.id) {
+                <div
+                  class="category-item"
+                  [class.active]="filters().categoryId === category.id"
+                  (click)="selectCategory(category.id)"
+                >
+                  <div class="category-icon">
+                    <i [class]="category.icon"></i>
+                  </div>
+                  <span>{{ category.name }}</span>
+                </div>
+              }
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-section">
+              <h6 class="filter-title">{{ 'PRODUCTS.PRICE_RANGE' | translate }}</h6>
+              <div class="price-range-inputs">
+                <input
+                  type="number"
+                  class="price-input"
+                  [placeholder]="'PRODUCTS.MIN' | translate"
+                  [(ngModel)]="minPrice"
+                  (ngModelChange)="onPriceChange()"
+                >
+                <input
+                  type="number"
+                  class="price-input"
+                  [placeholder]="'PRODUCTS.MAX' | translate"
+                  [(ngModel)]="maxPrice"
+                  (ngModelChange)="onPriceChange()"
+                >
+              </div>
+            </div>
+
+            <!-- In Stock Toggle -->
+            <div class="filter-section">
+              <h6 class="filter-title">{{ 'PRODUCTS.AVAILABILITY' | translate }}</h6>
+              <label class="stock-toggle">
+                <div class="toggle-switch" [class.active]="filters().inStock" (click)="toggleInStock()"></div>
+                <span>{{ 'PRODUCTS.IN_STOCK_ONLY' | translate }}</span>
+              </label>
+            </div>
+
+            <!-- Clear Filters -->
+            @if (activeFiltersCount() > 0) {
+              <button class="clear-filters-btn w-100" (click)="clearFilters()">
+                <i class="pi pi-refresh me-2"></i>
+                {{ 'PRODUCTS.CLEAR_FILTERS' | translate }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="col-lg-9">
+          <!-- Products Header -->
+          <div class="products-header">
+            <span class="results-count">
+              {{ 'PRODUCTS.SHOWING' | translate }} <strong>{{ products().length }}</strong> {{ 'PRODUCTS.OF' | translate }} <strong>{{ totalProducts() }}</strong> {{ 'HEADER.PRODUCTS' | translate }}
+            </span>
+
+            <div class="d-flex align-items-center gap-3">
+              <!-- Sort -->
+              <select class="sort-select" [(ngModel)]="sortBy" (ngModelChange)="onSortChange($event)">
+                <option value="">{{ 'PRODUCTS.SORT_BY' | translate }}</option>
+                <option value="newest">{{ 'PRODUCTS.SORT_OPTIONS.NEWEST' | translate }}</option>
+                <option value="price-asc">{{ 'PRODUCTS.SORT_OPTIONS.PRICE_LOW_HIGH' | translate }}</option>
+                <option value="price-desc">{{ 'PRODUCTS.SORT_OPTIONS.PRICE_HIGH_LOW' | translate }}</option>
+                <option value="rating">{{ 'PRODUCTS.SORT_OPTIONS.RATING' | translate }}</option>
+                <option value="bestselling">{{ 'PRODUCTS.SORT_OPTIONS.BESTSELLING' | translate }}</option>
+              </select>
+
+              <!-- View Toggle -->
+              <div class="view-toggle d-none d-md-flex">
+                <button class="view-btn" [class.active]="viewMode() === 'grid'" (click)="setViewMode('grid')">
+                  <i class="pi pi-th-large"></i>
+                </button>
+                <button class="view-btn" [class.active]="viewMode() === 'list'" (click)="setViewMode('list')">
+                  <i class="pi pi-list"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products -->
+          @if (loading()) {
+            <div class="text-center py-5">
+              <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">{{ 'PRODUCTS.LOADING' | translate }}</span>
+              </div>
+              <p class="mt-3 text-muted">{{ 'PRODUCTS.LOADING' | translate }}</p>
+            </div>
+          } @else if (products().length === 0) {
+            <div class="empty-state">
+              <i class="pi pi-search empty-icon"></i>
+              <h4 class="fw-bold text-dark">{{ 'PRODUCTS.NO_PRODUCTS_FOUND' | translate }}</h4>
+              <p class="text-muted">{{ 'PRODUCTS.TRY_ADJUSTING' | translate }}</p>
+              @if (activeFiltersCount() > 0) {
+                <button class="clear-filters-btn" (click)="clearFilters()">
+                  {{ 'PRODUCTS.CLEAR_FILTERS' | translate }}
+                </button>
+              }
+            </div>
+          } @else {
+            <div [class]="viewMode() === 'grid' ? 'products-grid' : 'products-list'">
+              @for (product of products(); track product.id) {
+                <app-product-item [product]="product" [viewMode]="viewMode()"></app-product-item>
+              }
+            </div>
+          }
+
+          <!-- Pagination -->
+          @if (totalPages() > 1) {
+            <div class="pagination">
+              <button
+                class="page-btn"
+                [disabled]="currentPage() === 1"
+                (click)="goToPage(currentPage() - 1)"
+              >
+                <i class="pi pi-chevron-left"></i>
+              </button>
+
+              @for (page of visiblePages(); track page) {
+                @if (page === '...') {
+                  <span class="px-2">...</span>
+                } @else {
+                  <button
+                    class="page-btn"
+                    [class.active]="currentPage() === page"
+                    (click)="goToPage(+page)"
+                  >
+                    {{ page }}
+                  </button>
+                }
+              }
+
+              <button
+                class="page-btn"
+                [disabled]="currentPage() === totalPages()"
+                (click)="goToPage(currentPage() + 1)"
+              >
+                <i class="pi pi-chevron-right"></i>
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <app-loading></app-loading>

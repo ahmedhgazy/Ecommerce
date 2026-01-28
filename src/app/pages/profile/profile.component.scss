@@ -1,39 +1,126 @@
-.profile {
-    &__actions {
-        .title {
-            font-family: var(--secondary-font);
-            font-weight: 500;
-            color: #000000;
-        }
+@import '../../../assets/styles/premium';
 
-        .actions {
-            margin-bottom: 1rem;
+.profile-page {
+  padding: 2rem 0 5rem;
 
-            &__details {
-                a {
-                    font-family: var(--secondary-font);
-                    font-weight: 400;
-                    color: #000000;
-                    opacity: 0.5;
-                    cursor: pointer;
-                }
-            }
+  // Page Header
+  .page-header {
+    margin-bottom: 2rem;
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: $premium-muted;
+      margin-bottom: 1rem;
+
+      a {
+        text-decoration: none;
+        color: $premium-muted;
+        transition: color $transition-base;
+
+        &:hover {
+          color: $premium-primary;
         }
+      }
+
+      .separator {
+        color: #d1d5db;
+      }
+
+      .current {
+        color: $premium-dark;
+        font-weight: 500;
+      }
     }
-}
+  }
 
-a {
-    color: #000;
-    opacity: 0.5;
-    transition: color 0.3s, opacity 0.3s;
-    text-decoration: none;
-}
+  // Dashboard Container
+  .dashboard-container {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
 
-a:hover {
-    opacity: 1 !important;
-}
+    @media (max-width: 991px) {
+      flex-direction: column;
+    }
+  }
 
-.active-link {
-    color: var(--btn-color-red) !important;
-    opacity: 1 !important;
+  // Sidebar
+  .dashboard-sidebar {
+    @include glass-card;
+    width: 280px;
+    flex-shrink: 0;
+    padding: 1.5rem;
+    background: white;
+
+    @media (max-width: 991px) {
+      width: 100%;
+    }
+
+    .sidebar-section {
+      margin-bottom: 2rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .section-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $premium-muted;
+        margin-bottom: 1rem;
+        letter-spacing: 0.05em;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        a {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 1rem 1.5rem;
+          border-radius: $radius-md;
+          color: $premium-dark;
+          text-decoration: none;
+          font-weight: 500;
+          transition: all $transition-base;
+
+          &:hover {
+            background: rgba($premium-primary, 0.05);
+            color: $premium-primary;
+          }
+
+          &.active-link {
+            background: $premium-primary;
+            color: white;
+            box-shadow: $shadow-sm;
+          }
+
+          i {
+            font-size: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+
+  // Content Area
+  .dashboard-content {
+    flex-grow: 1;
+    width: 100%; // Ensure it takes full width available
+    min-width: 0; // Prevent flex item overflow
+
+    // Helper for inner content if needed
+    // .content-card {
+    //   @include glass-card;
+    //   padding: 2rem;
+    //   background: white;
+    // }
+  }
 }

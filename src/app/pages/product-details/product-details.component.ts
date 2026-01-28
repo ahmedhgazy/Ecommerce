@@ -9,10 +9,8 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { SharedRoutesHeader } from '../../shared/components/shared-routes-header/shared-routes-header.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { ProductsService } from '../../services/products/products.service';
-import { LoadingService } from '../../shared/components/loading/loading.service';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../services/orders/cart.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -27,7 +25,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
         ButtonModule,
         FormsModule,
         ToastModule,
-        SharedRoutesHeader,
         RouterModule,
         LoadingComponent,
         RouterModule,
@@ -51,7 +48,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     translate = inject(TranslateService);
 
     route = inject(ActivatedRoute);
-    loadingS = inject(LoadingService);
     quantity: number = 1;
     product: Product | null = null;
     endsubs$ = new Subject<void>();
@@ -64,11 +60,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     }
 
     getItemDetails(id: number) {
-        this.product$ = this.loadingS.showLoadingUntilCompleted(
-            this.productsService.getProductById(id).pipe(
+        this.product$ = this.productsService.getProductById(id).pipe(
                 map(product => this.product = product)
-            )
-        );
+            );
     }
 
     addToCart() {

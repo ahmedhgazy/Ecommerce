@@ -1,17 +1,14 @@
+@import '../../../../assets/styles/premium';
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translate3d(0, 20px, 0);
     }
-
     to {
         opacity: 1;
         transform: translate3d(0, 0, 0);
     }
-}
-
-.hidden-row {
-    opacity: 0;
 }
 
 .visible-row {
@@ -20,40 +17,41 @@
 
 :host ::ng-deep {
     .custom-table {
+        @include glass-card;
         background-color: #ffffff;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        border: 1px solid #f0f0f0;
+        border-radius: $radius-lg;
+        box-shadow: $shadow-md;
+        border: none;
         overflow: hidden;
 
         .p-datatable-header {
-            background-color: #fff;
+            background-color: transparent;
             border: none;
             padding: 1.5rem;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            background: rgba($premium-primary, 0.02);
         }
 
-        .p-datatable-thead>tr>th {
-            background-color: #f8fafc;
-            color: #475569;
+        .p-datatable-thead > tr > th {
+            background-color: rgba($premium-primary, 0.05);
+            color: $premium-muted;
             font-weight: 600;
             padding: 1rem;
             border: none;
-            border-bottom: 1px solid #e2e8f0;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.05em;
         }
 
-        .p-datatable-tbody>tr {
-            background-color: #ffffff;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid #f0f0f0;
+        .p-datatable-tbody > tr {
+            background-color: transparent;
+            transition: all $transition-base;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
 
             &:hover {
-                background-color: #f8fafc;
+                background-color: rgba($premium-primary, 0.02);
                 transform: translateY(-1px);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
                 z-index: 10;
                 position: relative;
             }
@@ -61,74 +59,92 @@
             &.order-row td {
                 padding: 1.25rem 1rem;
                 vertical-align: middle;
+                color: $premium-dark;
             }
         }
 
         .p-paginator {
-            background-color: #fff;
-            border-top: 1px solid #f0f0f0;
+            background-color: transparent;
+            border-top: 1px solid rgba(0,0,0,0.05);
             padding: 1rem;
+
+            .p-paginator-element {
+                border-radius: $radius-sm;
+                &.p-highlight {
+                    background: rgba($premium-primary, 0.1);
+                    color: $premium-primary;
+                }
+            }
         }
     }
 }
 
 // Custom Item Pill
 .item-pill {
-    background-color: #f8fafc;
-    border-radius: 6px;
-    padding: 6px 10px;
+    background-color: rgba($premium-primary, 0.05);
+    border-radius: $radius-sm;
+    padding: 6px 12px;
     font-size: 0.9rem;
-    border-left: 3px solid transparent; // set via inline style
+    border-left: 3px solid transparent;
     display: inline-flex;
     align-items: center;
     width: fit-content;
+    color: $premium-dark;
 }
 
 // Mobile Card Styling
 .order-cards-container {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
+    gap: 1.5rem;
+    padding: 0.5rem;
 }
 
 .order-card {
+    @include glass-card;
     background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-    border: 1px solid #f0f0f0;
-    overflow: hidden;
+    padding: 0;
+    margin-bottom: 1rem;
 
     &-header {
-        background: #f8fafc;
-        padding: 1rem;
+        background: rgba($premium-primary, 0.03);
+        padding: 1rem 1.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #f0f0f0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
 
         .date {
             font-weight: 600;
-            color: #334155;
+            color: $premium-dark;
+            font-size: 0.95rem;
         }
     }
 
     &-body {
-        padding: 1rem;
+        padding: 1.5rem;
 
         .item-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.75rem;
             font-size: 0.95rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+                margin-bottom: 0;
+            }
 
             .item-name {
-                color: #1e293b;
+                color: $premium-dark;
+                font-weight: 500;
             }
 
             .item-qty {
-                color: #64748b;
-                font-weight: 500;
+                color: $premium-muted;
             }
         }
 
@@ -136,29 +152,32 @@
             display: flex;
             align-items: center;
             font-size: 0.9rem;
-            color: #64748b;
-            background: #f1f5f9;
-            padding: 0.5rem;
-            border-radius: 6px;
+            color: $premium-muted;
+            background: #f9fafb;
+            padding: 0.75rem;
+            border-radius: $radius-md;
+            margin-top: 1.5rem !important;
         }
     }
 
     &-footer {
-        padding: 1rem;
-        border-top: 1px solid #f0f0f0;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid rgba(0,0,0,0.05);
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background: rgba(0,0,0,0.01);
 
         .total-label {
-            color: #64748b;
+            color: $premium-muted;
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .total-value {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            color: #0f172a;
+            color: $premium-primary;
         }
     }
 }

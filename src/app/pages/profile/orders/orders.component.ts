@@ -22,7 +22,10 @@ import { ButtonModule } from 'primeng/button';
 import { TranslateModule } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
-import { LoadingService } from '../../../shared/components/loading/loading.service';
+import { LoadingService } from '../../../core/services/loading.service';
+import { DialogModule } from 'primeng/dialog';
+import { OrderDetailsComponent } from './order-details/order-details.component';
+
 @Component({
   selector: 'app-orders',
   standalone: true,
@@ -34,7 +37,9 @@ import { LoadingService } from '../../../shared/components/loading/loading.servi
     ButtonModule,
     LoadingComponent,
     TranslateModule,
-    TagModule
+    TagModule,
+    DialogModule,
+    OrderDetailsComponent
   ],
 
   templateUrl: './orders.component.html',
@@ -68,14 +73,10 @@ export class OrdersComponent implements OnInit {
     this.checkScreenSize();
   }
 
-  loadingS = inject(LoadingService);
   ordersS = inject(OrdersService);
-  LoadingS = inject(LoadingService);
   filterService = inject(FilterService);
   router = inject(Router);
-  Orders$: Observable<Order[]> = this.loadingS.showLoadingUntilCompleted(
-    this.ordersS.getOrders()
-  );
+  Orders$: Observable<Order[]> = this.ordersS.getOrders();
   @ViewChild('dt1') dt1: Table | undefined;
   selectedOrder: Order | null = null;
   isMobile: boolean = false;
@@ -88,6 +89,14 @@ export class OrdersComponent implements OnInit {
     'status',
     'totalPrice'
   ];
+
+  displayDetails = false;
+
+  viewDetails(order: Order) {
+    this.selectedOrder = order;
+    this.displayDetails = true;
+  }
+
 
   ngOnInit(): void {
     this.ordersS.getOrders().subscribe((res) => {

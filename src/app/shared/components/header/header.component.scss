@@ -160,21 +160,126 @@ i,
     }
 }
 
-[dir='rtl'] {
-    .header {
-        .navigation {
-            &__item {
-                padding-inline-start: 0;
-                padding-inline-end: 3rem;
+// Header responsiveness - shrink spacing for medium screens
+@media screen and (max-width: 1100px) {
+    .header .main-header {
+        .navigation__item {
+            padding-inline-start: 1.5rem;
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .header .main-header {
+        .navigation__item {
+            padding-inline-start: 0.75rem;
+        }
+        
+        .navigation__link {
+            font-size: 0.9rem;
+        }
+        
+        .brand-title a {
+            font-size: 1.25rem;
+        }
+    }
+    
+    // Shrink action icons spacing
+    .action {
+        gap: 0.5rem;
+        
+        .mx-4 {
+            margin-left: 0.5rem !important;
+            margin-right: 0.5rem !important;
+        }
+    }
+}
+
+// Wishlist badge styles
+.wishlist-icon-wrapper {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+
+    .wishlist-badge {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background-color: #DB4444;
+        color: white;
+        font-size: 0.65rem;
+        font-weight: 600;
+        min-width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 4px;
+        line-height: 1;
+    }
+}
+
+    [dir='rtl'] {
+        .header {
+            .navigation {
+                &__item {
+                    padding-inline-start: 0;
+                    padding-inline-end: 3rem;
+                }
+            }
+
+            .action {
+                direction: ltr;
+
+                i,
+                .pi {
+                    transform: scaleX(-1);
+                }
             }
         }
+    }
 
-        .action {
-            direction: ltr;
 
-            i,
-            .pi {
-                transform: scaleX(-1);
+// Dark Mode Overrides
+:host-context(body.dark) {
+    .header {
+        .main-header {
+            background-color: #111827; // Dark background for lower header
+            color: #f9fafb; // Light text
+
+            .brand-title a {
+                color: #f9fafb;
+            }
+
+            .navigation__link {
+                color: #d1d5db;
+
+                &:hover {
+                    color: #fff;
+                }
+            }
+
+            .search-section {
+                background-color: rgba(255, 255, 255, 0.1);
+
+                input {
+                    color: #fff;
+
+                    &::placeholder {
+                        color: #9ca3af;
+                    }
+                }
+
+                i {
+                    color: #9ca3af;
+                }
+            }
+
+            .action {
+                i {
+                    color: #f9fafb !important;
+                }
             }
         }
     }

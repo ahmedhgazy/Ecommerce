@@ -1,49 +1,63 @@
-.text {
-    p {
-        font-family: var(--secondary-font);
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 21px;
+@import '../../../assets/styles/premium';
 
-        color: #000000;
-    }
+.contact-page {
+  padding: 2rem 0 5rem;
 }
 
-.icon {
-    p {
-        font-family: var(--secondary-font);
+.contact-card {
+  @include glass-card;
+  padding: 2rem;
+  height: 100%;
 
-        font-weight: 500;
-        line-height: 24px;
+  .contact-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: rgba($premium-primary, 0.1);
+    color: $premium-primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
 
-        color: #000000;
-    }
+  .contact-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $premium-dark;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-text {
+    color: $premium-muted;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
 }
 
-input,
-textarea {
-    // border: 0 !important;
-    border: 1px solid transparent !important;
+.contact-form-card {
+  @include glass-card;
+  padding: 2.5rem;
 
-    outline: none !important;
-    box-shadow: none !important;
+  .form-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $premium-dark;
+    margin-bottom: 2rem;
+  }
 }
 
-input.ng-touched.ng-invalid,
-textarea.ng-touched.ng-invalid {
-    border: 1px solid var(--btn-color-red) !important;
+.form-group {
+    margin-bottom: 1.5rem;
 }
 
-@media only screen and (max-width: 991px) {
-    .card-section {
-        margin-bottom: 2.5rem;
-    }
+.form-control {
+    @extend .form-control-premium;
 }
 
-.form-section-col {
-    @media screen and (max-width: 992px) {
-        width: 100%;
-        margin: 0 !important;
-    }
+.btn-send {
+    @include btn-premium($gradient-primary);
+    width: 100%;
 }

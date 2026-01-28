@@ -6,16 +6,14 @@ import { animate, style } from '@angular/animations';
     selector: '[animateFromRight]',
 })
 export class AnimateFromRightDirective extends BaseAnimationDirective {
-    protected override createAnimation() {
+    protected override initializeAnimation() {
         const factory = this.animationBuilder.build([
-            style({ opacity: 0, transform: 'translateY(100px)' }),
+            style({ opacity: 0, transform: 'translateX(100px)' }),
             animate(
-                '800ms ease-out',
+                this.duration + ' ' + this.easing,
                 style({ opacity: 1, transform: 'translateX(0)' })
             ),
         ]);
         this.player = factory.create(this.el.nativeElement);
-        this.renderer.setStyle(this.el.nativeElement, 'opacity', '0');
-        this.playAnimation();
     }
 }

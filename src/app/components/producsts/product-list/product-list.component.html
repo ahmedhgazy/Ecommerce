@@ -1,15 +1,9 @@
-<section class="products">
+<section class="products-section">
     <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div
-                class="col-12 col-md-6 col-lg-3"
-                *ngFor="let product of products"
-            >
-                <app-product-item class="product__item" [product]="product">
-                </app-product-item>
-            </div>
-
-            <!-- <app-loading></app-loading> -->
+        <div class="products-grid">
+            @for (product of products; track product.id) {
+                <app-product-item [product]="product"></app-product-item>
+            }
         </div>
     </div>
 </section>

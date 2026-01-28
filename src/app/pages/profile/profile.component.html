@@ -1,80 +1,64 @@
-<section class="profile">
+<section class="profile-page">
     <div class="container">
-        <div class="row my-4">
-            <app-shared-routes-header
-                class="header-shared_routes d-flex align-items-center"
-            >
-                <span header style="cursor: pointer" routerLink="/home">
-                    {{ 'ROUTES.HOME' | translate }}
-                </span>
-                <p route class="mb-0">
-                    {{ 'ROUTES.PROFILE' | translate }}
-                </p>
-            </app-shared-routes-header>
+        <!-- Page Header -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a routerLink="/home">{{ 'ROUTES.HOME' | translate }}</a>
+                <span class="separator">/</span>
+                <span class="current">{{ 'ROUTES.PROFILE' | translate }}</span>
+            </div>
+            <h1 class="display-6 fw-bold text-dark">My Account</h1>
         </div>
 
-        <div class="row">
-            <div
-                class="col-12 col-md-3 col-lg-2 ps-0 profile__actions"
-                [ngClass]="{ 'col-lg-2': inOrders, 'col-md-3': !inOrders }"
-            >
-                <div class="actions mb-4">
-                    <h5 class="title mb-3">
+        <div class="dashboard-container">
+            <!-- Sidebar -->
+            <aside class="dashboard-sidebar">
+                <div class="sidebar-section">
+                    <h5 class="section-title">
                         {{ 'PROFILE.MANAGE_ACCOUNT' | translate }}
                     </h5>
-
-                    <div class="actions__details text-center">
+                    <div class="nav-links">
                         <a
                             routerLink="/profile"
+                            class="p-2"
                             routerLinkActive="active-link"
                             [routerLinkActiveOptions]="{ exact: true }"
                         >
+                            <i class="pi pi-user"></i>
                             {{ 'PROFILE.YOUR_PROFILE' | translate }}
                         </a>
                     </div>
                 </div>
 
-                <div class="actions mb-4">
-                    <h5 class="title mb-3">
+                <div class="sidebar-section">
+                    <h5 class="section-title">
                         {{ 'PROFILE.MY_ORDERS' | translate }}
                     </h5>
-
-                    <div class="actions__details text-center">
+                    <div class="nav-links">
                         <a
                             routerLink="/profile/orders"
                             routerLinkActive="active-link"
+                            class="p-2"
                         >
+                            <i class="pi pi-box"></i>
                             {{ 'PROFILE.YOUR_ORDERS' | translate }}
                         </a>
-                    </div>
-                </div>
-
-                <div class="actions mb-4">
-                    <h5 class="title mb-3">
-                        {{ 'PROFILE.MY_WISHLIST' | translate }}
-                    </h5>
-
-                    <div class="actions__details text-center">
                         <a
                             routerLink="/profile/wishlist"
                             routerLinkActive="active-link"
+                            class="p-2"
                         >
+                            <i class="pi pi-heart"></i>
                             {{ 'PROFILE.YOUR_WISHLIST' | translate }}
                         </a>
                     </div>
                 </div>
-            </div>
+            </aside>
 
-            <div
-                class="col-12 col-md-8 col-lg-10 my-3"
-                [ngClass]="{
-                    'col-lg-10': inOrders,
-                    'col-md-8': !inOrders,
-                    'offset-md-1': !inOrders
-                }"
-            >
+            <!-- Main Content -->
+            <main class="dashboard-content">
                 <router-outlet></router-outlet>
-            </div>
+            </main>
         </div>
     </div>
 </section>

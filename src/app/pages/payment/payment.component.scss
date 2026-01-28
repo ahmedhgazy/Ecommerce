@@ -1,0 +1,68 @@
+.text-purple {
+    color: #7c3aed !important;
+  }
+
+  .btn:hover {
+    transform: scale(1.02);
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  a[routerLink]:hover {
+    opacity: 1 !important;
+  }
+
+  /* Maintain your existing custom classes */
+  .gradient-bg,
+  .glass-card,
+  .animate-fade-in-up,
+  .animate-pulse-slow,
+  .card-input-focus {
+    /* Keep your existing CSS for these classes */
+  }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .dark .glass-card {
+      background: rgba(31, 41, 55, 0.95);
+    }
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    .card-input-focus {
+      transition: all 0.3s ease;
+    }
+    .card-input-focus:focus-within {
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+      border-color: #6366f1;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.5s ease-out forwards;
+    }
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 2s ease-in-out infinite;
+    }

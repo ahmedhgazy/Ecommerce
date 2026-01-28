@@ -1,36 +1,69 @@
 @if (product) {
-<div class="card" style="cursor: pointer" animateFromTop>
-    @if (!inWishList) {
-    <div class="card__icons d-flex align-items-center flex-column">
-        <div class="icon icon-1" (click)="showConfirmPopUp()">
-            <i class="pi pi-heart"></i>
+<div class="card" animateFadeUp>
+    <!-- Badges -->
+    <div class="card__discount" *ngIf="product.discount > 0">
+        {{ ((product.price - product.discount) / product.price) | percent:'1.0-0' }} {{ 'PRODUCTS.OFF' | translate }}
+    </div>
+
+    <!-- Action Icons -->
+    <div class="card__icons">
+        <!-- Wishlist Heart - Toggle between filled (in wishlist) and outline -->
+        <div class="icon wishlist-icon"
+             (click)="toggleWishlist($event)"
+             [class.in-wishlist]="isInWishlist"
+             [class.toggling]="isToggling"
+             [title]="isInWishlist ? ('ACTIONS.REMOVE_FROM_WISHLIST' | translate) : ('ACTIONS.ADD_TO_WISHLIST' | translate)"
+             *ngIf="!isOnWishlistPage">
+            <i class="pi" [ngClass]="isInWishlist ? 'pi-heart-fill' : 'pi-heart'"></i>
         </div>
-        <div class="icon icon-2" (click)="openImagePreview()">
-            <i class="pi pi-eye"> </i>
+        <!-- Remove button - Only shows on wishlist page -->
+        <div class="icon remove-icon"
+             (click)="toggleWishlist($event)"
+             [class.toggling]="isToggling"
+             [title]="'ACTIONS.REMOVE_FROM_WISHLIST' | translate"
+             *ngIf="isOnWishlistPage">
+            <i class="pi pi-trash"></i>
+        </div>
+        <div class="icon" (click)="openImagePreview()" [title]="'ACTIONS.QUICK_VIEW' | translate">
+            <i class="pi pi-eye"></i>
         </div>
     </div>
-    }
-    <div class="card-top d-flex justify-content-center align-items-center"
-        [routerLink]="['/products', product.category, product.id]">
+
+    <!-- Image Area -->
+    <div class="card-top" [routerLink]="['/products', product.category, product.id]" style="cursor: pointer">
         <div class="image-container">
-            <img *ngIf="product?.imageUrl" [src]="product?.imageUrl" class="product-image" [alt]="product.name" />
+            <img [src]="product.imageUrl || 'assets/placeholder.png'"
+                 class="product-image"
+                 [alt]="product.name"
+                 loading="lazy"/>
         </div>
     </div>
+
+    <!-- Content Area -->
     <div class="card-body">
-        <a [routerLink]="['/products', product.category, product.id]" class="card-title">{{ product.name }}</a>
+        <a [routerLink]="['/products', product.category, product.id]" class="card-title" [title]="product.name">
+            {{ product.name }}
+        </a>
+
         <p class="card-text">
-            <span>${{ product.discount }}</span>
-            <span>${{ product.price }}</span>
+            <span>{{ product.discount | currency }}</span>
+            <span *ngIf="product.price > product.discount">{{ product.price | currency }}</span>
         </p>
-        <div class="d-flex stars align-items-center justify-content-between w-100 mt-2">
-            <ngx-stars [initialStars]="product.rating" [maxStars]="5" [readonly]="true" [color]="'#FFAD33'"></ngx-stars>
-            <span class="stock-info" [class.text-danger]="product.availableQuantity < 5" [class.text-success]="product.availableQuantity >= 5">
-                {{ product.availableQuantity > 0 ? product.availableQuantity + ' left' : 'Out of Stock' }}
+
+        <div class="stars">
+            <ngx-stars [initialStars]="product.rating" [maxStars]="5" [readonly]="true" [color]="'#FFAD33'" [size]="1"></ngx-stars>
+            <span class="stock-info" [ngClass]="{
+                'text-success': product.availableQuantity >= 5,
+                'text-danger': product.availableQuantity < 5 && product.availableQuantity > 0,
+                'text-muted': product.availableQuantity === 0
+            }">
+                {{ product.availableQuantity > 0 ? (product.availableQuantity + ' ' + ('PRODUCTS.LEFT' | translate)) : ('PRODUCTS.OUT_OF_STOCK' | translate) }}
             </span>
         </div>
     </div>
 </div>
 
-<app-confirm-popup *ngIf="showPopup" (closePopup)="closePopup()" [product]="product"></app-confirm-popup>
+
+
 
 }

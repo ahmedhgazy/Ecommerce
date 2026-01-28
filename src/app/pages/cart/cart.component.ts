@@ -28,8 +28,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../../services/orders/cart.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
-import { LoadingService } from '../../shared/components/loading/loading.service';
+import { LoadingService } from '../../core/services/loading.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
     standalone: true,
@@ -37,6 +38,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.scss'],
     imports: [
+        CommonModule,
         SharedRoutesHeader,
         OrderSummaryComponent,
         ToastModule,
@@ -55,7 +57,6 @@ export class CartComponent implements OnInit, OnDestroy {
     translate = inject(TranslateService);
 
     totalPrice = 0;
-    loadingS = inject(LoadingService);
     private endSubs$ = new Subject<void>();
     private quantityUpdate$ = new Subject<{
         index: number;

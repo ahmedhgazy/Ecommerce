@@ -1,129 +1,188 @@
-.product-details__header {
-    p {
-        font-family: var(--secondary-font);
-        font-weight: 400;
-        color: #000000;
+@import '../../../assets/styles/premium';
+
+.cart {
+  padding: 2rem 0 5rem;
+  min-height: 80vh;
+
+  // Page Header
+  .page-header {
+    margin-bottom: 2rem;
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: $premium-muted;
+      margin-bottom: 1rem;
+
+      a {
+        text-decoration: none;
+        color: $premium-muted;
+        transition: color $transition-base;
+
+        &:hover {
+          color: $premium-primary;
+        }
+      }
+
+      .separator {
+        color: #d1d5db;
+      }
+
+      .current {
+        color: $premium-dark;
+        font-weight: 500;
+      }
     }
-}
+  }
 
-.product__N-image {
-    overflow: hidden;
+  // Cart Items
+  .cart-item {
+    @include glass-card;
+    background: white;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all $transition-base;
 
-    img {
+    @media (max-width: 768px) {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .item-image {
+      width: 100px;
+      height: 100px;
+      flex-shrink: 0;
+      border-radius: $radius-md;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+
+      img {
         max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
     }
 
-    span {
-        font-family: var(--secondary-font);
-        color: #000000;
+    .item-info {
+      flex-grow: 1;
 
-        @media screen and (max-width: 460px) {
-            font-size: 13.5px;
+      .item-name {
+        font-weight: 600;
+        color: $premium-dark;
+        font-size: 1.1rem;
+        margin-bottom: 0.25rem;
+        text-decoration: none;
+        display: block;
+
+        &:hover {
+          color: $premium-primary;
         }
-    }
-}
+      }
 
-input {
-    border: 1px solid #333;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    outline: none;
-
-    &:focus,
-    &:hover {
-        border: 0;
-        box-shadow: none;
-        outline: none;
-        border: 1px solid #333;
-    }
-}
-
-::ng-deep {
-    span.p-inputnumber {
-        height: 2.6rem;
-
-        .p-inputnumber-button-group {
-            border-color: var(--btn-color-red) !important;
-        }
-
-        input.p-inputtext {
-
-            &:focus,
-            &:hover {
-                outline: none;
-                box-shadow: none;
-                border-color: var(--btn-color-red) !important;
-            }
-        }
+      .item-price {
+        color: $premium-primary;
+        font-weight: 600;
+      }
     }
 
-    .p-button {
-        border-color: var(--btn-color-red) !important;
-    }
+    .item-actions {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
 
-    .p-element.p-button-icon-only.p-inputnumber-button.p-button.p-component {
-        background-color: var(--btn-color-red);
-    }
-}
-
-.back__btn {
-    margin-top: 2.5rem;
-    padding: 1rem 2rem;
-    border: 0;
-    outline: none;
-    border: 1px solid #333;
-    border-radius: 4px;
-    font-family: var(--secondary-font);
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    background-color: transparent;
-    color: #000000;
-    transition: all 0.2s ease-out;
-
-    &:hover {
-        background-color: var(--btn-color-red);
-        color: #fff;
-        border: 1px solid transparent;
-    }
-}
-
-@media only screen and (max-width: 992px) {
-    .cart {
-        .product__N-image {
-            img {
-                display: none;
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 767px) {
-
-    .quantity,
-    .p-input_wrapper {
-        display: none;
-    }
-
-    .products-row {
-        display: flex;
+      @media (max-width: 768px) {
+        flex-direction: column;
         width: 100%;
-        justify-content: space-between;
+        gap: 1rem;
+      }
+    }
 
-        div {
-            offset: 0;
-            margin-left: 0;
-            margin-right: 0;
+    .item-quantity {
+        display: flex;
+        align-items: center;
+    }
 
-            span {
-                margin-inline-start: 0;
-            }
+    .item-total {
+        min-width: 80px;
+        text-align: right;
+        font-weight: 700;
+        font-size: 1.1rem;
+        color: $premium-dark;
+    }
+
+    .delete-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(239, 68, 68, 0.1);
+        color: $premium-danger;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all $transition-base;
+
+        &:hover {
+            background: $premium-danger;
+            color: white;
+            transform: rotate(90deg);
         }
     }
+  }
 
-    .product-header_row {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+  .empty-cart {
+    // @include glass-card;
+    text-align: center;
+    padding: 4rem 2rem;
+
+    // background: white;
+
+    .empty-icon {
+        font-size: 4rem;
+        color: #e5e7eb;
+        margin-bottom: 1.5rem;
     }
+
+    h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        // color: $premium-dark;
+        color: $premium-muted;
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        color: $premium-muted;
+        margin-bottom: 2rem;
+    }
+  }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: $radius-md;
+    background: transparent;
+    color: $premium-dark;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all $transition-base;
+
+    &:hover {
+        border-color: $premium-dark;
+        background: $premium-dark;
+        color: white;
+    }
+  }
 }

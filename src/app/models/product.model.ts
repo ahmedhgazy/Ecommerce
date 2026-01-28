@@ -18,6 +18,7 @@ export interface Product {
     availableQuantity: number;
     quantity?: number;
     subTotal?: number;
+    categoryId?: number;
 }
 
 export function mapToProduct(products: Product[], id: number): Product {

@@ -21,9 +21,11 @@ import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { LoadingService } from '../../../shared/components/loading/loading.service';
+import { LoadingService } from '../../../core/services/loading.service';
 import { Subject, switchMap, takeUntil, tap, finalize } from 'rxjs';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
+import { AnimateFadeUpDirective } from '../../../shared/animations/scroll-animation/fade-up';
+import { AnimateFromRightDirective } from '../../../shared/animations/scroll-animation/right';
 @Component({
     selector: 'app-sigin',
     standalone: true,
@@ -38,7 +40,9 @@ import { LoadingComponent } from '../../../shared/components/loading/loading.com
         InputTextModule,
         TranslateModule,
         RouterModule,
-        LoadingComponent
+        LoadingComponent,
+        AnimateFadeUpDirective,
+        AnimateFromRightDirective
     ],
     templateUrl: './sigin.component.html',
     styleUrl: './sigin.component.scss',
@@ -139,8 +143,6 @@ export class SigInComponent implements OnDestroy {
 
     visible: boolean = false;
 
-    loadingService = inject(LoadingService);
-
     showDialog() {
         this.visible = true;
     }
@@ -152,7 +154,6 @@ export class SigInComponent implements OnDestroy {
         }
 
         const email = this.resetEmail.value;
-        this.loadingService.loadingOn();
         this.auth
             .forgotPassword(email)
             .pipe(
@@ -171,7 +172,6 @@ export class SigInComponent implements OnDestroy {
                         detail: translations['TOAST_MESSAGE.emailSent'],
                     });
                 }),
-                finalize(() => this.loadingService.loadingOf()),
                 takeUntil(this.endSubs)
             )
             .subscribe({});

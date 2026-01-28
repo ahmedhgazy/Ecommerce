@@ -1,91 +1,47 @@
-.popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 2000;
+@import '../../../../../assets/styles/premium';
+
+.modal-premium {
+    position: relative;
+    // content handles local padding/flow
 }
 
-.popup-container {
-    max-width: 100%;
-    width: 65%;
-    animation: fadeIn 0.5s ease;
+.btn-close-premium {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    padding: 0.5rem;
+    transition: all $transition-base;
+    cursor: pointer;
+    font-size: 1.1rem;
+
+    &:hover {
+        color: $premium-dark;
+        transform: rotate(90deg);
+    }
 }
 
-.popup__content-wrapper {
-    max-width: 400px;
+.product-preview {
+    width: 120px;
+    height: 120px;
     margin: 0 auto;
-}
+    position: relative;
 
-.product-image-container {
-    max-width: 300px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-
-.recipe-image-container img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.btn-danger {
-    background-color: var(--btn-color-red) !important;
-    border-color: var(--btn-color-red) !important;
-    transition: all 0.2s ease;
-}
-
-.btn-danger:hover {
-    background-color: #bb2d3b;
-    border-color: #b02a37;
-}
-
-@media (max-width: 576px) {
-    .popup__content-wrapper {
-        padding: 1rem !important;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: $radius-lg;
     }
 }
 
-@media only screen and (max-width: 600px) {
-    .popup {
-        *:not(button) {
-            font-size: 10px !important;
-        }
-        button {
-            font-size: 8px !important;
-        }
-    }
+.modal-title {
+    color: $premium-dark;
+    font-weight: 700;
 }
 
-@media only screen and (max-width: 351px) {
-    .popup {
-        button {
-            font-size: 7px !important;
-        }
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1037px) {
-    .popup {
-        button {
-            font-size: 1rem !important;
-        }
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        scale: 0.5;
-    }
-    to {
-        opacity: 1;
-        scale: 1;
-    }
+// Dark Mode overrides (handled by parent context usually, but ensuring local elements pop)
+:host-context(body.dark) {
+    .modal-title { color: white; }
+    .btn-close-premium:hover { color: white; }
+    .text-muted { color: $premium-muted !important; }
 }

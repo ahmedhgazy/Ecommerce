@@ -1,0 +1,131 @@
+@import '../../../../../assets/styles/premium';
+
+.details-container {
+    padding: 1rem;
+}
+
+.details-section {
+    background: rgba($premium-primary, 0.03);
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+
+    .section-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: $premium-dark;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        i {
+            color: $premium-primary;
+            font-size: 1.25rem;
+        }
+    }
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    .item-image {
+        width: 60px;
+        height: 60px;
+        border-radius: $radius-sm;
+        object-fit: cover;
+        background: #f3f4f6;
+        margin-right: 1.5rem;
+    }
+
+    .item-info {
+        flex: 1;
+
+        .item-name {
+            font-weight: 600;
+            color: $premium-dark;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-category {
+            font-size: 0.85rem;
+            color: $premium-muted;
+        }
+    }
+
+    .item-pricing {
+        text-align: right;
+
+        .item-qty {
+            display: block;
+            font-size: 0.9rem;
+            color: $premium-muted;
+            margin-bottom: 0.25rem;
+        }
+
+        .item-total {
+            font-weight: 700;
+            color: $premium-primary;
+        }
+    }
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+
+    .info-item {
+        .label {
+            display: block;
+            font-size: 0.85rem;
+            color: $premium-muted;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .value {
+            font-weight: 600;
+            color: $premium-dark;
+            font-size: 1rem;
+        }
+
+        .address {
+            line-height: 1.6;
+        }
+    }
+}
+
+.order-summary {
+    background: $premium-dark;
+    color: white;
+    border-radius: $radius-lg;
+    padding: 1.5rem;
+
+    .summary-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        opacity: 0.9;
+
+        &.total {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.25rem;
+            font-weight: 700;
+            opacity: 1;
+            color: $premium-success;
+        }
+    }
+}

@@ -42,11 +42,19 @@
                             {{ 'HEADER.HOME' | translate }}
                         </a>
                     </li>
+
+    <li class="navigation__item">
+                        <a routerLink="/products" class="navigation__link">{{
+                            'HEADER.PRODUCTS' | translate
+                            }}</a>
+                    </li>
+
                     <li class="navigation__item">
                         <a class="navigation__link" routerLink="/contact">{{
                             'HEADER.CONTACT' | translate
                             }}</a>
                     </li>
+
                     <li class="navigation__item">
                         <a routerLink="about" class="navigation__link">{{
                             'HEADER.ABOUT' | translate
@@ -90,8 +98,13 @@
 
                 <!-- Actions section -->
                 <div class="action" *ngIf="auth.isLoggedIn$ | async">
-                    <i routerLink="/profile/wishlist" class="pi pi-heart p-text-secondary"
-                        style="font-size: 1.4rem"></i>
+                    <div class="wishlist-icon-wrapper position-relative" routerLink="/profile/wishlist" style="cursor: pointer;">
+                        <i class="pi pi-heart p-text-secondary" style="font-size: 1.4rem"></i>
+                        <span class="wishlist-badge"
+                              *ngIf="wishlistService.itemCount > 0">
+                            {{ wishlistService.itemCount > 99 ? '99+' : wishlistService.itemCount }}
+                        </span>
+                    </div>
 
                     <app-cart-icon class="mx-4"></app-cart-icon>
 
