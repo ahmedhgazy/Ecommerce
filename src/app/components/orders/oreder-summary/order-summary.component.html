@@ -1,31 +1,31 @@
 <section class="order">
     <h5 class="title">{{ "CART.CART_TOTAL" | translate }}</h5>
-    <div class="order__details mt-4">
-        <p class="order__price">{{ "CART.SUBTOTAL" | translate }}:</p>
-        <span class="order__price">{{ totalPrice }}</span>
-    </div>
-    <hr class="my-10" />
+
     <div class="order__details">
-        <p class="order__price">{{ "CART.SHIPPING" | translate }}</p>
-        <span class="order__price" style="color: var(--btn-color-green)">
-            {{ "CART.FREE" | translate }}
-        </span>
+        <span class="order__price">{{ "CART.SUBTOTAL" | translate }}</span>
+        <span class="order__price fw-semibold">{{ totalPrice | currency }}</span>
     </div>
-    <hr class="my-10" />
+
     <div class="order__details">
-        <p class="order__price">
-            {{ "CART.TOTAL" | translate }}
-        </p>
-        <span class="order__price">{{ totalPrice }}</span>
+        <span class="order__price">{{ "CART.SHIPPING" | translate }}</span>
+        <span class="text-success fw-bold">{{ "CART.FREE" | translate }}</span>
+    </div>
+
+    <hr />
+
+    <div class="order__details">
+        <span class="order__price total">{{ "CART.TOTAL" | translate }}</span>
+        <span class="order__price total text-primary">{{ totalPrice | currency }}</span>
     </div>
 
     @if (!isCheckout) {
-
-    <button
-        [disabled]="totalPrice == 0"
-        class="checkOut_btn mx-auto"
-        routerLink="/checkout"
-    >
-        {{ "CART.PROCEED_TO_CHECKOUT" | translate }}</button
-    >}
+        <button
+            [disabled]="totalPrice == 0"
+            class="checkOut_btn"
+            routerLink="/checkout"
+        >
+            {{ "CART.PROCEED_TO_CHECKOUT" | translate }}
+        </button>
+    }
 </section>
+

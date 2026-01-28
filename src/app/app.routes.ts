@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './services/auth/auth.guard';
+import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 export const routes: Routes = [
@@ -17,6 +18,12 @@ export const routes: Routes = [
     path: 'home',
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
+    canActivate: [authGuard],
+  },
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('./pages/products/products.component').then((m) => m.ProductsComponent),
     canActivate: [authGuard],
   },
   {
@@ -40,6 +47,7 @@ export const routes: Routes = [
         (m) => m.CheckoutWizardComponent
       ),
     canActivate: [authGuard],
+    canDeactivate: [UnsavedChangesGuard],
   },
   {
     // Keep payment route for backward compatibility

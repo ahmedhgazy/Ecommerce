@@ -1,13 +1,14 @@
+
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 
-import { LoadingService } from './shared/components/loading/loading.service';
+import { LoadingService } from './core/services/loading.service';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 import { GoogleAuthService } from './services/auth/auth-google.service';
 import { BackToTopDirective } from './shared/directives/top.directive';
-import { MessagesComponent } from './shared/errors/messages/messages.component';
 import { AuthService } from './services/auth/auth.service';
 
 @Component({
@@ -19,7 +20,7 @@ import { AuthService } from './services/auth/auth.service';
         FooterComponent,
         CommonModule,
         BackToTopDirective,
-        MessagesComponent,
+        LoadingComponent
     ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',

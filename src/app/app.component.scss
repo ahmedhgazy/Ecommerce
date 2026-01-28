@@ -1,42 +1,52 @@
+@import '../assets/styles/premium';
+
 .back-to-top {
-    @media only screen and (max-width: 900px) {
-        width: 20px;
-        height: 20px;
-    }
     display: flex;
     justify-content: center;
     align-items: center;
     position: fixed;
-    bottom: 20px;
-    right: 9px;
-    width: 40px;
-    height: 40px;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    background-color: #ff0000;
-    color: #ffffff;
+    background: $gradient-primary;
+    color: white;
     cursor: pointer;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    opacity: 0.8;
+    box-shadow: $shadow-lg;
+    transition: all $transition-base;
+    z-index: 1000;
+    border: none;
+
+    // Glassy border effect
+    &::before {
+        content: '';
+        position: absolute;
+        inset: -2px;
+        border-radius: 50%;
+        background: linear-gradient(to bottom right, rgba(255,255,255,0.4), rgba(255,255,255,0));
+        z-index: -1;
+        opacity: 0.6;
+    }
 
     &:hover {
-        background-color: #e60000;
-        opacity: 1;
-        transform: translateY(-3px);
+        transform: translateY(-5px) rotate(360deg);
+        box-shadow: $shadow-colored;
+        background: $gradient-cool;
     }
 
     i {
-        font-size: 24px;
-    }
-}
-
-@media only screen and (max-width: 900px) {
-    .back-to-top {
-        width: 1.5rem;
-        height: 1.5rem;
+        font-size: 1.25rem;
     }
 
-    i {
-        font-size: 0.7rem !important;
+    @media (max-width: 991px) {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+
+        i {
+             font-size: 1rem;
+        }
     }
 }
