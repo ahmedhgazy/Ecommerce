@@ -1,0 +1,235 @@
+<section class="reviews-section">
+    <h2 class="section-title">Customer Reviews</h2>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-state">
+        <i class="pi pi-spin pi-spinner"></i>
+        <span>Loading reviews...</span>
+    </div>
+
+    <div *ngIf="!isLoading" class="reviews-content">
+        <!-- Summary Section -->
+        <div class="reviews-summary" *ngIf="summary">
+            <div class="summary-left">
+                <div class="average-rating">
+                    <span class="rating-number">{{
+                        summary.averageRating | number: '1.1-1'
+                    }}</span>
+                    <span class="rating-max">/5</span>
+                </div>
+                <ngx-stars
+                    [initialStars]="summary.averageRating"
+                    [maxStars]="5"
+                    [readonly]="true"
+                    [color]="'#FFAD33'"
+                    [size]="1.2"
+                >
+                </ngx-stars>
+                <span class="total-reviews"
+                    >{{ summary.totalReviews }} reviews</span
+                >
+            </div>
+
+            <div class="summary-right">
+                <div class="rating-bar" *ngFor="let star of [5, 4, 3, 2, 1]">
+                    <span class="star-label">{{ star }} star</span>
+                    <p-progressBar
+                        [value]="getRatingPercentage(star)"
+                        [showValue]="false"
+                        styleClass="rating-progress"
+                    >
+                    </p-progressBar>
+                    <span class="count">({{ getRatingCount(star) }})</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Write Review Button / My Review -->
+        <div class="review-actions">
+            <ng-container
+                *ngIf="authService.isLoggedIn$ | async; else loginPrompt"
+            >
+                <div *ngIf="myReview && !showForm" class="my-review-card">
+                    <div class="my-review-header">
+                        <span class="badge">Your Review</span>
+                        <div class="actions">
+                            <button
+                                pButton
+                                type="button"
+                                icon="pi pi-pencil"
+                                class="p-button-text"
+                                (click)="editReview()"
+                            ></button>
+                            <button
+                                pButton
+                                type="button"
+                                icon="pi pi-trash"
+                                class="p-button-text p-button-danger"
+                                (click)="deleteReview()"
+                            ></button>
+                        </div>
+                    </div>
+                    <ngx-stars
+                        [initialStars]="myReview.rating"
+                        [maxStars]="5"
+                        [readonly]="true"
+                        [color]="'#FFAD33'"
+                        [size]="1"
+                    ></ngx-stars>
+                    <h4 *ngIf="myReview.title" class="review-title">
+                        {{ myReview.title }}
+                    </h4>
+                    <p class="review-comment">{{ myReview.comment }}</p>
+                </div>
+
+                <button
+                    *ngIf="canReview && !showForm"
+                    pButton
+                    type="button"
+                    label="Write a Review"
+                    icon="pi pi-pencil"
+                    class="write-review-btn"
+                    (click)="openReviewForm()"
+                ></button>
+            </ng-container>
+
+            <ng-template #loginPrompt>
+                <p class="login-prompt">
+                    <i class="pi pi-info-circle"></i>
+                    Please log in to write a review.
+                </p>
+            </ng-template>
+        </div>
+
+        <!-- Review Form -->
+        <div *ngIf="showForm" class="review-form">
+            <h3>{{ isEditing ? 'Edit Your Review' : 'Write a Review' }}</h3>
+
+            <div class="form-group">
+                <label>Rating *</label>
+                <ngx-stars
+                    [initialStars]="newRating"
+                    [maxStars]="5"
+                    [readonly]="false"
+                    [color]="'#FFAD33'"
+                    [size]="1.5"
+                    (ratingOutput)="onRatingChange($event)"
+                >
+                </ngx-stars>
+            </div>
+
+            <div class="form-group">
+                <label>Title (optional)</label>
+                <input
+                    type="text"
+                    pInputText
+                    [(ngModel)]="newTitle"
+                    placeholder="Summary of your review"
+                />
+            </div>
+
+            <div class="form-group">
+                <label>Your Review *</label>
+                <textarea
+                    pInputTextarea
+                    [(ngModel)]="newComment"
+                    rows="4"
+                    placeholder="Share your experience with this product..."
+                >
+                </textarea>
+            </div>
+
+            <div class="form-actions">
+                <button
+                    pButton
+                    type="button"
+                    label="Cancel"
+                    class="p-button-text"
+                    (click)="cancelForm()"
+                ></button>
+                <button
+                    pButton
+                    type="button"
+                    [label]="isEditing ? 'Update Review' : 'Submit Review'"
+                    [loading]="isSubmitting"
+                    (click)="submitReview()"
+                ></button>
+            </div>
+        </div>
+
+        <!-- Reviews List -->
+        <div class="reviews-list" *ngIf="reviews.length > 0">
+            <div class="review-card" *ngFor="let review of reviews">
+                <div class="review-header">
+                    <p-avatar
+                        [image]="review.user.photoUrl || ''"
+                        [label]="
+                            review.user.photoUrl
+                                ? ''
+                                : review.user.displayName
+                                      .charAt(0)
+                                      .toUpperCase()
+                        "
+                        shape="circle"
+                        size="large"
+                    >
+                    </p-avatar>
+                    <div class="reviewer-info">
+                        <span class="reviewer-name">{{
+                            review.user.displayName
+                        }}</span>
+                        <span class="review-date">{{
+                            review.createdAt | date: 'mediumDate'
+                        }}</span>
+                    </div>
+                    <span
+                        *ngIf="review.isVerifiedPurchase"
+                        class="verified-badge"
+                    >
+                        <i class="pi pi-verified"></i> Verified Purchase
+                    </span>
+                </div>
+
+                <ngx-stars
+                    [initialStars]="review.rating"
+                    [maxStars]="5"
+                    [readonly]="true"
+                    [color]="'#FFAD33'"
+                    [size]="0.9"
+                ></ngx-stars>
+                <h4 *ngIf="review.title" class="review-title">
+                    {{ review.title }}
+                </h4>
+                <p class="review-comment">{{ review.comment }}</p>
+            </div>
+        </div>
+
+        <!-- Empty State -->
+        <div *ngIf="reviews.length === 0 && !isLoading" class="empty-state">
+            <i class="pi pi-comments"></i>
+            <p>No reviews yet. Be the first to review this product!</p>
+        </div>
+
+        <!-- Pagination -->
+        <div *ngIf="totalPages > 1" class="pagination">
+            <button
+                pButton
+                icon="pi pi-chevron-left"
+                class="p-button-text"
+                [disabled]="currentPage === 1"
+                (click)="loadPage(currentPage - 1)"
+            ></button>
+            <span class="page-info"
+                >Page {{ currentPage }} of {{ totalPages }}</span
+            >
+            <button
+                pButton
+                icon="pi pi-chevron-right"
+                class="p-button-text"
+                [disabled]="currentPage === totalPages"
+                (click)="loadPage(currentPage + 1)"
+            ></button>
+        </div>
+    </div>
+</section>
+<p-toast />

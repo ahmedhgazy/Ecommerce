@@ -14,6 +14,7 @@ import { ProductsService } from '../../services/products/products.service';
 import { Product } from '../../models/product.model';
 import { CartService } from '../../services/orders/cart.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ProductReviewsComponent } from '../../shared/components/product-reviews/product-reviews.component';
 @Component({
     selector: 'app-product-details',
     standalone: true,
@@ -29,6 +30,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
         LoadingComponent,
         RouterModule,
         TranslateModule,
+        ProductReviewsComponent,
     ],
     templateUrl: './product-details.component.html',
     styleUrl: './product-details.component.scss',
