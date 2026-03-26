@@ -24,40 +24,25 @@ export class AuthService {
     user = new BehaviorSubject<User | null>(null);
     user$: Observable<User> = this.user.asObservable();
 
+    /** Signals when autoLogin has finished running (guards wait on this) */
+    authReady$ = new BehaviorSubject<boolean>(false);
+
     private tokenExpirationTimer: any;
     private refreshTokenTimer: any;
 
-    // get isLoggedIn$(): Observable<boolean> {
-    //     return this.user.pipe(map(user => !!user));
-    // }
-
-    // get isLoggedOut$(): Observable<boolean> {
-    //     return this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
-    // }
     isLoggedIn$: Observable<boolean>;
-
     isLoggedOut$: Observable<boolean>;
 
     constructor(
         private http: HttpClient,
         private router: Router,
     ) {
-
-
-            this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
-
-            this.isLoggedOut$ = this.isLoggedIn$.pipe(
-                map((loggedIn) => !loggedIn)
-            );
-
-            const user = localStorage.getItem(USER_DATA_KEY);
-
-            if (user) {
-                this.user.next(JSON.parse(user));
-            } else {
-                return;
-            }
-
+        this.isLoggedIn$ = this.user$.pipe(map((user) => !!user));
+        this.isLoggedOut$ = this.isLoggedIn$.pipe(
+            map((loggedIn) => !loggedIn)
+        );
+        // NOTE: We no longer load from localStorage here.
+        // autoLogin() is called from AppComponent.ngOnInit and handles everything.
     }
 
     signUp(email: string, password: string, firstName?: string, lastName?: string): Observable<ApiResponse<AuthResponse>> {
@@ -102,8 +87,9 @@ export class AuthService {
 
     refreshToken(redirectOnFailure: boolean = true): Observable<ApiResponse<AuthResponse>> {
         const user = this.user.value;
-        if (!user) {
-            return throwError(() => new Error('No user logged in'));
+        if (!user || !user.refreshToken) {
+            this.logout(redirectOnFailure);
+            return throwError(() => new Error('No refresh token available'));
         }
 
         const request: RefreshTokenRequest = { refreshToken: user.refreshToken };
@@ -158,10 +144,9 @@ export class AuthService {
     }
 
     autoLogin(): void {
-
-
         const userDataStr = localStorage.getItem(USER_DATA_KEY);
         if (!userDataStr) {
+            this.authReady$.next(true);
             return;
         }
 
@@ -181,15 +166,28 @@ export class AuthService {
         );
 
         if (loadedUser.token) {
+            // Access token still valid
             this.user.next(loadedUser);
             this.setupAutoLogout(expirationDate);
             this.setupTokenRefresh(expirationDate);
+            this.authReady$.next(true);
         } else if (loadedUser.refreshToken) {
-            this.refreshToken(false).subscribe({ 
-                error: () => this.logout(false)
+            // Access token expired but refresh token exists — try silent refresh
+            // Temporarily set user so interceptor can read the refresh token
+            this.user.next(loadedUser);
+            this.refreshToken(false).subscribe({
+                next: () => {
+                    this.authReady$.next(true);
+                },
+                error: () => {
+                    this.logout(false);
+                    this.authReady$.next(true);
+                }
             });
         } else {
-            console.warn('AutoLogin failed: Token invalid and no refresh token available.', loadedUser);
+            // No valid tokens — clear stale data
+            localStorage.removeItem(USER_DATA_KEY);
+            this.authReady$.next(true);
         }
     }
 
@@ -247,7 +245,10 @@ export class AuthService {
 
         if (expirationDuration > 0) {
             this.tokenExpirationTimer = setTimeout(() => {
-                this.logout();
+                // Try silent refresh instead of immediate logout
+                this.refreshToken(true).subscribe({
+                    error: () => this.logout()
+                });
             }, expirationDuration);
         }
     }

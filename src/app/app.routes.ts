@@ -1,16 +1,18 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './services/auth/auth.guard';
+import { noAuthGuard } from './services/auth/no-auth.guard';
 import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 import { NotFoundComponent } from './shared/components/not-found/not-found.component';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/login',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
     path: 'auth',
+    canActivate: [noAuthGuard],
     loadChildren: () =>
       import('./pages/Auth/auth.routes').then((m) => m.AUTH_ROUTES),
   },
@@ -50,7 +52,7 @@ export const routes: Routes = [
     canDeactivate: [UnsavedChangesGuard],
   },
   {
-    // Keep payment route for backward compatibility
+
     path: 'payment',
     redirectTo: 'checkout',
     pathMatch: 'full',
