@@ -1,10 +1,10 @@
 <section class="reviews-section">
-    <h2 class="section-title">Customer Reviews</h2>
+    <h2 class="section-title">{{ 'REVIEWS.CUSTOMER_REVIEWS' | translate }}</h2>
 
     <!-- Loading State -->
     <div *ngIf="isLoading" class="loading-state">
         <i class="pi pi-spin pi-spinner"></i>
-        <span>Loading reviews...</span>
+        <span>{{ 'REVIEWS.LOADING_REVIEWS' | translate }}</span>
     </div>
 
     <div *ngIf="!isLoading" class="reviews-content">
@@ -26,13 +26,13 @@
                 >
                 </ngx-stars>
                 <span class="total-reviews"
-                    >{{ summary.totalReviews }} reviews</span
+                    >{{ summary.totalReviews }} {{ 'REVIEWS.REVIEWS_COUNT' | translate }}</span
                 >
             </div>
 
             <div class="summary-right">
                 <div class="rating-bar" *ngFor="let star of [5, 4, 3, 2, 1]">
-                    <span class="star-label">{{ star }} star</span>
+                    <span class="star-label">{{ star }} {{ 'REVIEWS.STAR' | translate }}</span>
                     <p-progressBar
                         [value]="getRatingPercentage(star)"
                         [showValue]="false"
@@ -51,7 +51,7 @@
             >
                 <div *ngIf="myReview && !showForm" class="my-review-card">
                     <div class="my-review-header">
-                        <span class="badge">Your Review</span>
+                        <span class="badge">{{ 'REVIEWS.YOUR_REVIEW' | translate }}</span>
                         <div class="actions">
                             <button
                                 pButton
@@ -86,7 +86,7 @@
                     *ngIf="canReview && !showForm"
                     pButton
                     type="button"
-                    label="Write a Review"
+                    [label]="'REVIEWS.WRITE_REVIEW' | translate"
                     icon="pi pi-pencil"
                     class="write-review-btn"
                     (click)="openReviewForm()"
@@ -96,17 +96,17 @@
             <ng-template #loginPrompt>
                 <p class="login-prompt">
                     <i class="pi pi-info-circle"></i>
-                    Please log in to write a review.
+                    {{ 'REVIEWS.LOGIN_PROMPT' | translate }}
                 </p>
             </ng-template>
         </div>
 
         <!-- Review Form -->
         <div *ngIf="showForm" class="review-form">
-            <h3>{{ isEditing ? 'Edit Your Review' : 'Write a Review' }}</h3>
+            <h3>{{ isEditing ? ('REVIEWS.EDIT_REVIEW' | translate) : ('REVIEWS.WRITE_REVIEW' | translate) }}</h3>
 
             <div class="form-group">
-                <label>Rating *</label>
+                <label>{{ 'REVIEWS.RATING_REQUIRED' | translate }}</label>
                 <ngx-stars
                     [initialStars]="newRating"
                     [maxStars]="5"
@@ -119,22 +119,22 @@
             </div>
 
             <div class="form-group">
-                <label>Title (optional)</label>
+                <label>{{ 'REVIEWS.TITLE_OPTIONAL' | translate }}</label>
                 <input
                     type="text"
                     pInputText
                     [(ngModel)]="newTitle"
-                    placeholder="Summary of your review"
+                    [placeholder]="'REVIEWS.SUMMARY_PLACEHOLDER' | translate"
                 />
             </div>
 
             <div class="form-group">
-                <label>Your Review *</label>
+                <label>{{ 'REVIEWS.YOUR_REVIEW_REQUIRED' | translate }}</label>
                 <textarea
                     pInputTextarea
                     [(ngModel)]="newComment"
                     rows="4"
-                    placeholder="Share your experience with this product..."
+                    [placeholder]="'REVIEWS.SHARE_EXPERIENCE_PLACEHOLDER' | translate"
                 >
                 </textarea>
             </div>
@@ -143,14 +143,14 @@
                 <button
                     pButton
                     type="button"
-                    label="Cancel"
+                    [label]="'ACTIONS.CANCEL' | translate"
                     class="p-button-text"
                     (click)="cancelForm()"
                 ></button>
                 <button
                     pButton
                     type="button"
-                    [label]="isEditing ? 'Update Review' : 'Submit Review'"
+                    [label]="isEditing ? ('REVIEWS.UPDATE_REVIEW' | translate) : ('REVIEWS.SUBMIT_REVIEW' | translate)"
                     [loading]="isSubmitting"
                     (click)="submitReview()"
                 ></button>
@@ -186,7 +186,7 @@
                         *ngIf="review.isVerifiedPurchase"
                         class="verified-badge"
                     >
-                        <i class="pi pi-verified"></i> Verified Purchase
+                        <i class="pi pi-verified"></i> {{ 'REVIEWS.VERIFIED_PURCHASE' | translate }}
                     </span>
                 </div>
 
@@ -207,7 +207,7 @@
         <!-- Empty State -->
         <div *ngIf="reviews.length === 0 && !isLoading" class="empty-state">
             <i class="pi pi-comments"></i>
-            <p>No reviews yet. Be the first to review this product!</p>
+            <p>{{ 'REVIEWS.NO_REVIEWS' | translate }}</p>
         </div>
 
         <!-- Pagination -->
@@ -220,7 +220,7 @@
                 (click)="loadPage(currentPage - 1)"
             ></button>
             <span class="page-info"
-                >Page {{ currentPage }} of {{ totalPages }}</span
+                >{{ 'REVIEWS.PAGE' | translate }} {{ currentPage }} {{ 'REVIEWS.OF' | translate }} {{ totalPages }}</span
             >
             <button
                 pButton

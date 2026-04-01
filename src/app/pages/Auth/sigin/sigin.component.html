@@ -47,8 +47,14 @@
                         </a>
                     </div>
 
-                    <button type="submit" class="btn-premium w-100 mb-4">
+                    <button type="submit" class="btn-premium w-100 mb-2">
                         {{ "REGISTER.LOGIN" | translate }}
+                    </button>
+
+                    <!-- Google Auth -->
+                    <button type="button" class="btn-premium-outline w-100 d-flex align-items-center justify-content-center gap-2 mb-4" (click)="authWgoo()">
+                        <i class="pi pi-google text-danger fs-5"></i>
+                        <span>{{ 'REGISTER.LOGIN_GOOGLE' | translate }}</span>
                     </button>
 
                     <div class="signup-link text-center">

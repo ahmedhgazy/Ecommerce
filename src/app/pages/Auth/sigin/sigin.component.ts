@@ -26,6 +26,7 @@ import { Subject, switchMap, takeUntil, tap, finalize } from 'rxjs';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
 import { AnimateFadeUpDirective } from '../../../shared/animations/scroll-animation/fade-up';
 import { AnimateFromRightDirective } from '../../../shared/animations/scroll-animation/right';
+import { GoogleAuthService } from '../../../services/auth/auth-google.service';
 @Component({
     selector: 'app-sigin',
     standalone: true,
@@ -55,14 +56,27 @@ export class SigInComponent implements OnDestroy {
     fb = inject(NonNullableFormBuilder);
     auth = inject(AuthService);
     cdr = inject(ChangeDetectorRef);
+    googleS = inject(GoogleAuthService);
 
     form;
     logIn = false;
     isLoggedIn = false;
-    error = null;
+    isGoogleInitialized = false;
+    error: any = null;
     endSubs = new Subject<void>();
     ngOnInit(): void {
         this.initForm();
+        this.isGoogleInitialized = true;
+
+        this.googleS.isLoggedInFromGoogle$
+            .pipe(takeUntil(this.endSubs))
+            .subscribe((isLoggedIn) => {
+                this.isLoggedIn = isLoggedIn;
+                if (isLoggedIn) {
+                    this.router.navigate(['/home']);
+                }
+                this.cdr.detectChanges();
+            });
     }
 
     private initForm() {
@@ -137,6 +151,28 @@ export class SigInComponent implements OnDestroy {
 
     cancelError() {
         this.error = null;
+    }
+
+    authWgoo() {
+        if (!this.isGoogleInitialized) {
+            this.translate
+                .get('TOAST_MESSAGE.googleNotInitialized')
+                .pipe(takeUntil(this.endSubs))
+                .subscribe((translatedError: string) => {
+                    this.error = translatedError;
+                    this.cdr.detectChanges();
+                    this.messageService.add({
+                        severity: 'error',
+                        summary: this.translate.instant('TOAST_MESSAGE.error'),
+                        detail: translatedError,
+                    });
+                });
+            return;
+        }
+
+        this.googleS.signInWithGoogle().subscribe({
+            next: (user) => { },
+        });
     }
 
     /* ****************Reset Password Section***************** */

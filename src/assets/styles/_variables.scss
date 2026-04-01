@@ -17,4 +17,16 @@
     --bg-auth: #cbe4e8;
     --white: #fff;
     --outer-ellipse: #2f2e30;
+    
+    // Reveal Footer - Background colors
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+}
+
+// Dark theme variables
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --text-dark: #f1f5f9;
+    --text-one: #94a3b8;
 }

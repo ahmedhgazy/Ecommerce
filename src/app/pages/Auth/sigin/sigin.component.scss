@@ -1,8 +1,9 @@
 @import '../../../../assets/styles/premium';
 
 :host {
+    max-height: 100%;
+    margin-bottom: 0 !important;
     display: block;
-    min-height: calc(100vh - 80px); // Adjust based on header/footer
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,6 +12,7 @@
 }
 
 .auth-container {
+    // min-height: 100% !important;
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
@@ -39,7 +41,7 @@
         .image-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 50%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 50%);
             z-index: 10;
             display: flex;
             align-items: flex-end;
@@ -75,7 +77,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: white; // Ensure readability
+        // background: white; // Ensure readability
 
         .form-content {
             max-width: 400px;
@@ -143,7 +145,7 @@
 
     .auth-wrapper {
         background: rgba(31, 41, 55, 0.4); // Darker glass
-        border: 1px solid rgba(255,255,255,0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
 
         .auth-form-side {
             background: transparent; // Let glass effect shine through

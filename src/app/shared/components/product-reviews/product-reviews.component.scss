@@ -34,10 +34,16 @@
 .reviews-summary {
   display: flex;
   gap: 3rem;
-  padding: 1.5rem;
+  padding: 2.5rem;
   background: var(--surface-card, #fff);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+  
+  &:hover {
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
+  }
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -136,11 +142,26 @@
 }
 
 .my-review-card {
-  padding: 1.5rem;
+  padding: 2rem;
   background: var(--surface-card, #fff);
-  border-radius: 12px;
-  border: 2px solid #DB4444;
-  box-shadow: 0 2px 8px rgba(219, 68, 68, 0.1);
+  border-radius: 16px;
+  border: 1px solid rgba(219, 68, 68, 0.3);
+  box-shadow: 0 4px 20px rgba(219, 68, 68, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(135deg, #DB4444 0%, #e66060 100%);
+  }
+
+  &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(219, 68, 68, 0.1);
+  }
 
   .my-review-header {
     display: flex;
@@ -178,10 +199,11 @@
 
 // Review Form
 .review-form {
-  padding: 2rem;
+  padding: 2.5rem;
   background: var(--surface-card, #fff);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.04);
 
   h3 {
     margin: 0 0 1.5rem;
@@ -220,10 +242,17 @@
 }
 
 .review-card {
-  padding: 1.5rem;
+  padding: 2rem;
   background: var(--surface-card, #fff);
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+
+  &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+  }
 
   .review-header {
     display: flex;
@@ -250,16 +279,18 @@
     .verified-badge {
       display: flex;
       align-items: center;
-      gap: 0.35rem;
-      padding: 0.35rem 0.75rem;
-      background: #e8f5e9;
+      gap: 0.4rem;
+      padding: 0.4rem 0.85rem;
+      background: rgba(46, 125, 50, 0.08);
       color: #2e7d32;
-      border-radius: 20px;
+      border: 1px solid rgba(46, 125, 50, 0.15);
+      border-radius: 30px;
       font-size: 0.8rem;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 0.3px;
 
       i {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
       }
     }
   }
@@ -328,8 +359,9 @@
   .my-review-card,
   .review-form,
   .review-card {
-    background: #252525;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background: #1e1e1e;
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
   .login-prompt {

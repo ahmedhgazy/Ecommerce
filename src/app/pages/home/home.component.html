@@ -57,7 +57,7 @@
 </section>
 
 <!-- Categories Section -->
-<section class="py-5">
+<section class="py-5 bg-light-premium">
     <app-shared-header>
         <span header-title>{{ 'HOME.BROWSE_COLLECTIONS' | translate }}</span>
         <span header-desc>{{ 'HOME.BROWSE_BY_CATEGORY' | translate }}</span>
@@ -86,8 +86,10 @@
 
 <!-- Promo Banner -->
 <!-- Newsletter Section -->
-<section class="my-5 py-4 container">
-    <div class="newsletter-card position-relative overflow-hidden">
+
+<section class="py-5 bg-light-premium">
+    <div class="container">
+        <div class="newsletter-card position-relative overflow-hidden">
         <div class="row align-items-center position-relative z-1 p-5">
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <div class="newsletter-content ps-lg-4">
@@ -116,10 +118,11 @@
         <div class="glow-effect"></div>
         <div class="pattern-overlay"></div>
     </div>
+    </div>
 </section>
 
 <!-- All Products Section -->
-<section class="py-5">
+<section class="py-5 bg-light-premium">
     <app-shared-header>
         <span header-title>{{ 'HOME.EXPLORE_ALL' | translate }}</span>
         <span header-desc>{{ 'HOME.OUR_PRODUCTS' | translate }}</span>
@@ -145,7 +148,9 @@
     </app-shared-header>
     <app-new-arrivals></app-new-arrivals>
 </section>
+<section class="bg-light-premium">
 
-<app-details></app-details>
+    <app-details></app-details>
+</section>
 <app-loading></app-loading>
 

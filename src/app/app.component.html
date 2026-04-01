@@ -1,15 +1,23 @@
-<app-header></app-header>
+<!-- Main Content Wrapper - Slides up to reveal footer -->
+<div class="main-content-wrapper" [class.no-footer-margin]
+="hideFooter"
 
-<app-loading></app-loading>
-
-<router-outlet></router-outlet>
-<a
-    appBackToTop
-    [scrollThreshold]="500"
-    [smoothScroll]="true"
-    class="back-to-top"
 >
-    <i class="fa-solid fa-arrow-up"></i>
-</a>
 
-<app-footer></app-footer>
+    <app-header></app-header>
+
+    <app-loading></app-loading>
+
+    <router-outlet></router-outlet>
+    <a
+        appBackToTop
+        [scrollThreshold]="500"
+        [smoothScroll]="true"
+        class="back-to-top"
+    >
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+</div>
+
+<!-- Fixed Footer - Revealed behind main content -->
+<app-footer *ngIf="!hideFooter"></app-footer>

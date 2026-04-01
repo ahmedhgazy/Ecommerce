@@ -1,6 +1,6 @@
 
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
@@ -29,8 +29,21 @@ export class AppComponent implements OnInit {
     goService = inject(GoogleAuthService);
     loading = inject(LoadingService);
     authS = inject(AuthService);
+    router = inject(Router);
+
     ngOnInit(): void {
         this.authS.autoLogin();
     }
+
+    get hideFooter(): boolean {
+        return this.router.url.includes('/auth/login') ||
+            this.router.url.includes('/auth/register')
+            || this.router.url.includes('/profile/wishlist')
+            || this.router.url.includes('/profile');
+
+
+    }
+
+
 }
 

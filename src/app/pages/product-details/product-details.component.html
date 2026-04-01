@@ -35,6 +35,10 @@
                             <span *ngIf="product.inStock && product.availableQuantity < 10" class="text-danger small fw-bold">
                                 Only {{ product.availableQuantity }} left!
                             </span>
+                            
+                            <span *ngIf="product.inStock && product.availableQuantity >= 10" class="text-success small fw-bold">
+                                 {{ product.availableQuantity }} available
+                            </span>
                         </div>
 
                         <div class="product-price">

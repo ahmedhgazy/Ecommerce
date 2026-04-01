@@ -1,91 +1,118 @@
-<div class="orders-page" *ngIf="Orders$ | async as orders">
-    <!-- Desktop View -->
-    <div class="card-premium d-none d-md-block">
-        <p-table #dt1 [value]="orders" [paginator]="true" [rows]="5"
+<div class="user-orders" *ngIf="Orders$ | async as orders">
+    
+    <!-- Premium Header Area -->
+    <div class="orders-header">
+        <div class="header-content">
+            <h2 class="title">{{ "ORDERS.ORDERS" | translate }}</h2>
+            <p class="subtitle">Track and manage your recent purchases</p>
+        </div>
+        <div class="search-wrap">
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Search orders..." class="search-input" />
+            </span>
+        </div>
+    </div>
+
+    <!-- Desktop View (Premium p-table) -->
+    <div class="desktop-view d-none d-lg-block">
+        <p-table #dt1 [value]="orders" [paginator]="true" [rows]="10"
                  [globalFilterFields]="['id', 'totalPrice', 'status', 'dateOrdered']"
-                 selectionMode="single" [(selection)]="selectedOrder" dataKey="id"
-                 styleClass="premium-table" [rowHover]="true">
-
-            <ng-template pTemplate="caption">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h5 class="section-title m-0">
-                        <i class="pi pi-shopping-bag me-2 text-primary"></i>
-                        {{ "ORDERS.ORDERS" | translate }}
-                    </h5>
-                    <span class="p-input-icon-left">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="onGlobalFilter($event)"
-                               placeholder="Search orders..." class="form-control-premium"/>
-                    </span>
-                </div>
-            </ng-template>
-
+                 styleClass="orders-table" [rowHover]="true" dataKey="id">
+                 
             <ng-template pTemplate="header">
                 <tr>
-                    <!-- <th pSortableColumn="id" style="width: 15%">Order ID <p-sortIcon field="id"></p-sortIcon></th> -->
-                    <th pSortableColumn="dateOrdered" style="width: 20%">{{ 'ORDERS.DATE' | translate }} <p-sortIcon field="dateOrdered"></p-sortIcon></th>
-                    <th pSortableColumn="status" style="width: 20%">{{ 'ORDERS.STATUS' | translate }} <p-sortIcon field="status"></p-sortIcon></th>
-                    <th pSortableColumn="totalPrice" style="width: 20%">{{ 'ORDERS.TOTAL' | translate }} <p-sortIcon field="totalPrice"></p-sortIcon></th>
-                    <th style="width: 25%">{{ 'ORDERS.ACTIONS' | translate }}</th>
+                    <th style="width: 30%">Order Info</th>
+                    <th style="width: 20%">{{ 'ORDERS.DATE' | translate }}</th>
+                    <th style="width: 20%">{{ 'ORDERS.STATUS' | translate }}</th>
+                    <th class="text-end" style="width: 20%">{{ 'ORDERS.TOTAL' | translate }}</th>
+                    <th class="text-center" style="width: 10%"></th>
                 </tr>
             </ng-template>
 
-            <ng-template pTemplate="body" let-order>
-                <tr class="cursor-pointer hover-lift" (click)="viewDetails(order)">
-                        <!-- <span class="fw-bold text-primary">#{{ order.id }}</span> -->
+            <ng-template pTemplate="body" let-order let-i="rowIndex">
+                <tr #rowElement class="order-row hidden-row" (click)="viewDetails(order)">
                     <td>
-                        {{ order.dateOrdered | date : "MMM d, y" }}
+                        <div class="order-info">
+                            <div class="icon-circle">
+                                <i class="pi pi-box"></i>
+                            </div>
+                            <div class="meta">
+                                <span class="order-id">#{{ order.id }}</span>
+                                <span class="items-count">{{ order.orderItems?.length || 0 }} items</span>
+                            </div>
+                        </div>
                     </td>
                     <td>
-                        <p-tag [value]="getStatusText(order.status)" [severity]="getSeverity(order.status)" [rounded]="true"></p-tag>
+                        <span class="date-text">{{ order.dateOrdered | date: 'shortDate' }}</span>
+                        <span class="time-text">{{ order.dateOrdered | date: 'shortTime' }}</span>
                     </td>
                     <td>
-                        <span class="fw-bold">{{ order.totalPrice | currency }}</span>
+                        <p-tag [value]="getStatusText(order.status)" [severity]="getSeverity(order.status)" [rounded]="true" styleClass="status-tag"></p-tag>
                     </td>
-                    <td>
-                        <button pButton icon="pi pi-eye" class="p-button-text p-button-rounded p-button-secondary"
+                    <td class="text-end">
+                        <span class="price-text">{{ order.totalPrice | currency }}</span>
+                    </td>
+                    <td class="text-center">
+                        <button pButton icon="pi pi-chevron-right" class="p-button-rounded p-button-text action-btn"
                                 (click)="viewDetails(order); $event.stopPropagation()"></button>
                     </td>
                 </tr>
             </ng-template>
-             <ng-template pTemplate="emptymessage">
+
+            <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="5" class="text-center p-5">
-                       <i class="pi pi-inbox fs-1 text-muted mb-3 d-block"></i>
-                       <span class="text-muted">{{ 'ORDERS.NO_ORDERS' | translate }}</span>
+                    <td colspan="5">
+                        <div class="empty-state">
+                            <i class="pi pi-inbox"></i>
+                            <p class="mt-3">{{ 'ORDERS.NO_ORDERS' | translate }}</p>
+                        </div>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
 
-    <!-- Mobile View -->
-    <div class="d-md-none">
-        <div class="order-cards-container">
-            <div class="order-card" *ngFor="let order of orders" (click)="viewDetails(order)">
-                <div class="order-card-header">
-                    <span class="id">#{{ order.id }}</span>
-                    <p-tag [value]="getStatusText(order.status)" [severity]="getSeverity(order.status)"></p-tag>
-                </div>
-                <div class="order-card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="text-muted"><i class="pi pi-calendar me-1"></i> Date</span>
-                        <span class="fw-medium">{{ order.dateOrdered | date : "MMM d, y" }}</span>
+    <!-- Mobile View (Premium Cards) -->
+    <div class="mobile-view d-lg-none">
+        <div class="mobile-grid">
+            <div #rowElement class="mobile-card hidden-row" *ngFor="let order of orders" (click)="viewDetails(order)">
+                <div class="card-top">
+                    <div class="id-badge">
+                        <i class="pi pi-box me-2"></i>
+                        <span>#{{ order.id }}</span>
                     </div>
-                     <div class="d-flex justify-content-between align-items-center">
-                        <span class="text-muted"><i class="pi pi-wallet me-1"></i> Total</span>
-                        <span class="fw-bold text-primary fs-5">{{ order.totalPrice | currency }}</span>
+                    <p-tag [value]="getStatusText(order.status)" [severity]="getSeverity(order.status)" [rounded]="true" styleClass="status-tag-mobile"></p-tag>
+                </div>
+                <div class="card-middle">
+                    <div class="detail-group">
+                        <span class="label">Date</span>
+                        <span class="value">{{ order.dateOrdered | date: 'mediumDate' }}</span>
+                    </div>
+                    <div class="detail-group text-end">
+                        <span class="label">Total</span>
+                        <span class="value price">{{ order.totalPrice | currency }}</span>
                     </div>
                 </div>
+                <div class="card-bottom">
+                    <span class="items">{{ order.orderItems?.length || 0 }} items included</span>
+                    <button pButton icon="pi pi-arrow-right" class="p-button-text p-button-rounded p-0 action-btn-mobile"
+                            (click)="viewDetails(order); $event.stopPropagation()"></button>
+                </div>
+            </div>
+            
+            <div *ngIf="orders.length === 0" class="empty-state">
+                <i class="pi pi-inbox"></i>
+                <p class="mt-3">{{ 'ORDERS.NO_ORDERS' | translate }}</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Order Details Modal -->
-<p-dialog [(visible)]="displayDetails" [modal]="true" [style]="{width: '50vw'}" [draggable]="false" [resizable]="false"
-          [header]="'Order Details'" styleClass="premium-dialog" [breakpoints]="{'960px': '75vw', '640px': '95vw'}">
-    <app-order-details [order]="selectedOrder"></app-order-details>
+<!-- Premium Order Details Modal -->
+<p-dialog [(visible)]="displayDetails" [modal]="true" [style]="{width: '600px', 'max-width': '95vw'}" [draggable]="false" [resizable]="false"
+          header="Order Summary" styleClass="elegant-dialog" [dismissableMask]="true">
+    <app-order-details *ngIf="displayDetails" [order]="selectedOrder"></app-order-details>
 </p-dialog>
 
 <app-loading></app-loading>

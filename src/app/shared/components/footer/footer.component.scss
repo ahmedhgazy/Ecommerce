@@ -1,76 +1,117 @@
 @import "../../../../assets/styles/mixins";
-footer {
-    * {
-        color: #fff !important;
+@import "../../../../assets/styles/variables";
+@import "../../../../assets/styles/premium";
+
+// Reveal Footer Effect
+// Footer is fixed at bottom, revealed when main content scrolls past it
+.footer-premium {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1; // Lower than main content wrapper (z-index: 10)
+    width: 100%;
+    
+    h5, h3 {
+        font-family: var(--secondary-font), sans-serif;
+        letter-spacing: 0.5px;
+        color: #f9fafb !important;
     }
 
-    @include respond(tab-port) {
-        margin-top: 2rem;
+    p, address, span, small {
+        color: rgba(255, 255, 255, 0.75) !important;
     }
 
-    padding: 2rem 1rem;
-    h5,
-    h3,
-    h4.subscribe {
-        font-family: var(--secondary-font);
-        font-weight: 500;
-        color: #fafafa;
-        padding-bottom: 1.5rem;
-        font-size: 1.25rem;
-        @media (min-width: 768px) {
-            font-size: 1.5rem;
-        }
+    .glass-card-dark {
+        background: rgba(17, 24, 39, 0.95);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
     }
 
-    .text,
-    .address,
-    .account,
-    .QuikLink,
-    .media {
-        width: 100%;
-        @media (min-width: 768px) {
-            width: 130%;
-        }
-
-        p,
-        small {
-            font-size: 1rem;
-            line-height: 1.5rem;
-            color: #fafafa;
-        }
-    }
-
-    .input-wrapper {
-        width: 100%;
-        max-width: 300px;
-        border-radius: 4px;
-        padding: 0.5rem;
-        border: 1px solid #fff;
-
-        input {
-            width: 100%;
-
-            border: 0;
+    .premium-input-group {
+        box-shadow: $shadow-md;
+        border-radius: $radius-md;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(31, 41, 55, 0.6);
+        
+        .form-control-premium {
+            border: none;
+            background: transparent;
+            padding: 0.85rem 1rem;
+            
+            &:focus {
+                box-shadow: none;
+                border: none;
+            }
 
             &::placeholder {
-                font-size: 0.875rem;
+                color: rgba(209, 213, 219, 0.5) !important;
+            }
+        }
+        
+        .btn-premium {
+            border-radius: 0;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            margin: 0; // overrides any default bootstrap margin
+            height: 100%;
+        }
+    }
+
+    .footer-link {
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        transition: all $transition-base;
+        color: #d1d5db !important; 
+        
+        &:hover {
+            color: $premium-primary !important;
+            transform: translateX(6px);
+            text-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+        }
+    }
+
+    .social-icon {
+        cursor: pointer;
+        transition: all $transition-base;
+        color: #d1d5db !important;
+
+        &:hover {
+            color: $premium-primary !important;
+            filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.6));
+            transform: translateY(-4px) scale(1.1);
+        }
+    }
+
+    .store-link {
+        cursor: pointer;
+        img {
+            transition: all $transition-base;
+            opacity: 0.85;
+            
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    
+    .qr-code {
+        img {
+            background-color: white;
+            padding: 5px;
+            transition: all $transition-base;
+            
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: $shadow-colored;
             }
         }
     }
 
-    .download-app {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .left,
-        .right {
-            margin-bottom: 1rem;
-            @media (min-width: 768px) {
-                margin-bottom: 0;
-            }
-            img {
-                max-width: 100px;
-            }
-        }
+    // Overriding any dark background bleeding
+    .bg-transparent {
+        background-color: transparent !important;
     }
 }

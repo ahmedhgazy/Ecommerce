@@ -9,7 +9,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { AvatarModule } from 'primeng/avatar';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ReviewService } from '../../../services/reviews/review.service';
 import { Review, ReviewSummary, CreateReviewRequest } from '../../../services/reviews/review.model';
 import { AuthService } from '../../../services/auth/auth.service';
@@ -39,6 +39,7 @@ export class ProductReviewsComponent implements OnInit {
 
   private reviewService = inject(ReviewService);
   private messageService = inject(MessageService);
+  private translate = inject(TranslateService);
   authService = inject(AuthService);
 
   // Data
@@ -137,12 +138,12 @@ export class ProductReviewsComponent implements OnInit {
 
   submitReview(): void {
     if (this.newRating < 1 || this.newRating > 5) {
-      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please select a rating' });
+      this.messageService.add({ severity: 'warn', summary: this.translate.instant('TOAST_MESSAGE.warning'), detail: this.translate.instant('REVIEWS.PLEASE_SELECT_RATING') });
       return;
     }
 
     if (!this.newComment.trim()) {
-      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please enter a comment' });
+      this.messageService.add({ severity: 'warn', summary: this.translate.instant('TOAST_MESSAGE.warning'), detail: this.translate.instant('REVIEWS.PLEASE_ENTER_COMMENT') });
       return;
     }
 
@@ -157,13 +158,13 @@ export class ProductReviewsComponent implements OnInit {
     if (this.isEditing && this.myReview) {
       this.reviewService.updateReview(this.myReview.id, request).pipe(
         catchError(err => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error?.message || 'Failed to update review' });
+          this.messageService.add({ severity: 'error', summary: this.translate.instant('TOAST_MESSAGE.error'), detail: err.error?.message || this.translate.instant('REVIEWS.FAILED_UPDATE_REVIEW') });
           return of(null);
         })
       ).subscribe(review => {
         this.isSubmitting = false;
         if (review) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Review updated successfully' });
+          this.messageService.add({ severity: 'success', summary: this.translate.instant('TOAST_MESSAGE.success'), detail: this.translate.instant('REVIEWS.REVIEW_UPDATED_SUCCESS') });
           this.myReview = review;
           this.cancelForm();
           this.loadReviews();
@@ -172,13 +173,13 @@ export class ProductReviewsComponent implements OnInit {
     } else {
       this.reviewService.createReview(this.productId, request).pipe(
         catchError(err => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: err.error?.message || 'Failed to submit review' });
+          this.messageService.add({ severity: 'error', summary: this.translate.instant('TOAST_MESSAGE.error'), detail: err.error?.message || this.translate.instant('REVIEWS.FAILED_SUBMIT_REVIEW') });
           return of(null);
         })
       ).subscribe(review => {
         this.isSubmitting = false;
         if (review) {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Review submitted successfully' });
+          this.messageService.add({ severity: 'success', summary: this.translate.instant('TOAST_MESSAGE.success'), detail: this.translate.instant('REVIEWS.REVIEW_SUBMITTED_SUCCESS') });
           this.myReview = review;
           this.canReview = false;
           this.cancelForm();
@@ -193,12 +194,12 @@ export class ProductReviewsComponent implements OnInit {
 
     this.reviewService.deleteReview(this.myReview.id).pipe(
       catchError(err => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete review' });
+        this.messageService.add({ severity: 'error', summary: this.translate.instant('TOAST_MESSAGE.error'), detail: this.translate.instant('REVIEWS.FAILED_DELETE_REVIEW') });
         return of(false);
       })
     ).subscribe(success => {
       if (success) {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Review deleted' });
+        this.messageService.add({ severity: 'success', summary: this.translate.instant('TOAST_MESSAGE.success'), detail: this.translate.instant('REVIEWS.REVIEW_DELETED') });
         this.myReview = null;
         this.canReview = true;
         this.loadReviews();

@@ -75,12 +75,16 @@
             position: absolute;
             width: 40%; // Match TS logic (container / 2.5)
             height: 40%;
-            border: 1px solid #888;
-            background-color: rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             cursor: crosshair;
             pointer-events: none; // Let mouse events pass through to container
             z-index: 20;
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+            border-radius: 12px; // Premium rounded corners
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.5), // Inner glow
+                0 4px 15px rgba(0, 0, 0, 0.1); // Soft outer shadow
+            backdrop-filter: brightness(1.05); // Slight highlight effect
         }
 
         .zoom-overlay {
@@ -89,19 +93,43 @@
             left: 105%; // Position to the right
             width: 500px; // Larger zoom window
             height: 500px; // Square or match aspect
-            border: 1px solid #ddd;
             background-repeat: no-repeat;
-            background-color: #fff;
+            background-color: var(--bg-primary, #ffffff);
             opacity: 0;
-            display: none; // Hidden by default
+            visibility: hidden; // Use visibility instead of display none for transitions
             z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             background-size: 250%; // 2.5x Zoom match TS
-            border-radius: 4px;
+            pointer-events: none;
+            overflow: hidden;
+
+            // Premium elegant styling
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 16px; // Modern rounding
+            box-shadow: 
+                0 25px 50px -12px rgba(0, 0, 0, 0.15), // Deep smooth shadow
+                0 0 0 1px rgba(0, 0, 0, 0.05); // Crisp edge
+
+            // Smooth entrance animation
+            transform: translateX(-15px) scale(0.98);
+            transition: 
+                opacity 0.4s ease, 
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.4s;
+
+            // Optional: sleek inner border using pseudo-element
+            &::after {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                pointer-events: none;
+            }
 
             &.active {
-                display: block;
                 opacity: 1;
+                visibility: visible;
+                transform: translateX(0) scale(1);
             }
 
             @media only screen and (max-width: 1180px) {

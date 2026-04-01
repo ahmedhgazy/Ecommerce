@@ -98,11 +98,13 @@ export class OrdersComponent implements OnInit {
   }
 
 
+  private resizeBoundObj = this.checkScreenSize.bind(this);
+
   ngOnInit(): void {
     this.ordersS.getOrders().subscribe((res) => {
     });
     this.checkScreenSize();
-    window.addEventListener('resize', this.checkScreenSize.bind(this));
+    window.addEventListener('resize', this.resizeBoundObj);
   }
 
   getSeverity(status: OrderStatus): "success" | "secondary" | "info" | "warning" | "danger" | "contrast" | undefined {
@@ -197,7 +199,7 @@ export class OrdersComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    window.removeEventListener('resize', this.checkScreenSize.bind(this));
+    window.removeEventListener('resize', this.resizeBoundObj);
     this.observer?.disconnect();
   }
 

@@ -1,5 +1,51 @@
 @import '../assets/styles/premium';
 
+// Reveal Footer Effect
+// Footer stays fixed at bottom behind content
+// Main content slides up to reveal footer like a curtain
+
+.main-content-wrapper {
+    position: relative;
+    z-index: 10; // Higher than footer (z-index: 1), lower than header (z-index: 100)
+    background: var(--bg-primary, #ffffff);
+
+    // Margin-bottom creates empty space AFTER the background ends
+    // This empty space is transparent, so fixed footer shows through
+    // Responsive margins to ensure full footer reveal on all screen sizes
+    margin-bottom: 500px; // Large screens (desktop)
+
+    // Medium screens (tablets) - footer is taller due to content wrapping
+    @media (max-width: 1200px) {
+        margin-bottom: 1000px;
+    }
+
+    // Small screens (mobile) - footer content stacks vertically, needs more space
+    @media (max-width: 767px) {
+        margin-bottom: 750px;
+    }
+
+    // Extra small screens - maximum footer height
+    @media (max-width: 575px) {
+        margin-bottom: 850px;
+    }
+
+    // Strong shadow to create depth when footer is revealed
+    box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.15);
+
+    &.no-footer-margin {
+        margin-bottom: 0 !important;
+        box-shadow: none !important;
+    }
+}
+
+// Dark theme support - using body.dark class
+:host-context(body.dark) .main-content-wrapper,
+:host-context(body.dark) ::ng-deep .main-content-wrapper {
+    background: #0f172a !important;
+}
+
+// RTL support - logical properties handle direction automatically
+
 .back-to-top {
     display: flex;
     justify-content: center;
@@ -24,7 +70,7 @@
         position: absolute;
         inset: -2px;
         border-radius: 50%;
-        background: linear-gradient(to bottom right, rgba(255,255,255,0.4), rgba(255,255,255,0));
+        background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
         z-index: -1;
         opacity: 0.6;
     }
@@ -46,7 +92,7 @@
         height: 45px;
 
         i {
-             font-size: 1rem;
+            font-size: 1rem;
         }
     }
 }

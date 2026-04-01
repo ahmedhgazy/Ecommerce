@@ -28,6 +28,28 @@ html {
       .pi-chevron-left, .pi-arrow-left, .pi-angle-left, .pi-caret-left {
           transform: rotate(180deg);
       }
+
+      // BEGIN PROPOSED FIX
+      // Ensure Font Awesome icons use their correct font-family in RTL mode
+      .fa-solid {
+          font-family: "Font Awesome 6 Free" !important;
+          font-weight: 900 !important; // For solid icons
+      }
+      .fa-regular {
+          font-family: "Font Awesome 6 Free" !important;
+          font-weight: 400 !important;
+      }
+      .fa-brands {
+          font-family: "Font Awesome 6 Brands" !important;
+          font-weight: 400 !important;
+      }
+
+      // BEGIN PROPOSED FIX for PrimeIcons
+      .pi {
+          font-family: "PrimeIcons" !important;
+      }
+      // END PROPOSED FIX for PrimeIcons
+      // END PROPOSED FIX
   }
 
   overflow-x: hidden; // Prevent horizontal scrollbar from animations
@@ -53,6 +75,9 @@ body {
   margin: 0 !important;
   transition: background-color 0.3s ease;
   font-family: 'Inter', sans-serif;
+
+  // Transparent background to reveal fixed footer behind main content
+  background: transparent;
 }
 
 ul,
