@@ -19,7 +19,7 @@
 }
 
 .hero-banner-card {
-  background: radial-gradient(circle at 70% 50%, #1f2937 0%, #000000 100%);
+  background: radial-gradient(circle at 30% 20%, #1f2937 0%, #000000 100%);
   border-radius: $radius-xl;
   overflow: hidden;
   box-shadow: $shadow-xl;
@@ -55,7 +55,7 @@
   transform: translate(-50%, -50%);
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba($premium-success, 0.2) 0%, rgba(0,0,0,0) 70%);
+  background: radial-gradient(circle, rgba($premium-success, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
   border-radius: 50%;
   z-index: -1;
   filter: blur(40px);
@@ -64,7 +64,7 @@
 .hero-image {
   max-width: 120%; // Allow slight overflow for impact
   transform: scale(1.1) rotate(-5deg);
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
   transition: transform 0.5s ease;
 
   &:hover {
@@ -85,12 +85,17 @@
 // Timer Styling overrides for Dark Mode
 :host ::ng-deep app-timer-digit.timer-dark {
   .count {
-    background: rgba(255,255,255,0.1) !important;
-    border: 1px solid rgba(255,255,255,0.1) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
     color: white !important;
 
-    p { color: white !important }
-    span { color: $premium-muted !important }
+    p {
+      color: white !important
+    }
+
+    span {
+      color: $premium-muted !important
+    }
   }
 }
 
@@ -151,7 +156,7 @@
     right: -20%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba($premium-primary, 0.2) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba($premium-primary, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -174,5 +179,3 @@ app-categories {
   display: block;
   margin-top: 1rem;
 }
-
-
