@@ -2,7 +2,6 @@ import { Component, inject, OnDestroy, OnInit, signal, computed } from '@angular
 import { CommonModule } from '@angular/common';
 import { ProductListComponent } from '../../components/producsts/product-list/product-list.component';
 import { CategoriesComponent } from '../../components/producsts/catepgries/categories.component';
-import { CatBannerComponent } from '../../components/producsts/catepgries/cat-banner/cat-banner.component';
 import { SharedHeaderComponent } from '../../shared/components/shared-header/shared-header.component';
 import { NewArrivalsComponent } from '../../components/producsts/new-arrivals/new-arrivals.component';
 import { DetailsComponent } from '../../components/details/details.component';
@@ -13,11 +12,10 @@ import { LoadingService } from '../../core/services/loading.service';
 import { SharedButton } from '../../shared/components/shared-button/shared-button.component';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { AnimateFromTopDirective } from '../../shared/animations/scroll-animation/top';
-import { AnimateFromRightDirective } from '../../shared/animations/scroll-animation/right';
-import { AnimateFromLeftDirective } from '../../shared/animations/scroll-animation/left';
-import { TimerDigitComponent } from '../../components/producsts/catepgries/cat-banner/timer-digit/timer-digit.component';
+
 import { PromotionsService } from '../../services/promotions/promotions.service';
+import { TimerDigitComponent } from '../../components/producsts/catepgries/cat-banner/timer-digit/timer-digit.component';
+
 
 export interface sharedHeader {
     title: string;
@@ -38,6 +36,7 @@ export interface sharedHeader {
         LoadingComponent,
         TranslateModule,
         TimerDigitComponent,
+
     ],
     templateUrl: './home.component.html',
     styleUrl: './home.component.scss',

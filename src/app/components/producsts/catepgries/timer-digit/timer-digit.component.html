@@ -1,0 +1,9 @@
+<div class="timer-digit-container  text-dark rounded-circle me-md-3 me-2 mb-3">
+    <div class="digit-viewport ">
+        <div class="digit-track" [class.animate]="isAnimating()">
+            <p class="mb-0 digit new text-light">{{ currentValue() }}</p>
+            <p class="mb-0 digit old text-light ">{{ previousValue() }}</p>
+        </div>
+    </div>
+    <span class="text-light">{{ label | translate }}</span>
+</div>

@@ -19,7 +19,9 @@
 }
 
 .hero-banner-card {
-  background: radial-gradient(circle at 30% 20%, #1f2937 0%, #000000 100%);
+  // background: radial-gradient(circle at 30% 20%, #1f2937 0%, #000000 100%);
+  // background: radial-gradient(circle at 30% 20%, #1f2937 0%, #111827 100%);
+  background: radial-gradient(circle at 50% 50%, #1f2937 0%, #111827 100%);
   border-radius: $radius-xl;
   overflow: hidden;
   box-shadow: $shadow-xl;
@@ -32,6 +34,8 @@
     text-align: center;
   }
 }
+
+
 
 .hero-title {
   font-size: 3.5rem;
@@ -62,9 +66,10 @@
 }
 
 .hero-image {
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
   max-width: 120%; // Allow slight overflow for impact
   transform: scale(1.1) rotate(-5deg);
-  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+  // filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
   transition: transform 0.5s ease;
 
   &:hover {
