@@ -6,8 +6,7 @@ import {
     Input,
     HostBinding,
     OnInit,
-    OnDestroy,
-} from '@angular/core';
+    OnDestroy} from '@angular/core';
 import { NgxStarsModule } from 'ngx-stars';
 import { Product } from '../../../models/product.model';
 import { CommonModule } from '@angular/common';

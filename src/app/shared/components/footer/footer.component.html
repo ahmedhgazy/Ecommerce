@@ -2,11 +2,17 @@
     <div class="glass-card-dark rounded-0 border-0 border-top py-4">
         <div class="container py-6">
             <div class="row g-5">
-                <!-- Exclusive Section -->
+                <!-- EStore Section -->
                 <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                    <h3 class="exclusive gradient-text fw-bold mb-4">{{ "FOOTER.EXCLUSIVE" | translate }}</h3>
-                    <h5 class="subscribe mb-3">{{ "FOOTER.SUBSCRIBE" | translate }}</h5>
-                    <p class="text-muted mb-4">{{ "FOOTER.GET_DISCOUNT" | translate }}</p>
+                    <h3 class="EStore gradient-text fw-bold mb-4">
+                        {{ 'FOOTER.EStore' | translate }}
+                    </h3>
+                    <h5 class="subscribe mb-3">
+                        {{ 'FOOTER.SUBSCRIBE' | translate }}
+                    </h5>
+                    <p class="text-muted mb-4">
+                        {{ 'FOOTER.GET_DISCOUNT' | translate }}
+                    </p>
 
                     <!-- Email Input -->
                     <div class="input-group premium-input-group hover-lift">
@@ -21,8 +27,19 @@
                             type="button"
                             aria-label="Send"
                         >
-                            <svg width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8.912 10H3L1.023 2.135a1 1 0 01.437-1.264A1 1 0 012.46 1.1L21 10 2.46 18.896a1 1 0 01-1.437-1.264L2.5 13h6.412v-3z" stroke="#FAFAFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <svg
+                                width="20"
+                                height="20"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M8.912 10H3L1.023 2.135a1 1 0 01.437-1.264A1 1 0 012.46 1.1L21 10 2.46 18.896a1 1 0 01-1.437-1.264L2.5 13h6.412v-3z"
+                                    stroke="#FAFAFA"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
                             </svg>
                         </button>
                     </div>
@@ -30,56 +47,134 @@
 
                 <!-- Support Section -->
                 <div class="col-12 col-md-6 col-lg-4 col-xl-2">
-                    <h5 class="text-white mb-4 fw-semibold">{{ "FOOTER.SUPPORT" | translate }}</h5>
+                    <h5 class="text-white mb-4 fw-semibold">
+                        {{ 'FOOTER.SUPPORT' | translate }}
+                    </h5>
                     <div class="d-flex flex-column gap-3">
                         <address class="text-muted mb-0">
-                            <i class="pi pi-map-marker me-2"></i>{{ "FOOTER.ADDRESS" | translate }}
+                            <i class="pi pi-map-marker me-2"></i
+                            >{{ 'FOOTER.ADDRESS' | translate }}
                         </address>
-                        <a href="mailto:support@example.com" class="footer-link text-muted text-decoration-none">
-                           <i class="pi pi-envelope me-2"></i>{{ "FOOTER.EMAIL_SUPPORT" | translate }}
+                        <a
+                            href="mailto:support@example.com"
+                            class="footer-link text-muted text-decoration-none"
+                        >
+                            <i class="pi pi-envelope me-2"></i
+                            >{{ 'FOOTER.EMAIL_SUPPORT' | translate }}
                         </a>
-                        <p class="text-muted mb-0"><i class="pi pi-phone me-2"></i>{{ "FOOTER.PHONE_SUPPORT" | translate }}</p>
+                        <p class="text-muted mb-0">
+                            <i class="pi pi-phone me-2"></i
+                            >{{ 'FOOTER.PHONE_SUPPORT' | translate }}
+                        </p>
                     </div>
                 </div>
 
                 <!-- Account Section -->
                 <div class="col-12 col-md-6 col-lg-4 col-xl-2">
-                    <h5 class="text-white mb-4 fw-semibold">{{ "FOOTER.ACCOUNT" | translate }}</h5>
+                    <h5 class="text-white mb-4 fw-semibold">
+                        {{ 'FOOTER.ACCOUNT' | translate }}
+                    </h5>
                     <ul class="list-unstyled d-flex flex-column gap-3">
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.MY_ACCOUNT" | translate }}</a></li>
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.CART" | translate }}</a></li>
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.LOGIN_REGISTER" | translate }}</a></li>
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.WISHLIST" | translate }}</a></li>
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.SHOP" | translate }}</a></li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.MY_ACCOUNT' | translate }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.CART' | translate }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.LOGIN_REGISTER' | translate }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.WISHLIST' | translate }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.SHOP' | translate }}</a
+                            >
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Quick Links Section -->
                 <div class="col-12 col-md-6 col-lg-6 col-xl-2">
-                    <h5 class="text-white mb-4 fw-semibold">{{ "FOOTER.QUICK_LINK" | translate }}</h5>
+                    <h5 class="text-white mb-4 fw-semibold">
+                        {{ 'FOOTER.QUICK_LINK' | translate }}
+                    </h5>
                     <ul class="list-unstyled d-flex flex-column gap-3">
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.PRIVACY_POLICY" | translate }}</a></li>
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.TERMS_OF_USE" | translate }}</a></li>
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.FAQ" | translate }}</a></li>
-                        <li><a class="footer-link text-muted text-decoration-none">{{ "FOOTER.CONTACT" | translate }}</a></li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.PRIVACY_POLICY' | translate }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.TERMS_OF_USE' | translate }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.FAQ' | translate }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                class="footer-link text-muted text-decoration-none"
+                                >{{ 'FOOTER.CONTACT' | translate }}</a
+                            >
+                        </li>
                     </ul>
                 </div>
 
                 <!-- Media & App Download Section -->
                 <div class="col-12 col-md-6 col-lg-6 col-xl-3">
-                    <h5 class="text-white mb-4 fw-semibold">{{ "FOOTER.DOWNLOAD_APP" | translate }}</h5>
-                    <p class="text-muted small mb-4">{{ "FOOTER.SAVE_WITH_APP" | translate }}</p>
+                    <h5 class="text-white mb-4 fw-semibold">
+                        {{ 'FOOTER.DOWNLOAD_APP' | translate }}
+                    </h5>
+                    <p class="text-muted small mb-4">
+                        {{ 'FOOTER.SAVE_WITH_APP' | translate }}
+                    </p>
 
                     <div class="d-flex gap-3 align-items-center mb-4">
                         <div class="qr-code hover-scale">
-                            <img src="../../../../assets/images/Qrcode 1.png" alt="QR Code" class="img-fluid rounded premium-shadow" style="max-width: 80px;" />
+                            <img
+                                src="../../../../assets/images/Qrcode 1.png"
+                                alt="QR Code"
+                                class="img-fluid rounded premium-shadow"
+                                style="max-width: 80px"
+                            />
                         </div>
                         <div class="app-stores d-flex flex-column gap-2">
                             <a class="store-link hover-lift d-block">
-                                <img src="../../../../assets/images/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png" alt="Google Play" class="img-fluid" style="height: 38px; border-radius: 4px;" />
+                                <img
+                                    src="../../../../assets/images/png-transparent-google-play-store-logo-google-play-app-store-android-wallets-text-label-logo.png"
+                                    alt="Google Play"
+                                    class="img-fluid"
+                                    style="height: 38px; border-radius: 4px"
+                                />
                             </a>
                             <a class="store-link hover-lift d-block">
-                                <img src="../../../../assets/images/download-appstore.png" alt="App Store" class="img-fluid" style="height: 38px; border-radius: 4px;" />
+                                <img
+                                    src="../../../../assets/images/download-appstore.png"
+                                    alt="App Store"
+                                    class="img-fluid"
+                                    style="height: 38px; border-radius: 4px"
+                                />
                             </a>
                         </div>
                     </div>
@@ -87,23 +182,51 @@
             </div>
 
             <!-- Footer Bottom Line -->
-            <hr class="border-secondary opacity-25 my-3" style="border-color: rgba(255, 255, 255, 0.1) !important;" />
+            <hr
+                class="border-secondary opacity-25 my-3"
+                style="border-color: rgba(255, 255, 255, 0.1) !important"
+            />
             <div class="row align-items-center justify-content-between">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <p class="text-muted small mb-0">&copy; 2026 Exclusive. All rights reserved.</p>
+                    <p class="text-muted small mb-0">
+                        &copy; 2026 EStore. All rights reserved.
+                    </p>
                 </div>
-                <div class="col-md-6 d-flex gap-4 justify-content-center justify-content-md-end social-media-links">
-                    <a class="social-icon hover-scale text-muted" aria-label="Facebook">
-                        <i class="pi pi-facebook" style="font-size: 1.25rem;"></i>
+                <div
+                    class="col-md-6 d-flex gap-4 justify-content-center justify-content-md-end social-media-links"
+                >
+                    <a
+                        class="social-icon hover-scale text-muted"
+                        aria-label="Facebook"
+                    >
+                        <i
+                            class="pi pi-facebook"
+                            style="font-size: 1.25rem"
+                        ></i>
                     </a>
-                    <a class="social-icon hover-scale text-muted" aria-label="Twitter">
-                        <i class="pi pi-twitter" style="font-size: 1.25rem;"></i>
+                    <a
+                        class="social-icon hover-scale text-muted"
+                        aria-label="Twitter"
+                    >
+                        <i class="pi pi-twitter" style="font-size: 1.25rem"></i>
                     </a>
-                    <a class="social-icon hover-scale text-muted" aria-label="Instagram">
-                        <i class="pi pi-instagram" style="font-size: 1.25rem;"></i>
+                    <a
+                        class="social-icon hover-scale text-muted"
+                        aria-label="Instagram"
+                    >
+                        <i
+                            class="pi pi-instagram"
+                            style="font-size: 1.25rem"
+                        ></i>
                     </a>
-                    <a class="social-icon hover-scale text-muted" aria-label="LinkedIn">
-                         <i class="pi pi-linkedin" style="font-size: 1.25rem;"></i>
+                    <a
+                        class="social-icon hover-scale text-muted"
+                        aria-label="LinkedIn"
+                    >
+                        <i
+                            class="pi pi-linkedin"
+                            style="font-size: 1.25rem"
+                        ></i>
                     </a>
                 </div>
             </div>

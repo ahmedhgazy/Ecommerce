@@ -1,9 +1,5 @@
 <!-- Main Content Wrapper - Slides up to reveal footer -->
-<div class="main-content-wrapper" [class.no-footer-margin]
-="hideFooter"
-
->
-
+<div class="main-content-wrapper" [class.no-footer-margin]="hideFooter">
     <app-header></app-header>
 
     <app-loading></app-loading>
@@ -20,4 +16,6 @@
 </div>
 
 <!-- Fixed Footer - Revealed behind main content -->
-<app-footer *ngIf="!hideFooter"></app-footer>
+@defer (on timer(2s)) {
+    <app-footer *ngIf="!hideFooter"></app-footer>
+}

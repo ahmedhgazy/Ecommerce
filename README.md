@@ -1,8 +1,8 @@
-# Exclusive - E-commerce Website
+# EStore - E-commerce Website
 
 ## Project Overview
 
-Exclusive is a full-stack e-commerce website built with Angular and Firebase. It offers a wide variety of products across multiple categories, providing users with a seamless shopping experience.
+EStore is a full-stack e-commerce website built with Angular and Firebase. It offers a wide variety of products across multiple categories, providing users with a seamless shopping experience.
 
 ## Table of Contents
 

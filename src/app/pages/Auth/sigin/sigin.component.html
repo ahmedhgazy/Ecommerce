@@ -7,61 +7,97 @@
         <div class="auth-image-side d-none d-lg-block">
             <div class="image-overlay">
                 <div class="overlay-content">
-                    <h2 class="brand-title">Exclusive</h2>
+                    <h2 class="brand-title">EStore</h2>
                     <p class="brand-tagline">Premium Experience</p>
                 </div>
             </div>
-            <img src="assets/images/auth-premium.png" alt="Premium Auth Background">
+            <img
+                src="assets/images/auth-premium.png"
+                alt="Premium Auth Background"
+            />
         </div>
 
         <!-- Right Side: Form -->
         <div class="auth-form-side" animateFromRight>
             <div class="form-content text-start">
                 <div class="text-start mb-5">
-                    <h1 class="auth-title gradient-text">{{ "REGISTER.LOGIN_TO_EXCLUSIVE" | translate }}</h1>
+                    <h1 class="auth-title gradient-text">
+                        {{ 'REGISTER.LOGIN_TO_EStore' | translate }}
+                    </h1>
                     <p class="auth-subtitle text-muted mt-2">
-                        {{ "REGISTER.ENTER_DETAILS_BELOW" | translate }}
+                        {{ 'REGISTER.ENTER_DETAILS_BELOW' | translate }}
                     </p>
                 </div>
 
-                <form [formGroup]="form" (ngSubmit)="submit()" class="d-flex flex-column gap-3">
-                     <!-- Error Alert -->
-                    <div *ngIf="error" class="alert alert-danger d-flex align-items-center justify-content-between p-3 rounded-3 mb-3">
+                <form
+                    [formGroup]="form"
+                    (ngSubmit)="submit()"
+                    class="d-flex flex-column gap-3"
+                >
+                    <!-- Error Alert -->
+                    <div
+                        *ngIf="error"
+                        class="alert alert-danger d-flex align-items-center justify-content-between p-3 rounded-3 mb-3"
+                    >
                         <span class="small">{{ error }}</span>
-                        <button type="button" class="btn-close btn-close-white small" (click)="cancelError()"></button>
+                        <button
+                            type="button"
+                            class="btn-close btn-close-white small"
+                            (click)="cancelError()"
+                        ></button>
                     </div>
 
                     <div class="form-group">
-                        <input class="form-control-premium w-100" formControlName="email" type="email"
-                            placeholder="{{ 'REGISTER.EMAIL' | translate }}" />
+                        <input
+                            class="form-control-premium w-100"
+                            formControlName="email"
+                            type="email"
+                            placeholder="{{ 'REGISTER.EMAIL' | translate }}"
+                        />
                     </div>
 
                     <div class="form-group">
-                        <input class="form-control-premium w-100" type="password" formControlName="password"
-                            placeholder="{{ 'REGISTER.PASSWORD' | translate }}" />
+                        <input
+                            class="form-control-premium w-100"
+                            type="password"
+                            formControlName="password"
+                            placeholder="{{ 'REGISTER.PASSWORD' | translate }}"
+                        />
                     </div>
 
-                    <div class="d-flex justify-content-between align-items-center mt-2 mb-4">
-                         <a (click)="showDialog()" class="forgot-password-link cursor-pointer">
-                            {{ "REGISTER.FORGET_PASSWORD" | translate }}
+                    <div
+                        class="d-flex justify-content-between align-items-center mt-2 mb-4"
+                    >
+                        <a
+                            (click)="showDialog()"
+                            class="forgot-password-link cursor-pointer"
+                        >
+                            {{ 'REGISTER.FORGET_PASSWORD' | translate }}
                         </a>
                     </div>
 
                     <button type="submit" class="btn-premium w-100 mb-2">
-                        {{ "REGISTER.LOGIN" | translate }}
+                        {{ 'REGISTER.LOGIN' | translate }}
                     </button>
 
                     <!-- Google Auth -->
-                    <button type="button" class="btn-premium-outline w-100 d-flex align-items-center justify-content-center gap-2 mb-4" (click)="authWgoo()">
+                    <button
+                        type="button"
+                        class="btn-premium-outline w-100 d-flex align-items-center justify-content-center gap-2 mb-4"
+                        (click)="authWgoo()"
+                    >
                         <i class="pi pi-google text-danger fs-5"></i>
                         <span>{{ 'REGISTER.LOGIN_GOOGLE' | translate }}</span>
                     </button>
 
                     <div class="signup-link text-center">
                         <p class="text-muted small">
-                            {{ "REGISTER.NO_ACCOUNT" | translate }}
-                            <a routerLink="/auth/register" class="register-link fw-bold ms-1">
-                                {{ "REGISTER.SIGNUP" | translate }}
+                            {{ 'REGISTER.NO_ACCOUNT' | translate }}
+                            <a
+                                routerLink="/auth/register"
+                                class="register-link fw-bold ms-1"
+                            >
+                                {{ 'REGISTER.SIGNUP' | translate }}
                             </a>
                         </p>
                     </div>
@@ -72,27 +108,56 @@
 </div>
 
 <!-- Reset Password Dialog -->
-<p-dialog header="{{ 'REGISTER.RESET_PASSWORD' | translate }}" [modal]="true" [(visible)]="visible"
-    [style]="{ width: '400px' }" [draggable]="false" [resizable]="false" styleClass="premium-dialog" [breakpoints]="{'960px': '90vw'}">
+<p-dialog
+    header="{{ 'REGISTER.RESET_PASSWORD' | translate }}"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '400px' }"
+    [draggable]="false"
+    [resizable]="false"
+    styleClass="premium-dialog"
+    [breakpoints]="{ '960px': '90vw' }"
+>
     <div class="p-4">
         <span class="d-block mb-4 text-muted">
-            {{ "REGISTER.ENTER_EMAIL" | translate }}
+            {{ 'REGISTER.ENTER_EMAIL' | translate }}
         </span>
 
-        <input [formControl]="resetEmail" class="form-control-premium w-100 mb-2" type="email"
-            placeholder="{{ 'REGISTER.EMAIL' | translate }}" />
+        <input
+            [formControl]="resetEmail"
+            class="form-control-premium w-100 mb-2"
+            type="email"
+            placeholder="{{ 'REGISTER.EMAIL' | translate }}"
+        />
 
-        <small *ngIf="resetEmail.touched && resetEmail.errors?.['required']" class="text-danger d-block mt-1">
-            {{ "REGISTER.EMAIL_REQUIRED" | translate }}
+        <small
+            *ngIf="resetEmail.touched && resetEmail.errors?.['required']"
+            class="text-danger d-block mt-1"
+        >
+            {{ 'REGISTER.EMAIL_REQUIRED' | translate }}
         </small>
-        <small *ngIf="resetEmail.touched && resetEmail.errors?.['email']" class="text-danger d-block mt-1">
-            {{ "REGISTER.EMAIL_INVALID" | translate }}
+        <small
+            *ngIf="resetEmail.touched && resetEmail.errors?.['email']"
+            class="text-danger d-block mt-1"
+        >
+            {{ 'REGISTER.EMAIL_INVALID' | translate }}
         </small>
 
         <div class="d-flex justify-content-end mt-4">
-            <button type="button" (click)="visible = false" class="btn btn-premium-outline me-2">Cancel</button>
-            <button type="button" (click)="resetPassword()" class="btn btn-premium" [disabled]="resetEmail.invalid">
-                {{ "REGISTER.SUBMIT" | translate }}
+            <button
+                type="button"
+                (click)="visible = false"
+                class="btn btn-premium-outline me-2"
+            >
+                Cancel
+            </button>
+            <button
+                type="button"
+                (click)="resetPassword()"
+                class="btn btn-premium"
+                [disabled]="resetEmail.invalid"
+            >
+                {{ 'REGISTER.SUBMIT' | translate }}
             </button>
         </div>
     </div>
