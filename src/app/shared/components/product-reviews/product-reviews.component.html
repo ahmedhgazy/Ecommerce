@@ -26,13 +26,16 @@
                 >
                 </ngx-stars>
                 <span class="total-reviews"
-                    >{{ summary.totalReviews }} {{ 'REVIEWS.REVIEWS_COUNT' | translate }}</span
+                    >{{ summary.totalReviews }}
+                    {{ 'REVIEWS.REVIEWS_COUNT' | translate }}</span
                 >
             </div>
 
             <div class="summary-right">
                 <div class="rating-bar" *ngFor="let star of [5, 4, 3, 2, 1]">
-                    <span class="star-label">{{ star }} {{ 'REVIEWS.STAR' | translate }}</span>
+                    <span class="star-label"
+                        >{{ star }} {{ 'REVIEWS.STAR' | translate }}</span
+                    >
                     <p-progressBar
                         [value]="getRatingPercentage(star)"
                         [showValue]="false"
@@ -51,7 +54,9 @@
             >
                 <div *ngIf="myReview && !showForm" class="my-review-card">
                     <div class="my-review-header">
-                        <span class="badge">{{ 'REVIEWS.YOUR_REVIEW' | translate }}</span>
+                        <span class="badge">{{
+                            'REVIEWS.YOUR_REVIEW' | translate
+                        }}</span>
                         <div class="actions">
                             <button
                                 pButton
@@ -103,7 +108,13 @@
 
         <!-- Review Form -->
         <div *ngIf="showForm" class="review-form">
-            <h3>{{ isEditing ? ('REVIEWS.EDIT_REVIEW' | translate) : ('REVIEWS.WRITE_REVIEW' | translate) }}</h3>
+            <h3>
+                {{
+                    isEditing
+                        ? ('REVIEWS.EDIT_REVIEW' | translate)
+                        : ('REVIEWS.WRITE_REVIEW' | translate)
+                }}
+            </h3>
 
             <div class="form-group">
                 <label>{{ 'REVIEWS.RATING_REQUIRED' | translate }}</label>
@@ -134,7 +145,9 @@
                     pInputTextarea
                     [(ngModel)]="newComment"
                     rows="4"
-                    [placeholder]="'REVIEWS.SHARE_EXPERIENCE_PLACEHOLDER' | translate"
+                    [placeholder]="
+                        'REVIEWS.SHARE_EXPERIENCE_PLACEHOLDER' | translate
+                    "
                 >
                 </textarea>
             </div>
@@ -150,7 +163,11 @@
                 <button
                     pButton
                     type="button"
-                    [label]="isEditing ? ('REVIEWS.UPDATE_REVIEW' | translate) : ('REVIEWS.SUBMIT_REVIEW' | translate)"
+                    [label]="
+                        isEditing
+                            ? ('REVIEWS.UPDATE_REVIEW' | translate)
+                            : ('REVIEWS.SUBMIT_REVIEW' | translate)
+                    "
                     [loading]="isSubmitting"
                     (click)="submitReview()"
                 ></button>
@@ -186,7 +203,8 @@
                         *ngIf="review.isVerifiedPurchase"
                         class="verified-badge"
                     >
-                        <i class="pi pi-verified"></i> {{ 'REVIEWS.VERIFIED_PURCHASE' | translate }}
+                        <i class="pi pi-verified"></i>
+                        {{ 'REVIEWS.VERIFIED_PURCHASE' | translate }}
                     </span>
                 </div>
 
@@ -220,7 +238,8 @@
                 (click)="loadPage(currentPage - 1)"
             ></button>
             <span class="page-info"
-                >{{ 'REVIEWS.PAGE' | translate }} {{ currentPage }} {{ 'REVIEWS.OF' | translate }} {{ totalPages }}</span
+                >{{ 'REVIEWS.PAGE' | translate }} {{ currentPage }}
+                {{ 'REVIEWS.OF' | translate }} {{ totalPages }}</span
             >
             <button
                 pButton

@@ -1,7 +1,7 @@
 <section class="gallery">
-    <div class="row">
+    <div class="row h-100">
         <div class="col-4">
-            <div class="gallery__images">
+            <div class="gallery__images h-100">
                 <ul class="list-unstyled d-flex flex-column align-items-center">
                     <ng-container *ngIf="images">
                         <li *ngFor="let image of images; let i = index" (click)="changeSelectedImage(image, i)"
@@ -12,8 +12,8 @@
                 </ul>
             </div>
         </div>
-        <div class="d-flex justify-content-center col-8 p-0 gallery_main_image_container">
-            <div #mainImageContainer class="gallery_main_image position-relative mb-5 text-center"
+        <div class="d-flex justify-content-center col-8 p-0 gallery_main_image_container h-100">
+            <div #mainImageContainer class="gallery_main_image position-relative text-center w-100"
                 (mousemove)="onImageHover($event)" (mouseleave)="onImageLeave()">
 
                 <img [src]="selectedImage" [style.opacity]="opacity" alt="Selected Image" />

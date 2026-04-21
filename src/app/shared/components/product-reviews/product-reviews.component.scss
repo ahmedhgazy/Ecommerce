@@ -40,9 +40,9 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
   border: 1px solid rgba(0, 0, 0, 0.04);
   transition: box-shadow 0.3s ease;
-  
+
   &:hover {
-      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.06);
   }
 
   @media (max-width: 768px) {
@@ -63,6 +63,7 @@
         font-weight: 700;
         color: var(--text-color, #1a1a1a);
       }
+
       .rating-max {
         font-size: 1.25rem;
         color: var(--text-secondary, #666);
@@ -152,15 +153,18 @@
   overflow: hidden;
 
   &::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; width: 4px; height: 100%;
-      background: linear-gradient(135deg, #DB4444 0%, #e66060 100%);
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(135deg, #DB4444 0%, #e66060 100%);
   }
 
   &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(219, 68, 68, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(219, 68, 68, 0.1);
   }
 
   .my-review-header {
@@ -221,7 +225,8 @@
       color: var(--text-color, #1a1a1a);
     }
 
-    input, textarea {
+    input,
+    textarea {
       width: 100%;
     }
   }
@@ -234,12 +239,7 @@
   }
 }
 
-// Reviews List
-.reviews-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+
 
 .review-card {
   padding: 2rem;
@@ -250,8 +250,8 @@
   transition: all 0.3s ease;
 
   &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
   }
 
   .review-header {

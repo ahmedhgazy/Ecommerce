@@ -1,192 +1,204 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
 .gallery {
-    max-width: 100% !important;
+  max-width: 100% !important;
+  height: 100%;
 
-    &__images {
-        @media only screen and (max-width: 600px) {
-            display: none !important;
-        }
-
-        ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            padding: 0;
-            margin: 0;
-            gap: 10px;
-
-            li {
-                width: 121px;
-                height: 121px;
-                background-size: 80%;
-                background-repeat: no-repeat;
-                background-position: center center;
-                background-color: #f5f5f5;
-                cursor: pointer;
-                border: 2px solid #eee;
-                transition: all 0.6s ease;
-                margin-bottom: 10px;
-                border-radius: 8px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-                &:hover {
-                    // border-color: #007bff;
-                    transform: scale(1.05);
-                }
-
-                &.active {
-                    border-color: #007bff;
-                }
-            }
-        }
+  &__images {
+    height: 100%;
+    overflow-y: auto;
+    scrollbar-width: none; /* Firefox */
+    &::-webkit-scrollbar {
+      display: none; /* Chrome/Safari/Webkit */
+    }
+    @media only screen and (max-width: 600px) {
+      display: none !important;
     }
 
-    &_main_image {
-        max-width: 100%;
-        width: 100%;
-        position: relative;
-        max-height: 100%;
-        height: 31.25rem;
-        text-align: center;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 0;
+      margin: 0;
+      gap: 10px;
+
+      li {
+        width: 121px;
+        height: 121px;
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: #f5f5f5;
+        cursor: pointer;
+        border: 2px solid #eee;
         transition: all 0.6s ease;
-        justify-content: center;
-        display: flex;
-        align-items: center;
+        margin-bottom: 10px;
         border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); // Lighter shadow
-        // background-color: #fff; // Grid usually white
-        border: 1px solid  rgba(86, 85, 85, 0.5);
-        z-index: 10; // Base index
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-        // Prevent cursor flickering
-        overflow: visible;
-
-        img {
-            width: auto;
-            max-width: 90%; // Give some breathing room
-            height: auto;
-            max-height: 90%;
-            object-fit: contain;
-            transition: opacity 0.2s ease-in-out; // Smooth fade transition
-            // transition: transform 0.6s ease; // Removed transform transition to avoid conflict
+        &:hover {
+          // border-color: #007bff;
+          transform: scale(1.05);
         }
 
-        .lens {
-            position: absolute;
-            width: 40%; // Match TS logic (container / 2.5)
-            height: 40%;
-            background-color: rgba(255, 255, 255, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            cursor: crosshair;
-            pointer-events: none; // Let mouse events pass through to container
-            z-index: 20;
-            border-radius: 12px; // Premium rounded corners
-            box-shadow: 
-                inset 0 0 20px rgba(255, 255, 255, 0.5), // Inner glow
-                0 4px 15px rgba(0, 0, 0, 0.1); // Soft outer shadow
-            backdrop-filter: brightness(1.05); // Slight highlight effect
+        &.active {
+          border-color: #007bff;
         }
-
-        .zoom-overlay {
-            position: absolute;
-            top: 0;
-            left: 105%; // Position to the right
-            width: 500px; // Larger zoom window
-            height: 500px; // Square or match aspect
-            background-repeat: no-repeat;
-            background-color: var(--bg-primary, #ffffff);
-            opacity: 0;
-            visibility: hidden; // Use visibility instead of display none for transitions
-            z-index: 100;
-            background-size: 250%; // 2.5x Zoom match TS
-            pointer-events: none;
-            overflow: hidden;
-
-            // Premium elegant styling
-            border: 1px solid rgba(0, 0, 0, 0.05);
-            border-radius: 16px; // Modern rounding
-            box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.15), // Deep smooth shadow
-                0 0 0 1px rgba(0, 0, 0, 0.05); // Crisp edge
-
-            // Smooth entrance animation
-            transform: translateX(-15px) scale(0.98);
-            transition: 
-                opacity 0.4s ease, 
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.4s;
-
-            // Optional: sleek inner border using pseudo-element
-            &::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                border-radius: inherit;
-                border: 1px solid rgba(255, 255, 255, 0.5);
-                pointer-events: none;
-            }
-
-            &.active {
-                opacity: 1;
-                visibility: visible;
-                transform: translateX(0) scale(1);
-            }
-
-            @media only screen and (max-width: 1180px) {
-                width: 400px;
-                height: 400px;
-                left: 102%;
-            }
-
-            @media only screen and (max-width: 992px) {
-                display: none !important; // Disable on tablet/mobile
-            }
-        }
+      }
     }
+  }
+
+  &_main_image {
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    max-height: 100%;
+    height: 100%;
+    min-height: 30rem;
+    text-align: center;
+    transition: all 0.6s ease;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); // Lighter shadow
+    // background-color: #fff; // Grid usually white
+    border: 1px solid rgba(86, 85, 85, 0.5);
+    z-index: 10; // Base index
+
+    // Prevent cursor flickering
+    overflow: visible;
+
+    img {
+      width: auto;
+      max-width: 90%; // Give some breathing room
+      height: auto;
+      max-height: 90%;
+      object-fit: contain;
+      transition: opacity 0.2s ease-in-out; // Smooth fade transition
+    }
+
+    .lens {
+      position: absolute;
+      width: 40%; // Match TS logic (container / 2.5)
+      height: 40%;
+      background-color: rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      cursor: crosshair;
+      pointer-events: none; // Let mouse events pass through to container
+      z-index: 20;
+      border-radius: 12px; // Premium rounded corners
+      box-shadow:
+        inset 0 0 20px rgba(255, 255, 255, 0.5), // Inner glow
+        0 4px 15px rgba(0, 0, 0, 0.1); // Soft outer shadow
+      backdrop-filter: brightness(1.05); // Slight highlight effect
+    }
+
+    .zoom-overlay {
+      position: absolute;
+      top: 0;
+      left: 105%; // Position to the right
+      width: 500px; // Larger zoom window
+      height: 500px; // Square or match aspect
+      background-repeat: no-repeat;
+      background-color: var(--bg-primary, #ffffff);
+      opacity: 0;
+      visibility: hidden; // Use visibility instead of display none for transitions
+      z-index: 100;
+      background-size: 250%; // 2.5x Zoom match TS
+      pointer-events: none;
+      overflow: hidden;
+
+      // Premium elegant styling
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 16px; // Modern rounding
+      box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.15), // Deep smooth shadow
+        0 0 0 1px rgba(0, 0, 0, 0.05); // Crisp edge
+
+      // Smooth entrance animation
+      transform: translateX(-15px) scale(0.98);
+      transition:
+        opacity 0.4s ease,
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0.4s;
+
+      // Optional: sleek inner border using pseudo-element
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+      }
+
+      &.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) scale(1);
+      }
+
+      @media only screen and (max-width: 1180px) {
+        width: 400px;
+        height: 400px;
+        left: 102%;
+      }
+
+      @media only screen and (max-width: 992px) {
+        display: none !important; // Disable on tablet/mobile
+      }
+    }
+  }
 }
 
 @keyframes slideFromLeft {
-    0% {
-        transform: translateX(-27%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(-27%);
+    opacity: 0;
+  }
 
-    20% {
-        opacity: 0.5;
-    }
+  20% {
+    opacity: 0.5;
+  }
 
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideFromRight {
-    0% {
-        transform: translateX(27%);
-        opacity: 0;
-    }
+  0% {
+    transform: translateX(27%);
+    opacity: 0;
+  }
 
-    20% {
-        opacity: 0.5;
-    }
+  20% {
+    opacity: 0.5;
+  }
 
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .slide-from-left {
-    animation: slideFromLeft 0.8s ease forwards;
+  animation: slideFromLeft 0.8s ease forwards;
 }
 
 .slide-from-right {
-    animation: slideFromRight 0.8s ease forwards;
+  animation: slideFromRight 0.8s ease forwards;
 }
 
 .gallery_main_image_container {
-    @media only screen and (max-width: 600px) {
-        width: 100% !important;
-    }
+  @media only screen and (max-width: 600px) {
+    width: 100% !important;
+  }
 }

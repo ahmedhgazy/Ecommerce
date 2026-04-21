@@ -4,9 +4,11 @@
             <!-- Breadcrumb -->
             <div class="page-header">
                 <div class="breadcrumb">
-                    <a routerLink="/home">{{ "HEADER.HOME" | translate }}</a>
+                    <a routerLink="/home">{{ 'HEADER.HOME' | translate }}</a>
                     <span class="separator">/</span>
-                    <a routerLink="/products">{{ "HEADER.PRODUCTS" | translate }}</a>
+                    <a routerLink="/products">{{
+                        'HEADER.PRODUCTS' | translate
+                    }}</a>
                     <span class="separator">/</span>
                     <span class="current">{{ product.name }}</span>
                 </div>
@@ -16,7 +18,9 @@
                 <!-- Gallery Column -->
                 <div class="col-lg-6 gallery-column">
                     <div class="gallery-shell">
-                        <app-ui-gallery [images]="product.images"></app-ui-gallery>
+                        <app-ui-gallery
+                            [images]="product.images"
+                        ></app-ui-gallery>
                     </div>
                 </div>
 
@@ -24,9 +28,21 @@
                 <div class="col-lg-6 info-column">
                     <div class="product-info">
                         <div class="product-topline">
-                            <span class="product-badge">{{ product.category }}</span>
-                            <span class="product-availability" [ngClass]="{'in-stock': product.inStock, 'out-of-stock': !product.inStock}">
-                                {{ product.inStock ? ('DETAILS.IN_STOCK' | translate) : ('PRODUCTS.OUT_OF_STOCK' | translate) }}
+                            <span class="product-badge">{{
+                                product.category
+                            }}</span>
+                            <span
+                                class="product-availability"
+                                [ngClass]="{
+                                    'in-stock': product.inStock,
+                                    'out-of-stock': !product.inStock,
+                                }"
+                            >
+                                {{
+                                    product.inStock
+                                        ? ('DETAILS.IN_STOCK' | translate)
+                                        : ('PRODUCTS.OUT_OF_STOCK' | translate)
+                                }}
                             </span>
                         </div>
 
@@ -34,30 +50,74 @@
 
                         <div class="product-meta">
                             <div class="meta-chip">
-                                <span class="chip-label">{{ 'DETAILS.CUSTOMER_RATING' | translate }}</span>
+                                <span class="chip-label">{{
+                                    'DETAILS.CUSTOMER_RATING' | translate
+                                }}</span>
                                 <div class="chip-value rating-chip">
-                                    <ngx-stars [initialStars]="product.rating" [maxStars]="5" [readonly]="true" [color]="'#FFAD33'" [size]="1"></ngx-stars>
+                                    <ngx-stars
+                                        [initialStars]="product.rating"
+                                        [maxStars]="5"
+                                        [readonly]="true"
+                                        [color]="'#FFAD33'"
+                                        [size]="1"
+                                    ></ngx-stars>
                                 </div>
                             </div>
                             <div class="meta-chip">
-                                <span class="chip-label">{{ 'REVIEWS.CUSTOMER_REVIEWS' | translate }}</span>
+                                <span class="chip-label">{{
+                                    'REVIEWS.CUSTOMER_REVIEWS' | translate
+                                }}</span>
                                 <span class="chip-value review-count">
-                                    {{ product.reviews?.length || 0 }} {{ 'REVIEWS.REVIEWS_COUNT' | translate }}
+                                    {{ product.reviews?.length || 0 }}
+                                    {{ 'REVIEWS.REVIEWS_COUNT' | translate }}
                                 </span>
                             </div>
                             <div class="meta-chip">
-                                <span class="chip-label">{{ 'PRODUCTS.AVAILABILITY' | translate }}</span>
-                                <span class="chip-value stock-status" [ngClass]="{'in-stock': product.inStock, 'out-of-stock': !product.inStock}">
-                                    <ng-container *ngIf="product.inStock && product.availableQuantity < 10; else availableStock">
-                                        {{ 'DETAILS.ONLY_LEFT' | translate: { count: product.availableQuantity } }}
+                                <span class="chip-label">{{
+                                    'PRODUCTS.AVAILABILITY' | translate
+                                }}</span>
+                                <span
+                                    class="chip-value stock-status"
+                                    [ngClass]="{
+                                        'in-stock': product.inStock,
+                                        'out-of-stock': !product.inStock,
+                                    }"
+                                >
+                                    <ng-container
+                                        *ngIf="
+                                            product.inStock &&
+                                                product.availableQuantity < 10;
+                                            else availableStock
+                                        "
+                                    >
+                                        {{
+                                            'DETAILS.ONLY_LEFT'
+                                                | translate
+                                                    : {
+                                                          count: product.availableQuantity,
+                                                      }
+                                        }}
                                     </ng-container>
                                     <ng-template #availableStock>
-                                        <ng-container *ngIf="product.inStock; else outOfStockLabel">
-                                            {{ 'DETAILS.AVAILABLE_NOW' | translate: { count: product.availableQuantity } }}
+                                        <ng-container
+                                            *ngIf="
+                                                product.inStock;
+                                                else outOfStockLabel
+                                            "
+                                        >
+                                            {{
+                                                'DETAILS.AVAILABLE_NOW'
+                                                    | translate
+                                                        : {
+                                                              count: product.availableQuantity,
+                                                          }
+                                            }}
                                         </ng-container>
                                     </ng-template>
                                     <ng-template #outOfStockLabel>
-                                        {{ 'PRODUCTS.OUT_OF_STOCK' | translate }}
+                                        {{
+                                            'PRODUCTS.OUT_OF_STOCK' | translate
+                                        }}
                                     </ng-template>
                                 </span>
                             </div>
@@ -67,7 +127,9 @@
                             <div class="product-price">
                                 {{ product.price | currency }}
                             </div>
-                            <p class="price-caption">{{ 'DETAILS.WARRANTY_NOTE' | translate }}</p>
+                            <p class="price-caption">
+                                {{ 'DETAILS.WARRANTY_NOTE' | translate }}
+                            </p>
                         </div>
 
                         <p class="product-description">
@@ -77,21 +139,29 @@
                         <div class="highlights-grid">
                             <div class="highlight-card">
                                 <i class="pi pi-shield"></i>
-                                <span>{{ 'DETAILS.SECURE_CHECKOUT' | translate }}</span>
+                                <span>{{
+                                    'DETAILS.SECURE_CHECKOUT' | translate
+                                }}</span>
                             </div>
                             <div class="highlight-card">
                                 <i class="pi pi-truck"></i>
-                                <span>{{ 'DETAILS.QUICK_SHIP' | translate }}</span>
+                                <span>{{
+                                    'DETAILS.QUICK_SHIP' | translate
+                                }}</span>
                             </div>
                             <div class="highlight-card">
                                 <i class="pi pi-verified"></i>
-                                <span>{{ 'DETAILS.WARRANTY_NOTE' | translate }}</span>
+                                <span>{{
+                                    'DETAILS.WARRANTY_NOTE' | translate
+                                }}</span>
                             </div>
                         </div>
 
                         <!-- Actions Card -->
                         <div class="actions-card">
-                            <label class="qty-label">{{ "DETAILS.QUANTITY" | translate }}</label>
+                            <label class="qty-label">{{
+                                'DETAILS.QUANTITY' | translate
+                            }}</label>
                             <div class="actions-row">
                                 <div class="quantity-input">
                                     <p-inputNumber
@@ -104,12 +174,17 @@
                                         size="3"
                                         buttonLayout="horizontal"
                                         incrementButtonIcon="pi pi-plus"
-                                        decrementButtonIcon="pi pi-minus">
+                                        decrementButtonIcon="pi pi-minus"
+                                    >
                                     </p-inputNumber>
                                 </div>
-                                <button class="add-cart-btn" (click)="addToCart()" [disabled]="!product.inStock">
+                                <button
+                                    class="add-cart-btn"
+                                    (click)="addToCart()"
+                                    [disabled]="!product.inStock"
+                                >
                                     <i class="pi pi-shopping-cart me-2"></i>
-                                    {{ "DETAILS.ADD_TO_CART" | translate }}
+                                    {{ 'DETAILS.ADD_TO_CART' | translate }}
                                 </button>
                             </div>
                         </div>
@@ -121,8 +196,17 @@
                                     <i class="pi pi-truck"></i>
                                 </div>
                                 <div class="text-content">
-                                    <h6>{{ "DETAILS.FREE_DELIVERY" | translate }}</h6>
-                                    <p>{{ "DETAILS.ENTER_POSTAL_CODE" | translate }}</p>
+                                    <h6>
+                                        {{
+                                            'DETAILS.FREE_DELIVERY' | translate
+                                        }}
+                                    </h6>
+                                    <p>
+                                        {{
+                                            'DETAILS.ENTER_POSTAL_CODE'
+                                                | translate
+                                        }}
+                                    </p>
                                 </div>
                             </div>
                             <div class="info-item">
@@ -130,20 +214,31 @@
                                     <i class="pi pi-refresh"></i>
                                 </div>
                                 <div class="text-content">
-                                    <h6>{{ "DETAILS.RETURN_DELIVERY" | translate }}</h6>
-                                    <p>{{ "DETAILS.FREE_DELIVERY_RETURNS" | translate }}</p>
+                                    <h6>
+                                        {{
+                                            'DETAILS.RETURN_DELIVERY'
+                                                | translate
+                                        }}
+                                    </h6>
+                                    <p>
+                                        {{
+                                            'DETAILS.FREE_DELIVERY_RETURNS'
+                                                | translate
+                                        }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
 
             <!-- Reviews Section -->
-            <div class="row mt-5">
-                <div class="col-12">
-                    <app-product-reviews [productId]="product.id"></app-product-reviews>
+            <div class="row">
+                <div class="col-12 py-0 my-0">
+                    <app-product-reviews
+                        [productId]="product.id"
+                    ></app-product-reviews>
                 </div>
             </div>
         </div>
@@ -152,4 +247,3 @@
 
 <p-toast />
 <app-loading></app-loading>
-
