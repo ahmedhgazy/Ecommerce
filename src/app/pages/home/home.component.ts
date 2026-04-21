@@ -15,6 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { PromotionsService } from '../../services/promotions/promotions.service';
 import { TimerDigitComponent } from '../../components/producsts/catepgries/cat-banner/timer-digit/timer-digit.component';
+import { RouterLink } from "@angular/router";
 
 
 export interface sharedHeader {
@@ -36,8 +37,8 @@ export interface sharedHeader {
     LoadingComponent,
     TranslateModule,
     TimerDigitComponent,
-
-  ],
+    RouterLink
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
