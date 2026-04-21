@@ -7,7 +7,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 
 import { ToastModule } from 'primeng/toast';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { AnimateFadeUpDirective } from '../../shared/animations/scroll-animation/fade-up';
 import { AnimateFromLeftDirective } from '../../shared/animations/scroll-animation/left';
 import { AnimateFromRightDirective } from '../../shared/animations/scroll-animation/right';
@@ -32,12 +32,13 @@ import { AnimateFromRightDirective } from '../../shared/animations/scroll-animat
 export class ContactComponent {
     form: NgForm;
     messageService = inject(MessageService);
+    translate = inject(TranslateService);
 
     submit(form: NgForm) {
         this.messageService.add({
             severity: 'success',
-            summary: 'Success',
-            detail: 'Your message sent successfully',
+            summary: this.translate.instant('TOAST_MESSAGE.success'),
+            detail: this.translate.instant('CONTACT.MESSAGE_SENT'),
         });
         form.reset();
     }

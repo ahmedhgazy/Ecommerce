@@ -6,7 +6,7 @@
                 <div class="breadcrumb">
                     <a routerLink="/home">{{ "HEADER.HOME" | translate }}</a>
                     <span class="separator">/</span>
-                    <a routerLink="/products">Products</a>
+                    <a routerLink="/products">{{ "HEADER.PRODUCTS" | translate }}</a>
                     <span class="separator">/</span>
                     <span class="current">{{ product.name }}</span>
                 </div>
@@ -15,39 +15,79 @@
             <div class="row g-5">
                 <!-- Gallery Column -->
                 <div class="col-lg-6 gallery-column">
-                    <app-ui-gallery [images]="product.images"></app-ui-gallery>
+                    <div class="gallery-shell">
+                        <app-ui-gallery [images]="product.images"></app-ui-gallery>
+                    </div>
                 </div>
 
                 <!-- Info Column -->
                 <div class="col-lg-6 info-column">
                     <div class="product-info">
-                        <h1 class="product-title">{{ product.name }}</h1>
-
-                        <div class="product-meta">
-                            <div class="rating-wrapper">
-                                <ngx-stars [initialStars]="product.rating" [maxStars]="5" [readonly]="true" [color]="'#FFAD33'" [size]="1"></ngx-stars>
-                            </div>
-                            <span class="review-count">({{ product.reviews || 0 }} Reviews)</span>
-                            <div class="divider"></div>
-                            <span class="stock-status" [ngClass]="{'in-stock': product.inStock, 'out-of-stock': !product.inStock}">
-                                {{ product.inStock ? "In Stock" : "Out Of Stock" }}
-                            </span>
-                            <span *ngIf="product.inStock && product.availableQuantity < 10" class="text-danger small fw-bold">
-                                Only {{ product.availableQuantity }} left!
-                            </span>
-                            
-                            <span *ngIf="product.inStock && product.availableQuantity >= 10" class="text-success small fw-bold">
-                                 {{ product.availableQuantity }} available
+                        <div class="product-topline">
+                            <span class="product-badge">{{ product.category }}</span>
+                            <span class="product-availability" [ngClass]="{'in-stock': product.inStock, 'out-of-stock': !product.inStock}">
+                                {{ product.inStock ? ('DETAILS.IN_STOCK' | translate) : ('PRODUCTS.OUT_OF_STOCK' | translate) }}
                             </span>
                         </div>
 
-                        <div class="product-price">
-                            {{ product.price | currency }}
+                        <h1 class="product-title">{{ product.name }}</h1>
+
+                        <div class="product-meta">
+                            <div class="meta-chip">
+                                <span class="chip-label">{{ 'DETAILS.CUSTOMER_RATING' | translate }}</span>
+                                <div class="chip-value rating-chip">
+                                    <ngx-stars [initialStars]="product.rating" [maxStars]="5" [readonly]="true" [color]="'#FFAD33'" [size]="1"></ngx-stars>
+                                </div>
+                            </div>
+                            <div class="meta-chip">
+                                <span class="chip-label">{{ 'REVIEWS.CUSTOMER_REVIEWS' | translate }}</span>
+                                <span class="chip-value review-count">
+                                    {{ product.reviews?.length || 0 }} {{ 'REVIEWS.REVIEWS_COUNT' | translate }}
+                                </span>
+                            </div>
+                            <div class="meta-chip">
+                                <span class="chip-label">{{ 'PRODUCTS.AVAILABILITY' | translate }}</span>
+                                <span class="chip-value stock-status" [ngClass]="{'in-stock': product.inStock, 'out-of-stock': !product.inStock}">
+                                    <ng-container *ngIf="product.inStock && product.availableQuantity < 10; else availableStock">
+                                        {{ 'DETAILS.ONLY_LEFT' | translate: { count: product.availableQuantity } }}
+                                    </ng-container>
+                                    <ng-template #availableStock>
+                                        <ng-container *ngIf="product.inStock; else outOfStockLabel">
+                                            {{ 'DETAILS.AVAILABLE_NOW' | translate: { count: product.availableQuantity } }}
+                                        </ng-container>
+                                    </ng-template>
+                                    <ng-template #outOfStockLabel>
+                                        {{ 'PRODUCTS.OUT_OF_STOCK' | translate }}
+                                    </ng-template>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="price-panel">
+                            <div class="product-price">
+                                {{ product.price | currency }}
+                            </div>
+                            <p class="price-caption">{{ 'DETAILS.WARRANTY_NOTE' | translate }}</p>
                         </div>
 
                         <p class="product-description">
                             {{ product.desc }}
                         </p>
+
+                        <div class="highlights-grid">
+                            <div class="highlight-card">
+                                <i class="pi pi-shield"></i>
+                                <span>{{ 'DETAILS.SECURE_CHECKOUT' | translate }}</span>
+                            </div>
+                            <div class="highlight-card">
+                                <i class="pi pi-truck"></i>
+                                <span>{{ 'DETAILS.QUICK_SHIP' | translate }}</span>
+                            </div>
+                            <div class="highlight-card">
+                                <i class="pi pi-verified"></i>
+                                <span>{{ 'DETAILS.WARRANTY_NOTE' | translate }}</span>
+                            </div>
+                        </div>
 
                         <!-- Actions Card -->
                         <div class="actions-card">

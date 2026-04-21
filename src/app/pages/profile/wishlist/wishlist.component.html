@@ -1,11 +1,21 @@
 <ng-container *ngIf="products$ | async as products">
     <div class="wishlist-container">
-        <div class="section-header">
-            <h2 class="section-title">{{ "PROFILE.SAVED_ITEMS_COLLECTIONS" | translate }}</h2>
+        <div class="wishlist-hero">
+            <div>
+                <div class="wishlist-badge">{{ "PROFILE.YOUR_WISHLIST" | translate }}</div>
+                <h2 class="section-title">{{ "PROFILE.SAVED_ITEMS_COLLECTIONS" | translate }}</h2>
+                <p class="wishlist-subtitle">
+                    {{ "WISHLIST.SAVED_ITEMS" | translate: { count: products.length } }}
+                </p>
+            </div>
+
+            <a routerLink="/products" class="btn btn-premium-outline wishlist-cta">
+                {{ "WISHLIST.BROWSE_PRODUCTS" | translate }}
+            </a>
         </div>
 
         @if (products.length > 0) {
-            <div class="row g-4">
+            <div class="row wishlist-grid g-4">
                 @for (product of products; track $index) {
                 <div class="col-12 col-md-6 col-lg-4 col-xl-4">
                     <app-product-item [product]="product"></app-product-item>
@@ -14,10 +24,13 @@
             </div>
         } @else {
             <div class="empty-wishlist">
-                <i class="pi pi-heart"></i>
-                <p>You haven't saved any items yet.</p>
-                <a routerLink="/products" class="btn btn-premium p-2">
-                    Browse Products
+                <div class="empty-icon">
+                    <i class="pi pi-heart"></i>
+                </div>
+                <h3>{{ "WISHLIST.EMPTY_TITLE" | translate }}</h3>
+                <p>{{ "WISHLIST.EMPTY_DESC" | translate }}</p>
+                <a routerLink="/products" class="btn btn-premium px-4 py-2">
+                    {{ "WISHLIST.BROWSE_PRODUCTS" | translate }}
                 </a>
             </div>
         }

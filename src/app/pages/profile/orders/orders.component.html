@@ -4,25 +4,26 @@
     <div class="orders-header">
         <div class="header-content">
             <h2 class="title">{{ "ORDERS.ORDERS" | translate }}</h2>
-            <p class="subtitle">Track and manage your recent purchases</p>
+            <p class="subtitle">{{ "ORDERS.SUBTITLE" | translate }}</p>
         </div>
         <div class="search-wrap">
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <input pInputText type="text" (input)="onGlobalFilter($event)" placeholder="Search orders..." class="search-input" />
+                <input pInputText type="text" (input)="onGlobalFilter($event)" [placeholder]="'ORDERS.SEARCH_PLACEHOLDER' | translate" class="search-input" />
             </span>
         </div>
     </div>
 
     <!-- Desktop View (Premium p-table) -->
     <div class="desktop-view d-none d-lg-block">
+        <div class="table-stage">
         <p-table #dt1 [value]="orders" [paginator]="true" [rows]="10"
                  [globalFilterFields]="['id', 'totalPrice', 'status', 'dateOrdered']"
                  styleClass="orders-table" [rowHover]="true" dataKey="id">
                  
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width: 30%">Order Info</th>
+                    <th style="width: 36%">{{ 'ORDERS.ORDER_INFO' | translate }}</th>
                     <th style="width: 20%">{{ 'ORDERS.DATE' | translate }}</th>
                     <th style="width: 20%">{{ 'ORDERS.STATUS' | translate }}</th>
                     <th class="text-end" style="width: 20%">{{ 'ORDERS.TOTAL' | translate }}</th>
@@ -39,7 +40,7 @@
                             </div>
                             <div class="meta">
                                 <span class="order-id">#{{ order.id }}</span>
-                                <span class="items-count">{{ order.orderItems?.length || 0 }} items</span>
+                                <span class="items-count">{{ order.orderItems?.length || 0 }} {{ 'ORDERS.ITEMS' | translate }}</span>
                             </div>
                         </div>
                     </td>
@@ -71,6 +72,7 @@
                 </tr>
             </ng-template>
         </p-table>
+        </div>
     </div>
 
     <!-- Mobile View (Premium Cards) -->
@@ -86,16 +88,16 @@
                 </div>
                 <div class="card-middle">
                     <div class="detail-group">
-                        <span class="label">Date</span>
+                        <span class="label">{{ 'ORDERS.DATE' | translate }}</span>
                         <span class="value">{{ order.dateOrdered | date: 'mediumDate' }}</span>
                     </div>
                     <div class="detail-group text-end">
-                        <span class="label">Total</span>
+                        <span class="label">{{ 'ORDERS.TOTAL' | translate }}</span>
                         <span class="value price">{{ order.totalPrice | currency }}</span>
                     </div>
                 </div>
                 <div class="card-bottom">
-                    <span class="items">{{ order.orderItems?.length || 0 }} items included</span>
+                    <span class="items">{{ 'ORDERS.ITEMS_INCLUDED' | translate: { count: order.orderItems?.length || 0 } }}</span>
                     <button pButton icon="pi pi-arrow-right" class="p-button-text p-button-rounded p-0 action-btn-mobile"
                             (click)="viewDetails(order); $event.stopPropagation()"></button>
                 </div>
@@ -111,7 +113,7 @@
 
 <!-- Premium Order Details Modal -->
 <p-dialog [(visible)]="displayDetails" [modal]="true" [style]="{width: '600px', 'max-width': '95vw'}" [draggable]="false" [resizable]="false"
-          header="Order Summary" styleClass="elegant-dialog" [dismissableMask]="true">
+          [header]="'ORDERS.ORDER_SUMMARY' | translate" styleClass="elegant-dialog" [dismissableMask]="true">
     <app-order-details *ngIf="displayDetails" [order]="selectedOrder"></app-order-details>
 </p-dialog>
 

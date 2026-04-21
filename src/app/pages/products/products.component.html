@@ -1,18 +1,37 @@
-  <!-- Hero Section with Search -->
+<section class="products-page">
+    <!-- Hero Section with Search -->
     <section class="hero-section">
       <div class="container">
-        <h1 class="display-5 fw-bold text-center mb-3">{{ 'HOME.EXPLORE_OUR_PRODUCTS' | translate }}</h1>
-        <p class="text-center mb-4 opacity-75">{{ 'PRODUCTS.SUBTITLE' | translate }}</p>
+        <div class="hero-surface">
+          <div class="hero-copy">
+            <div class="hero-badge">{{ 'PRODUCTS.CURATED_COLLECTIONS' | translate }}</div>
+            <h1 class="display-5 fw-bold mb-3">{{ 'HOME.EXPLORE_OUR_PRODUCTS' | translate }}</h1>
+            <p class="hero-subtitle mb-0">{{ 'PRODUCTS.SUBTITLE' | translate }}</p>
+          </div>
 
-        <div class="search-box">
-          <i class="pi pi-search search-icon"></i>
-          <input
-            type="text"
-            class="search-input"
-            [placeholder]="'HEADER.SEARCH_PLACEHOLDER' | translate"
-            [(ngModel)]="filters().search"
-            (ngModelChange)="onSearchChange($event)"
-          >
+          <div class="hero-search-panel">
+            <div class="search-box">
+              <i class="pi pi-search search-icon"></i>
+              <input
+                type="text"
+                class="search-input"
+                [placeholder]="'HEADER.SEARCH_PLACEHOLDER' | translate"
+                [(ngModel)]="filters().search"
+                (ngModelChange)="onSearchChange($event)"
+              >
+            </div>
+
+            <div class="hero-metrics">
+              <div class="metric-card">
+                <strong>{{ totalProducts() }}</strong>
+                <span>{{ 'HEADER.PRODUCTS' | translate }}</span>
+              </div>
+              <div class="metric-card">
+                <strong>{{ activeFiltersCount() }}</strong>
+                <span>{{ 'PRODUCTS.FILTERS' | translate }}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -209,3 +228,4 @@
     </div>
 
     <app-loading></app-loading>
+</section>

@@ -1,7 +1,12 @@
 <button class="shared__btn" (click)="onClick()">
-    {{
-        allLoaded
-            ? ("HOME.SHOW_LESS" | translate)
-            : ("HOME.LOAD_MORE" | translate)
-    }}
+    @if (allLoaded && !allLoadedAndOneSection) {
+        {{ 'HOME.SHOW_LESS' | translate }}
+    } @else if (
+        (!allLoaded && !allLoadedAndOneSection) ||
+        (allLoaded && allLoadedAndOneSection)
+    ) {
+        {{ 'HOME.LOAD_MORE' | translate }}
+    } @else if (allLoaded && allLoadedAndOneSection) {
+        {{ 'HOME.LOAD_MORE' | translate }}
+    }
 </button>

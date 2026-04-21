@@ -2,24 +2,36 @@
     <div class="container-premium">
         <!-- Page Header -->
         <div class="page-header-premium rounded-4 mb-5" animateFadeUp>
+            <div class="page-kicker">{{ 'ABOUT.PAGE_KICKER' | translate }}</div>
             <h1 class="page-title">{{ 'ROUTES.ABOUT' | translate }}</h1>
+            <p class="page-lead">{{ 'ABOUT.PAGE_LEAD' | translate }}</p>
              <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a routerLink="/home" class="text-white text-decoration-none opacity-75">Home</a></li>
-                    <li class="breadcrumb-item active text-white" aria-current="page">About</li>
+                    <li class="breadcrumb-item"><a routerLink="/home" class="text-white text-decoration-none opacity-75">{{ 'ROUTES.HOME' | translate }}</a></li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">{{ 'ROUTES.ABOUT' | translate }}</li>
                 </ol>
             </nav>
         </div>
 
         <!-- Story Section -->
         <div class="story-section text-center" animateFadeUp [delay]="200">
-            <h2 class="story-title">{{ 'ABOUT.OUR_STORY' | translate }}</h2>
-            <p class="story-desc mb-4">
-                {{ 'ABOUT.OUR_STORY_DESCRIPTION' | translate }}
-            </p>
-             <p class="story-desc fw-semibold">
-                {{ 'ABOUT.PRODUCT_OFFER' | translate }}
-            </p>
+            <div class="story-grid">
+                <div class="story-card">
+                    <span class="story-chip">{{ 'ABOUT.OUR_STORY' | translate }}</span>
+                    <h2 class="story-title">{{ 'ABOUT.OUR_STORY' | translate }}</h2>
+                    <p class="story-desc mb-4">
+                        {{ 'ABOUT.OUR_STORY_DESCRIPTION' | translate }}
+                    </p>
+                    <p class="story-desc fw-semibold mb-0">
+                        {{ 'ABOUT.PRODUCT_OFFER' | translate }}
+                    </p>
+                </div>
+
+                <div class="story-note-card">
+                    <span class="note-label">{{ 'ABOUT.STORY_NOTE_LABEL' | translate }}</span>
+                    <p class="note-text mb-0">{{ 'ABOUT.STORY_NOTE' | translate }}</p>
+                </div>
+            </div>
         </div>
 
         <!-- Stats Grid -->

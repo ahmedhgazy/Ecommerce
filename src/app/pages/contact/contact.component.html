@@ -2,11 +2,13 @@
     <div class="container-premium">
         <!-- Page Header -->
         <div class="page-header-premium rounded-4 mb-5" animateFadeUp>
+            <div class="page-kicker">{{ 'CONTACT.PAGE_KICKER' | translate }}</div>
             <h1 class="page-title">{{ "ROUTES.CONTACT" | translate }}</h1>
+            <p class="page-lead">{{ 'CONTACT.PAGE_LEAD' | translate }}</p>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a routerLink="/home" class="text-white text-decoration-none opacity-75">Home</a></li>
-                    <li class="breadcrumb-item active text-white" aria-current="page">Contact</li>
+                    <li class="breadcrumb-item"><a routerLink="/home" class="text-white text-decoration-none opacity-75">{{ 'ROUTES.HOME' | translate }}</a></li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">{{ 'ROUTES.CONTACT' | translate }}</li>
                 </ol>
             </nav>
         </div>
@@ -48,7 +50,8 @@
             <!-- Right Form Column -->
             <div class="col-lg-8" animateFromRight [delay]="300">
                 <div class="contact-form-card">
-                    <h2 class="form-title">Send us a message</h2>
+                    <h2 class="form-title">{{ 'CONTACT.FORM_TITLE' | translate }}</h2>
+                    <p class="form-lead">{{ 'CONTACT.CONTACT_FORM_INFO' | translate }}</p>
                     <form #form="ngForm" (ngSubmit)="submit(form)">
                         <div class="row g-3">
                             <div class="col-md-6 form-group">

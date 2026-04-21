@@ -4,33 +4,66 @@
         <div class="hero-banner-card">
             <div class="row h-100 align-items-center g-0">
                 <!-- Left Content -->
-                <div class="col-lg-6 z-2 py-5 ps-lg-5 text-center text-lg-start" animateFromLeft>
-                    <div class="hero-badge badge-premium badge-success mb-3 d-inline-block">
+                <div
+                    class="col-lg-6 hero-content z-2 py-5 ps-lg-5 text-center text-lg-start"
+                    animateFromLeft
+                >
+                    <div
+                        class="hero-badge badge-premium badge-success mb-3 d-inline-block"
+                    >
                         {{ 'HOME.NEW_COLLECTIONS' | translate }}
                     </div>
                     <h1 class="hero-title text-white mb-4">
                         {{ 'HOME.ENHANCE_YOUR' | translate }}<br />
-                        <span class="gradient-text-warm">{{ 'HOME.MUSIC_EXPERIENCE' | translate }}</span>
+                        <span class="gradient-text-warm">{{
+                            'HOME.MUSIC_EXPERIENCE' | translate
+                        }}</span>
                     </h1>
 
-                    <div class="timer-container d-flex justify-content-center justify-content-lg-start gap-3 mb-4">
-                        <app-timer-digit [value]="countdown().days" label="BANNER.DAYS" class="timer-dark"></app-timer-digit>
-                        <app-timer-digit [value]="countdown().hours" label="BANNER.HOURS" class="timer-dark"></app-timer-digit>
-                        <app-timer-digit [value]="countdown().minutes" label="BANNER.MINUTES" class="timer-dark"></app-timer-digit>
-                        <app-timer-digit [value]="countdown().seconds" label="BANNER.SECONDS" class="timer-dark"></app-timer-digit>
+                    <div
+                        class="timer-container d-flex justify-content-center justify-content-lg-start gap-3 mb-4"
+                    >
+                        <app-timer-digit
+                            [value]="countdown().days"
+                            label="BANNER.DAYS"
+                            class="timer-dark"
+                        ></app-timer-digit>
+                        <app-timer-digit
+                            [value]="countdown().hours"
+                            label="BANNER.HOURS"
+                            class="timer-dark"
+                        ></app-timer-digit>
+                        <app-timer-digit
+                            [value]="countdown().minutes"
+                            label="BANNER.MINUTES"
+                            class="timer-dark"
+                        ></app-timer-digit>
+                        <app-timer-digit
+                            [value]="countdown().seconds"
+                            label="BANNER.SECONDS"
+                            class="timer-dark"
+                        ></app-timer-digit>
                     </div>
 
-                    <button class="btn btn-premium-success btn-lg px-5 hover-lift" routerLink="/products">
+                    <button
+                        class="btn btn-premium-success btn-lg px-5 hover-lift"
+                        routerLink="/products"
+                    >
                         {{ 'BANNER.BUY_NOW' | translate }}
                     </button>
                 </div>
 
                 <!-- Right Image -->
-                <div class="col-lg-6 h-100 d-flex align-items-center justify-content-center position-relative z-1" animateFromRight>
-                   <div class="hero-glow"></div>
-                   <img src="assets/images/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png"
+                <div
+                    class="col-lg-6 hero-visual h-100 d-flex align-items-center justify-content-center position-relative z-1"
+                    animateFromRight
+                >
+                    <div class="hero-glow" aria-hidden="true"></div>
+                    <img
+                        src="assets/images/JBL_BOOMBOX_2_HERO_020_x1 (1) 1.png"
                         alt="JBL Boombox"
-                        class="img-fluid hero-image hover-scale">
+                        class="img-fluid hero-image hover-scale"
+                    />
                 </div>
             </div>
         </div>
@@ -50,6 +83,7 @@
         <div class="d-flex justify-content-center mt-5">
             <app-shared-button
                 [allLoaded]="allFlashSalesLoaded"
+                [allLoadedAndOneSection]="allLoadedAndOnlyOnePage"
                 (loadMoreEvent)="loadMore('flashSales')"
             ></app-shared-button>
         </div>
@@ -90,34 +124,50 @@
 <section class="py-5 bg-light-premium">
     <div class="container">
         <div class="newsletter-card position-relative overflow-hidden">
-        <div class="row align-items-center position-relative z-1 p-5">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <div class="newsletter-content ps-lg-4">
-                    <span class="badge badge-premium badge-warning mb-3">{{ 'HOME.SUBSCRIBE_SAVE' | translate }}</span>
-                    <h2 class="section-title text-white mb-3">{{ 'HOME.JOIN_PREMIUM_CLUB' | translate }}</h2>
-                    <p class="text-white-50 fs-5 mb-0">
-                        {{ 'HOME.PREMIUM_CLUB_DESC' | translate }}
-                        <span class="text-white fw-bold">{{ 'HOME.OFF_FIRST_ORDER' | translate }}</span>
+            <div class="row align-items-center position-relative z-1 p-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="newsletter-content ps-lg-4">
+                        <span class="badge badge-premium badge-warning mb-3">{{
+                            'HOME.SUBSCRIBE_SAVE' | translate
+                        }}</span>
+                        <h2 class="section-title text-white mb-3">
+                            {{ 'HOME.JOIN_PREMIUM_CLUB' | translate }}
+                        </h2>
+                        <p class="text-white-50 fs-5 mb-0">
+                            {{ 'HOME.PREMIUM_CLUB_DESC' | translate }}
+                            <span class="text-white fw-bold">{{
+                                'HOME.OFF_FIRST_ORDER' | translate
+                            }}</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <form class="newsletter-form d-flex gap-2">
+                        <input
+                            type="email"
+                            class="form-control form-control-lg border-0"
+                            [placeholder]="
+                                'HOME.ENTER_EMAIL_PLACEHOLDER' | translate
+                            "
+                        />
+                        <button
+                            class="btn btn-premium-success btn-lg px-4"
+                            type="button"
+                        >
+                            {{ 'FOOTER.SUBSCRIBE' | translate }}
+                        </button>
+                    </form>
+                    <p class="text-white-50 small mt-3 mb-0">
+                        <i class="pi pi-check-circle me-1 text-success"></i>
+                        {{ 'HOME.NO_SPAM' | translate }}
                     </p>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <form class="newsletter-form d-flex gap-2">
-                    <input type="email" class="form-control form-control-lg border-0" [placeholder]="'HOME.ENTER_EMAIL_PLACEHOLDER' | translate">
-                    <button class="btn btn-premium-success btn-lg px-4" type="button">
-                        {{ 'FOOTER.SUBSCRIBE' | translate }}
-                    </button>
-                </form>
-                <p class="text-white-50 small mt-3 mb-0">
-                    <i class="pi pi-check-circle me-1 text-success"></i> {{ 'HOME.NO_SPAM' | translate }}
-                </p>
-            </div>
-        </div>
 
-        <!-- decorative elements -->
-        <div class="glow-effect"></div>
-        <div class="pattern-overlay"></div>
-    </div>
+            <!-- decorative elements -->
+            <div class="glow-effect"></div>
+            <div class="pattern-overlay"></div>
+        </div>
     </div>
 </section>
 
@@ -149,8 +199,6 @@
     <app-new-arrivals></app-new-arrivals>
 </section>
 <section class="bg-light-premium">
-
     <app-details></app-details>
 </section>
 <app-loading></app-loading>
-
