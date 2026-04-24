@@ -27,9 +27,7 @@ import { Subscription } from 'rxjs';
         NgxStarsModule,
         CommonModule,
         RouterModule,
-        ConfirmPopupComponent,
         NgbModule,
-        ImagePreviewComponent,
         AnimateFadeUpDirective,
         TranslateModule
     ],

@@ -18,7 +18,7 @@ EStore is a full-stack e-commerce website built with Angular and Firebase. It of
 
 # Demo
 
-https://e-commerce-omega-peach.vercel.app
+https://exclusive-e-store.netlify.app
 
 ## Features
 
